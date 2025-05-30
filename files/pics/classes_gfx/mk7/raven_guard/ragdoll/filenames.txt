@@ -1,0 +1,7 @@
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/right_shoulder.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/left_shoulder.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/torso.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/right_arm.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/left_arm.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/right_leg.png
+mods/Noita40K/files/pics/classes_gfx/mk7/raven_guard/ragdoll/left_leg.png
