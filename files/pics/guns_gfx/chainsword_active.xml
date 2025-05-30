@@ -1,0 +1,18 @@
+<Sprite 
+	filename="mods/Noita40K/files/pics/guns_gfx/chainsword.png" 
+	offset_x="2"
+	offset_y="23"
+	default_animation="stand" >
+	
+	<RectAnimation
+		name="stand"
+		pos_x="0"
+		pos_y="27"
+		frame_count="2"	
+		frame_width="5"
+		frame_height="27"
+		frame_wait="0.02"
+		frames_per_row="2"
+		loop="1"  
+	></RectAnimation>
+</Sprite>
