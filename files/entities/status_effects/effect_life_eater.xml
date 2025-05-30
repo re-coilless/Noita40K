@@ -1,0 +1,41 @@
+<Entity name="life_eater_virus" >
+	<InheritTransformComponent 
+		_enabled="1"
+    ></InheritTransformComponent>
+	
+	<ParticleEmitterComponent
+		_tags="spores"
+		emitted_material_name="exterminatus_gas"
+		count_min="5"
+		count_max="5"
+		offset.x="-1"
+		offset.y="-5"
+		x_pos_offset_min="-5"
+		x_pos_offset_max="5"
+		y_pos_offset_min="-4"
+		y_pos_offset_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		lifetime_min="1.1"
+		lifetime_max="2.8"
+		create_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		delay_frames="2"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/life_eater.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="scaled"
+		name="scaled"
+		value_bool="0"
+	></VariableStorageComponent>
+</Entity>

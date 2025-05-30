@@ -1,0 +1,60 @@
+<Entity name="stasis_stun" >
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="STASIS_STUN"
+		frames="120"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="CONFUSION"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="DRUNK"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="MOVEMENT_SLOWER_2X"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="MOVEMENT_SLOWER_2X"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="MOVEMENT_SLOWER_2X"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent>
+		<Transform 
+			position.x="0"
+			position.y="0"
+		></Transform>
+	</InheritTransformComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_stasis_stun.png"
+		name="Stasis Stun"
+		description="Your consciousness is fractured."
+		display_above_head="1"
+		display_in_hud="1"
+		is_perk="0"
+	></UIIconComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/stasis_stun.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="old_value"
+		name="old_value"
+		value_int="0"
+	></VariableStorageComponent>
+</Entity>

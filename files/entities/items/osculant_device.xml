@@ -1,0 +1,88 @@
+<Entity tags="hittable,teleportable_NOT,item_physics,item_pickup,rmb_reactive" >
+	<PhysicsBodyComponent 
+		_tags="enabled_in_world"
+		uid="1" 
+		allow_sleep="1" 
+		angular_damping="0" 
+		fixed_rotation="0" 
+		is_bullet="1" 
+		linear_damping="0"
+		auto_clean="0"
+		kills_entity="1"
+		hax_fix_going_through_ground="1"
+		on_death_leave_physics_body="1"
+		on_death_really_leave_body="1"
+	></PhysicsBodyComponent>
+	
+	<PhysicsImageShapeComponent 
+		body_id="1"
+		centered="0"
+		offset_x="0"
+		offset_y="4"
+		image_file="mods/Noita40K/files/pics/items_gfx/osculant_device.png"
+		material="plasteel_box2d"
+	></PhysicsImageShapeComponent>
+	
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+	
+	<SpriteComponent
+		_tags="enabled_in_hand"
+		_enabled="0"
+		offset_x="3"
+		offset_y="4"
+		image_file="mods/Noita40K/files/pics/items_gfx/osculant_device.png"
+	></SpriteComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/Noita40K/files/scripts/item_controllers/osculant_device_controller.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name="Osculant Device"
+		max_child_items="0"
+		is_pickable="1"
+		is_equipable_forced="1"
+		always_use_item_name_in_ui="1"
+		ui_sprite="mods/Noita40K/files/pics/items_gfx/osculant_device.png"
+		ui_description="An ancient device designed to condence arcane energies into the solid form. LMB to check, RMB to extract."
+		preferred_inventory="QUICK"
+	></ItemComponent>
+	
+	<AbilityComponent
+		throw_as_item="0"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<MaterialSuckerComponent 
+		_tags="enabled_in_world,enabled_in_hand"
+		barrel_size="10000"
+		num_cells_sucked_per_frame="100"
+		material_type="0"
+		suck_tag="[blood]"
+	></MaterialSuckerComponent>
+	
+	<MaterialInventoryComponent 
+		_tags="enabled_in_world,enabled_in_hand"
+		drop_as_item="0" 
+		on_death_spill="1"
+		leak_pressure_min="0.07"
+		leak_on_damage_percent="1"
+		min_damage_to_leak="0.0"
+		death_throw_particle_velocity_coeff="0.5"
+		><count_per_material_type>
+		</count_per_material_type>
+	</MaterialInventoryComponent>
+	
+	<VariableStorageComponent
+		_tags="osculant_matter"
+		name="osculant_matter"
+		value_int="0"
+	></VariableStorageComponent>
+</Entity>

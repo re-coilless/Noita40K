@@ -1,0 +1,91 @@
+<Entity tags="teleportable_NOT" >	
+	<PhysicsBodyComponent 
+		_tags="enabled_in_world"
+		uid="1" 
+		allow_sleep="1" 
+		angular_damping="0" 
+		fixed_rotation="0" 
+		is_bullet="1" 
+		linear_damping="0"
+		auto_clean="0"
+		kills_entity="1"
+		hax_fix_going_through_ground="1"
+		on_death_leave_physics_body="1"
+		on_death_really_leave_body="1"
+	></PhysicsBodyComponent>
+	
+	<PhysicsImageShapeComponent 
+		body_id="1"
+		centered="1"
+		image_file="mods/Noita40K/files/pics/map_gfx/props/holoprojector.png"
+        material="plasteel_box2d"
+	></PhysicsImageShapeComponent>
+	
+	<SpriteComponent 
+		_tags="character,active"
+		alpha="0.8"
+		emissive="0"
+		smooth_filtering="0"
+		image_file="mods/Noita40K/files/pics/map_gfx/props/holoprojector_vallo.xml" 
+		next_rect_animation="" 
+		offset_x="10"
+		offset_y="33"
+		z_index="-1"
+		rect_animation="hover"
+	></SpriteComponent>
+	
+	<SpriteAnimatorComponent
+		rotate_to_surface_normal="0" 
+		target_sprite_comp_name="character"
+	></SpriteAnimatorComponent>
+	
+	<LightComponent 
+		_tags="active"
+		offset_x="0"
+		offset_y="-15"
+		radius="60"
+		fade_out_time="2" 
+		r="182"
+		g="213"
+		b="60"
+	></LightComponent>
+	
+	<LightComponent 
+		_tags="active"
+		offset_x="0"
+		offset_y="-15"
+		radius="60"
+		fade_out_time="2" 
+		r="182"
+		g="213"
+		b="60"
+	></LightComponent>
+	
+	<LightComponent 
+		_tags="active"
+		offset_x="0"
+		offset_y="-15"
+		radius="60"
+		fade_out_time="2" 
+		r="182"
+		g="213"
+		b="60"
+	></LightComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/map_controllers/props/holoprojector_controller.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="broken_cooldown"
+		name="broken_cooldown"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="is_active"
+		name="is_active"
+		value_bool="0"
+	></VariableStorageComponent>
+</Entity>

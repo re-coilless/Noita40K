@@ -1,0 +1,94 @@
+<Entity name="fancy_burning" >
+	<InheritTransformComponent 
+		_enabled="1"
+    ></InheritTransformComponent>
+	
+	<GameEffectComponent 
+		effect="CUSTOM"
+		custom_effect_id="FANCY_BURNING"
+		frames="120"
+		ragdoll_effect="CUSTOM_RAGDOLL_ENTITY"
+		ragdoll_material="deflagrating_matter"
+		ragdoll_effect_custom_entity_file="mods/Noita40K/files/entities/status_effects/effect_fancy_burning_ragdoll.xml"
+	></GameEffectComponent>
+	
+	<ParticleEmitterComponent 
+		_tags="flames"
+		emitted_material_name="fire"
+		x_pos_offset_min="-2"
+		x_pos_offset_max="2"
+		y_pos_offset_min="2"
+		y_pos_offset_max="-2"
+		x_vel_min="-2"
+		x_vel_max="2"
+		y_vel_min="-50"
+		y_vel_max="-30"
+		count_min="20"
+		count_max="30"
+		lifetime_min="80"
+		lifetime_max="100"
+		create_real_particles="1"
+		emit_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		emitter_lifetime_frames="-1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+	
+	<ParticleEmitterComponent 
+		_tags="fire"
+		custom_style="FIRE"
+		x_pos_offset_min="-2"
+		x_pos_offset_max="2"
+		y_pos_offset_min="2"
+		y_pos_offset_max="-2"
+		x_vel_min="-2"
+		x_vel_max="2"
+		y_vel_min="-50"
+		y_vel_max="-30"
+		count_min="5"
+		count_max="10"
+		lifetime_min="80"
+		lifetime_max="100"
+		create_real_particles="1"
+		emit_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="3"
+		emitter_lifetime_frames="-1"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/fancy_burning.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<AudioComponent
+		file="data/audio/Desktop/misc.bank"
+		event_root="game_effect/on_fire"
+		set_latest_event_position="1"
+	></AudioComponent>
+	
+	<AudioLoopComponent
+		file="data/audio/Desktop/misc.bank"
+		event_name="game_effect/on_fire/burning" 
+		auto_play="1"
+	></AudioLoopComponent>
+	
+	<VariableStorageComponent
+		_tags="scaled"
+		name="scaled"
+		value_bool="0"
+	></VariableStorageComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_fancy_burning.png"
+		name="Thermal Deflagration"
+		description="You are being seared by a horrifying heat."
+		display_above_head="1"
+		display_in_hud="1"
+		is_perk="0"
+	></UIIconComponent>
+</Entity>

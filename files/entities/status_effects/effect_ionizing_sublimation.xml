@@ -1,0 +1,25 @@
+<Entity name="ionizing_sublimation" >
+	<InheritTransformComponent 
+		_enabled="1"
+    ></InheritTransformComponent>
+	
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="IONIZING_SUBLIMATION"
+		frames="-1"
+		ragdoll_effect="CONVERT_TO_MATERIAL"
+		ragdoll_material="plasma_he"
+	></GameEffectComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/ionizing_sublimation.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<AudioLoopComponent
+		file="mods/Noita40K/files/sfx/40K.bank"
+		event_name="guns/melting_flesh"
+		auto_play="1"
+	></AudioLoopComponent>
+</Entity>

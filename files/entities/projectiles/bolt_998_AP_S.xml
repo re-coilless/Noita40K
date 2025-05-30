@@ -1,0 +1,129 @@
+<Entity name="$projectile_default" >
+	<Base file="data/entities/base_projectile.xml" >
+		<VelocityComponent
+			gravity_y="20" 
+			air_friction="-2.0" 
+			mass="1"
+		></VelocityComponent>
+	</Base>
+	
+	<ProjectileComponent 
+		_enabled="1" 
+		friendly_fire="1"
+		lob_min="0.8"
+		lob_max="1.1"
+		speed_min="2500"
+		speed_max="3000"
+		damage_scaled_by_speed="1"
+		direction_random_rad="0.003"
+		on_death_explode="0"
+		on_death_gfx_leave_sprite="1" 
+		on_lifetime_out_explode="0"
+		die_on_low_velocity="1"
+		explosion_dont_damage_shooter="0"
+		on_collision_die="0"
+		ragdoll_force_multiplier="0.03"
+		ragdoll_fx_on_collision="BLOOD_SPRAY"
+		lifetime="400"
+		ground_collision_fx="0"
+		ground_penetration_coeff="7"
+		velocity_sets_scale="1"
+		velocity_sets_scale_coeff="0.6"
+		camera_shake_when_shot="3.0"
+		shoot_light_flash_radius="150"
+		hit_particle_force_multiplier="0.1"
+		create_shell_casing="0"
+		shell_casing_offset.x="-7"
+		shell_casing_offset.y="0"
+		bounces_left="0"
+		damage="2"
+		penetrate_entities="1"
+		muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_large.xml"
+		knockback_force="1.5"
+		><damage_by_type 
+			curse="0"
+			drill="0" 
+			electricity="0" 
+			explosion="0" 
+			fire="0" 
+			healing="0" 
+			ice="0" 
+			melee="0" 
+			overeating="0"
+			physics_hit="1" 
+			poison="0" 
+			projectile="0" 
+			radioactive="0" 
+			slice="0"
+		></damage_by_type>
+	</ProjectileComponent>
+	
+	<SpriteComponent 
+		_enabled="1" 
+		alpha="1" 
+		image_file="mods/Noita40K/files/pics/projectiles_gfx/bolt_998_AP.xml" 
+		fog_of_war_hole="1"
+		next_rect_animation=""
+		rect_animation="" 
+		emissive="1"
+		additive="1"
+	></SpriteComponent>
+	
+	<SpriteComponent
+		has_special_scale="1"
+		special_scale_x="1"
+		special_scale_y="1"
+		alpha="0.5"
+		image_file="data/particles/fog_of_war_hole.xml"
+		smooth_filtering="1"
+		fog_of_war_hole="1"
+	></SpriteComponent>
+	
+	<LightComponent
+		_enabled="1"
+		radius="64"
+		r="255"
+		g="100"
+		b="10"
+	></LightComponent>
+	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		steps_per_frame="100"
+		is_circle="0"
+		radius="2"
+		loop="1"
+		temperature_reaction_temp="1000"
+		ignite_materials="1"
+    ></MagicConvertMaterialComponent>
+	
+	<AudioComponent
+		file="mods/Noita40K/files/sfx/40K.bank"
+		event_root="projectiles/bolt_998_suppressed" 
+		set_latest_event_position="1"
+	></AudioComponent>
+	
+	<AudioLoopComponent
+		file="mods/Noita40K/files/sfx/40K.bank"
+		event_name="projectiles/bolt_998_suppressed/engine"
+		set_speed_parameter="1"
+		auto_play="1"
+	></AudioLoopComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/Noita40K/files/scripts/low_velocity_killer.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="min_vel"
+		name="min_vel"
+		value_float="10"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		name="projectile_file"
+		value_string="mods/Noita40K/files/entities/projectiles/bolt_998_AP_S.xml"
+	></VariableStorageComponent>
+</Entity>

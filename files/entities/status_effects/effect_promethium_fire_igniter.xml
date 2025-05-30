@@ -1,0 +1,16 @@
+<Entity name="promethium_fire_igniter" >
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/autostainer.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="stain_info"
+		name="stain_info"
+		value_string="|promethium|80|"
+	></VariableStorageComponent>
+	
+	<LifetimeComponent
+		lifetime="2"
+	></LifetimeComponent>
+</Entity>

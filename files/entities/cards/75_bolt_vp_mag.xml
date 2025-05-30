@@ -1,0 +1,49 @@
+<Entity tags="75_bolt_vp_mag,bolt_75,mag">
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/Noita40K/files/pics/cards_gfx/75_bolt_vp_mag.png" 
+		></SpriteComponent>
+	</Base>
+	
+	<VariableStorageComponent
+		_tags="is_reloading"
+		name="is_reloading"
+		value_bool="1"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="reload_time"
+		name="reload_time"
+		value_int="150"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="reload_end"
+		name="reload_end"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="ammo_max"
+		name="ammo_max"
+		value_int="15"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="ammo_current"
+		name="ammo_current"
+		value_int="15"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="pic"
+		name="pic"
+		value_string="mods/Noita40K/files/pics/gui_gfx/ammo_counter/bolt_75_VP.png"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="casing_info"
+		name="casing_info"
+		value_string="|2|200|mods/Noita40K/files/entities/misc/casings/casing_bolt_75.xml|"
+	></VariableStorageComponent>
+</Entity>

@@ -1,0 +1,15 @@
+<Entity>
+	<LoadEntitiesComponent
+        count.min="4"
+        count.max="5"
+        kill_entity="0"
+        entity_file="data/entities/particles/particle_explosion/explosion_trail_smoke_gunpowder_short.xml" >
+    </LoadEntitiesComponent>
+	
+    <LoadEntitiesComponent
+        count.min="3"
+        count.max="4"
+        kill_entity="1"
+        entity_file="data/entities/particles/particle_explosion/explosion_trail_spark_short.xml" >
+    </LoadEntitiesComponent>
+</Entity>

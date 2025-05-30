@@ -1,0 +1,31 @@
+<Entity name="psytrip" >
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="PSYTRIP"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<DrugEffectModifierComponent>
+		<fx_add
+			distortion_amount="3"
+			color_amount="2"
+			doublevision_amount="5"
+			fractals_amount="5"
+			fractals_size="0.1"
+		/>
+	</DrugEffectModifierComponent>
+	
+	<InheritTransformComponent>
+		<Transform 
+			position.x="0"
+			position.y="0"
+		></Transform>
+	</InheritTransformComponent>
+	
+	<LuaComponent
+		_tags="shift"
+		script_source_file="mods/Noita40K/files/scripts/status_effects/psytrip.lua"
+		execute_every_n_frame="100"
+	></LuaComponent>
+</Entity>

@@ -1,0 +1,29 @@
+<Entity >
+	<Base file="mods/Noita40K/files/entities/based/grenade.xml">
+		<PhysicsImageShapeComponent 
+			image_file="mods/Noita40K/files/pics/items_gfx/grenade_he.png"
+		></PhysicsImageShapeComponent>
+		
+		<SpriteComponent
+			image_file="mods/Noita40K/files/pics/items_gfx/grenade_he.png"
+		></SpriteComponent>
+		
+		<ItemComponent
+			item_name="HE Grenade"
+			ui_sprite="mods/Noita40K/files/pics/items_gfx/grenade_he.png"
+			ui_description="A general purpose high-explosive grenade."
+		></ItemComponent>
+	</Base>
+	
+	<VariableStorageComponent
+		_tags="fuse_state,enabled_in_world,enabled_in_hand,enabled_in_inventory"
+		name="fuse_state"
+		value_int="-60"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="explosion_entity"
+		name="explosion_entity"
+		value_string="mods/Noita40K/files/entities/emitters/explosion_grenade.xml"
+	></VariableStorageComponent>
+</Entity>
