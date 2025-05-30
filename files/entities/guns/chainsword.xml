@@ -118,6 +118,11 @@
     </Base>
 	
 	<VariableStorageComponent
+		name="index_pic_offset"
+		value_string="|5|2|"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
 		_tags="perma"
 		name="perma"
 		value_string="ADAMANTIUM_CARBON_TEETH"
