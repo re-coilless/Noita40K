@@ -1,0 +1,19 @@
+<Sprite 
+	default_animation="stand" 
+	filename="mods/Noita40K/files/pics/misc_gfx/rifle_bayonet.png" 
+	offset_x="11" 
+	offset_y="0" >
+
+	<RectAnimation 
+		frame_count="1" 
+		frame_height="3" 
+		frame_wait="0.2" 
+		frame_width="17" 
+		frames_per_row="4" 
+		loop="1" 
+		name="stand"
+		pos_x="0" 
+		pos_y="0" 
+		shrink_by_one_pixel="0"
+	></RectAnimation>
+</Sprite>
