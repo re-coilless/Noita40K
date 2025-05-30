@@ -1,0 +1,17 @@
+<Sprite 
+	filename="mods/Noita40K/files/pics/map_gfx/props/holoprojector_vallo.png"
+	offset_x="0"
+	offset_y="0"
+	default_animation="hover" >
+	
+	<RectAnimation 
+		frame_count="6" 
+		frame_height="31" 
+		frame_wait="0.2" 
+		frame_width="22" 
+		frames_per_row="8" 
+		name="hover" 	
+		pos_x="1" 
+		pos_y="1"
+	></RectAnimation>
+</Sprite>

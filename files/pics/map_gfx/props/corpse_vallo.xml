@@ -1,0 +1,17 @@
+<Sprite 
+	filename="mods/Noita40K/files/pics/map_gfx/props/corpse_vallo.png"
+	offset_x="0"
+	offset_y="0"
+	default_animation="sit" >
+	
+	<RectAnimation 
+		frame_count="1" 
+		frame_height="24" 
+		frame_wait="0.2" 
+		frame_width="19" 
+		frames_per_row="8" 
+		name="sit" 	
+		pos_x="0" 
+		pos_y="0"
+	></RectAnimation>
+</Sprite>
