@@ -1,0 +1,42 @@
+<Entity name="dendrite_walking" tags="dendrite_walking">
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/Noita40K/files/scripts/kinematics_controller.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="full_length"
+		name="full_length"
+		value_float="40"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="is_going"
+		name="is_going"
+		value_bool="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="target_x"
+		name="target_x"
+		value_float="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="target_y"
+		name="target_y"
+		value_float="0"
+	></VariableStorageComponent>
+	
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+	
+	<Entity><Base file="mods/Noita40K/files/entities/misc/mechadendrites/module_back_external.xml"></Base></Entity>
+	<Entity><Base file="mods/Noita40K/files/entities/misc/mechadendrites/module_back_internal.xml"></Base></Entity>
+	<Entity><Base file="mods/Noita40K/files/entities/misc/mechadendrites/module_joint.xml"></Base></Entity>
+	<Entity><Base file="mods/Noita40K/files/entities/misc/mechadendrites/module_front_internal.xml"></Base></Entity>
+	<Entity><Base file="mods/Noita40K/files/entities/misc/mechadendrites/module_front_external.xml"></Base></Entity>
+	<Entity tags="final_part"><Base file="mods/Noita40K/files/entities/misc/mechadendrites/claw_walking.xml"></Base></Entity>
+</Entity>

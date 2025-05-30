@@ -1,0 +1,109 @@
+<Entity tags="servoskull">
+	<StreamingKeepAliveComponent>
+	</StreamingKeepAliveComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/follower.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/entities/misc/servoskull/servoskull_visual_spawner.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/perks/salvager.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="storage_owner"
+		name="storage_owner"
+		value_string="servoskull_owner"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="max_dist"
+		name="max_dist"
+		value_int="10"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="save_slot_1"
+		name="save_slot_1"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="save_slot_2"
+		name="save_slot_2"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="save_slot_3"
+		name="save_slot_3"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="save_slot_4"
+		name="save_slot_4"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="save_slot_5"
+		name="save_slot_5"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="waypoint_1"
+		name="waypoint_1"
+		value_string="|"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="waypoint_2"
+		name="waypoint_2"
+		value_string="|"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="waypoint_3"
+		name="waypoint_3"
+		value_string="|"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="matter_max"
+		name="matter_max"
+		value_int="10000"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="matter_storage"
+		name="matter_storage"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="power_storage"
+		name="power_storage"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="salvage_mode"
+		name="salvage_mode"
+		value_bool="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="wand_storage"
+		name="wand_storage"
+		value_int="0"
+	></VariableStorageComponent>
+</Entity>

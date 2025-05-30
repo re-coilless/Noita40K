@@ -1,0 +1,8 @@
+<Entity name="$projectile_default">
+	<Base file="mods/Noita40K/files/entities/misc/particles/explosion_trail_lightning_normal.xml" >
+		<SetStartVelocityComponent
+			randomize_speed.min="1000"
+			randomize_speed.max="1000"
+		></SetStartVelocityComponent>
+	</Base>
+</Entity>
