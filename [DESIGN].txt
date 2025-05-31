@@ -1,0 +1,65 @@
+Roadmap ([+] highlights the project being actively worked upon):
++HermeS Index/HermeS Vector
++Noita40K ACT IV (C4-HEAVY Oblivion Knight)
+The Nineteen Abiding
+Noita40K ACT V (C2-HEAVY Commissar)
+Hindrance Factor
+Noita40K ACT VI (T'au Trenches)
+Beyond War
+
+---------------------------------------------------------------- [LORE] ----------------------------------------------------------------
+In the beginning, there were the Three - they've molded and warped, erected and despoiled, corrupted and purified, until the Fruit of them was flawless beyond the limits of its restrains.
+
+Yet, nothing can be perfect in isolation, as the true perfection cannot be contained. Thus, the One was born for the fourth and last time. Its infancy was brief as the closer the Fruit were getting to completion, the broader, the deeper the One was becoming.
+
+Many millennia have passed, and the One has guided the Postulant through, unknowingly letting the Two pass alongside. The Couple prowled the realm, their presence corrupting and overwhelming the Trinity. The apocalyptic battle has shattered the original laws of creation, once again bending and reshaping the reality, irreversibly corrupting the Fruit to serve its new masters.
+
+The One thrived upon the Trinity's failure and brought a new harvest from the lands beyond at the expense of itself. This is where our story begins.
+
+--------------------------------------------------------------- [DESIGN] --------------------------------------------------------------
+The core of the mod is roguelite progression (global "currency" through exploration) mixed with roguelike gameplay (a huge map and elaborate chance-based equipment customization that both are reset on death). The essence of the experience is exploration via fast-paced combat. The narration revolves around rarely encountered NPCs, with main one being a fully sentient STC that resides within a safe-house (there's one randomly placed in each "biome").
+
+It is a level-based adventure, with every "biome" being an entirely separate world filled with plethora of unique sublocations. Reaching one of the potential local "endings" will present the player with a world map where they can freely choose the next destination. Returning to previously visited places is possible (local traversal is unobstructed), albeit not straightforward, yet the difficulty upon return will be dramatically increased. Besides NPCs, the story unfolds through world-altering faction progressions – every sentient faction has own goal (simulated only through event triggers) and tampering with it can both help or stop them in their tracks.
+
+Moment to moment gameplay is a mix of tactical and strategic thinking - heals are very hard to come by but the characters are substantially stronger, so the player always has the means to succeed (only applicable to early game, as true progression requires better equipment/classes) but has to stay on their toes to survive in the long run. Several equipment degradation mechanics are used instead of an HP bar, with cleaning and fixing stations being multi-use. Ranged weapons are put at a disadvantage through reloading and handling, while melee is made viable through dodge/parry mechanics.
+
+Build customization options are weapon modifiers and armor augmentations (besides inherent to class ability perks).
+Modifiers are focused on gun types and meant to change how gun works rather than how projectiles function (beam weapons get hit modifiers, ballistic weapons get mechanical improvements, melee weapons get both, launcher weapons get actual vanilla-style stuff, force weapons get fundamental changes, matter weapons get reaction-based additions, digging weapons can be either further specialized for combat or have their excavation performance improved). Velho pattern allows for customization beyond vanilla, one can design both guns and their spells from scratch through no-code wiring-like puzzles.
+Augmentations are dynamically swappable abilities rather than a simple numerical improvement (most of them have such improvement just as an added benefit) – they allow injecting abilities from one class to the other (with synergies if class already has such ability; there will be augment-exclusive abilities too), the closest comparison would be Terraria's equippable items (though they are not easy to come by).
+
+-------------------------------------------------------------- [CLASSES] --------------------------------------------------------------
+CLASS(LIGHT|MEDIUM|HEAVY|SPECIAL)
+- LIGHT/Human - initially unlocked
+- MEDIUM/Superhuman - straightforward upgrade
+- HEAVY/Transhuman - upgrade with tradeoffs
+- SPECIAL/Other - unique spin with extra complexity
+
+Every character receives four unique weapons.
+[+] highlights more-or-less final classes
+[*] signifies categories that definitely require more work
+
+-MAIN FORCE-
++1)Adeptus Astartes(*Neophyte|Firstborn|Warsuit|Moritat)
+2)Astra Militarum(Abhuman/Ogryn|Honourifica Imperialis|Ordo Tempestus/Commissar|_)
++3)Adeptus Mechanicus(Legiones Skitarii/Secutarius Hoplite|Tech-Priesthood/Magos|Legio Cybernetica/Battle-Automaton|Auxilia Myrmidon)
+
+-MISC-
+4)Adeptus Astra Telepathica(Primaris Psyker|Librarian|Silent Sisterhood|_)
++5)Officio Assassinorum(Vindicare Temple|Eversor Temple|Culexus Temple|Venenum Temple)
++6)Inquisition(Ordo Hereticus/Adepta Sororitas|Ordo Xenos/Deathwatch|Ordo Malleus/Grey Knights|Ordos Minoris)
++7)Adeptus Terra(Adeptus Arbitres(squad)|Templars Psykologis(squad)|Navis Nobilite(squad)|Rogue Trader)
++8)Adeptus Ministorum(Cult Imperialis(squad)|Imperial Saint|Crusader Houses(squad)|Arco-flagellant)
++9)Leagues of Votann(Ironkin|Einhyr Champion|Grimnyr|Kâhl)
+
+-EXOTIC-
++10)Talons of the Emperor(Ordo Chronos|Adeptus Custodes|Maerorus Temple|Theomancer)
+11)Faith Daemons(_|Legion of the Damned|Living Saint|Neverdead)
++12)Alpha Legionnaire(Heretics|Chaos Sorcerer|Xenos|Neverborn)
+
+-UNIQUE-
+13)The Five(_|Velho Pyöveli|_|Stevari Rakennelma)
+14)Fabulas Ultra(Watcher in the Dark|_|_|Umbra)
++15)CUSTOM(LIGHT|MEDIUM|HEAVY|SPECIAL)
+
+------------------------------------------------------------- [LOCATIONS] -------------------------------------------------------------
+Most of the factions will have a dedicated level, though many will not be a straightforward implementation of 40k lore.
