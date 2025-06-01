@@ -1,3 +1,7 @@
+if( ModIsEnabled( "mnee" )) then
+	ModLuaFileAppend( "mods/mnee/bindings.lua", "mods/Noita40K/mnee.lua" )
+else return end
+
 ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/Noita40K/files/append/custom_gun.lua" ) -- do better
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/append/actions.lua" )
 ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/Noita40K/files/append/perks.lua" )

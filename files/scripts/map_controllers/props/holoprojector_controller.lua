@@ -84,10 +84,7 @@ if( not( is_broken )) then
 				new_text( gui, pic_x + 10, pic_y + 36, pic_z, paragrapher( nil, text, 184, 54, 3.5 ))
 			else
 				local ctrl_comp = EntityGetFirstComponentIncludingDisabled( hooman, "ControlsComponent" )
-				local DOWN_down = ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
-				local USE_down = ComponentGetValue2( ctrl_comp, "mButtonDownInteract" )
-				
-				if( USE_down and not( DOWN_down )) then
+				if( ComponentGetValue2( ctrl_comp, "mButtonDownInteract" )) then
 					ComponentSetValue2( active_storage, "value_bool", true )
 					GamePlaySound( "mods/Noita40K/files/sfx/40K.bank", "fx/ui/holo_button", h_x, h_y )
 				end

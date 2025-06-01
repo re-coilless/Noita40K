@@ -1,9 +1,10 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
 
 if( ModSettingGetNextValue( "Noita40K.SHOW_PERKS" )) then
-	if( not( GameIsInventoryOpen())) then
+	if( not( pen.is_inv_active())) then
 		local hooman = GetUpdatedEntityID()
 		
 		local clicked, r_clicked, hovered, pic_x, pic_y = 0, 0, 0, 0, 0

@@ -1,17 +1,15 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/taunts.lua" )
 
 local wand_id = GetUpdatedEntityID()
 local hooman = EntityGetRootEntity( wand_id )
 local w_x, w_y = EntityGetTransform( wand_id )
 
-local ctrl_comp = EntityGetFirstComponentIncludingDisabled( hooman, "ControlsComponent" )
-local RMB_down = ComponentGetValue2( ctrl_comp, "mButtonDownRightClick" )
-
 local storage_taunt = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "cooldown_taunt" )
 local taunt_frame = ComponentGetValue2( storage_taunt, "value_int" )
 local frame_num = GameGetFrameNum()
 
-if( RMB_down and not( EntityHasTag( hooman, "twin_linked" ))) then
+if( mnee.mnin( "bind", { "Noita40K", "taunt" }, { pressed = true, dirty = true }) and not( EntityHasTag( hooman, "twin_linked" ))) then
 	if( taunt_frame <= frame_num ) then
 		SetRandomSeed( GameGetFrameNum(), w_x + w_y + hooman )
 		local list = taunt_list[ ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( wand_id, "VariableStorageComponent", "taunt_type" ), "value_int" ) ][ GlobalsGetValue( "ACTUAL_ACTIVE_CLASS", "1" ).."-"..GlobalsGetValue( "ACTUAL_ACTIVE_SKIN", "1" ) ]

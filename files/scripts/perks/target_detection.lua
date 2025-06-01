@@ -1,7 +1,8 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
 
-if( not( GameIsInventoryOpen())) then
+if( not( pen.is_inv_active())) then
 	local hooman = GetUpdatedEntityID()
 	local char_x, char_y = EntityGetTransform( hooman )
 

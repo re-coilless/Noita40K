@@ -1,3 +1,5 @@
+dofile_once( "mods/mnee/lib.lua" )
+
 local emitter = GetUpdatedEntityID()
 local hooman = EntityGetRootEntity( emitter )
 
@@ -8,8 +10,8 @@ local ctrl_comp = EntityGetFirstComponentIncludingDisabled( hooman, "ControlsCom
 local is_ignited = ComponentGetValue2( storage_ignited, "value_bool" )
 local is_overheat = ComponentGetValue2( storage_overheat, "value_bool" )
 local is_hovering = ComponentGetValue2( storage_hover, "value_bool" )
-local ignite_combo = ComponentGetValue2( ctrl_comp, "mButtonDownDown" ) and ComponentGetValue2( ctrl_comp, "mButtonDownInteract" ) and not( ComponentGetValue2( ctrl_comp, "mButtonDownUp" ))
-local hover_combo = ComponentGetValue2( ctrl_comp, "mButtonDownDown" ) and not( ComponentGetValue2( ctrl_comp, "mButtonDownInteract" ) or ComponentGetValue2( ctrl_comp, "mButtonDownUp" ))
+local ignite_combo = mnee.mnin( "bind", { "Noita40K", "jumppack" }, { dirty = true })
+local hover_combo = ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
 
 local ui_mode_storage = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "explorator_mode" )
 if( ui_mode_storage ~= nil ) then

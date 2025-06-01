@@ -1,3 +1,4 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
@@ -37,7 +38,7 @@ local note_cooldown = ComponentGetValue2( note_cooldown_storage, "value_int" )
 local panel_state_storage = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "qm_panel_state" )
 local panel_state = ComponentGetValue2( panel_state_storage, "value_int" )
 
-if( GameIsInventoryOpen()) then
+if( pen.is_inv_active()) then
 	local menu_state_storage = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "mm_is_open" )
 	local quest_menu_storage = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "qm_is_open" )
 	local page_storage = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "mm_page_number" )

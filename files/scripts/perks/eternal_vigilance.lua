@@ -1,8 +1,9 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
 
-if( not( GameIsInventoryOpen())) then
+if( not( pen.is_inv_active())) then
 	local hooman = GetUpdatedEntityID()
 	
 	if( gui == nil ) then
@@ -400,9 +401,7 @@ if( not( GameIsInventoryOpen())) then
 		pic_y = pic_y + 2
 		new_text( gui, pic_x, pic_y, pic_z - 0.1, "t: "..s_h..":"..s_m..":"..s_s )
 		
-		local DOWN_down = ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
-		local USE_down = ComponentGetValue2( ctrl_comp, "mButtonDownInteract" )
-		local capture_combo = DOWN_down and USE_down
+		local capture_combo = mnee.mnin( "bind", { "Noita40K", "capture" }, { pressed = true })
 		
 		local target_entity = 0
 		local t_dist = 0
