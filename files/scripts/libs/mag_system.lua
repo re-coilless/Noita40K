@@ -1,3 +1,4 @@
+dofile_once( "mods/mnee/lib.lua" )
 dofile_once( "data/scripts/lib/utilities.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
@@ -206,25 +207,7 @@ function mag_reloader( wand_id, abil_comp, frame_num, ctrl_comp, mags )
 	local USE_down = ComponentGetValue2( ctrl_comp, "mButtonDownInteract" )
 	local DOWN_down = ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
 	
-	local manual_reload = false
-	
-	if( USE_down ) then
-		if( not( DOWN_down or USE_pressed )) then
-			if( tap_frame == nil ) then
-				tap_frame = 0
-			end
-			
-			local delay = frame_num - tap_frame
-			if( delay <= 20 ) then
-				manual_reload = true
-			end
-			
-			tap_frame = frame_num
-		end
-		USE_pressed = true
-	else
-		USE_pressed = false
-	end
+	local manual_reload = mnee.mnin( "bind", { "Noita40K", "reload" }, { pressed = true, dirty = true })
 	
 	if( #mags > 0 ) then
 		for i,mag in ipairs( mags ) do
