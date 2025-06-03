@@ -1,0 +1,19 @@
+<Sprite 
+	default_animation="stand" 
+	filename="mods/Noita40K/files/pics/items_gfx/combat_shield.png"
+	offset_x="7" 
+	offset_y="8" >
+	
+	<RectAnimation 
+		frame_count="1" 
+		frame_height="17" 
+		frame_wait="0.2" 
+		frame_width="13" 
+		frames_per_row="4" 
+		loop="1" 
+		name="stand"
+		pos_x="0" 
+		pos_y="0" 
+		shrink_by_one_pixel="0"
+	></RectAnimation>
+</Sprite>

@@ -1,0 +1,33 @@
+<Entity name="vallo" tags="vallo">
+	<SpriteComponent 
+		_enabled="1" 
+		visible="1" 
+		offset_x="11"
+		offset_y="22"
+		image_file="mods/Noita40K/files/pics/map_gfx/props/corpse_vallo.xml"
+		z_index="1"		
+	></SpriteComponent>
+	
+	<SpriteStainsComponent
+		fade_stains_towards_srite_top="0"   
+	></SpriteStainsComponent>
+	
+	<SimplePhysicsComponent
+		can_go_up="0"
+	></SimplePhysicsComponent>
+	
+	<VelocityComponent
+	></VelocityComponent>
+	
+	<LuaComponent
+		execute_every_n_frame="1"
+        remove_after_executed="1"
+		script_source_file="mods/Noita40K/files/scripts/autostainer.lua"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="stain_info"
+		name="stain_info"
+		value_string="|blood|80|"
+	></VariableStorageComponent>
+</Entity>

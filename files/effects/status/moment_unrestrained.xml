@@ -1,0 +1,47 @@
+<Entity name="moment_unrestrained" >
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="MOMENT_UNRESTRAINED"
+		frames="600"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="BERSERK"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="MOVEMENT_FASTER"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent>
+		<Transform 
+			position.x="0"
+			position.y="0"
+		></Transform>
+	</InheritTransformComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_moment_unrestrained.png"
+		name="Moment Unrestrained"
+		description="Allconsuming ferocity overwhelms your body. They shall fear."
+		display_above_head="0"
+		display_in_hud="1"
+		is_perk="0"
+	></UIIconComponent>
+	
+	<AudioLoopComponent
+		_tags="is_going"
+		file="mods/Noita40K/files/40K.bank"
+		event_name="fx/status_effects/ambient/rage"
+		volume_autofade_speed="0.25"
+	></AudioLoopComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/moment_unrestrained.lua"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+</Entity>

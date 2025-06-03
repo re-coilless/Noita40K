@@ -1,8 +1,0 @@
--- wheel selector for the wolf commands on rmb with the controller equipped
--- (goto agressive (will move to the area and attack everything on sight),
--- goto neutral (will move to the area but will not attack first and only respond),
--- goto passive (will move to the area no matter what),
--- follow (will follow the player and will only respond),
--- protect (will follow the player and attack everything that gets too close),
--- recall (teleports near you)),
--- lmb to goto agressive

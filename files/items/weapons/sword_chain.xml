@@ -1,0 +1,148 @@
+<Entity name="Chainsword" tags="custom_wand,melee_gun,chainsword">
+	<AbilityComponent
+		sprite_file="mods/Noita40K/files/pics/guns_gfx/chainsword_passive.xml"
+        ui_name="Chainsword"
+		add_these_child_actions=""
+		drop_as_item_on_death="1"
+		entity_count="1"
+		entity_file=""
+		mana_charge_speed="1"
+		mana_max="1"
+        max_amount_in_inventory="1"
+        shooting_reduces_amount_in_inventory="0"
+		never_reload="1"
+		fast_projectile="0"
+		swim_propel_amount="0"
+		throw_as_item="0"
+		amount_in_inventory="1"
+        cooldown_frames="0"
+		use_gun_script="1"
+		item_recoil_offset_coeff="0"
+		item_recoil_rotation_coeff="-90"
+		><gun_config
+            shuffle_deck_when_empty="0"
+            deck_capacity="0"
+			actions_per_round="1"
+            reload_time="0"
+        ></gun_config>
+        <gunaction_config
+            fire_rate_wait="0"
+        ></gunaction_config>
+    </AbilityComponent>
+	
+	<!--
+	<SpriteStainsComponent
+		fade_stains_towards_srite_top="0"   
+	></SpriteStainsComponent>
+	-->
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="2"
+        offset.y="-3"
+	></HotspotComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_inventory"
+		execute_on_added="1"
+        remove_after_executed="1"
+		script_source_file="mods/Noita40K/files/scripts/perma_attacher.lua"
+	></LuaComponent>
+	
+	<LuaComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		script_enabled_changed="mods/Noita40K/files/scripts/trash_killer.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/Noita40K/files/scripts/gun_controllers/chainsword_controller.lua"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+	
+	<LuaComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		script_enabled_changed="mods/Noita40K/files/scripts/deprimer.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/Noita40K/files/scripts/taunt_controller.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<AudioLoopComponent
+		_tags="enabled_in_hand,chains_are_going"
+		file="mods/Noita40K/files/40K.bank"
+		event_name="guns/chainsword/active"
+		volume_autofade_speed="0.25"
+	></AudioLoopComponent>
+	
+	<AudioLoopComponent
+		_tags="enabled_in_hand,slice_flesh"
+		file="mods/Noita40K/files/40K.bank"
+		event_name="guns/chainsword/slice_flesh"
+		volume_autofade_speed="0.25"
+	></AudioLoopComponent>
+	
+	<AudioLoopComponent
+		_tags="enabled_in_hand,slice_armor"
+		file="mods/Noita40K/files/40K.bank"
+		event_name="guns/chainsword/slice_armor"
+		volume_autofade_speed="0.25"
+	></AudioLoopComponent>
+
+	<Base file="data/entities/base_item.xml" >
+        <ItemComponent
+            item_name="default_gun"
+            remove_on_death="1"
+            collect_nondefault_actions="1" 
+			preferred_inventory="QUICK" 
+			is_frozen="0"
+			ui_sprite="mods/Noita40K/files/pics/guns_gfx/chainsword_icon.png"
+        ></ItemComponent>
+		
+		<SpriteComponent 
+			image_file="mods/Noita40K/files/pics/guns_gfx/chainsword_passive.xml"
+			rect_animation="0" 
+			next_rect_animation="0" 
+			offset_x="0"
+			offset_y="0"
+			z_index="0.95"
+		></SpriteComponent>
+    </Base>
+	
+	<VariableStorageComponent
+		name="index_pic_offset"
+		value_string="|5|2|"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
+		_tags="perma"
+		name="perma"
+		value_string="ADAMANTIUM_CARBON_TEETH"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="chainedge_state"
+		name="state"
+		value_bool="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="trash_tag"
+		name="trash_tag"
+		value_string="beam_spot"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="taunt_type"
+		name="taunt_type"
+		value_int="2"
+	></VariableStorageComponent>
+</Entity>

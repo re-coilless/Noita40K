@@ -1,0 +1,7 @@
+<Entity tags="warpborn_photon_pack">
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/Noita40K/files/pics/cards_gfx/warpborn_photon_pack.png" 
+		></SpriteComponent>
+	</Base>
+</Entity>

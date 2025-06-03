@@ -1,0 +1,17 @@
+<Entity name="life_eater_infection" >
+	<InheritTransformComponent 
+		_enabled="1"
+    ></InheritTransformComponent>	
+	
+	<GameEffectComponent 
+		effect="CUSTOM"
+		custom_effect_id="LIFE_EATER_INFECTION"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<LuaComponent
+		remove_after_executed="1"
+		script_source_file="mods/Noita40K/files/scripts/status_effects/life_eater_attacher.lua"
+		execute_every_n_frame="10"
+	></LuaComponent>
+</Entity>

@@ -1,0 +1,7 @@
+<Entity tags="mt_lasbat">
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/Noita40K/files/pics/cards_gfx/mt_lasbat.png" 
+		></SpriteComponent>
+	</Base>
+</Entity>

@@ -1,0 +1,29 @@
+<Sprite 
+	filename="mods/Noita40K/files/pics/misc_gfx/servoskull.png"
+	hotspots_filename="mods/Noita40K/files/pics/misc_gfx/servoskull_hotspots.png"
+	offset_x="0"
+	offset_y="0"
+	default_animation="hover" >
+	
+	<RectAnimation
+		name="hover"
+		pos_x="0"
+		pos_y="0"
+		frame_count="6"	
+		frame_width="8"
+		frame_height="10"
+		frame_wait="0.2"
+		frames_per_row="6"
+		loop="1"  
+	></RectAnimation>
+	
+	<Hotspot 
+		color="ff0000" 
+		name="dendrite_1"
+	></Hotspot>
+
+	<Hotspot 
+		color="0000ff" 
+		name="dendrite_2"
+	></Hotspot>
+</Sprite>

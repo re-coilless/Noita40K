@@ -1,0 +1,7 @@
+<Entity tags="pyrum_small">
+	<Base file="data/entities/base_custom_card.xml" > 
+		<SpriteComponent 
+			image_file="mods/Noita40K/files/pics/cards_gfx/pyrum_petrol_canister_small.png" 
+		></SpriteComponent>
+	</Base>
+</Entity>

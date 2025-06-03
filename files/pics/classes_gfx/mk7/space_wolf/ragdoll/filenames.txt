@@ -1,7 +1,0 @@
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/right_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/left_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/torso.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/right_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/left_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/right_leg.png
-mods/Noita40K/files/pics/classes_gfx/mk7/space_wolf/ragdoll/left_leg.png

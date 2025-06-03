@@ -1,0 +1,17 @@
+<Sprite filename="mods/Noita40K/files/pics/guns_gfx/rifle.png" >
+
+	<RectAnimation
+		name="default"
+		pos_x="0"
+		pos_y="0"
+		offset_x="10"
+		offset_y="4"
+		has_offset="1"
+		frame_count="1"	
+		frame_width="37"
+		frame_height="9"
+		frame_wait="0.2"
+		frames_per_row="10"
+		loop="0"  
+	></RectAnimation>
+</Sprite>

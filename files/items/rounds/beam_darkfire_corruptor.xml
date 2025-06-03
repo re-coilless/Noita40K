@@ -1,0 +1,16 @@
+<Entity name="darkfire_corruptor">
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_any_material="1"
+		steps_per_frame="200"
+		to_material="darkfire"
+		is_circle="0"
+		radius="1"
+		loop="1"
+		convert_same_material="0"
+    ></MagicConvertMaterialComponent>
+	
+	<LifetimeComponent
+		lifetime="2"
+	></LifetimeComponent>
+</Entity>

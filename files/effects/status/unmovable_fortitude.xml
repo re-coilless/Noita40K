@@ -1,0 +1,44 @@
+<Entity name="unmovable_fortitude" >
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="UNMOVABLE_FORTITUDE"
+		frames="2"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="MOVEMENT_SLOWER"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="KNOCKBACK_IMMUNITY"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="NO_DAMAGE_FLASH"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent>
+		<Transform 
+			position.x="0"
+			position.y="0"
+		></Transform>
+	</InheritTransformComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_unmovable_fortitude.png"
+		name="Unmovable Fortitude"
+		description="There is only the Emperor, and he is our Shield and Protector."
+		display_above_head="0"
+		display_in_hud="1"
+		is_perk="0"
+	></UIIconComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/unmovable_fortitude.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+</Entity>

@@ -1,0 +1,25 @@
+<Entity name="volkite_thermo">
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_material_tag="[liquid]"
+		steps_per_frame="200"
+		to_material="smoke"
+		is_circle="1"
+		radius="5"
+		loop="1"
+    ></MagicConvertMaterialComponent>
+	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		steps_per_frame="200"
+		is_circle="1"
+		radius="5"
+		loop="1"
+		temperature_reaction_temp="10000"
+		ignite_materials="1"
+    ></MagicConvertMaterialComponent>
+	
+	<LifetimeComponent
+		lifetime="2"
+	></LifetimeComponent>
+</Entity>

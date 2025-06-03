@@ -120,10 +120,10 @@ function mk7_base( entity_who_picked )
 	end)
 	
 	-- local global_sound = EntityGetFirstComponentIncludingDisabled( entity_who_picked, "AudioComponent" )
-	-- ComponentSetValue2( global_sound, "file", "mods/Noita40K/files/sfx/40K.bank" )
+	-- ComponentSetValue2( global_sound, "file", "mods/Noita40K/files/40K.bank" )
 	
 	edit_component_with_tag_ultimate( entity_who_picked, "AudioLoopComponent", "sound_jetpack", function(comp,vars) 
-		ComponentSetValue2( comp, "file", "mods/Noita40K/files/sfx/40K.bank" )
+		ComponentSetValue2( comp, "file", "mods/Noita40K/files/40K.bank" )
 		ComponentSetValue2( comp, "event_name", "player/jumppack/active" )
 	end)
 	
@@ -951,7 +951,7 @@ table.insert(perk_list,
 		EntityAddComponent( entity_who_picked, "AudioLoopComponent", 
 		{
 			_tags = "enabled_in_world,wriggling",
-			file = "mods/Noita40K/files/sfx/40K.bank",
+			file = "mods/Noita40K/files/40K.bank",
 			event_name = "player/dendrite_wriggling",
 			volume_autofade_speed = "0.25",
 		})
@@ -1186,7 +1186,7 @@ table.insert(perk_list,
 		EntityAddComponent( entity_who_picked, "AudioLoopComponent", 
 		{ 
 			_tags = "shadow_is_going",
-			file = "mods/Noita40K/files/sfx/40K.bank",
+			file = "mods/Noita40K/files/40K.bank",
 			event_name = "fx/status_effects/ambient/shadow",
 			volume_autofade_speed = "0.25",
 		})

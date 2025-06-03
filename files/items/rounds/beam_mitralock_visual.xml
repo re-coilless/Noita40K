@@ -1,0 +1,180 @@
+<Entity tags="beam">
+	<Entity name="ray1" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0.265"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="106" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="spark_red_bright" 
+				beam_radius="0.5" 
+				damage_to_cells="5000" 
+				damage_to_entities="0"
+				hit_particle_chance="30" 
+				max_cell_durability_to_destroy="20" 
+				max_length="74"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<VariableStorageComponent
+			_tags = "angle"
+			name = "angle"
+			value_int="30"
+		></VariableStorageComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray2" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0.187"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="107" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="spark_red_bright" 
+				beam_radius="0.5" 
+				damage_to_cells="5000" 
+				damage_to_entities="0"
+				hit_particle_chance="30" 
+				max_cell_durability_to_destroy="20" 
+				max_length="75"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<VariableStorageComponent
+			_tags = "angle"
+			name = "angle"
+			value_int="90"
+		></VariableStorageComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray3" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="108" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="spark_red_bright" 
+				beam_radius="0.5" 
+				damage_to_cells="5000" 
+				damage_to_entities="0"
+				hit_particle_chance="30" 
+				max_cell_durability_to_destroy="20" 
+				max_length="73"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<VariableStorageComponent
+			_tags = "angle"
+			name = "angle"
+			value_int="150"
+		></VariableStorageComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray4" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="-0.187"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="109" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="spark_red_bright" 
+				beam_radius="0.5" 
+				damage_to_cells="5000" 
+				damage_to_entities="0"
+				hit_particle_chance="30" 
+				max_cell_durability_to_destroy="20" 
+				max_length="74"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<VariableStorageComponent
+			_tags = "angle"
+			name = "angle"
+			value_int="225"
+		></VariableStorageComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray5" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="-0.265"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="110" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="spark_red_bright" 
+				beam_radius="0.5" 
+				damage_to_cells="5000" 
+				damage_to_entities="0"
+				hit_particle_chance="30" 
+				max_cell_durability_to_destroy="20" 
+				max_length="75"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<VariableStorageComponent
+			_tags = "angle"
+			name = "angle"
+			value_int="315"
+		></VariableStorageComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<InheritTransformComponent
+		parent_hotspot_tag="shoot_pos"
+	></InheritTransformComponent>
+</Entity>

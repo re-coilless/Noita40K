@@ -1,0 +1,7 @@
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/right_shoulder.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/left_shoulder.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/torso.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/right_arm.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/left_arm.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/right_leg.png
+mods/Noita40K/files/pics/classes_gfx/mk7/salamander/ragdoll/left_leg.png

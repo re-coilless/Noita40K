@@ -1,0 +1,55 @@
+<Entity name="bayonet" tags="bayonet">
+	<SpriteComponent 
+		_enabled="1" 
+		visible="1" 
+		image_file="mods/Noita40K/files/pics/misc_gfx/rifle_bayonet.xml"
+		z_index="0.577"		
+	></SpriteComponent>
+	
+	<SpriteStainsComponent
+		fade_stains_towards_srite_top="0"   
+	></SpriteStainsComponent>
+	
+	<CollisionTriggerComponent
+		radius="8"
+		required_tag="enemy"
+		destroy_this_entity_when_triggered="0"
+	></CollisionTriggerComponent>
+	
+	<LuaComponent
+		_enabled="1"
+		script_collision_trigger_hit="mods/Noita40K/files/scripts/bayonet_damager.lua"
+		execute_every_n_frame="-1"
+		remove_after_executed="0"
+	></LuaComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_world"
+		script_source_file="mods/Noita40K/files/scripts/position_logger.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<VariableStorageComponent
+		_tags="this_x"
+		name="this_x"
+		value_float="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="this_y"
+		name="this_y"
+		value_float="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="last_x"
+		name="last_x"
+		value_float="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="last_y"
+		name="last_y"
+		value_float="0"
+	></VariableStorageComponent>
+</Entity>

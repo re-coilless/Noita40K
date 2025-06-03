@@ -2,22 +2,25 @@ if( ModIsEnabled( "mnee" )) then
 	ModLuaFileAppend( "mods/mnee/bindings.lua", "mods/Noita40K/mnee.lua" )
 else return end
 
-ModLuaFileAppend( "data/scripts/gun/gun.lua", "mods/Noita40K/files/append/custom_gun.lua" ) -- do better
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/append/actions.lua" )
-ModLuaFileAppend( "data/scripts/perks/perk_list.lua", "mods/Noita40K/files/append/perks.lua" )
 ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/append/extra_modifiers.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/append/status_effects.lua" )
-ModLuaFileAppend( "data/scripts/biomes/boss_victoryroom.lua", "mods/Noita40K/files/append/custom_exterminatus_work.lua" ) -- do better
-ModLuaFileAppend( "data/scripts/biomes/mountain/mountain_hall.lua", "mods/Noita40K/files/append/custom_entrance.lua" ) -- do better
-ModLuaFileAppend( "data/scripts/biomes/lavalake.lua", "mods/Noita40K/files/append/custom_lavalake_corpse.lua" ) -- do better
-ModLuaFileAppend( "data/scripts/magic/fungal_shift.lua", "mods/Noita40K/files/append/custom_fungal_shift.lua" )
 ModMaterialsFileAdd( "mods/Noita40K/files/append/matters.xml" )
-ModRegisterAudioEventMappings( "mods/Noita40K/files/sfx/GUIDs.txt" )
+ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
-dofile_once( "data/scripts/lib/utilities.lua" )
-dofile_once( "data/scripts/perks/perk.lua" )
+-- complete restructure
+-- extract good parts of the lib
+-- insane cleanup
+-- redo the sound banks to have proper uids
+-- normalize and rebalance all the sounds
+-- add randomness to several sounds
+-- add multisounds
+-- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater
+-- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
+-- custom char sounds
+-- ?emissive eyes with correct z (steal Alex's method of encoding?)
+-- remove vanilla map
 
--- don't save magic numbers
 -- reduce tag usage
 -- the hell is sound_loop_tag for spells
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
@@ -27,9 +30,6 @@ dofile_once( "data/scripts/perks/perk.lua" )
 -- handle rotation for holder.lua
 -- overload shader (somehow vertex shader is being overwritten by refractor)
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens
--- normalize and rebalance all the sounds
--- add randomness to several sounds
--- add multisounds
 -- combat wolf with custom ai for Space Wolf
 -- all the gui page tables to the separate lists.lua
 -- option to align ammo at the center of the screen
@@ -59,7 +59,6 @@ dofile_once( "data/scripts/perks/perk.lua" )
 -- make trailing red eyes for rage modes
 -- make the mass salvager ignore the stuff that was once picked up by the player
 -- use gura's shell system exept turn the shit to sand after some time/quantity
--- redo the sound banks to have proper uids
 -- sister of silence sword can be holstered on the back for instaswing on lmb (has to be reholstered manually each time by holding the button in inventory, gives slight speed boost, spine armor and shows on back when done so)
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
 -- EntityGetHotspot
@@ -72,7 +71,6 @@ dofile_once( "data/scripts/perks/perk.lua" )
 -- add a secondary layer of unique legion perks (after getting some item, you current perk "evolves" to entirely different and more powerful one)
 -- add "select" button on the desc page
 -- overheating visualization
--- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater
 -- music is a single track that evolves based on events and biomes
 -- add clanking sound for the last 25% of shots from the mag
 -- character-side mnee inputs must be only active when controlscomp is active
@@ -86,7 +84,6 @@ dofile_once( "data/scripts/perks/perk.lua" )
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
--- fancy explosions with shockwave visualization through shaders
 -- Use rack2 for advanced audio design
 -- when character kicks while being in the air, transfer 150% of speed to the object and leave 10% of speed for the char
 -- marine bolters are .998, mortal bolter are .75
@@ -95,9 +92,7 @@ dofile_once( "data/scripts/perks/perk.lua" )
 -- more advanced explosion effects for bolts, bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- ogryn mode than makes all lore caveman like
 -- dendrite inertion
--- custom char sounds
 -- foreground alpha and glowing on refraction is fucked
--- ?emissive eyes with correct z
 -- ?clot and warpmatter ambient sound
 
 function OnModInit()
@@ -341,7 +336,7 @@ function OnPlayerSpawned( hooman )
 		EntityAddComponent( hooman, "AudioLoopComponent", 
 		{ 
 			_tags = "enabled_in_world,ultramar_anthem",
-			file = "mods/Noita40K/files/sfx/40K.bank",
+			file = "mods/Noita40K/files/40K.bank",
 			event_name = "fx/ultramar_anthem",
 			volume_autofade_speed = "0.25",
 		})

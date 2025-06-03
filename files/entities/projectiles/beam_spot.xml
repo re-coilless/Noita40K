@@ -1,5 +1,0 @@
-<Entity tags="beam_spot">
-	<InheritTransformComponent
-		parent_hotspot_tag="shoot_pos"
-	></InheritTransformComponent>
-</Entity>

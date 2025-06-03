@@ -1,0 +1,16 @@
+<Entity name="$projectile_default" >
+	<Base file="mods/Noita40K/files/entities/misc/casings/casing_base.xml" >
+		<ProjectileComponent 
+			on_collision_spawn_entity="1"
+			spawn_entity="mods/Noita40K/files/entities/misc/casings/casing_bolt_75_cleaner.xml"
+		></ProjectileComponent>
+		
+		<SpriteComponent
+			image_file="mods/Noita40K/files/entities/misc/casings/casing_bolt_75.png"
+		></SpriteComponent>
+		
+		<AudioComponent
+			event_root="guns/casings/casing_normal" 
+		></AudioComponent>
+	</Base>
+</Entity>

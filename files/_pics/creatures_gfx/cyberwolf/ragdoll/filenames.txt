@@ -1,0 +1,11 @@
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/torso.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/tail.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/right_thigh.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/right_leg.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/right_arm.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/right_hand.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/left_thigh.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/left_leg.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/left_arm.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/left_hand.png
+mods/Noita40K/files/pics/creatures_gfx/cyberwolf/ragdoll/head.png

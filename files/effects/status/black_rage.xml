@@ -1,0 +1,77 @@
+<Entity name="black_rage" >
+	<GameEffectComponent 
+		_tags="main"
+		effect="CUSTOM"
+		custom_effect_id="BLACK_RAGE"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="BERSERK"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="REMOVE_FOG_OF_WAR"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="NO_DAMAGE_FLASH"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="KNOCKBACK_IMMUNITY"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="CRITICAL_HIT_BOOST"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="CRITICAL_HIT_BOOST"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="CRITICAL_HIT_BOOST"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<GameEffectComponent 
+		effect="HEALING_BLOOD"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent>
+		<Transform 
+			position.x="0"
+			position.y="0"
+		></Transform>
+	</InheritTransformComponent>
+	
+	<UIIconComponent
+		icon_sprite_file="mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_black_rage.png"
+		name="Black Rage"
+		description="For the Emperor and Sanguinius! Death! DEATH!"
+		display_above_head="0"
+		display_in_hud="1"
+		is_perk="0"
+	></UIIconComponent>
+	
+	<AudioLoopComponent
+		_tags="is_going"
+		file="mods/Noita40K/files/40K.bank"
+		event_name="fx/status_effects/ambient/rage"
+		volume_autofade_speed="0.25"
+	></AudioLoopComponent>
+	
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/scripts/status_effects/black_rage.lua"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+</Entity>
