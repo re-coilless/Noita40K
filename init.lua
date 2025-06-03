@@ -2,26 +2,38 @@ if( ModIsEnabled( "mnee" )) then
 	ModLuaFileAppend( "mods/mnee/bindings.lua", "mods/Noita40K/mnee.lua" )
 else return end
 
-ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/append/actions.lua" )
-ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/append/extra_modifiers.lua" )
-ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/append/status_effects.lua" )
-ModMaterialsFileAdd( "mods/Noita40K/files/append/matters.xml" )
+ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appends/actions.lua" )
+-- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
+-- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
+ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- insane cleanup
+-- insane cleanup (reduce tag usage)
 -- all weapons scripts should run through index
 -- complete restructure
+-- chainsword should overheat while cutting through metal
+-- better base files
+-- casings are being ejected at different speeds based on char facing
+-- add proper [liquid]/[gas]/[solid] tags to custom matters
+-- all the gui page tables to the separate lists.lua
+-- all the "perks" should be done in a standalone way
+-- use gura's shell system exept turn the shit to sand after some time/quantity
+-- EntityGetHotspot
+-- SpriteStainsComponent sprite_id for multisprite stains
+-- MaterialSuckerComponent randomized_position for osculant device
+-- normalize character spritesheets to ensure that only nessessary work is done
+-- only default walking anim should be truly form-fitted, setup up the rest of the sheet to use static frames
 -- redo the sound banks to have proper uids
 -- normalize and rebalance all the sounds
 -- add randomness to several sounds
 -- add multisounds
--- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater
+-- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
+-- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
 -- custom char sounds
--- ?emissive eyes with correct z (steal Alex's method of encoding?)
+-- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- remove vanilla map
 
--- reduce tag usage
 -- the hell is sound_loop_tag for spells
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- better tutorial
@@ -31,7 +43,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- overload shader (somehow vertex shader is being overwritten by refractor)
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens
 -- combat wolf with custom ai for Space Wolf
--- all the gui page tables to the separate lists.lua
 -- option to align ammo at the center of the screen
 -- trash/child killers will rekt the beams on another weapons
 -- smoothen blood rage edge effect transition
@@ -50,20 +61,13 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- cicle the class icon between subclasses if it's not selected
 -- add rickoshet angles (somehow bouncy orb and that extra bouncy shit have different angles)
 -- check bloodtype for threat level
--- better base files shit
 -- two-stage beacon event
 -- stalker bolter ammo should have almost no knockback + make knockback to be less on other rounds
--- add proper [liquid]/[gas]/[solid] tags to custom matters
 -- salamnder gets flamer as rifle replacement
 -- extension documentation
--- make trailing red eyes for rage modes
 -- make the mass salvager ignore the stuff that was once picked up by the player
--- use gura's shell system exept turn the shit to sand after some time/quantity
 -- sister of silence sword can be holstered on the back for instaswing on lmb (has to be reholstered manually each time by holding the button in inventory, gives slight speed boost, spine armor and shows on back when done so)
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
--- EntityGetHotspot
--- SpriteStainsComponent sprite_id for multisprite stains
--- MaterialSuckerComponent randomized_position for osculant device
 -- ConvertMaterialOnAreaInstantly
 -- to remove hit sound from projectile, remove audiocomp from base entity
 -- check speed + angle for armour penetration
@@ -75,7 +79,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- add clanking sound for the last 25% of shots from the mag
 -- character-side mnee inputs must be only active when controlscomp is active
 -- N40 weapon handling momentum and advanced recoil (through realtime hotspot editing)
--- light/medium/heavy meta selector to group the entire class table into cats
 -- put new link in the desc https://cortex-command-community.github.io/
 -- raven's test for admech hacking minigame (with layers)
 -- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class)
@@ -86,15 +89,14 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- Display all n40 unlocks as a tech tree
 -- Use rack2 for advanced audio design
 -- when character kicks while being in the air, transfer 150% of speed to the object and leave 10% of speed for the char
--- marine bolters are .998, mortal bolter are .75
 -- burning with promethium fire or being ot low hp should apply "void compomized" debuff that restores all status effect weaknesses that armor negates (can be fixed either in the "holy mountain" or with a "reseal kit")
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
--- more advanced explosion effects for bolts, bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- ogryn mode than makes all lore caveman like
 -- dendrite inertion
 -- foreground alpha and glowing on refraction is fucked
 -- ?clot and warpmatter ambient sound
 
+--[[
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 	dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
@@ -103,18 +105,18 @@ function OnModInit()
 	
 	--Magic numbers
 	local active_class = { ModSettingGetNextValue( "Noita40K.CURRENT_CLASS" ), ModSettingGetNextValue( "Noita40K.CURRENT_SKIN" ), }
-	if( #class_info[active_class[1]].skins > 0 ) then
-		if( class_info[active_class[1]].skins[active_class[2]] == nil ) then
-			active_class[2] = class_info[active_class[1]].default_skin
+	if( #class_info[active_class[1] ].skins > 0 ) then
+		if( class_info[active_class[1] ].skins[active_class[2] ] == nil ) then
+			active_class[2] = class_info[active_class[1] ].default_skin
 			ModSettingSetNextValue( "Noita40K.CURRENT_SKIN", active_class[2], false )
 		end
 	else
 		active_class[1] = 1
-		active_class[2] = class_info[active_class[1]].default_skin
+		active_class[2] = class_info[active_class[1] ].default_skin
 		ModSettingSetNextValue( "Noita40K.CURRENT_CLASS", active_class[1], false )
 		ModSettingSetNextValue( "Noita40K.CURRENT_SKIN", active_class[2], false )
 	end
-	ModMagicNumbersFileAdd( class_info[active_class[1]].skins[active_class[2]].custom_numbers or "mods/Noita40K/files/append/magic_numbers_generic.xml" )
+	ModMagicNumbersFileAdd( class_info[active_class[1] ].skins[active_class[2] ].custom_numbers or "mods/Noita40K/files/append/magic_numbers_generic.xml" )
 	
 	--Shaders
 	local shader_old = "data/shaders/post_final.frag"
@@ -189,7 +191,9 @@ function OnModInit()
 	file = ModTextFileGetContent( teleport_base.."_start.xml" )
 	ModTextFileSetContent( teleport_base.."_start.xml", string.gsub( file, "<Entity>", "<Entity tags=\"portal\">" ))
 end
+]]
 
+--[[
 function OnWorldPreUpdate()
 	dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 	
@@ -247,13 +251,13 @@ function OnWorldPreUpdate()
 		end
 	end
 end
+]]
 
 function OnPlayerSpawned( hooman )
-	dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
-	dofile_once( "mods/Noita40K/files/scripts/libs/gui_lib.lua" )
-	dofile_once( "mods/Noita40K/files/scripts/libs/classer_lib.lua" )
-	dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
+	local x, y = EntityGetTransform( hooman )
+	EntityLoad( "mods/Noita40K/files/items/weapons/bolter_generic.xml", x, y )
 	
+	--[[
 	local active_class = { ModSettingGetNextValue( "Noita40K.CURRENT_CLASS" ), ModSettingGetNextValue( "Noita40K.CURRENT_SKIN" ), }
 	
 	--Flags
@@ -271,9 +275,9 @@ function OnPlayerSpawned( hooman )
 	
 	GlobalsSetValue( "ACTUAL_ACTIVE_CLASS", tostring( active_class[1] ))
 	GlobalsSetValue( "ACTUAL_ACTIVE_SKIN", tostring( active_class[2] ))
-	GameAddFlagRun( string.upper( class_info[active_class[1]].class_name ).."_ACTIVE" )
-	if( #class_info[active_class[1]].skins > 0 ) then
-		GameAddFlagRun( string.upper( class_info[active_class[1]].skins[active_class[2]].name ).."_SELECTED" )
+	GameAddFlagRun( string.upper( class_info[active_class[1] ].class_name ).."_ACTIVE" )
+	if( #class_info[active_class[1] ].skins > 0 ) then
+		GameAddFlagRun( string.upper( class_info[active_class[1] ].skins[active_class[2] ].name ).."_SELECTED" )
 	end
 	
 	--Quests
@@ -307,7 +311,7 @@ function OnPlayerSpawned( hooman )
 	end
 	
 	generic_stuff( hooman )
-	magic_setuper( active_class, hooman, ModSettingGetNextValue( "Noita40K.ENABLE_CUSTOM_LOADOUT" ) and ( class_state( active_class[1], 3 ) or #class_info[active_class[1]].skins < 1 ))
+	magic_setuper( active_class, hooman, ModSettingGetNextValue( "Noita40K.ENABLE_CUSTOM_LOADOUT" ) and ( class_state( active_class[1], 3 ) or #class_info[active_class[1] ].skins < 1 ))
 	
 	--Utility bullshit
 	local x, y = EntityGetTransform( hooman )
@@ -360,66 +364,5 @@ function OnPlayerSpawned( hooman )
 	-- add_quest( hooman, "BEACON_HUNT", nil, nil, nil, nil, -500, 100, 10 )
 	-- add_quest( hooman, "BEACON_HUNT_ITEM", nil, nil, nil, nil, -500, 100, 10 )
 	-- add_quest( hooman, "KILLING_SPREE", nil, nil, nil, nil, 20, StatsGetValue( "enemies_killed" ))
+	]]
 end
-
---[[
-He who dwells in the shelter of
-   the Emperor
-Will abide in the shadow of
-  the God of Mankind.
-
-I will say to the Emperor, "My
-   refuge and my fortress,
-My God, in whom I trust!"
-
-For it is He who delivers you
-  from the lies of the heretic,
-And from the deadly pestilence.
-
-He will cover you with his
-  armor,
-And under His Throne may you
-  may seek refuge;
-His faithfulness is a shield
-  and bulwark.
-
-You will not be afraid of the
-  terror by night,
-Or of the arrow that flies by
-  day;
-Of the corruption that stalks
-  in darkness.
-
-A thousand may fall at your
-  side,
-And ten thousand at your
-  right hand;
-But it shall not approach you.
-
-You will only look on with
-  your eyes,
-And see the recompense of
-  the wicked.
-
-For you have made the Emperor,
-  our refuge,
-Even the Golden Throne, your
-  dwelling place.
-
-No evil will befall you,
-Nor will any mutation come
-  near your dwelling.
-
-For He will give His Astartes
-  charge concerning you,
-To guard you in all your ways.
-
-They will bear you up in their
-  hands,
-Lest you stumble or stray.
-
-You will tread upon the alien
-  and mutant,
-The heretic and traitor
-  you will trample down.
-]]--

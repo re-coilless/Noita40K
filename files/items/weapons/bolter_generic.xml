@@ -1,0 +1,54 @@
+<Entity name="bolter" >
+	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
+		<AbilityComponent
+			sprite_file="mods/Noita40K/files/items/weapons/bolter_generic.png"
+			ui_name="Bolter"
+			add_these_child_actions="BOLT_998_HE_M"
+		></AbilityComponent>
+
+        <ItemComponent
+            item_name="Bolter"
+            remove_on_death="1"
+			always_use_item_name_in_ui="1"
+            collect_nondefault_actions="1"
+			preferred_inventory="QUICK" 
+			is_frozen="0"
+        ></ItemComponent>
+
+		<SpriteComponent
+			rect_animation="0" 
+			next_rect_animation="0" 
+			offset_x="2"
+			offset_y="5"
+			z_index="0.95"
+		></SpriteComponent>
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="10"
+        offset.y="-2.5"
+	></HotspotComponent>
+	<HotspotComponent
+        _tags="eject_pos"
+        offset.x="4"
+        offset.y="-3"
+	></HotspotComponent>
+
+	<VariableStorageComponent
+		name="ammo_type"
+		value_string="bolt_998"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="cycling"
+		value_int="10"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="60"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.9985"
+	></VariableStorageComponent>
+</Entity>

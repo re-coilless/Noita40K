@@ -1,27 +1,9 @@
-dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
+dofile_once( "mods/index_core/files/_lib.lua" )
+-- dofile_once( "mods/Noita40K/files/_lists.lua" )
 
-function picker( hooman, items )
-	local x, y = EntityGetTransform( hooman )
 
-	for i,path in ipairs( items ) do
-		if( i > 4 ) then
-			return
-		end
-	
-		local item = EntityLoad( path, x, y )
-		if( item ) then
-			-- local item_comp = EntityGetFirstComponentIncludingDisabled( item, "ItemComponent" )
-			-- ComponentSetValue2( item_comp, "has_been_picked_by_player", true )
-			-- ComponentSetValueVector2( item_comp, "inventory_slot", i - 1, 0 )
-			-- ComponentSetValue2( item_comp, "mFramePickedUp", 0 )
-			-- ComponentSetValue2( item_comp, "next_frame_pickable", GameGetFrameNum())
-			GamePickUpInventoryItem( hooman, item, false )
-		else
-			GamePrint( "Brother, I can't load ["..path.."]! Save us, God-Emperor..." )
-		end
-	end
-end
 
+--[[
 function generic_stuff( hooman )
 	--Player entity setup
 	edit_component_with_tag_ultimate( hooman, "SpriteComponent", "player_amulet", function(comp,vars) 
@@ -120,8 +102,8 @@ function generic_stuff( hooman )
 end
 
 function magic_setuper( active_class, hooman, custom )
-	local class = class_info[active_class[1]]
-	local skin = class.skins[active_class[2]]
+	local class = class_info[active_class[1] ]
+	local skin = class.skins[active_class[2] ]
 	
 	--Perks
 	local perk_table = class.default_perks
@@ -175,8 +157,6 @@ function magic_setuper( active_class, hooman, custom )
 		skin.custom_code( hooman )
 	end
 end
-
-dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 
 function window_inner( gui, uid, pic_x, pic_y, pic_z, width, height, inner_filler )
 	inner_filler = inner_filler or "filler_weak_gray"
@@ -507,3 +487,4 @@ function window_large( gui, uid, pic_x, pic_y, pic_z, width, height_upper, heigh
 	
 	return uid
 end
+]]

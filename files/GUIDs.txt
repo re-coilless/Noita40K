@@ -1,4 +1,4 @@
-{91582d81-bc04-4e28-971c-5f71aeefedd7} bank:/40K
+{70b46764-7cd5-4aac-8452-6b25d6a6544b} bank:/40K
 {d3d376b6-af21-4ae3-917c-3e8fb781b724} bank:/Master Bank
 {4bce5662-de5a-06a1-1735-b4714672b1bc} bank:/Master Bank.strings
 {fd1ec6a6-24b7-4a2e-9988-9733b99dc81e} bus:/
@@ -74,10 +74,10 @@
 {493712b8-2b10-45f1-a502-567ea5f366ca} event:/player/step_wood
 {d75c47c7-f0e7-4a78-9744-2ccfc48c4d14} event:/projectiles/bolt_50mm/create
 {3ee85007-9c5d-47fe-bc55-4d3f4e9d4365} event:/projectiles/bolt_50mm/destroy
-{c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/projectiles/bolt_75/create
-{427971b7-b9ef-4af6-b13c-3d94d65c312a} event:/projectiles/bolt_75/destroy
-{2e00123b-923c-4dd2-9623-d7a78f6c8e58} event:/projectiles/bolt_998_suppressed/create
-{d318bb13-d134-4e13-aac2-4fc0b390df7f} event:/projectiles/bolt_998_suppressed/engine
+{427971b7-b9ef-4af6-b13c-3d94d65c312a} event:/projectiles/bolt_998/destroy
+{c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/projectiles/bolt_998/shoot
+{2e00123b-923c-4dd2-9623-d7a78f6c8e58} event:/projectiles/bolt_998_sabot/create
+{d318bb13-d134-4e13-aac2-4fc0b390df7f} event:/projectiles/bolt_998_sabot/engine
 {8051cec6-2d82-4847-87f5-ebffcaad985b} event:/projectiles/cutter/beam_loop
 {8592387a-1be0-4eee-8f6e-8dd2bce9064f} event:/projectiles/darkfire/beam_start
 {392c67c5-8453-4f60-bc8d-736a658c26c6} event:/projectiles/mitralock/beam_loop
@@ -96,11 +96,6 @@
 {09a53883-dc00-43a5-b7fc-3e3c0148970e} event:/taunts/emotional/space_marine/taunt5
 {1c03ba60-e4bd-4294-bfae-c0076f2a1139} event:/taunts/emotional/space_marine/taunt6
 {0fe2b4b2-92dd-45c8-bd2e-265cc9686d8d} event:/taunts/emotional/space_marine/taunt7
-{dd987be9-ac4f-45ce-b76e-65e77a0422e2} event:/taunts/stylish/space_marine/salamander/taunt1
-{cbf38b0a-f224-4974-a52b-74c89ebf655a} event:/taunts/stylish/space_marine/salamander/taunt2
-{1bf91b78-52bb-4deb-b4d6-76fc107d4f76} event:/taunts/stylish/space_marine/salamander/taunt3
-{53df7ec4-d47e-4ca0-8808-a9b99e4336f1} event:/taunts/stylish/space_marine/salamander/taunt4
-{53e9d921-e1c8-4847-8bd4-2f333a96f868} event:/taunts/stylish/space_marine/salamander/taunt5
 {184de36e-ce23-4ff4-a1b9-ae1c6edc462a} event:/taunts/stylish/space_marine/taunt1
 {3ad8d539-73b9-4bfe-8025-09dab76c1d45} event:/taunts/stylish/space_marine/taunt2
 {1d5acd3f-5ac9-41e3-85aa-1c3eead2ab73} event:/taunts/stylish/space_marine/taunt3

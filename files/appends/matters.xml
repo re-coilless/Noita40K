@@ -752,6 +752,36 @@
 	
 	<!-- misc box2d -->
 	<CellData
+		name="brass_box2d"
+		ui_name="gunmetal"
+		tags="[box2d]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="ff4e5268"
+		generates_smoke="0"
+		on_fire="0"
+		liquid_gravity="1.8"
+		liquid_sand="1"
+		requires_oxygen="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_friction="0.7"
+		platform_type="0"
+		solid_static_type="0"
+		solid_break_to_type="brass"
+		electrical_conductivity="1"
+		audio_physics_material_wall="gold"
+		audio_physics_material_solid="gold"
+		hp="8000" 
+		show_in_creative_mode="1"
+		><Graphics
+			texture_file="data/materials_gfx/brass.png"
+			color="ffb89e58"
+		></Graphics>
+	</CellData>
+	
+	<CellData
 		name="plasteel_box2d"
 		ui_name="Plasteel"
 		tags="[alchemy],[box2d],[meltable_metal],[solid]"
@@ -804,36 +834,6 @@
 		><Graphics
 			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
 			color="ff94b0c2"
-		></Graphics>
-	</CellData>
-	
-	<CellData
-		name="brass_box2d"
-		ui_name="Gunmetal"
-		tags="[alchemy],[box2d],[solid]"
-		burnable="0"
-		density="8"
-		cell_type="solid"
-		wang_color="ff4e5268"
-		generates_smoke="0"
-		on_fire="0"
-		liquid_gravity="1.8"
-		liquid_sand="1"
-		requires_oxygen="1"
-		temperature_of_fire="50"
-		autoignition_temperature="99"
-		solid_friction="0.7"
-		platform_type="0"
-		solid_static_type="0"
-		solid_break_to_type="brass"
-		electrical_conductivity="1"
-		audio_physics_material_wall="gold"
-		audio_physics_material_solid="gold"
-		hp="8000" 
-		show_in_creative_mode="1"
-		><Graphics
-			texture_file="data/materials_gfx/brass.png"
-			color="ffb89e58"
 		></Graphics>
 	</CellData>
 	
@@ -1278,6 +1278,12 @@
 	></Reaction>
 	
 	<!-- misc -->
+	<Reaction probability="100"
+		direction="bottom"
+		input_cell1="brass_box2d" 	input_cell2="[solid]"
+		output_cell1="brass" 	output_cell2="[solid]"
+	></Reaction>
+	
 	<Reaction probability="10"
 		direction="top"
 		cosmetic_particle="promethium"

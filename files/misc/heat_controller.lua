@@ -1,0 +1,32 @@
+dofile_once( "mods/Noita40K/files/_lib.lua" )
+
+--cool by liquids + add light source
+--smoke from barrel (through sprite emitter)
+
+local gun_id = GetUpdatedEntityID()
+local pics = EntityGetComponentIncludingDisabled( gun_id, "SpriteComponent" )
+local max_heat = pen.magic_storage( gun_id, "heat_max", "value_float" ) or -1
+if( not( pen.vld( pics )) or max_heat <= 0 ) then return end
+
+if( not( pen.vld( pics[2], true ))) then return end
+if( ComponentGetValue2( pics[2], "emissive" )) then
+    ComponentSetValue2( pics[2], "emissive", false )
+    ComponentSetValue2( pics[2], "image_file",
+        string.gsub( ComponentGetValue2( pics[1], "image_file" ), "%.png$", "_heat.png" ))
+    ComponentSetValue2( pics[2], "offset_x", ComponentGetValue2( pics[1], "offset_x" ) + 1 )
+    ComponentSetValue2( pics[2], "offset_y", ComponentGetValue2( pics[1], "offset_y" ) + 1 )
+    EntityRefreshSprite( gun_id, pics[2])
+end
+
+local alpha = ComponentGetValue2( pics[2], "alpha" )
+local heat = pen.magic_storage( gun_id, "heat", "value_float" ) or 0
+if( heat > 0 ) then
+    pen.magic_storage( gun_id, "heat", "value_float", heat*pen.magic_storage( gun_id, "heat_loss", "value_float" ))
+end
+
+local heat_perc = pen.rounder( 1/( 1 + math.exp( 12*( 0.45 - heat/max_heat ))), 100 )
+if( not( pen.eps_compare( alpha, heat_perc ))) then
+    print( heat_perc )
+    ComponentSetValue2( pics[2], "alpha", heat_perc )
+    EntityRefreshSprite( gun_id, pics[2])
+end
