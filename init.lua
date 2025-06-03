@@ -8,9 +8,9 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/
 ModMaterialsFileAdd( "mods/Noita40K/files/append/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- complete restructure
--- extract good parts of the lib
 -- insane cleanup
+-- all weapons scripts should run through index
+-- complete restructure
 -- redo the sound banks to have proper uids
 -- normalize and rebalance all the sounds
 -- add randomness to several sounds

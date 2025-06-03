@@ -1,0 +1,1361 @@
+<Materials>
+	<!-- =========================== MATTERS =========================== -->
+	<!-- darkfire -->
+	<CellData
+		name="darkfire"
+		ui_name="Darkfire"
+		tags="[liquid],[warpmatter]"
+		burnable="0"
+		density="1"
+		cell_type="gas"
+		wang_color="806c00ce"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		requires_oxygen="0"
+		gfx_glow="255" 
+		show_in_creative_mode="1"
+		lifetime="60"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			color="FF20003D"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="warpflame"
+		ui_name="Warpflame"
+		tags="[liquid],[warpmatter]"
+		burnable="0"
+		density="1"
+		cell_type="gas"
+		wang_color="806c00cf"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		requires_oxygen="0"
+		gfx_glow="255" 
+		show_in_creative_mode="1"
+		lifetime="60"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			color="ffff00a6"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="warpmatter"
+		ui_name="Warpmatter"
+		tags="[warpmatter],[five]"
+		burnable="0"
+		density="10"
+		cell_type="solid"
+		wang_color="806c00ca"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		solid_static_type="1"
+		gfx_glow="255" 
+		show_in_creative_mode="1"
+		hp="10000000"
+		wang_noise_percent="0.33"	
+		platform_type="1"
+		durability="19"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			color="FF6c00ce"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="warpclot"
+		ui_name="Clot"
+		tags="[alchemy],[static],[solid],[warpmatter],[five]"
+		burnable="0"
+		density="10"
+		cell_type="liquid"
+		wang_color="806c00cb"
+		durability="19"
+		generates_smoke="0"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		solid_static_type="1"
+		gfx_glow="255" 
+		requires_oxygen="0"
+		hp="10000000" 
+		electrical_conductivity="1"
+		platform_type="1"
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/warpclot.png" 
+			color="FF6c00ce"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="unstable_warpclot"
+		ui_name="Clot"
+		tags="[alchemy],[static],[solid],[warpmatter],[five]"
+		density="10"
+		cell_type="liquid"
+		wang_color="806c00cc"
+		durability="19"
+		generates_smoke="0"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		solid_static_type="1"
+		gfx_glow="255" 
+		requires_oxygen="0"
+		hp="10000000" 
+		electrical_conductivity="1"
+		platform_type="1"
+		on_fire="1"  
+		burnable="1"
+		fire_hp="100"
+		autoignition_temperature="5"
+		generates_flames="20"
+		temperature_of_fire="10" 
+		on_fire_flame_material="void_liquid"
+		audio_physics_material_event="slime"
+		audio_physics_material_wall="slime"
+		audio_physics_material_solid="slime"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/warpclot.png" 
+			color="FF6c00ce"
+			fire_colors_index="2"
+		></Graphics>
+	</CellData>
+	
+	<!-- life-eater virus -->
+	<CellData
+		name="exterminatus_gas"
+		ui_name="Exterminatus Virus"
+		tags="[gas],[exterminatus_virus]"
+		burnable="0"
+		density="1"
+		cell_type="gas"
+		wang_color="808c7b1a"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		liquid_stains="1"
+		requires_oxygen="0"
+		electrical_conductivity="1"
+		status_effects="LIFE_EATER_INFECTION"
+		gfx_glow="0" 
+		temperature_of_fire="100"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_virus.png" 
+			color="ff8c7b1a"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="LIFE_EATER_INFECTION" amount="0.002" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="exterminatus_juice"
+		ui_name="Exterminatus Runner"
+		tags="[liquid],[exterminatus_virus]"
+		burnable="0"
+		density="1"
+		cell_type="liquid"
+		wang_color="808c7b1b"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		liquid_viscosity="1"
+		liquid_sand="0"
+		liquid_stains="1"
+		gfx_glow="10"
+		on_fire="0"
+		requires_oxygen="0"
+		electrical_conductivity="1"
+		status_effects="LIFE_EATER_INFECTION"
+		temperature_of_fire="100"
+		show_in_creative_mode="1"
+		
+		><ParticleEffect
+			vel.y="-10"
+			vel_random.min_x="-50"
+			vel_random.max_x="50"
+			vel_random.min_y="-20"
+			vel_random.max_y="-10"
+			gravity.y="1"
+			cosmetic_force_create="1"
+			draw_as_long="1"
+			airflow_force="3"
+			airflow_scale="-7"
+			friction="-1"
+			probability="0.01"
+			lifetime_min="3600"
+			lifetime_max="3600"
+			create_real_particles="1"
+			emit_cosmetic_particles="1"
+		></ParticleEffect>
+		<Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_runner.png" 
+			color="ff8c7b1b"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="LIFE_EATER_INFECTION" amount="0.002" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="exterminatus_solid"
+		ui_name="Exterminatus Spore"
+		tags="[alchemy],[static],[solid],[exterminatus_virus]"
+		burnable="0"
+		density="5"
+		cell_type="liquid"
+		wang_color="808c7b1c"
+		generates_smoke="0"
+		durability="19"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		liquid_stains="1"
+		solid_static_type="1"
+		requires_oxygen="0"
+		gfx_glow="30" 
+		hp="10"
+		electrical_conductivity="1"
+		status_effects="LIFE_EATER_INFECTION"
+		platform_type="0"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_spore.png" 
+			color="ff8c7b1c"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="exterminatus_detonator"
+		ui_name="Exterminatus Slayer"
+		tags="[alchemy],[static],[solid],[burnable_fast]"
+		burnable="1"
+		density="5"
+		cell_type="liquid"
+		wang_color="808c7b1d"
+		durability="19"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		liquid_stains="1"
+		solid_static_type="1"
+		on_fire="1"
+		temperature_of_fire="100"
+		generates_smoke="100"
+		generates_flames="100"
+		on_fire_smoke_material="exterminatus_gas"
+		autoignition_temperature="0"
+		fire_hp="1000"
+		requires_oxygen="0"
+		gfx_glow="30" 
+		hp="10"
+		electrical_conductivity="1"
+		status_effects="INGESTION_ON_FIRE"
+		platform_type="1"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_hunter.png" 
+			color="ff8c7b1d"
+			fire_colors_index="3"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="exterminatus_slayer"
+		ui_name="Exterminatus Hunter"
+		tags="[alchemy],[static],[solid]"
+		burnable="0"
+		density="5"
+		cell_type="liquid"
+		wang_color="808c7b1e"
+		generates_smoke="0"
+		durability="19"
+		liquid_gravity="1.2"
+		liquid_sand="1"
+		liquid_static="1"
+		liquid_stains="1"
+		solid_static_type="1"
+		requires_oxygen="0"
+		gfx_glow="30" 
+		hp="10"
+		electrical_conductivity="1"
+		status_effects="BIOINFERNO"
+		platform_type="0"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_fighter.png" 
+			color="ff8c7b1e"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="ruptor_gas"
+		ui_name="Ruptor Virus"
+		tags="[gas],[ruptor_virus]"
+		burnable="0"
+		density="1"
+		cell_type="gas"
+		wang_color="80b6d4f4"
+		generates_smoke="0"
+		lifetime="60"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		liquid_stains="1"
+		requires_oxygen="0"
+		electrical_conductivity="1"
+		status_effects="RUPTORINFERNO"
+		gfx_glow="0" 
+		temperature_of_fire="100"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/ruptor_virus.png" 
+			color="ffb6d4f4"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="RUPTORINFERNO" amount="0.5" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData 
+		name="ruptor_juice"
+		ui_name="Ruptor Spores"
+		tags="[liquid],[ruptor_virus]"
+		burnable="0"
+		density="5"
+		cell_type="liquid"
+		wang_color="80b8d9ff"
+		generates_smoke="0"
+		lifetime="600"
+		liquid_gravity="0.1"
+		liquid_viscosity="1"
+		liquid_sand="0"
+		liquid_sticks_to_ceiling="40"
+		liquid_slime="1"
+		liquid_stains="1"
+		liquid_sprite_stain_shaken_drop_chance="0"
+		stickyness="0.0"
+		solid_friction="1.0"
+		gfx_glow="10"
+		on_fire="0"
+		requires_oxygen="0"
+		electrical_conductivity="1"
+		status_effects="RUPTORINFERNO"
+		temperature_of_fire="100"
+		show_in_creative_mode="1"
+		
+		><ParticleEffect
+			vel.y="-10"
+			vel_random.min_x="-50"
+			vel_random.max_x="50"
+			vel_random.min_y="-20"
+			vel_random.max_y="-10"
+			gravity.y="1"
+			cosmetic_force_create="1"
+			draw_as_long="1"
+			airflow_force="3"
+			airflow_scale="-7"
+			friction="-1"
+			probability="0.01"
+			lifetime_min="3600"
+			lifetime_max="3600"
+			create_real_particles="1"
+			emit_cosmetic_particles="1"
+		></ParticleEffect>
+		<Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/ruptor_spore.png" 
+			color="ffb8d9ff"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="RUPTORINFERNO" amount="0.5" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<!-- misc fire -->
+	<CellData 
+		name="promethium_fire"  
+		ui_name="Promethium Fire"
+		tags="[fire],[hot]"
+		burnable="0"  
+		density="1"  
+		cell_type="fire" 
+		wang_color="7fff2815"
+		generates_smoke="0"  
+		liquid_gravity="0.5"  
+		liquid_stains="1"
+		liquid_sand="0"  
+		on_fire="1"
+		danger_fire="1"
+		requires_oxygen="0"  
+		temperature_of_fire="100"
+		status_effects="PROMETHIUM_FIRE"
+		gfx_glow="255" 
+		show_in_creative_mode="1"
+		
+		><Graphics
+			color="7fff2815"
+			fire_colors_index="3"
+		></Graphics>
+	</CellData>
+	
+	<!-- misc gases -->
+	<CellData
+		name="plasma_he"
+		ui_name="High-Energy Plasma"
+		tags="[hot],[plasma]"
+		burnable="0"
+		density="0"
+		cell_type="gas"
+		wang_color="80efffff"
+		always_ignites_damagemodel="0"
+		electrical_conductivity="1"
+		danger_fire="1"
+		generates_smoke="0"
+		liquid_gravity="0.1"
+		liquid_stains="1"
+		liquid_stains_self="0"
+		liquid_sprite_stain_shaken_drop_chance="100"
+		liquid_sprite_stain_ignited_drop_chance="100"
+		liquid_sprite_stains_status_threshold="0.01"
+		liquid_sand="0"
+		requires_oxygen="0"
+		status_effects="IONIZING_SUBLIMATION"
+		temperature_of_fire="100"
+		gfx_glow="255" 
+		lifetime="30"
+		show_in_creative_mode="1"
+		
+		><ParticleEffect
+			vel_random.min_x="-0.5"
+			vel_random.max_x="0.5"
+			vel_random.min_y="-0.5"
+			vel_random.max_y="0.5"
+			lifetime.min="1"
+			lifetime.max="2"
+			gravity.y="0"
+			render_on_grid="0"
+			airflow_force="0.6"
+			airflow_scale="0.1"
+			friction="0"
+			probability="0.05"
+			count.min="1"
+			count.max="2"
+			create_real_particles="1"
+			emit_cosmetic_particles="0"
+		></ParticleEffect>
+		<Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_he.png" 
+			color="ffefffff"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="heavy_smoke"
+		ui_name="Heavy Smoke"
+		tags="[gas]"
+		burnable="0"
+		density="1"
+		lifetime="10000"
+		cell_type="gas"
+		wang_color="80fffffe"
+		generates_smoke="0"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		liquid_stains="1"
+		liquid_stains_self="1"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="60"
+		liquid_sticks_to_ceiling="50"
+		liquid_sprite_stain_shaken_drop_chance="0"
+		show_in_creative_mode="1"
+		
+		><Graphics 
+			texture_file="mods/Noita40K/files/pics/matters_gfx/heavy_smoke.png" 
+			color="99fffffe"
+		></Graphics>
+	</CellData>
+	
+	<!-- misc liquids -->
+	<CellData
+		name="plasma_dense"
+		ui_name="Dense Plasma"
+		tags="[hot],[plasma]"
+		burnable="0"
+		density="0"
+		cell_type="liquid"
+		wang_color="8051ecff"
+		always_ignites_damagemodel="1"
+		danger_fire="1"
+		generates_smoke="0"
+		generates_flames="20"
+		electrical_conductivity="1"
+		liquid_gravity="0.1"
+		liquid_viscosity="50"
+		liquid_flow_speed="0.1"
+		liquid_stains="1"
+		liquid_stains_self="0"
+		liquid_sprite_stain_shaken_drop_chance="50"
+		liquid_sprite_stain_ignited_drop_chance="50"
+		liquid_sprite_stains_status_threshold="0.01"
+		liquid_sand="0"
+		requires_oxygen="0"
+		status_effects="IONIZING_SUBLIMATION"
+		temperature_of_fire="100"
+		gfx_glow="255" 
+		lifetime="300"
+		audio_physics_material_event="snow"
+		audio_materialaudio_type="LAVA"
+		show_in_creative_mode="1"
+		
+		><ParticleEffect
+			vel_random.min_x="-10"
+			vel_random.max_x="10"
+			vel_random.min_y="-10"
+			vel_random.max_y="-2"
+			lifetime.min="1"
+			lifetime.max="2"
+			gravity.y="0"
+			render_on_grid="0"
+			airflow_force="0.6"
+			airflow_scale="0.1"
+			friction="0"
+			probability="0.001"
+			count.min="1"
+			count.max="2"
+		></ParticleEffect>
+		<Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_dense.png" 
+			color="ff51ecff"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="plasma_unstable"
+		ui_name="Unstable Plasma"
+		tags="[hot]"
+		burnable="0"
+		density="0"
+		cell_type="liquid"
+		wang_color="80ec090f"
+		always_ignites_damagemodel="0"
+		danger_fire="1"
+		generates_smoke="0"
+		generates_flames="0"
+		electrical_conductivity="1"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		requires_oxygen="0"
+		temperature_of_fire="100"
+		gfx_glow="255" 
+		lifetime="10"
+		audio_physics_material_event="snow"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_unstable.png" 
+			color="ffec090f"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="promethium" 
+		ui_name="Promethium"
+		tags="[hot]"
+		wang_color="90812929"
+		liquid_sticks_to_ceiling="50"
+		liquid_slime="1"
+		liquid_stains="2"
+		liquid_stains_self="1"
+		liquid_sprite_stain_shaken_drop_chance="0"
+		liquid_sprite_stain_ignited_drop_chance="0"
+		liquid_sprite_stains_status_threshold="0.01"
+		liquid_gravity="0.5"
+		liquid_sand="0"
+		liquid_viscosity="30"
+		stickyness="10"
+		solid_friction="1.0"
+		on_fire="1"  
+		burnable="1"
+		density="6"
+		fire_hp="10000"
+		cell_type="liquid"
+		gfx_glow="200"
+		gfx_glow_color="ff990000"
+		autoignition_temperature="5"
+		generates_flames="20"
+		generates_smoke="0"
+		danger_fire="1"
+		requires_oxygen="0"
+		status_effects="PROMETHIUM_FIRE"
+		temperature_of_fire="100" 
+		audio_physics_material_event="slime"
+		on_fire_flame_material="promethium_fire"
+		on_fire_smoke_material="heavy_smoke"
+		show_in_creative_mode="1"
+		
+		><Graphics 
+			texture_file="mods/Noita40K/files/pics/matters_gfx/promethium.png" 
+			color="b2812929"
+			fire_colors_index="5"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="INGESTION_ON_FIRE" amount="1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="amasec"
+		ui_name="Amasec"
+		tags="[liquid],[water]"
+		density="2.5"
+		cell_type="liquid"
+		wang_color="90ebc507"
+		liquid_gravity="1.2"
+		liquid_sand="0"
+		liquid_stains="1"
+		liquid_stains_self="0"
+		show_in_creative_mode="1"
+		><Graphics
+			color="40ebc507"
+		></Graphics>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="ALCOHOLIC" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="INGESTION_DRUNK" amount="0.3" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="mjod"
+		ui_name="Mjød"
+		tags="[liquid],[water]"
+		density="3.5"
+		cell_type="liquid"
+		wang_color="906e3503"
+		liquid_gravity="1.2"
+		liquid_sand="0"
+		liquid_stains="1"
+		liquid_stains_self="0"
+		show_in_creative_mode="1"
+		><Graphics
+			color="4f6e3503"
+		></Graphics>
+		<StatusEffects>
+			<Stains>
+				<StatusEffect type="ALCOHOLIC" />
+			</Stains>
+			<Ingestion>
+				<StatusEffect type="INGESTION_DRUNK" amount="1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="plasteel_molten"
+		ui_name="Molten Plasteel"
+		tags="[liquid],[molten],[liquid_common],[earth]"
+		burnable="1"
+		density="2"
+		cell_type="liquid"
+		wang_color="ffebcdf0"
+		generates_smoke="0"
+		liquid_gravity="1.5"
+		liquid_sand="0"
+		liquid_viscosity="75"
+		on_fire="0"
+		requires_oxygen="0"
+		temperature_of_fire="100"
+		danger_fire="1"
+		gfx_glow="200"
+		show_in_creative_mode="1"
+		audio_materialaudio_type="LAVA" 
+		fire_hp="100"
+		always_ignites_damagemodel="1"
+		status_effects="ON_FIRE"
+		
+		><Graphics
+			texture_file="data/materials_gfx/steel.png"
+			color="ffebcdf2"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="INGESTION_ON_FIRE" amount="0.1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellDataChild
+		_parent="plasteel_molten"
+		_inherit_reactions="1"
+		name="plasteel_box2d_molten" 
+		ui_name="Molten Plasteel"
+		wang_color="ffebcdf1"
+	></CellDataChild>
+	
+	<CellDataChild
+		_parent="plasteel_molten"
+		_inherit_reactions="1"
+		name="plasteel_thin_molten" 
+		ui_name="Molten Plasteel"
+		wang_color="ffebcdf2"
+	></CellDataChild>
+	
+	<CellDataChild
+		_parent="plasteel_molten"
+		_inherit_reactions="1"
+		name="plasteel_thin_dark_molten" 
+		ui_name="Molten Plasteel"
+		wang_color="ffebcdf3"
+	></CellDataChild>
+	
+	<CellDataChild
+		_parent="plasteel_molten"
+		_inherit_reactions="1"
+		name="plasteel_thin_box2d_molten" 
+		ui_name="Molten Plasteel"
+		wang_color="ffebcdf4"
+	></CellDataChild>
+	
+	<!-- misc box2d -->
+	<CellData
+		name="plasteel_box2d"
+		ui_name="Plasteel"
+		tags="[alchemy],[box2d],[meltable_metal],[solid]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="ff94b0c1"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="0"
+		solid_friction="0.8"
+		hp="500000"
+		electrical_conductivity="1"
+		audio_physics_material_wall="metalwall"
+		audio_physics_material_solid="metalhollow"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			color="ff94b0c2"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="plasteel_thin_box2d"
+		ui_name="Plasteel"
+		tags="[alchemy],[box2d],[meltable_metal],[solid]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="ff94b0c2"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="0"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="0"
+		solid_friction="0.8"
+		hp="50000"
+		electrical_conductivity="1"
+		audio_physics_material_wall="metalhollow"
+		audio_physics_material_solid="metalhollow"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			color="ff94b0c2"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="brass_box2d"
+		ui_name="Gunmetal"
+		tags="[alchemy],[box2d],[solid]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="ff4e5268"
+		generates_smoke="0"
+		on_fire="0"
+		liquid_gravity="1.8"
+		liquid_sand="1"
+		requires_oxygen="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_friction="0.7"
+		platform_type="0"
+		solid_static_type="0"
+		solid_break_to_type="brass"
+		electrical_conductivity="1"
+		audio_physics_material_wall="gold"
+		audio_physics_material_solid="gold"
+		hp="8000" 
+		show_in_creative_mode="1"
+		><Graphics
+			texture_file="data/materials_gfx/brass.png"
+			color="ffb89e58"
+		></Graphics>
+	</CellData>
+	
+	<!-- misc sands and solids -->
+	<CellData
+		name="plasteel_thin"
+		ui_name="Plasteel"
+		tags="[alchemy],[meltable_metal],[sand]"
+		burnable="0"
+		density="8"
+		cell_type="liquid"
+		liquid_gravity="0.9"
+		liquid_sand="1"
+		wang_color="8094b0c3"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="0"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="1"
+		solid_friction="0.8"
+		hp="200"
+		electrical_conductivity="1"
+		audio_physics_material_wall="gold"
+		audio_physics_material_solid="gold"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			color="ff94b0c2"
+		></Graphics>
+	</CellData>
+	
+	<CellDataChild
+		_parent="plasteel_thin"
+		_inherit_reactions="1"
+		name="plasteel_thin_dark" 
+		ui_name="Plasteel"
+		wang_color="80333c57"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel_dark.png"
+			color="ff333c57"
+		></Graphics>
+	</CellDataChild>
+	
+	<CellData
+		name="deflagrating_matter"
+		ui_name="Deflagrating Matter"
+		tags="[burnable_fast]"
+		burnable="1"
+		density="6"
+		cell_type="liquid"
+		wang_color="802a2a2b"
+		generates_smoke="250"
+		liquid_gravity="2"
+		liquid_sand="1"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="0"
+		temperature_of_fire="95"
+		autoignition_temperature="94"
+		hp="1000" 
+		durability="8"
+		fire_hp="300"
+		audio_physics_material_event="sand"
+		audio_physics_material_wall="sand"
+		audio_physics_material_solid="sand"
+		on_fire_smoke_material="heavy_smoke"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/deflagrating_matter.png"
+			color="ff2a2a2a"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="osculant_matter"
+		ui_name="Osculant Matter"
+		tags="[five]"
+		burnable="0"
+		density="8"
+		cell_type="liquid"
+		liquid_gravity="0.9"
+		liquid_sand="1"
+		wang_color="80fdfefe"
+		generates_smoke="0"
+		on_fire="0"
+		gfx_glow="255" 
+		gfx_glow_color="ffe3ddff"
+		requires_oxygen="0"
+		platform_type="0"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="1"
+		solid_friction="0.8"
+		hp="200"
+		electrical_conductivity="1"
+		audio_physics_material_wall="gold"
+		audio_physics_material_solid="gold"
+		audio_materialaudio_type="MAGICAL"
+		show_in_creative_mode="1"
+		
+		><ParticleEffect
+			vel_random.min_x="-10"
+			vel_random.max_x="10"
+			vel_random.min_y="-10"
+			vel_random.max_y="-2"
+			lifetime.min="1"
+			lifetime.max="2"
+			gravity.y="0"
+			render_on_grid="0"
+			airflow_force="0.6"
+			airflow_scale="0.1"
+			friction="0"
+			probability="0.2"
+			count.min="1"
+			count.max="2"
+		></ParticleEffect>
+		<Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/osculant_matter.png"
+			color="fffdfeff"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="FARTS" amount="5" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="spook"
+		ui_name="Spook"
+		tags="[five]"
+		burnable="0"
+		density="6"
+		cell_type="liquid"
+		wang_color="80f1ffff"
+		generates_smoke="0"
+		liquid_gravity="3"
+		liquid_sand="1"
+		on_fire="0"
+		requires_oxygen="1"
+		temperature_of_fire="10"
+		solid_friction="0.6"
+		hp="100" 
+		platform_type="0"
+		><Graphics 
+			texture_file="mods/Noita40K/files/pics/matters_gfx/spook.png" 
+			color="fff1ffff"
+		></Graphics>
+		<StatusEffects>
+			<Ingestion>
+				<StatusEffect type="PSYTRIP" amount="1" />
+			</Ingestion>
+		</StatusEffects>
+	</CellData>
+	
+	<CellData
+		name="unrefined_auramite"
+		ui_name="Unrefined Auramite"
+		tags="[alchemy],[sand],[five],[earth]"
+		burnable="0"
+		density="8"
+		cell_type="liquid"
+		liquid_gravity="0.9"
+		liquid_sand="1"
+		wang_color="ffffd773"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="1"
+		solid_friction="0.8"
+		hp="2000000"
+		electrical_conductivity="1"
+		audio_physics_material_wall="metalhollow"
+		audio_physics_material_solid="gold"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/unrefined_auramite.png"
+			color="ffffd773"
+		></Graphics>
+	</CellData>
+	
+	<CellData
+		name="plasteel"
+		ui_name="Plasteel"
+		tags="[alchemy],[meltable_metal],[solid],[earth]"
+		burnable="0"
+		density="8"
+		cell_type="solid"
+		wang_color="8094b0c0"
+		generates_smoke="0"
+		on_fire="0"
+		requires_oxygen="1"
+		platform_type="1"
+		temperature_of_fire="50"
+		autoignition_temperature="99"
+		solid_static_type="1"
+		solid_friction="0.8"
+		hp="500000"
+		electrical_conductivity="1"
+		audio_physics_material_wall="metalwall"
+		audio_physics_material_solid="metalhollow"
+		show_in_creative_mode="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			color="ff94b0c2"
+		></Graphics>
+	</CellData>
+	
+	<!-- =========================== REACTIONS =========================== -->
+	<!-- darkfire -->
+	<Reaction probability="100"
+		input_cell1="darkfire" 	input_cell2="blood"
+		output_cell1="warpclot" output_cell2="warpclot"  
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="darkfire" 				input_cell2="creepy_liquid"
+		output_cell1="unstable_warpclot"	output_cell2="unstable_warpclot"
+		blob_radius2="30"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="darkfire" 		input_cell2="[magic_liquid]"
+		output_cell1="void_liquid" 	output_cell2="darkfire"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="darkfire" 	input_cell2="[solid]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="darkfire" 	input_cell2="[alchemy]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="darkfire" 	input_cell2="[static]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpmatter" 	input_cell2="blood"
+		output_cell1="warpmatter" 	output_cell2="warpclot"  
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpmatter"			input_cell2="creepy_liquid"
+		output_cell1="unstable_warpclot"	output_cell2="unstable_warpclot"
+		blob_radius2="30"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpmatter" 		input_cell2="[magic_liquid]"
+		output_cell1="warpmatter" 		output_cell2="void_liquid"
+	></Reaction>
+	
+	<Reaction probability="60"
+		input_cell1="warpmatter" 	input_cell2="[solid]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="60"
+		input_cell1="warpmatter" 	input_cell2="[alchemy]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="60"
+		input_cell1="warpmatter" 	input_cell2="[static]"
+		output_cell1="air"		output_cell2="warpmatter"
+	></Reaction>
+	
+	<Reaction probability="3"
+		input_cell1="warpmatter" 	input_cell2="air"
+		output_cell1="warpmatter"	output_cell2="darkfire"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpclot"	input_cell2="creepy_liquid"
+		output_cell1="warpclot"	output_cell2="warpclot"
+		blob_radius2="40"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpclot" 	input_cell2="blood"
+		output_cell1="warpclot"	output_cell2="warpclot"
+		blob_radius2="3"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="warpclot" 		input_cell2="[magic_liquid]"
+		output_cell1="warpclot" 	output_cell2="void_liquid"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="unstable_warpclot"		input_cell2="creepy_liquid"
+		output_cell1="unstable_warpclot"	output_cell2="unstable_warpclot"
+		blob_radius2="30"
+	></Reaction>
+	
+	<!-- life-eater virus -->
+	<Reaction probability="100"
+		input_cell1="[fire]"	input_cell2="[exterminatus_virus]"
+		output_cell1="air"		output_cell2="exterminatus_detonator"
+	></Reaction>
+	
+	<Reaction probability="60"
+		input_cell1="exterminatus_gas"	input_cell2="exterminatus_gas"
+		output_cell1="exterminatus_gas"	output_cell2="exterminatus_solid"
+	></Reaction>
+	
+	<Reaction probability="90"
+		input_cell1="exterminatus_juice"	input_cell2="air"
+		output_cell1="exterminatus_juice"	output_cell2="exterminatus_juice"
+	></Reaction>
+	
+	<Reaction probability="20"
+		input_cell1="exterminatus_juice"	input_cell2="air"
+		output_cell1="exterminatus_gas"		output_cell2="exterminatus_gas"
+	></Reaction>
+	
+	<Reaction probability="0.1"
+		direction="top"
+		entity="mods/Noita40K/files/entities/emitters/explosion_life_eater_spitter.xml"
+		input_cell1="exterminatus_juice" 	input_cell2="air"
+		output_cell1="exterminatus_juice" 	output_cell2="air"
+	></Reaction>
+	
+	<Reaction probability="10"
+		fast_reaction="1"
+		input_cell1="exterminatus_solid"	input_cell2="air"
+		output_cell1="exterminatus_solid"	output_cell2="exterminatus_solid"
+	></Reaction>
+	
+	<Reaction probability="3"
+		fast_reaction="1"
+		input_cell1="exterminatus_solid"	input_cell2="air"
+		output_cell1="exterminatus_solid"	output_cell2="exterminatus_juice"
+	></Reaction>
+	
+	<Reaction probability="1"
+		input_cell1="exterminatus_solid"	input_cell2="exterminatus_solid"
+		output_cell1="exterminatus_slayer"	output_cell2="exterminatus_solid"
+	></Reaction>
+	
+	<Reaction probability="100"
+		fast_reaction="1"
+		input_cell1="exterminatus_detonator"	input_cell2="[exterminatus_virus]"
+		output_cell1="exterminatus_detonator"	output_cell2="exterminatus_detonator"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="[exterminatus_virus]"	input_cell2="[ruptor_virus]"
+		output_cell1="exterminatus_gas"		output_cell2="exterminatus_solid"
+		blob_radius2="30"
+	></Reaction>
+	
+	<Reaction probability="80"
+		input_cell1="ruptor_gas"	input_cell2="air"
+		output_cell1="ruptor_gas"	output_cell2="ruptor_juice"
+	></Reaction>
+	
+	<Reaction probability="50"
+		input_cell1="ruptor_juice"	input_cell2="blood"
+		output_cell1="ruptor_gas"	output_cell2="ruptor_juice"
+	></Reaction>
+	
+	<!-- <Reaction probability="0.001" -->
+		<!-- input_cell1="ruptor_gas"	input_cell2="blood" -->
+		<!-- output_cell1="ruptor_gas"	output_cell2="exterminatus_gas" -->
+	<!-- ></Reaction> -->
+	
+	<Reaction probability="100"
+		input_cell1="[ruptor_virus]"	input_cell2="[magic_liquid]"
+		output_cell1="void_liquid"		output_cell2="void_liquid"
+	></Reaction>
+	
+	<!-- osculant_matter -->
+	<Reaction probability="100"
+		input_cell1="osculant_matter" 	input_cell2="sima"
+		output_cell1="osculant_matter" 	output_cell2="amasec"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="osculant_matter" 	input_cell2="alcohol"
+		output_cell1="osculant_matter" 	output_cell2="mjod"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="osculant_matter" 	input_cell2="gold"
+		output_cell1="osculant_matter" 	output_cell2="unrefined_auramite"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="osculant_matter" 	input_cell2="[fungus]"
+		output_cell1="osculant_matter" 	output_cell2="spook"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="osculant_matter" 	input_cell2="[ruptor_virus]"
+		output_cell1="osculant_matter" 	output_cell2="magic_liquid_hp_regeneration"
+	></Reaction>
+	
+	<Reaction probability="100"
+		entity="mods/Noita40K/files/entities/misc/speller.xml"
+		input_cell1="osculant_matter" 	input_cell2="[magic_liquid]"
+		output_cell1="air" 				output_cell2="air"
+	></Reaction>
+	
+	<Reaction probability="100"
+		entity="data/entities/projectiles/deck/black_hole_giga.xml"
+		input_cell1="osculant_matter" 	input_cell2="void_liquid"
+		output_cell1="air" 				output_cell2="air"
+	></Reaction>
+	
+	<Reaction probability="100"
+		entity="mods/Noita40K/files/entities/emitters/explosion_life_eater.xml"
+		input_cell1="osculant_matter" 		input_cell2="blood"
+		output_cell1="air" 					output_cell2="air"
+	></Reaction>
+	
+	<Reaction probability="100"
+		entity="mods/Noita40K/files/entities/emitters/explosion_warpfire.xml"
+		input_cell1="osculant_matter" 	input_cell2="[warpmatter]"
+		output_cell1="air" 				output_cell2="air"
+	></Reaction>
+	
+	<Reaction probability="100"
+		entity="mods/Noita40K/files/entities/emitters/explosion_ruptor.xml"
+		input_cell1="osculant_matter" 	input_cell2="diamond"
+		output_cell1="air" 				output_cell2="air"
+	></Reaction>
+	
+	<!-- misc -->
+	<Reaction probability="10"
+		direction="top"
+		cosmetic_particle="promethium"
+		input_cell1="promethium" 	input_cell2="air"
+		output_cell1="promethium" 	output_cell2="heavy_smoke"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="promethium" 	input_cell2="[liquid]"
+		output_cell1="promethium" 	output_cell2="heavy_smoke"
+	></Reaction>
+	
+	<Reaction probability="100"
+		input_cell1="unrefined_auramite" 	input_cell2="blood"
+		output_cell1="unrefined_auramite" 	output_cell2="gold"
+	></Reaction>
+	
+	<Reaction probability="80"
+		input_cell1="amasec" 		input_cell2="[fire]"
+		output_cell1="[fire]"	output_cell2="alcohol_gas"
+	></Reaction>
+	
+	<Reaction probability="80"
+		input_cell1="amasec" 		input_cell2="[lava]"
+		output_cell1="[lava]"	output_cell2="alcohol_gas"
+	></Reaction>
+	
+	<Reaction probability="80"
+		input_cell1="mjod" 		input_cell2="[fire]"
+		output_cell1="[fire]"	output_cell2="heavy_smoke"
+	></Reaction>
+	
+	<Reaction probability="80"
+		input_cell1="mjod" 		input_cell2="[lava]"
+		output_cell1="[lava]"	output_cell2="heavy_smoke"
+	></Reaction>
+	
+	<Reaction probability="90"
+		fast_reaction="1"
+		input_cell1="[meltable]" 			input_cell2="[plasma]"
+		output_cell1="[meltable]_molten" 	output_cell2="[plasma]"
+		blob_radius1="2"
+	></Reaction>
+	
+	<Reaction probability="90"
+		fast_reaction="1"
+		input_cell1="[meltable_metal]" 			input_cell2="[plasma]"
+		output_cell1="[meltable_metal]_molten" 	output_cell2="[plasma]"
+		blob_radius1="2"
+	></Reaction>
+	
+	<Reaction probability="50"
+		fast_reaction="1"
+		input_cell1="[plasma]"	input_cell2="[solid]"
+		output_cell1="[plasma]"	output_cell2="lava"
+	></Reaction>
+	
+	<Reaction probability="50"
+		fast_reaction="1"
+		input_cell1="[plasma]"	input_cell2="[alchemy]"
+		output_cell1="[plasma]"	output_cell2="lava"
+	></Reaction>
+	
+	<Reaction probability="100"
+		fast_reaction="1"
+		input_cell1="plasma_dense"	input_cell2="[liquid]"
+		output_cell1="plasma_dense"	output_cell2="plasma_he"
+		blob_radius2="10"
+	></Reaction>
+	
+	<Reaction probability="10"
+		direction="top"
+		input_cell1="plasma_dense"	input_cell2="air"
+		output_cell1="plasma_dense"	output_cell2="plasma_he"
+	></Reaction>
+	
+	<Reaction probability="0.0001"
+		input_cell1="plasma_dense"	input_cell2="air"
+		output_cell1="plasma_he"	output_cell2="plasma_he"
+	></Reaction>
+</Materials>
