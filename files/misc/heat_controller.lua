@@ -2,6 +2,9 @@ dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 --cool by liquids + add light source
 --smoke from barrel (through sprite emitter)
+--remove comp if heat pic does not exist
+
+--degrate firerate at high heat and lower accuracy, overheat on full-auto guns has a chance to trigger runaway detonation in the form of uncontrolled fast firing magdump with radnomized intervals and insanely low accuracy (continue to detonate even in inventory)
 
 local gun_id = GetUpdatedEntityID()
 local pics = EntityGetComponentIncludingDisabled( gun_id, "SpriteComponent" )
@@ -26,7 +29,6 @@ end
 
 local heat_perc = pen.rounder( 1/( 1 + math.exp( 12*( 0.45 - heat/max_heat ))), 100 )
 if( not( pen.eps_compare( alpha, heat_perc ))) then
-    print( heat_perc )
     ComponentSetValue2( pics[2], "alpha", heat_perc )
     EntityRefreshSprite( gun_id, pics[2])
 end

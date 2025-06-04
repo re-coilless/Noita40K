@@ -8,21 +8,21 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- restore class functionality
+-- custom char sounds
+-- hermes vector
+
 -- insane cleanup (reduce tag usage)
 -- all weapons scripts should run through index
 -- complete restructure
 -- chainsword should overheat while cutting through metal
 -- better base files
 -- casings are being ejected at different speeds based on char facing
--- add proper [liquid]/[gas]/[solid] tags to custom matters
+-- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
 -- all the gui page tables to the separate lists.lua
 -- all the "perks" should be done in a standalone way
--- use gura's shell system exept turn the shit to sand after some time/quantity
--- EntityGetHotspot
 -- SpriteStainsComponent sprite_id for multisprite stains
 -- MaterialSuckerComponent randomized_position for osculant device
--- normalize character spritesheets to ensure that only nessessary work is done
--- only default walking anim should be truly form-fitted, setup up the rest of the sheet to use static frames
 -- redo the sound banks to have proper uids
 -- normalize and rebalance all the sounds
 -- add randomness to several sounds
@@ -30,13 +30,14 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
 -- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
--- custom char sounds
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- remove vanilla map
 
 -- the hell is sound_loop_tag for spells
+-- madness combat style hands
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- better tutorial
+-- codex should have lore word hyperlinks that show tips on hower
 -- plasma rounds should detonate if their acceleration was too high
 -- phycisal armour patch that prevents phasing and projectiles sometimes disappear + sound and sparks play only if the speed is above certain level
 -- handle rotation for holder.lua
@@ -96,11 +97,13 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- foreground alpha and glowing on refraction is fucked
 -- ?clot and warpmatter ambient sound
 
---[[
 function OnModInit()
-	dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
-	dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
+	dofile_once( "mods/Noita40K/files/_lib.lua" )
+	-- dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
 	
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
+
+	--[[
 	compatibility_patch()
 	
 	--Magic numbers
@@ -190,8 +193,8 @@ function OnModInit()
 	
 	file = ModTextFileGetContent( teleport_base.."_start.xml" )
 	ModTextFileSetContent( teleport_base.."_start.xml", string.gsub( file, "<Entity>", "<Entity tags=\"portal\">" ))
+	]]
 end
-]]
 
 --[[
 function OnWorldPreUpdate()
@@ -254,6 +257,14 @@ end
 ]]
 
 function OnPlayerSpawned( hooman )
+	pen.strip_player( hooman )
+
+	local pic_comp = EntityGetFirstComponentIncludingDisabled( hooman, "SpriteComponent", "character" )
+	ComponentSetValue2( pic_comp, "image_file",
+		"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
+	ComponentSetValue2( pic_comp, "offset_x", 32 ); ComponentSetValue2( pic_comp, "offset_y", 44 )
+	EntityRefreshSprite( hooman, pic_comp )
+
 	local x, y = EntityGetTransform( hooman )
 	EntityLoad( "mods/Noita40K/files/items/weapons/bolter_generic.xml", x, y )
 	
