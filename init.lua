@@ -15,7 +15,11 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- insane cleanup (reduce tag usage)
 -- all weapons scripts should run through index
 -- complete restructure
--- chainsword should overheat while cutting through metal
+-- jumppack is an "item" (do a separate inventory space for equipment)
+-- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
+-- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
+-- rmb action should be obtained from controls comp Fire2
+-- turning around with heavy weapon resets it to point up
 -- better base files
 -- casings are being ejected at different speeds based on char facing
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
@@ -31,6 +35,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
+-- custom mnee frontend that ties all the mods together
 -- remove vanilla map
 
 -- the hell is sound_loop_tag for spells
