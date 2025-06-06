@@ -8,64 +8,68 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- restore class functionality
--- custom char sounds
--- hermes vector
-
--- insane cleanup (reduce tag usage)
--- all weapons scripts should run through index
--- complete restructure
--- jumppack is an "item" (do a separate inventory space for equipment)
--- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
--- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
--- rmb action should be obtained from controls comp Fire2
--- turning around with heavy weapon resets it to point up
--- better base files
--- casings are being ejected at different speeds based on char facing
--- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
--- all the gui page tables to the separate lists.lua
--- all the "perks" should be done in a standalone way
--- SpriteStainsComponent sprite_id for multisprite stains
--- MaterialSuckerComponent randomized_position for osculant device
+-- strip the player
+-- restore class functionality (run it all through vector_ctrl)
 -- redo the sound banks to have proper uids
 -- normalize and rebalance all the sounds
 -- add randomness to several sounds
 -- add multisounds
+-- custom char sounds
+-- regenerate uv_maps
+
+-- add physics_hit as AP damage that will be considered as x5 with physical armour penetration
+-- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
+-- phycisal armour patch that prevents phasing and projectiles sometimes disappear + sound and sparks play only if the speed is above certain level
+-- check speed + angle for armour penetration
+-- top 10% of armour should have rickoshet chance, the higher - the more
+
+-- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
 -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
+-- chainsword projectiles lifetime is 2x of what it should be
+-- rmb action should be obtained from controls comp Fire2
+
 -- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
+-- all weapons scripts should run through index
+-- add clanking sound for the last 25% of shots from the mag
+-- add rickoshet angles (somehow bouncy orb and that extra bouncy shit have different angles)
 -- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
+-- turning around with heavy weapon resets it to point up
+-- casings are being ejected at different speeds based on char facing
+
+-- vector basic spell system rewrite (wand is the center part of the thing, player is optional)
+
+-- insane cleanup (reduce tag usage)
+-- complete restructure
+-- jumppack is an "item" (do a separate inventory space for equipment)
+-- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
+-- all the gui page tables to the separate lists.lua
+-- SpriteStainsComponent sprite_id for multisprite stains
+-- MaterialSuckerComponent randomized_position for osculant device
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- custom mnee frontend that ties all the mods together
 -- remove vanilla map
 
--- the hell is sound_loop_tag for spells
 -- madness combat style hands
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- better tutorial
 -- codex should have lore word hyperlinks that show tips on hower
 -- plasma rounds should detonate if their acceleration was too high
--- phycisal armour patch that prevents phasing and projectiles sometimes disappear + sound and sparks play only if the speed is above certain level
--- handle rotation for holder.lua
 -- overload shader (somehow vertex shader is being overwritten by refractor)
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens
 -- combat wolf with custom ai for Space Wolf
 -- option to align ammo at the center of the screen
 -- trash/child killers will rekt the beams on another weapons
 -- smoothen blood rage edge effect transition
--- regenerate uv_maps
 -- custom taunts for the marines
 -- exterminatus should squirt some juice directly at nearby sentient entities
 -- stable main menu height
--- add physics_hit as AP damage that will be considered as x5 with physical armour penetration
 -- Eternal vigilance ability to hack robots allegiance to yours through a minigame
--- chainsword projectiles lifetime is 2x of what it should be
 -- redo the credits section to add contributors and supporters
 -- SpriteComponent never_ragdollify_on_death for magos
 -- update servoskull's wand storage with necro stuff's one
 -- "target has expired"
 -- include detailed PL calcuator explanation in seraphim
 -- cicle the class icon between subclasses if it's not selected
--- add rickoshet angles (somehow bouncy orb and that extra bouncy shit have different angles)
 -- check bloodtype for threat level
 -- two-stage beacon event
 -- stalker bolter ammo should have almost no knockback + make knockback to be less on other rounds
@@ -75,26 +79,18 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- sister of silence sword can be holstered on the back for instaswing on lmb (has to be reholstered manually each time by holding the button in inventory, gives slight speed boost, spine armor and shows on back when done so)
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
 -- ConvertMaterialOnAreaInstantly
--- to remove hit sound from projectile, remove audiocomp from base entity
--- check speed + angle for armour penetration
--- all the light sprites must use additive shit
 -- add a secondary layer of unique legion perks (after getting some item, you current perk "evolves" to entirely different and more powerful one)
 -- add "select" button on the desc page
--- overheating visualization
 -- music is a single track that evolves based on events and biomes
--- add clanking sound for the last 25% of shots from the mag
--- character-side mnee inputs must be only active when controlscomp is active
 -- N40 weapon handling momentum and advanced recoil (through realtime hotspot editing)
 -- put new link in the desc https://cortex-command-community.github.io/
 -- raven's test for admech hacking minigame (with layers)
 -- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class)
 -- reloading should pop up in the corner of the screen and be literally just wand slots that are the same when inv is opened (make this an upgrade)
--- top 10% of armour should have rickoshet chance, the higher - the more
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
 -- Use rack2 for advanced audio design
--- when character kicks while being in the air, transfer 150% of speed to the object and leave 10% of speed for the char
 -- burning with promethium fire or being ot low hp should apply "void compomized" debuff that restores all status effect weaknesses that armor negates (can be fixed either in the "holy mountain" or with a "reseal kit")
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
 -- ogryn mode than makes all lore caveman like

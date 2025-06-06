@@ -348,7 +348,7 @@
 		frames_per_row="10" loop="0"
 		
 		><Event
-			frame="1" name="kick"
+			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
@@ -380,7 +380,7 @@
 		frames_per_row="10" loop="0"
 
 		><Event
-			frame="2" name="kick"
+			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
