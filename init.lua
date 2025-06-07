@@ -23,6 +23,9 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- check speed + angle for armour penetration
 -- top 10% of armour should have rickoshet chance, the higher - the more
 
+-- jumppack is an "item" (do a separate inventory space for equipment)
+-- SpriteStainsComponent sprite_id for multisprite stains
+
 -- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
 -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
 -- chainsword projectiles lifetime is 2x of what it should be
@@ -32,18 +35,17 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- all weapons scripts should run through index
 -- add clanking sound for the last 25% of shots from the mag
 -- add rickoshet angles (somehow bouncy orb and that extra bouncy shit have different angles)
--- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8)
+-- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8), enemies hit with shockwaves should be briefly stunned if they don't have void-sealed status
 -- turning around with heavy weapon resets it to point up
 -- casings are being ejected at different speeds based on char facing
 
 -- vector basic spell system rewrite (wand is the center part of the thing, player is optional)
 
--- insane cleanup (reduce tag usage)
--- complete restructure
--- jumppack is an "item" (do a separate inventory space for equipment)
+---------------------------------------------------------------------------
+
+-- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
 -- all the gui page tables to the separate lists.lua
--- SpriteStainsComponent sprite_id for multisprite stains
 -- MaterialSuckerComponent randomized_position for osculant device
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- custom mnee frontend that ties all the mods together
@@ -58,7 +60,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens
 -- combat wolf with custom ai for Space Wolf
 -- option to align ammo at the center of the screen
--- trash/child killers will rekt the beams on another weapons
 -- smoothen blood rage edge effect transition
 -- custom taunts for the marines
 -- exterminatus should squirt some juice directly at nearby sentient entities
@@ -82,11 +83,9 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- add a secondary layer of unique legion perks (after getting some item, you current perk "evolves" to entirely different and more powerful one)
 -- add "select" button on the desc page
 -- music is a single track that evolves based on events and biomes
--- N40 weapon handling momentum and advanced recoil (through realtime hotspot editing)
 -- put new link in the desc https://cortex-command-community.github.io/
 -- raven's test for admech hacking minigame (with layers)
 -- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class)
--- reloading should pop up in the corner of the screen and be literally just wand slots that are the same when inv is opened (make this an upgrade)
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
@@ -96,11 +95,15 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- ogryn mode than makes all lore caveman like
 -- dendrite inertion
 -- foreground alpha and glowing on refraction is fucked
+-- having jumppack one slows down the movement speed
+-- unchained now acts as a special access pass
+-- if no chacrater author is stated, write "vanilla"
+-- medium class of main force can obtain alternative loadouts (that's how terminators are done)
+-- taunts should have hardcoded unified cooldown
 -- ?clot and warpmatter ambient sound
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )
-	-- dofile_once( "mods/Noita40K/files/scripts/libs/lists.lua" )
 	
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
 
@@ -194,6 +197,17 @@ function OnModInit()
 	
 	file = ModTextFileGetContent( teleport_base.."_start.xml" )
 	ModTextFileSetContent( teleport_base.."_start.xml", string.gsub( file, "<Entity>", "<Entity tags=\"portal\">" ))
+
+	herd_relations = {
+		{ 
+			name = "living_shadow", 
+			default_value = 99,
+			vanilla_vertical = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 100, 100, 100, 100, 100, 0, 100, 0, 100, },
+			vanilla_horizontal = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 100, 100, 100, 100, 100, 0, 100, 0, 100, },
+			custom_vertical = {},
+			custom_horizontal = { 100, },
+		},
+	}
 	]]
 end
 

@@ -1,5 +1,5 @@
 dofile_once( "mods/index_core/files/_lib.lua" )
--- dofile_once( "mods/Noita40K/files/_lists.lua" )
+dofile_once( "mods/Noita40K/files/_lists.lua" )
 
 
 
