@@ -360,7 +360,7 @@ n40.CLASSES = {
 		name = "CUSTOM",
 		desc = "this is where all the extensions go",
 	},
-},
+}
 
 n40.CLASSES[1].subclasses = {
 	{
@@ -392,7 +392,7 @@ n40.CLASSES[1].subclasses = {
 		name = "Moritat Warrior",
 		desc = "",
 	},
-},
+}
 
 n40.CLASSES[1].subclasses[2].characters = {
 	{
@@ -496,13 +496,25 @@ n40.CLASSES[1].subclasses[2].characters = {
 
 n40.CLASSES[3].subclasses = {
 	{
+		name = "Legiones Skitarii",
+		desc = "",
+	},
+	{
 		name = "Tech-Priesthood",
 		desc = "Tech-Priests are the members of the Machine Cult, a priesthood which forms an hierarchy of technicians, scientists, and religious leaders who believe that knowledge represents the only true divinity in the universe. Their bodies are often heavily augmented in the pursuit to please the Machine God, Omnissiah. However, despite the never-ending thirst for knowledge of all branches of the order, most Tech-Priests have lost the ability to innovate or carry out basic scientific research - that is the price of 10,000 years of neverending wars and all-consuming stagnation.",
 		items = { "GRENADE_ARC", "GRENADE_ARC" },
 		equipment = { "SERVOSKULL" },
 		perks = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE", "BREATH_OF_MARS" },
 	},
-},
+	{
+		name = "Legio Cybernetica",
+		desc = "",
+	},
+	{
+		name = "Auxilia Myrmidon",
+		desc = "",
+	},
+}
 
 n40.CLASSES[3].subclasses[2].characters = {
 	{
@@ -513,6 +525,31 @@ n40.CLASSES[3].subclasses[2].characters = {
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASUNG_MITRALOCK" },
 		equipment_add = { "REFRACTOR_FIELD" },
 		perks_add = { "MECHADENDRITES", "SICARIAN_ARMOUR", "UNCHAINED" },
+	},
+}
+
+n40.CLASSES[6].subclasses = {
+	{
+		name = "Ordo Hereticus",
+		desc = "",
+	},
+	{
+		name = "Ordo Xenos",
+		desc = "",
+	},
+	{
+		name = "Ordo Malleus",
+		desc = "",
+	},
+	{
+		name = "Ordos Minoris",
+		desc = "",
+	},
+}
+
+n40.CLASSES[6].subclasses[2].characters = {
+	{
+		name = "Adepta Sororitas",
 	},
 }
 
@@ -548,7 +585,7 @@ n40.CODEX.BRIEFING = {
 	{
 		"Extra",
 		"This mod supports extensions. Check \"Extensions\" thread at Steam mod page for examples and/or already published works."
-	}
+	},
 }
 
 n40.CODEX.CREDITS = {

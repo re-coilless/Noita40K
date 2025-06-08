@@ -1,97 +1,17 @@
 dofile_once( "mods/index_core/files/_lib.lua" )
 dofile_once( "mods/Noita40K/files/_lists.lua" )
 
-
+function n40.setup_character( hooman )
+	--set all the shit
+	pen.lib.player_builder( hooman )
+end
 
 --[[
 function generic_stuff( hooman )
-	--Player entity setup
-	edit_component_with_tag_ultimate( hooman, "SpriteComponent", "player_amulet", function(comp,vars) 
-		ComponentSetValue2( comp, "z_index", 0.599 )
-		EntityRefreshSprite( hooman, comp )
-	end)
-	
-	edit_component_with_tag_ultimate( hooman, "SpriteComponent", "player_hat2", function(comp,vars) 
-		ComponentSetValue2( comp, "z_index", 0.599 )
-		EntityRefreshSprite( hooman, comp )
-	end)
-	
 	edit_component_ultimate( hooman, "CharacterPlatformingComponent", function(comp,vars) 
 		ComponentSetValue2( comp, "accel_x", 0.3 )
 		ComponentSetValue2( comp, "velocity_max_x", 70 )
 	end)
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "head_offset",
-		name = "head_offset",
-		value_int = "0",
-	})
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "cooldown_taunt",
-		name = "cooldown_taunt",
-		value_int = "0",
-	})
-	
-	EntityAddComponent( hooman, "AudioComponent", 
-	{ 
-		file = "mods/Noita40K/files/40K.bank",
-		event_root = "taunts",
-	})
-	
-	--GUIer
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "mm_is_open",
-		name = "mm_is_open",
-		value_bool = tostring( b2n( ModSettingGetNextValue( "Noita40K.UI_MODE" ) == 1 )),
-	})
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "mm_page_number",
-		name = "mm_page_number",
-		value_int = 2, --tostring( 2 + b2n( ModSettingGetNextValue( "Noita40K.UI_MODE" ) == 1 )),
-	})
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "qm_is_open",
-		name = "qm_is_open",
-		value_bool = "0",
-	})
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "qm_panel_state",
-		name = "qm_panel_state",
-		value_int = "0",
-	})
-	
-	EntityAddComponent( hooman, "VariableStorageComponent", 
-	{
-		_tags = "cooldown_note",
-		name = "cooldown_note",
-		value_int = "300",
-	})
-	
-	EntityAddTag( hooman, "mm_tutorial" )
-	
-	EntityAddComponent( hooman, "LuaComponent", 
-	{ 
-		_tags = "menu",
-		script_source_file = "mods/Noita40K/files/scripts/player/main_controller.lua",
-		execute_every_n_frame = "1",
-		-- vm_type = "ONE_PER_COMPONENT_INSTANCE",
-	})
-	
-	EntityAddComponent( hooman, "LuaComponent", 
-	{ 
-		script_source_file = "mods/Noita40K/files/scripts/player/perk_gui.lua",
-		execute_every_n_frame = "1",
-	})
 	
 	EntityAddComponent( hooman, "LuaComponent", 
 	{ 
@@ -99,63 +19,6 @@ function generic_stuff( hooman )
 		execute_every_n_frame = "1",
 		remove_after_executed = "1",
 	})
-end
-
-function magic_setuper( active_class, hooman, custom )
-	local class = class_info[active_class[1] ]
-	local skin = class.skins[active_class[2] ]
-	
-	--Perks
-	local perk_table = class.default_perks
-	if( skin ~= nil and skin.perks ~= nil ) then
-		if( #skin.perks[2] > 0 ) then
-			if( skin.perks[1] ) then
-				perk_table = skin.perks[2]
-			else
-				for i,perk in ipairs( skin.perks[2] ) do
-					table.insert( perk_table, perk )
-				end
-			end
-		end
-	end
-	if( perk_table ~= nil ) then
-		for i,perk in ipairs( perk_table ) do
-			perker( hooman, perk[1], perk[2], perk[3] )
-		end
-	end
-	
-	--Loadout
-	local loadout = class.default_guns
-	if( custom ) then
-		loadout = D_extractor( ModSettingGetNextValue( "Noita40K.CUSTOM_LOADOUT" ), true )
-	elseif( skin ~= nil and skin.guns ~= nil ) then
-		loadout = skin.guns
-	end
-	if( loadout ~= nil ) then
-		local guns = {}
-		for i,gun in ipairs( loadout ) do
-			table.insert( guns, get_gun_with_id( gun ).path )
-		end
-		picker( hooman, guns )
-	end
-	
-	--Items
-	loadout = class.default_items
-	if( skin ~= nil and skin.items ~= nil ) then
-		loadout = skin.items
-	end
-	if( loadout ~= nil ) then
-		local items = {}
-		for i,item in ipairs( loadout ) do
-			table.insert( items, get_gun_with_id( item ).path )
-		end
-		picker( hooman, items )
-	end
-	
-	--Custom
-	if( skin ~= nil and skin.custom_code ~= nil ) then
-		skin.custom_code( hooman )
-	end
 end
 
 function window_inner( gui, uid, pic_x, pic_y, pic_z, width, height, inner_filler )
