@@ -152,7 +152,65 @@ n40.EQUIPMENT = {
 }
 
 n40.PERKS = {
-	-- background
+	-- skins
+	MKVII_ULTRAMARINE = {
+		name = "Mark VII Power Armour",
+		desc = "This version of basic power armour was also known as Imperator Armour. It is the contemporary variant of power armour most commonly used by the Space Marine Chapters of the Imperium. Mark VII armour was developed during the last stages of the Horus Heresy, and remains in use as the most common form of power armour more than 10,000 standard years later. This one is coupled with a combat jumppack and features targeting arrays. Hold [DOWN]+[USE] to accelerate towards the crosshair.",
+		path = "",
+		func = function( hooman, data )
+			ComponentSetValue2( data.pic_char, "image_file",
+				"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
+			--ragdoll
+			--arm
+		end,
+	},
+	MKVII_BLOOD_ANGEL = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_WHITE_SCAR = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_IMPERIAL_FIST = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_IRON_HAND = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_SPACE_WOLF = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_SALAMANDER = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_RAVEN_GUARD = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	MKVII_DARK_ANGEL = {
+		name = "",
+		desc = "",
+		path = "",
+	},
+	SICARIAN_ARMOUR = {
+		name = "Sicarian Battle Armour",
+		desc = "This armour is built out of the multilayered alloy, informally known as aegium, that provides admirable protection despite being thin and flexible. It acts as a capacitor that harnesses the energy of incoming attacks and disperses it across the wearer's energy system.",
+		path = "",
+	},
+	
+	-- abilities
 	SECOND_HEART = {
 		name = "Secondary Heart",
 		desc = "The Secondary Heart, also called the Maintainer, resembles a smaller version of the Human heart and is implanted in the chest cavity. In the event of failure of the Space Marine's original heart, the Secondary Heart is usually capable of pumping enough blood through the Astartes' circulatory system to maintain survival.",
@@ -244,58 +302,6 @@ n40.PERKS = {
 		desc = "A Mechadendrite is the term used for the bionic tentacle-like limb prosthetics. They are hard-wired into the central nervous system of the owner and surgically attached to the spine, so that user will be able to control them using neural impulses just like a biological limb.",
 		path = "",
 	},
-
-	-- character-defining
-	MKVII_ULTRAMARINE = {
-		name = "Mark VII Power Armour",
-		desc = "This version of basic power armour was also known as Imperator Armour. It is the contemporary variant of power armour most commonly used by the Space Marine Chapters of the Imperium. Mark VII armour was developed during the last stages of the Horus Heresy, and remains in use as the most common form of power armour more than 10,000 standard years later. This one is coupled with a combat jumppack and features targeting arrays. Hold [DOWN]+[USE] to accelerate towards the crosshair.",
-		path = "",
-	},
-	MKVII_BLOOD_ANGEL = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_WHITE_SCAR = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_IMPERIAL_FIST = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_IRON_HAND = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_SPACE_WOLF = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_SALAMANDER = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_RAVEN_GUARD = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	MKVII_DARK_ANGEL = {
-		name = "",
-		desc = "",
-		path = "",
-	},
-	SICARIAN_ARMOUR = {
-		name = "Sicarian Battle Armour",
-		desc = "This armour is built out of the multilayered alloy, informally known as aegium, that provides admirable protection despite being thin and flexible. It acts as a capacitor that harnesses the energy of incoming attacks and disperses it across the wearer's energy system.",
-		path = "",
-	},
 }
 
 n40.CLASSES = {
@@ -362,7 +368,7 @@ n40.CLASSES = {
 	},
 }
 
-n40.CLASSES[1].subclasses = {
+n40.CLASSES[1].sections = {
 	{
 		name = "Neophyte",
 		desc = "",
@@ -394,7 +400,7 @@ n40.CLASSES[1].subclasses = {
 	},
 }
 
-n40.CLASSES[1].subclasses[2].characters = {
+n40.CLASSES[1].sections[2].chars = {
 	{
 		name = "Ultramarine",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_ultramarine.png",
@@ -408,8 +414,7 @@ n40.CLASSES[1].subclasses[2].characters = {
 		-- equipment = {},
 		-- equipment_add = {},
 		
-		-- perks = {},
-		perks_add = { "MKVII_ULTRAMARINE", "CODEX_MASTERY" },
+		skin = "MKVII_ULTRAMARINE", perks_add = { "CODEX_MASTERY" }, -- perks_remove = {},
 		-- func = nil,
 	},
 	{
@@ -419,7 +424,7 @@ n40.CLASSES[1].subclasses[2].characters = {
 		desc = "The Blood Angels are well-known across the galaxy for their bloodthirsty nature in battle, and feared for the curse of flawed gene-seed they carry, which, none-the-less, is the primary source of their terrifying combat performance. They were one of the most celebrated Legions: their countless heroic deeds and victories known to untold billions of the Emperor's subjects across the length and breadth of the Imperium. / By the Blood of Sanguinius! /",
 
 		guns = { [1] = "BOLTER_RAPID" },
-		perks_add = { "MKVII_BLOOD_ANGEL", "BLACK_RAGE" },
+		skin = "MKVII_BLOOD_ANGEL", perks_add = { "BLACK_RAGE" },
 	},
 	{
 		name = "Imperial Fist",
@@ -428,15 +433,7 @@ n40.CLASSES[1].subclasses[2].characters = {
 		desc = "The Imperial Fists were one of the most valiant of all Legions, held as paragons of all the principles to which a Space Marine is heir. They stand as the steadfast defenders of the Imperium, crashing adversary armies for millenias. Indeed, if the Fists have a fault, it is that they continue to strive when others would yield or withdraw, but this comes only at a steep cost in lives. / Primarch, to your glory and the glory of Him on Terra! /",
 
 		equipment_add = { "SHIELD_S" },
-		perks = {
-			"SECOND_HEART",
-			"OSSMODULA",
-			"BISCOPEA",
-			"LARRAMAN",
-			"OCCULOBE",
-			"MKVII_IMPERIAL_FIST",
-			"EMPERORS_PRAETORIAN",
-		},
+		skin = "MKVII_IMPERIAL_FIST", perks_add = { "EMPERORS_PRAETORIAN" }, perks_remove = { "SUS_AN" },
 	},
 	{
 		name = "White Scar",
@@ -445,7 +442,7 @@ n40.CLASSES[1].subclasses[2].characters = {
 		desc = "Known and feared throughout the Imperium for their highly mobile way of war, the White Scars are considered the masters of the lightning strike and hit-and-run attack. Bearing the ritual scars of bravery, these fierce warriors fight with all the tribal savagery that define the fierce steppe nomads of their homeworld bringing swift death to all of the enemies of the mankind. / For the Emperor and the Khan! /",
 
 		equipment = { [1] = "JUMPPACK_UPGRADE" },
-		perks_add = { "MKVII_WHITE_SCAR", "CHOGORIAN_SAVAGERY" },
+		skin = "MKVII_WHITE_SCAR", perks_add = { "CHOGORIAN_SAVAGERY" },
 	},
 	{
 		name = "Iron Hand",
@@ -454,47 +451,51 @@ n40.CLASSES[1].subclasses[2].characters = {
 		desc = "The Iron Hands are ultimately defined by their hatred of weakness of any kind, a hatred that extends to their own bodies, for they hold that all organic limbs are ultimately frail and subject to the weaknesses brought on by age and disease, compulsively driven to augment their flesh. In battle, they utilise their anger and hatred, identifying enemies' vulnerabilities and exploiting them ruthlessly. / The Flesh is Weak! /",
 
 		guns = { [1] = "BOLTER_COMBIMELTA" },
-		perks_add = { "MKVII_IRON_HAND", "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE" },
+		skin = "MKVII_IRON_HAND", perks_add = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE" },
 	},
 	{
 		name = "Space Wolf",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_space_wolf.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_space_wolf.png",
 		desc = "Nurtured among ones of the most hostile predators known to mankind and tempered in deadly permafrost of their homeworld, the Space Wolves were one of the most savage Legiones Astartes in the Imperium. Wild and glorious, brute and perseptive, loyal and horrifying, they are ready to decimate anyone who dares to offend their King or even thinks of foul tricks on the battlefield. / For Russ and the All-father! /",
+		
 		items_add = { "KEG" },
-		perks_add = { "MKVII_SPACE_WOLF", "FENRISIAN_BLOOD" },
+		skin = "MKVII_SPACE_WOLF", perks_add = { "FENRISIAN_BLOOD" },
 	},
 	{
 		name = "Salamander",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_salamander.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_salamander.png",
 		desc = "Craftsmen and artificers, the Salamanders know the true price of every creation be it a machine or a living thing. Such an invaluable knowledge results in the believe that their most important duty is to protect the innocent lives whenever and wherever possible. They are also fascinated by the fire in all of its hypostases, seeing it as the greatest tool and utilizing as the most powerful weapon. / Into the fires of battle, unto the Anvil of War! /",
+		
 		guns = { [1] = "BOLTER_INCENDIARY" },
 		items = { "GRENADE_HEI", "GRENADE_HEI" },
-		perks = { "MKVII_SALAMANDER", "NOCTURNE_FORGED" },
+		skin = "MKVII_SALAMANDER", perks_add = { "NOCTURNE_FORGED" },
 	},
 	{
 		name = "Raven Guard",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_raven_guard.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_raven_guard.png",
 		desc = "From its earliest days, the Raven Guard were known as cunning and patient hunters, adept at biding their time until the moment to strike was at hand. For thousands of standard years, across thousands of worlds, they stalked the enemies of the Imperium as shadows of death, waiting for the perfect moment to deliver the killing blow before melting back into the darkness once more, leaving no witnesses and no unnessesary casualities behind. / Victory or Death! /",
+		
 		guns = { [1] = "BOLTER_STALKER" },
 		items = { "GRENADE_FLASHBANG", "GRENADE_FLASHBANG" },
-		perks_add = { "MKVII_RAVEN_GUARD", "LIVING_SHADOW" },
+		skin = "MKVII_RAVEN_GUARD", perks_add = { "LIVING_SHADOW" },
 	},
 	{
 		name = "Dark Angel",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_dark_angel.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_dark_angel.png",
 		desc = "The Dark Angels were one of the most cryptic Legions. They fought uncountable wars against never seen before and never discovered again enemies, held numerous horrifyingly heretical secrets and were responsible for several of the most glorious victories of the Imperium. The capabilities of their arsenal can't be rivaled with and their combat potential is unmatched, much like the fury that the Angels unleash upon those who betrayed their brotherhood. / Repent! For tomorrow you die! /",
+		
 		guns = { [1] = "BOLTER_ARCHEO" },
 		items_add = { "GRENADE_RUPTOR" },
 		equipment_add = { "OSCULANT_DEVICE" },
-		perks_add = { "MKVII_DARK_ANGEL", "UNCHAINED" },
+		skin = "MKVII_DARK_ANGEL", perks_add = { "UNCHAINED" },
 	},
 }
 
-n40.CLASSES[3].subclasses = {
+n40.CLASSES[3].sections = {
 	{
 		name = "Legiones Skitarii",
 		desc = "",
@@ -502,6 +503,7 @@ n40.CLASSES[3].subclasses = {
 	{
 		name = "Tech-Priesthood",
 		desc = "Tech-Priests are the members of the Machine Cult, a priesthood which forms an hierarchy of technicians, scientists, and religious leaders who believe that knowledge represents the only true divinity in the universe. Their bodies are often heavily augmented in the pursuit to please the Machine God, Omnissiah. However, despite the never-ending thirst for knowledge of all branches of the order, most Tech-Priests have lost the ability to innovate or carry out basic scientific research - that is the price of 10,000 years of neverending wars and all-consuming stagnation.",
+		
 		items = { "GRENADE_ARC", "GRENADE_ARC" },
 		equipment = { "SERVOSKULL" },
 		perks = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE", "BREATH_OF_MARS" },
@@ -516,19 +518,20 @@ n40.CLASSES[3].subclasses = {
 	},
 }
 
-n40.CLASSES[3].subclasses[2].characters = {
+n40.CLASSES[3].sections[2].chars = {
 	{
 		name = "Magos Explorator",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_tech_priest_magos_explorator.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/tech_priest_magos_explorator.png",
 		desc = "Adeptus Mechanicus are well known for their frenetic obsession with technology as well as for how little innovative minds are left amongst them. However, no matter how few, those members of the Machine Cult often play key roles in the history of the Imperium and their name - Explorators. Armed to the teeth with forbidden technologies, extensive knowledge of numerous dark secrets and truly undying urge for discovery, they represent the Omnissiah in all of its terrifying glory, eager to save and ready to destroy.",
+		
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASUNG_MITRALOCK" },
 		equipment_add = { "REFRACTOR_FIELD" },
-		perks_add = { "MECHADENDRITES", "SICARIAN_ARMOUR", "UNCHAINED" },
+		skin = "SICARIAN_ARMOUR", perks_add = { "MECHADENDRITES", "UNCHAINED" },
 	},
 }
 
-n40.CLASSES[6].subclasses = {
+n40.CLASSES[6].sections = {
 	{
 		name = "Ordo Hereticus",
 		desc = "",
@@ -547,7 +550,7 @@ n40.CLASSES[6].subclasses = {
 	},
 }
 
-n40.CLASSES[6].subclasses[2].characters = {
+n40.CLASSES[6].sections[2].chars = {
 	{
 		name = "Adepta Sororitas",
 	},

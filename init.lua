@@ -30,6 +30,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- chainsword projectiles lifetime is 2x of what it should be
 -- rmb action should be obtained from controls comp Fire2
 
+-- remove friendly fire from projectiles themselves
 -- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
 -- all weapons scripts should run through index
 -- add clanking sound for the last 25% of shots from the mag
@@ -139,7 +140,7 @@ function OnPlayerSpawned( hooman )
 	if GameHasFlagRun( initer ) then return end
 	GameAddFlagRun( initer )
 
-	local active_char = n40.setup_character( hooman )
+	local active = n40.setup_character( hooman )
 
 	local x, y = EntityGetTransform( hooman )
 	EntityLoad( "mods/Noita40K/files/items/weapons/bolter_generic.xml", x, y )

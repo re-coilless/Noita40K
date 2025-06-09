@@ -1,43 +1,40 @@
 <Sprite
 	filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.png"
-	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/_hotspots.png"
-	mass_center_x="32" mass_center_y="31" eye_offset="27" default_animation="stand" offset_x="32" offset_y="44" >
+	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/hotspots.png"
+	default_animation="stand" offset_x="32" offset_y="43" center_y="-12" is_player="1" >
 	
 	<!--[METADATA]-->
 	<RectAnimation
 		name="icon"
-		pos_x="29" pos_y="40"
-		frame_count="1" frame_wait="0.2"
+		pos_x="733" pos_y="40"
 		frame_width="20" frame_height="24"
-		frames_per_row="10"
-	></RectAnimation>
-	<RectAnimation
-		name="hitbox"
-		pos_x="34" pos_y="41"
-		frame_count="1" frame_wait="0.2"
-		frame_width="10" frame_height="23"
-		frames_per_row="10"
-	></RectAnimation>
-	<RectAnimation
-		name="hitbox_crouched"
-		pos_x="8" pos_y="17"
-		frame_count="1" frame_wait="0.2"
-		frame_width="10" frame_height="21"
-		frames_per_row="10"
-	></RectAnimation>
-	<RectAnimation
-		name="hitbox_prone"
-		pos_x="34" pos_y="209"
-		frame_count="1" frame_wait="0.2"
-		frame_width="10" frame_height="15"
-		frames_per_row="10"
+		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="collider"
 		pos_x="35" pos_y="123"
-		frame_count="1" frame_wait="0.2"
+		offset_x="-7" offset_y="-18"
 		frame_width="8" frame_height="21"
-		frames_per_row="10"
+		frames_per_row="1" frame_count="1" frame_wait="1"
+	></RectAnimation>
+	<RectAnimation
+		name="hitbox"
+		state="true"
+		pos_x="34" pos_y="41"
+		frame_width="10" frame_height="23"
+		frames_per_row="1" frame_count="1" frame_wait="1"
+	></RectAnimation>
+	<RectAnimation
+		name="hitbox_crouched"
+		pos_x="34" pos_y="127"
+		frame_width="10" frame_height="21"
+		frames_per_row="1" frame_count="1" frame_wait="1"
+	></RectAnimation>
+	<RectAnimation
+		name="hitbox_prone"
+		pos_x="34" pos_y="209"
+		frame_width="10" frame_height="15"
+		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	
 	<!--[UNIQUE_ANIMS]-->
@@ -46,31 +43,31 @@
 		pos_x="8" pos_y="17"
 		frame_count="6" frame_wait="0.2"
 		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frames_per_row="12"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="stand_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="5" frame_wait="0.2"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="5"
+		frame_wait="0.2"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="stand_prone"
-		pos_x="8" pos_y="0"
-		frame_count="5" frame_wait="0.2"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="5"
+		frame_wait="0.2"
+	></RectAnimation>
+	
+	<RectAnimation
+		name="crouch"
+		frame_count="1"
+		frame_wait="0.14"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="walk"
-		pos_x="8" pos_y="0"
-		frame_width="64" frame_height="62"
-		frame_count="6" frame_wait="0.110"
-		frames_per_row="10"
+		frame_count="6"
+		frame_wait="0.110"
 		
 		><Event
 			frame="1" name="step"
@@ -91,10 +88,8 @@
 	
 	<RectAnimation
 		name="walk_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.095"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="6"
+		frame_wait="0.095"
 		
 		><Event
 			frame="1" name="step"
@@ -115,10 +110,8 @@
 	
 	<RectAnimation
 		name="walk_backwards"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.110"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="6"
+		frame_wait="0.110"
 		
 		><Event
 			frame="1" name="step"
@@ -139,10 +132,8 @@
 	
 	<RectAnimation
 		name="walk_backwards_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.095"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="6"
+		frame_wait="0.095"
 		
 		><Event
 			frame="1" name="step"
@@ -163,42 +154,29 @@
 	
 	<RectAnimation
 		name="slide"
-		pos_x="8" pos_y="0"
-		frame_count="4" frame_wait="0.08"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
-	></RectAnimation>
-	
-	<RectAnimation
-		name="crouch"
-		pos_x="8" pos_y="0"
-		frame_count="1" frame_wait="0.14"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="4"
+		frame_wait="0.08"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="lower_head"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.05"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.05"
+		loop="0"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="raise_head"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.05"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.05"
+		loop="0"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="jump_up"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.082"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.082"
+		loop="0"
 		
 		><Event
 			frame="0" name="jump"
@@ -211,18 +189,16 @@
 	
 	<RectAnimation
 		name="jump_fall"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.082"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.082"
+		loop="0"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="land"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.075"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.075"
+		loop="0"
 		
 		><Event
 			frame="0" name="land_NOEVENT"
@@ -235,34 +211,26 @@
 	
 	<RectAnimation
 		name="fly_idle"
-		pos_x="8" pos_y="0"
-		frame_count="4" frame_wait="0.09"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="4"
+		frame_wait="0.09"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="fly_move"
-		pos_x="8" pos_y="0"
-		frame_count="4" frame_wait="0.12"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="4"
+		frame_wait="0.12"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="swim_idle"
-		pos_x="8" pos_y="0"
-		frame_count="4" frame_wait="0.2"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="4"
+		frame_wait="0.2"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="swim_move"
-		pos_x="8" pos_y="0"
-		frame_count="4" frame_wait="0.11"
-		frame_width="64" frame_height="62"
-		frames_per_row="10"
+		frame_count="4"
+		frame_wait="0.11"
 		
 		><Event
 			frame="4" name="swim"
@@ -275,10 +243,9 @@
 	
 	<RectAnimation
 		name="throw"
-		pos_x="8" pos_y="0"
-		frame_count="5" frame_wait="0.07"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="5"
+		frame_wait="0.07"
+		loop="0"
 		
 		><Event
 			frame="0" name="throw"
@@ -331,10 +298,9 @@
 	
 	<RectAnimation
 		name="throw_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="5" frame_wait="0.09"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="5"
+		frame_wait="0.09"
+		loop="0"
 
 		><Event
 			frame="0" name="throw"
@@ -387,10 +353,9 @@
 	
 	<RectAnimation
 		name="kick"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.11"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="6"
+		frame_wait="0.11"
+		loop="0"
 		
 		><Event
 			frame="3" name="kick"
@@ -403,10 +368,9 @@
 	
 	<RectAnimation
 		name="kick_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.11"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="6"
+		frame_wait="0.11"
+		loop="0"
 
 		><Event
 			frame="3" name="kick"
@@ -419,10 +383,9 @@
 	
 	<RectAnimation
 		name="kick_alt"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.11"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="6"
+		frame_wait="0.11"
+		loop="0"
 
 		><Event
 			frame="3" name="kick"
@@ -435,10 +398,9 @@
 	
 	<RectAnimation
 		name="kick_alt_crouched"
-		pos_x="8" pos_y="0"
-		frame_count="6" frame_wait="0.11"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="6"
+		frame_wait="0.11"
+		loop="0"
 
 		><Event
 			frame="3" name="kick"
@@ -451,44 +413,45 @@
 	
 	<RectAnimation
 		name="hurt"
-		pos_x="8" pos_y="0"
-		frame_count="3" frame_wait="0.08"
-		frame_width="64" frame_height="62"
-		frames_per_row="10" loop="0"
+		frame_count="3"
+		frame_wait="0.08"
+		loop="0"
 	></RectAnimation>
 	
 	<!--[CHILD_ANIMS]-->
-	<RectAnimation name="rise" parent="stand" loop="0" />
+	<RectAnimation name="move_item_stash" parent="stand" loop="0" />
+	<RectAnimation name="move_item" parent="stand" loop="0" />
+	<RectAnimation name="grab_item" parent="stand" loop="0" />
+	<RectAnimation name="idle_hold" parent="stand" />
+	<RectAnimation name="push_start" parent="stand" loop="0" />
+	<RectAnimation name="push" parent="stand" />
+	<RectAnimation name="intro_stand_up" parent="stand" loop="0" next_animation="stand" />
 	<RectAnimation name="intro_sleep" parent="stand" loop="1" />
-	<RectAnimation name="intro_stand_up" parent="stand" next_animation="stand" loop="0" />
+	<RectAnimation name="eat" parent="stand_prone" />
 	<RectAnimation name="run" parent="walk" />
+	<RectAnimation name="burn" parent="walk" />
 	<RectAnimation name="run_crouched" parent="walk_crouched" />
 	<RectAnimation name="slide_start" parent="slide" loop="0" />
 	<RectAnimation name="slide_start_crouched" parent="slide" loop="0" />
 	<RectAnimation name="slide_crouched" parent="slide" />
 	<RectAnimation name="slide_end" parent="slide" loop="0" />
 	<RectAnimation name="slide_end_crouched" parent="slide" loop="0" />
-	<RectAnimation name="burn" parent="walk" />
-	<RectAnimation name="knockback" parent="hurt" />
-	<RectAnimation name="hurt_swim" parent="hurt" />
-	<RectAnimation name="hurt_fly" parent="hurt" />
+	<RectAnimation name="rise" parent="raise_head" />
+	<RectAnimation name="throw_old" parent="throw" />
+	<RectAnimation name="throw_item" parent="throw" />
+	<RectAnimation name="throw_small" parent="throw" />
 	<RectAnimation name="attack" parent="kick" />
 	<RectAnimation name="telekinesis_grab_start" parent="throw" />
 	<RectAnimation name="telekinesis_grab_start_crouched" parent="throw_crouched" />
 	<RectAnimation name="telekinesis_throw" parent="kick" />
 	<RectAnimation name="telekinesis_throw_crouched" parent="kick_crouched" />
-	<RectAnimation name="throw_item" parent="stand" loop="0" />
-	<RectAnimation name="throw_small" parent="stand" loop="0" />
-	<RectAnimation name="throw_old" parent="stand" loop="0" />
-	<RectAnimation name="grab_item" parent="stand" loop="0" />
-	<RectAnimation name="idle_hold" parent="stand" />
-	<RectAnimation name="move_item" parent="stand" loop="0" />
-	<RectAnimation name="move_item_stash" parent="stand" loop="0" />
-	<RectAnimation name="push_start" parent="stand" loop="0" />
-	<RectAnimation name="push" parent="stand" loop="0" />
-	<RectAnimation name="cough" parent="stand" loop="0" />
-	<RectAnimation name="eat" parent="stand_prone" />
+	<RectAnimation name="hurt_swim" parent="hurt" />
+	<RectAnimation name="hurt_fly" parent="hurt" />
+	<RectAnimation name="knockback" parent="hurt" loop="" />
+	<RectAnimation name="cough" parent="hurt" />
 	
     <!--[HOTSPOTS]-->
-	<Hotspot name="right_arm_start" color="b98585" />
+	<Hotspot name="eye" color="880000" />
+	<Hotspot name="center" color="ff0000" />
+	<Hotspot name="arm_r" color="00ff00" />
 </Sprite>

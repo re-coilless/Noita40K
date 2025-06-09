@@ -1,9 +1,40 @@
 dofile_once( "mods/index_core/files/_lib.lua" )
 dofile_once( "mods/Noita40K/files/_lists.lua" )
 
+function n40.new_gun( id, hooman, data )
+end
+
+function n40.new_item( id, hooman, data )
+end
+
+function n40.new_equipment( id, hooman, data )
+end
+
+function n40.new_perk( id, hooman, data )
+	n40.PERKS[ id ].func( hooman, data )
+	-- do the func
+	-- attach vector_ctrl path
+	-- append the perk id for icon
+end
+
 function n40.setup_character( hooman )
-	--set all the shit
-	pen.lib.player_builder( hooman )
+	local active = {
+		class = 1,
+		section = 2,
+		char = 1,
+	}
+
+	local class_data = n40.CLASSES[ active.class ]
+	local section_data = class_data.sections[ active.section ]
+	local char_data = section_data.chars[ active.char ]
+
+	local data = pen.lib.player_builder( hooman, function( hooman, data )
+		--main char perk goes here
+		n40.new_perk( char_data.skin, hooman, data )
+	end)
+
+	--perks
+	--loadout
 end
 
 --[[
