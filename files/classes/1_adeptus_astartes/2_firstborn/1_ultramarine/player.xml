@@ -1,6 +1,6 @@
 <Sprite
 	filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.png"
-	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/hotspots.png"
+	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/_marine_hotspots.png"
 	default_animation="stand" offset_x="32" offset_y="43" center_y="-12" is_player="1" >
 	
 	<!--[METADATA]-->
@@ -48,6 +48,7 @@
 	
 	<RectAnimation
 		name="stand_crouched"
+		pos_y="97"
 		frame_count="5"
 		frame_wait="0.2"
 	></RectAnimation>
