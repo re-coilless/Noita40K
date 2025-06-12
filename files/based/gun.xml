@@ -84,10 +84,4 @@
 		_tags="enabled_in_world"
 		radius="64"
 	></LightComponent>
-
-	<LuaComponent
-		_tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
-		script_source_file="mods/Noita40K/files/misc/heat_controller.lua"
-		execute_every_n_frame="1"
-	></LuaComponent>
 </Entity>

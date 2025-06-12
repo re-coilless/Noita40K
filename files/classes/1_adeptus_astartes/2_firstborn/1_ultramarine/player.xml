@@ -1,7 +1,7 @@
 <Sprite
 	filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.png"
 	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/_marine_hotspots.png"
-	default_animation="stand" offset_x="32" offset_y="43" center_y="-12" is_player="1" >
+	default_animation="stand" offset_x="32" offset_y="44" center_y="-12" is_player="1" >
 	
 	<!--[METADATA]-->
 	<RectAnimation
@@ -13,7 +13,7 @@
 	<RectAnimation
 		name="collider"
 		pos_x="35" pos_y="123"
-		offset_x="-7" offset_y="-18"
+		offset_x="-4" offset_y="-18"
 		frame_width="8" frame_height="21"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
@@ -21,18 +21,21 @@
 		name="hitbox"
 		state="true"
 		pos_x="34" pos_y="41"
+		offset_x="-5" offset_y="-21"
 		frame_width="10" frame_height="23"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="hitbox_crouched"
 		pos_x="34" pos_y="127"
+		offset_x="-5" offset_y="-19"
 		frame_width="10" frame_height="21"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="hitbox_prone"
 		pos_x="34" pos_y="209"
+		offset_x="-5" offset_y="-13"
 		frame_width="10" frame_height="15"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>

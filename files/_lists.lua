@@ -160,8 +160,8 @@ n40.PERKS = {
 		func = function( hooman, data )
 			ComponentSetValue2( data.pic_char, "image_file",
 				"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
-			--ragdoll
-			--arm
+			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" ), "ragdoll_filenames_file", "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/filenames.txt" )
+			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, 0 )
 		end,
 	},
 	MKVII_BLOOD_ANGEL = {

@@ -1,7 +1,7 @@
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/right_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/left_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/torso.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/right_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/left_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/right_leg.png
-mods/Noita40K/files/pics/classes_gfx/mk7/ultramarine/ragdoll/left_leg.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/right_shoulder.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/left_shoulder.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/right_arm.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/left_arm.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/right_leg.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/left_leg.png
+mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/torso.png

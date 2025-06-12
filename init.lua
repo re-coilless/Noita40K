@@ -8,15 +8,12 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- run heat controller through vector_ctrl
--- restore class functionality (run it all through vector_ctrl)
--- custom uv_map creator on R
+-- fully setup ultramarine
 -- redo the sound banks to have proper uids
 -- normalize and rebalance all the sounds
 -- add randomness to several sounds
 -- add multisounds
 -- custom char sounds
--- regenerate uv_maps
 
 -- add physics_hit as AP damage that will be considered as x5 with physical armour penetration
 -- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
@@ -26,6 +23,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 -- jumppack is an "item" (do a separate inventory space for equipment)
 -- SpriteStainsComponent sprite_id for multisprite stains
+-- all equipment should be hotspot attached as it must be universal
 
 -- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
 -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
@@ -45,6 +43,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 ---------------------------------------------------------------------------
 
+-- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
 -- all the gui page tables to the separate lists.lua
@@ -105,6 +104,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- taunts should have hardcoded unified cooldown
 -- custom ai should get the baseline terrain info from REing the wang gen, then run simple real-time checks to get box2d geometry and extra check every terrain altering thing (like explosions)
 -- ?clot and warpmatter ambient sound
+-- fix the stains
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )

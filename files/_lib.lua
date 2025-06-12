@@ -29,12 +29,15 @@ function n40.setup_character( hooman )
 	local char_data = section_data.chars[ active.char ]
 
 	local data = pen.lib.player_builder( hooman, function( hooman, data )
-		--main char perk goes here
 		n40.new_perk( char_data.skin, hooman, data )
 	end)
 
+	pen.magic_storage( hooman, "vector_ctrl", "value_string", "mods/Noita40K/files/misc/heat_controller.lua" )
+
 	--perks
 	--loadout
+	
+	return active
 end
 
 --[[
