@@ -1,64 +1,6 @@
 dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
 
 function mk7_base( entity_who_picked )
-	edit_component_with_tag_ultimate( entity_who_picked, "SpriteComponent", "player_amulet", function(comp,vars)
-		ComponentSetValue2( comp, "image_file", "mods/Noita40K/files/pics/classes_gfx/mk7/sigil.xml" )
-		ComponentSetValue2( comp, "offset_x", 12 )
-		ComponentSetValue2( comp, "offset_y", 22 )
-		EntityRefreshSprite( entity_who_picked, comp )
-	end)
-	
-	edit_component_with_tag_ultimate( entity_who_picked, "SpriteComponent", "player_hat2", function(comp,vars)
-		ComponentSetValue2( comp, "image_file", "mods/Noita40K/files/pics/classes_gfx/mk7/crown.xml" )
-		ComponentSetValue2( comp, "offset_x", 12 )
-		ComponentSetValue2( comp, "offset_y", 22 )
-		EntityRefreshSprite( entity_who_picked, comp )
-	end)
-	
-	local capes = EntityGetAllChildren( entity_who_picked )
-	if( capes ~= nil ) then
-		for i,cape in ipairs( capes ) do
-			if ( EntityGetName( cape ) == "cape" ) then
-				EntityKill( cape )
-			end
-		end
-	end
-	
-	edit_component_ultimate( entity_who_picked, "HitboxComponent", function(comp,vars) 
-		ComponentSetValue2( comp, "aabb_max_x", 2 )
-		ComponentSetValue2( comp, "aabb_max_y", 0 )
-		ComponentSetValue2( comp, "aabb_min_x", -4 )
-		ComponentSetValue2( comp, "aabb_min_y", -18 )
-	end)
-	
-	edit_component_with_tag_ultimate( entity_who_picked, "HitboxComponent", "crouched", function(comp,vars) 
-		ComponentSetValue2( comp, "aabb_max_x", 2 )
-		ComponentSetValue2( comp, "aabb_max_y", 0 )
-		ComponentSetValue2( comp, "aabb_min_x", -4 )
-		ComponentSetValue2( comp, "aabb_min_y", -14 )
-	end)
-	
-	local head_off = -17
-	edit_component_ultimate( entity_who_picked, "CharacterDataComponent", function(comp,vars) 
-		ComponentSetValue2( comp, "mass", ComponentGetValue2( comp, "mass" ) + 1 )
-		ComponentSetValue2( comp, "collision_aabb_max_x", 2 )
-		ComponentSetValue2( comp, "collision_aabb_max_y", 2.1 )
-		ComponentSetValue2( comp, "collision_aabb_min_x", -2 )
-		ComponentSetValue2( comp, "collision_aabb_min_y", -13 )
-	end)
-	
-	edit_component_with_tag_ultimate( entity_who_picked, "VariableStorageComponent", "head_offset", function(comp,vars) 
-		ComponentSetValue2( comp, "value_int", head_off )
-	end)
-	
-	edit_component_with_tag_ultimate( entity_who_picked, "HotspotComponent", "kick_pos", function(comp,vars) 
-		ComponentSetValueVector2( comp, "offset", 2, 2 )
-	end)
-	
-	edit_component_with_tag_ultimate( entity_who_picked, "HotspotComponent", "crouch_sensor", function(comp,vars) 
-		ComponentSetValueVector2( comp, "offset", 0, -23 )
-	end)
-	
 	local matters = { "acid", "lava", "blood_cold_vapour", "blood_cold", "poison", "radioactive_gas", "radioactive_gas_static", "rock_static_radioactive", "rock_static_poison", "ice_radioactive_static", "ice_radioactive_glass", "ice_acid_static", "ice_acid_glass", "rock_static_cursed", "magic_gas_hp_regeneration", "gold_radioactive", "gold_static_radioactive", "rock_static_cursed_green", "cursed_liquid" }
 	local matters_dmg = { 0.002, 0.002, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.005, 0, 0, 0, 0 }
 	
@@ -128,12 +70,6 @@ function mk7_base( entity_who_picked )
 	end)
 	
 	ComponentSetValue2( GetGameEffectLoadTo( entity_who_picked, "STAINS_DROP_FASTER", true ), "frames", -1 )
-	
-	local hot_comp = EntityAddComponent( entity_who_picked, "HotspotComponent", 
-	{ 
-		_tags = "jumppack_mount",
-	})
-	ComponentSetValueVector2( hot_comp, "offset", 0, -10 )
 	
 	local x, y = EntityGetTransform( entity_who_picked )
 	EntityAddChild( entity_who_picked, EntityLoad( "mods/Noita40K/files/entities/emitters/jumppack.xml", x, y ))
@@ -237,160 +173,11 @@ function mk7_base( entity_who_picked )
 	end
 end
 
-function mk7_custom( entity_who_picked, type_name )
-	edit_component_with_tag_ultimate( entity_who_picked, "SpriteComponent", "character", function(comp,vars) 
-		ComponentSetValue2( comp, "image_file", "mods/Noita40K/files/pics/classes_gfx/mk7/"..type_name.."/player.xml" )
-		ComponentSetValue2( comp, "offset_x", 12 )
-		ComponentSetValue2( comp, "offset_y", 22 )
-		EntityRefreshSprite( entity_who_picked, comp )
-	end)
-	
-	local x, y = EntityGetTransform( entity_who_picked )
-	local arm = EntityGetClosestWithTag( x, y, "player_arm_r" )
-	edit_component_ultimate( arm, "SpriteComponent", function(comp,vars) 
-		ComponentSetValue2( comp, "image_file", "mods/Noita40K/files/pics/classes_gfx/mk7/"..type_name.."/player_arm.xml" )
-		EntityRefreshSprite( arm, comp )
-	end)
-	
-	-- EntityAddComponent( entity_who_picked, "SpriteComponent", 
-	-- { 
-		-- _tags = "character",
-		-- image_file = "mods/Noita40K/files/pics/classes_gfx/mk7/"..type_name.."/player_emissive.xml",
-		-- rect_animation = "walk",
-		-- z_index = "0.599",
-		-- alpha = "1",
-		-- emissive = "0", -- z-levels are fucked
-		-- additive = "0",
-		-- smooth_filtering = "0",
-		-- fog_of_war_hole = "0",
-	-- })
-	
-	EntityAddComponent( entity_who_picked, "SpriteComponent", 
-	{ 
-		_tags = "character,jumppack",
-		image_file = "mods/Noita40K/files/pics/classes_gfx/mk7/"..type_name.."/combat_jumppack.xml",
-		-- offset_x = "12", -- way too variable
-		-- offset_y = "22",
-		rect_animation = "walk",
-		z_index = "0.601",
-	})
-	
-	edit_component_ultimate( entity_who_picked, "DamageModelComponent", function(comp,vars)
-		ComponentSetValue2( comp, "ragdoll_filenames_file", "mods/Noita40K/files/pics/classes_gfx/mk7/"..type_name.."/ragdoll/filenames.txt" )
-	end)
-end
-
---ARMOURS
-table.insert( perk_list,
-{
-	id = "MKVII_SPACE_WOLF",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_space_wolf.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_space_wolf.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "space_wolf" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_IRON_HAND",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_iron_hand.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_iron_hand.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "iron_hand" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_SALAMANDER",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_salamander.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_salamander.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "salamander" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_IMPERIAL_FIST",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_imperial_fist.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_imperial_fist.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "imperial_fist" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_ULTRAMARINE",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_ultramarine.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_ultramarine.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "ultramarine" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_BLOOD_ANGEL",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_blood_angel.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_blood_angel.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "blood_angel" )
-	end
-})
-
-table.insert( perk_list,
-{
-	id = "MKVII_DARK_ANGEL",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_dark_angel.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_dark_angel.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "dark_angel" )
-	end
-})
-
 table.insert( perk_list,
 {
 	id = "MKVII_WHITE_SCAR",
 	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
+	ui_description = "",
 	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_white_scar.png",
 	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_white_scar.png",
 	usable_by_enemies = false,
@@ -409,26 +196,11 @@ table.insert( perk_list,
 	end
 })
 
-table.insert( perk_list,
-{
-	id = "MKVII_RAVEN_GUARD",
-	ui_name = "Mark VII Aquila Pattern Power Armour",
-	ui_description = "A warrior's faith in his commander is his best armour and his strongest weapon.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_raven_guard.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/mk7_raven_guard.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		mk7_base( entity_who_picked )
-		mk7_custom( entity_who_picked, "raven_guard" )
-	end
-})
-
 table.insert(perk_list,
 {
 	id = "SICARIAN_ARMOUR",
 	ui_name = "Sicarian Battle Armour",
-	ui_description = "Spirits of the machine, accept my plea and walk amidst the gun, and fire it true.",
+	ui_description = "",
 	ui_icon = "mods/Noita40K/files/pics/perks_gfx/sicarian_armour.png",
 	perk_icon = "mods/Noita40K/files/pics/perks_gfx/sicarian_armour.png",
 	usable_by_enemies = false,
@@ -544,157 +316,6 @@ table.insert(perk_list,
 		if( GameHasFlagRun( "PERK_PICKED_ETERNAL_VIGILANCE" ) and not( GameHasFlagRun( "PERK_GUI_EV_MODE" ))) then
 			GameAddFlagRun( "PERK_GUI_EV_MODE" )
 		end
-	end
-})
-
---ORGANIC AUGMENTATIONS
-table.insert(perk_list,
-{
-	id = "SECOND_HEART",
-	ui_name = "Secondary Heart",
-	ui_description = "Glory in death is life Eternal.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/second_heart.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/second_heart.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		EntityAddComponent( entity_who_picked, "LuaComponent", 
-		{ 
-			_tags = "double_heart",
-			script_damage_received = "mods/Noita40K/files/scripts/perks/second_heart.lua",
-			execute_every_n_frame = "-1",
-		})
-	end
-})
-
-table.insert(perk_list,
-{
-	id = "OSSMODULA",
-	ui_name = "Ossmodula",
-	ui_description = "Faith is your shield.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/ossmodula.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/ossmodula.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		edit_component_ultimate( entity_who_picked, "DamageModelComponent", function(comp,vars) 
-			ComponentSetValue2( comp, "hp", ComponentGetValue2( comp, "hp")*2.5 )
-			ComponentSetValue2( comp, "max_hp", ComponentGetValue2( comp, "max_hp")*2.5 )
-		end)
-	end
-})
-
-table.insert(perk_list,
-{
-	id = "BISCOPEA",
-	ui_name = "Biscopea",
-	ui_description = "A weapon cannot substitute for zeal.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/biscopea.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/biscopea.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		edit_component_ultimate( entity_who_picked, "CharacterPlatformingComponent", function(comp,vars) 
-			ComponentSetValue2( comp, "accel_x", ComponentGetValue2( comp, "accel_x" )*1.5 )
-			ComponentSetValue2( comp, "velocity_max_x", ComponentGetValue2( comp, "velocity_max_x" )*1.5 )
-		end)
-
-		edit_component_ultimate( entity_who_picked, "KickComponent", function(comp,vars) 
-			ComponentSetValue2( comp, "max_force", ComponentGetValue2( comp, "max_force" )*1.6 )
-			ComponentSetValue2( comp, "player_kickforce", ComponentGetValue2( comp, "player_kickforce" )*1.2 )
-			ComponentSetValue2( comp, "kick_damage", ComponentGetValue2( comp, "kick_damage" )*25 )
-			ComponentSetValue2( comp, "kick_knockback", ComponentGetValue2( comp, "kick_knockback" )*3 )
-		end)
-		
-		EntityAddComponent( entity_who_picked, "ShotEffectComponent", 
-		{
-			_tags = "perk_component",
-			extra_modifier = "emperors_shoulder",
-		})
-	end
-})
-
-table.insert(perk_list,
-{
-	id = "LARRAMAN",
-	ui_name = "Larraman's Organ",
-	ui_description = "Losses are acceptable. Failure is not.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/larraman.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/larraman.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-		{ 
-			_tags = "larraman_frame",
-			name = "larraman_frame",
-			value_int = "600",
-		})
-	
-		EntityAddComponent( entity_who_picked, "LuaComponent", 
-		{ 
-			script_source_file = "mods/Noita40K/files/scripts/perks/larraman.lua",
-			execute_every_n_frame = "1",
-		})
-		
-		EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-		{ 
-			_tags = "larraman_protects",
-			name = "larraman_protects",
-			value_int = "5",
-		})
-		
-		EntityAddComponent( entity_who_picked, "LuaComponent", 
-		{ 
-			_tags = "larraman_death",
-			script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
-			execute_every_n_frame = "-1",
-		})
-	end
-})
-
-table.insert(perk_list,
-{
-	id = "OCCULOBE",
-	ui_name = "Occulobe",
-	ui_description = "In the darkest of moments, the Emperor’s light shines brightest.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/occulobe.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/occulobe.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		edit_component_ultimate( entity_who_picked, "LightComponent", function(comp,vars) 
-			ComponentSetValue2( comp, "radius", 1000 )
-		end)
-		
-		EntityAddComponent( entity_who_picked, "SpriteComponent", 
-		{ 
-			_tags = "fog_o_war_hole",
-			alpha = "0.5",
-			emissive = "0",
-			image_file = "mods/Noita40K/files/pics/misc_gfx/fog_of_war_hole_64.xml",
-			smooth_filtering = "1",
-			fog_of_war_hole = "1",
-		})
-	end
-})
-
-table.insert(perk_list,
-{
-	id = "SUS_AN",
-	ui_name = "Sus-an Membrane",
-	ui_description = "Over the faithful, death has no dominion.",
-	ui_icon = "mods/Noita40K/files/pics/perks_gfx/sus_an.png",
-	perk_icon = "mods/Noita40K/files/pics/perks_gfx/sus_an.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		EntityAddComponent( entity_who_picked, "LuaComponent", 
-		{ 
-			_tags = "sus_an",
-			script_damage_received = "mods/Noita40K/files/scripts/perks/sus_an.lua",
-			execute_every_n_frame = "-1",
-		})
 	end
 })
 

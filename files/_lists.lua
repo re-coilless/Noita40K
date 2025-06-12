@@ -155,8 +155,8 @@ n40.PERKS = {
 	-- skins
 	MKVII_ULTRAMARINE = {
 		name = "Mark VII Power Armour",
-		desc = "This version of basic power armour was also known as Imperator Armour. It is the contemporary variant of power armour most commonly used by the Space Marine Chapters of the Imperium. Mark VII armour was developed during the last stages of the Horus Heresy, and remains in use as the most common form of power armour more than 10,000 standard years later. This one is coupled with a combat jumppack and features targeting arrays. Hold [DOWN]+[USE] to accelerate towards the crosshair.",
-		path = "",
+		desc = "This version of basic power armour was also known as Imperator Armour. It is the contemporary variant of power armour most commonly used by the Space Marine Chapters of the Imperium. Mark VII armour was developed during the last stages of the Horus Heresy, and remains in use as the most common form of power armour more than 10,000 standard years later. A warrior's faith in his commander is his best armour and his strongest weapon.",
+		-- vector_ctrl = "",
 		func = function( hooman, data )
 			ComponentSetValue2( data.pic_char, "image_file",
 				"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
@@ -167,140 +167,183 @@ n40.PERKS = {
 	MKVII_BLOOD_ANGEL = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_WHITE_SCAR = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_IMPERIAL_FIST = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_IRON_HAND = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_SPACE_WOLF = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_SALAMANDER = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_RAVEN_GUARD = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	MKVII_DARK_ANGEL = {
 		name = "",
 		desc = "",
-		path = "",
 	},
 	SICARIAN_ARMOUR = {
 		name = "Sicarian Battle Armour",
-		desc = "This armour is built out of the multilayered alloy, informally known as aegium, that provides admirable protection despite being thin and flexible. It acts as a capacitor that harnesses the energy of incoming attacks and disperses it across the wearer's energy system.",
-		path = "",
+		desc = "This armour is built out of the multilayered alloy, informally known as aegium, that provides admirable protection despite being thin and flexible. It acts as a capacitor that harnesses the energy of incoming attacks and disperses it across the wearer's energy system. Spirits of the machine, accept my plea and walk amidst the gun, and fire it true.",
 	},
 	
 	-- abilities
 	SECOND_HEART = {
 		name = "Secondary Heart",
-		desc = "The Secondary Heart, also called the Maintainer, resembles a smaller version of the Human heart and is implanted in the chest cavity. In the event of failure of the Space Marine's original heart, the Secondary Heart is usually capable of pumping enough blood through the Astartes' circulatory system to maintain survival.",
-		path = "",
-		-- func = "",
+		desc = "The Secondary Heart, also called the Maintainer, resembles a smaller version of the Human heart and is implanted in the chest cavity. In the event of failure of the Space Marine's original heart, the Secondary Heart is usually capable of pumping enough blood through the Astartes' circulatory system to maintain survival. Glory in death is life Eternal.",
+		-- vector_ctrl = "",
+		func = function( hooman, data )
+			EntityAddComponent2( hooman, "LuaComponent", {
+				script_damage_received = "mods/Noita40K/files/scripts/perks/second_heart.lua",
+				execute_every_n_frame = "-1",
+			})
+		end,
 	},
 	OSSMODULA = {
 		name = "Ossmodula",
-		desc = "The Ossmodula, also called the Ironheart, is surgically placed alongside the neophyte's pituitary gland at the base of the brain, thus becoming a part of the Space Marine's endocrine system, secretes a specially engineered form of human growth hormone. When the effects of this hormone are combined with a diet laced with microscopic ceramic-based minerals, they act to synthesise the rapid growth of an Astartes' skeleto-muscular system which results in an Astartes' superhuman strength and massive size compared to a baseline human male.",
-		path = "",
+		desc = "The Ossmodula, also called the Ironheart, is surgically placed alongside the neophyte's pituitary gland at the base of the brain, thus becoming a part of the Space Marine's endocrine system, secretes a specially engineered form of human growth hormone. When the effects of this hormone are combined with a diet laced with microscopic ceramic-based minerals, they act to synthesise the rapid growth of an Astartes' skeleto-muscular system which results in an Astartes' superhuman strength and massive size compared to a baseline human male. Faith is your shield.",
+		func = function( hooman, data )
+			ComponentSetValue2( data.dmg_comp, "hp", ComponentGetValue2( data.dmg_comp, "hp")*2.5 )
+			ComponentSetValue2( data.dmg_comp, "max_hp", ComponentGetValue2( data.dmg_comp, "max_hp")*2.5 )
+		end,
 	},
 	BISCOPEA = {
 		name = "Biscopea",
-		desc = "The Biscopea, also called the Forge of Strength, enhances a Space Marine's physical combat ability and survivability to superhuman levels should he live to become a full Astartes of a Space Marine Chapter. This organ is implanted into the chest cavity. It is small, approximately spherical and, like the Ossmodula, its primary action is hormonal. The presence of the Biscopea stimulates muscle growth throughout the body, greatly increasing a Space Marine's physical strength.",
-		path = "",
+		desc = "The Biscopea, also called the Forge of Strength, enhances a Space Marine's physical combat ability and survivability to superhuman levels should he live to become a full Astartes of a Space Marine Chapter. This organ is implanted into the chest cavity. It is small, approximately spherical and, like the Ossmodula, its primary action is hormonal. The presence of the Biscopea stimulates muscle growth throughout the body, greatly increasing a Space Marine's physical strength. A weapon cannot substitute for zeal.",
+		func = function( hooman, data )
+			--make the char stronger
+			edit_component_ultimate( entity_who_picked, "KickComponent", function(comp,vars) 
+				ComponentSetValue2( comp, "max_force", ComponentGetValue2( comp, "max_force" )*1.6 )
+				ComponentSetValue2( comp, "player_kickforce", ComponentGetValue2( comp, "player_kickforce" )*1.2 )
+				ComponentSetValue2( comp, "kick_damage", ComponentGetValue2( comp, "kick_damage" )*25 )
+				ComponentSetValue2( comp, "kick_knockback", ComponentGetValue2( comp, "kick_knockback" )*3 )
+			end)
+		end,
 	},
 	LARRAMAN = {
 		name = "Larraman's Organ",
-		desc = "Larraman's Organ, also called the Healer, shaped like the Human liver but only the size of a golf ball, is placed within the chest cavity and manufactures the synthetic biological cells known as Larraman Cells. These biosynthetic cells serve the same physiological purpose for an Astartes as the normal Human body's platelets, serving to clot the blood lost from wounds, but act faster, more efficiently and more effectively.",
-		path = "",
+		desc = "Larraman's Organ, also called the Healer, shaped like the Human liver but only the size of a golf ball, is placed within the chest cavity and manufactures the synthetic biological cells known as Larraman Cells. These biosynthetic cells serve the same physiological purpose for an Astartes as the normal Human body's platelets, serving to clot the blood lost from wounds, but act faster, more efficiently and more effectively. Losses are acceptable. Failure is not.",
+		func = function( hooman, data )
+			EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
+			{ 
+				_tags = "larraman_frame",
+				name = "larraman_frame",
+				value_int = "600",
+			})
+		
+			EntityAddComponent( entity_who_picked, "LuaComponent", 
+			{ 
+				script_source_file = "mods/Noita40K/files/scripts/perks/larraman.lua",
+				execute_every_n_frame = "1",
+			})
+			
+			EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
+			{ 
+				_tags = "larraman_protects",
+				name = "larraman_protects",
+				value_int = "5",
+			})
+			
+			EntityAddComponent( entity_who_picked, "LuaComponent", 
+			{ 
+				_tags = "larraman_death",
+				script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
+				execute_every_n_frame = "-1",
+			})
+		end,
 	},
 	OCCULOBE = {
 		name = "Occulobe",
-		desc = "The Occulobe, also called the Eye of Vengeance, sits at the base of the brain after being implanted along the optic nerve and connected to the retina, and provides hormonal and genetic stimuli which enable a Space Marine's eyes to respond to the optic-therapy that all neophytes must undergo in their Chapter's Apothecarium to allow sight in low-light conditions and near-darkness almost as well as in bright daylight.",
-		path = "",
+		desc = "The Occulobe, also called the Eye of Vengeance, sits at the base of the brain after being implanted along the optic nerve and connected to the retina, and provides hormonal and genetic stimuli which enable a Space Marine's eyes to respond to the optic-therapy that all neophytes must undergo in their Chapter's Apothecarium to allow sight in low-light conditions and near-darkness almost as well as in bright daylight. In the darkest of moments, the Emperor’s light shines brightest.",
+		func = function( hooman, data )
+			edit_component_ultimate( entity_who_picked, "LightComponent", function(comp,vars) 
+				ComponentSetValue2( comp, "radius", 1000 )
+			end)
+			
+			EntityAddComponent( entity_who_picked, "SpriteComponent", 
+			{ 
+				_tags = "fog_o_war_hole",
+				alpha = "0.5",
+				emissive = "0",
+				image_file = "mods/Noita40K/files/pics/misc_gfx/fog_of_war_hole_64.xml",
+				smooth_filtering = "1",
+				fog_of_war_hole = "1",
+			})
+		end,
 	},
 	SUS_AN = {
 		name = "Sus-an Membrane",
-		desc = "The Sus-an Membrane, also called the Hibernator, implanted within the neophyte's cranium, eventually merges with the recipient's cerebrum, becoming a full part of his neural architecture. The organ's functions are ineffective without follow-up chemical therapy and training by a Chapter's Apothecaries, but with sufficient practice and instruction a Space Marine can use this implant to enter a state of suspended animation, consciously or as an automatic reaction to extreme trauma, keeping the wounded Space Marine alive for Terran years.",
-		path = "",
+		desc = "The Sus-an Membrane, also called the Hibernator, implanted within the neophyte's cranium, eventually merges with the recipient's cerebrum, becoming a full part of his neural architecture. The organ's functions are ineffective without follow-up chemical therapy and training by a Chapter's Apothecaries, but with sufficient practice and instruction a Space Marine can use this implant to enter a state of suspended animation, consciously or as an automatic reaction to extreme trauma, keeping the wounded Space Marine alive for Terran years. Over the faithful, death has no dominion.",
+		func = function( hooman, data )
+			EntityAddComponent( entity_who_picked, "LuaComponent", 
+			{
+				_tags = "sus_an",
+				script_damage_received = "mods/Noita40K/files/scripts/perks/sus_an.lua",
+				execute_every_n_frame = "-1",
+			})
+		end,
 	},
 	CODEX_MASTERY = {
 		name = "Codex Mastery",
 		desc = "Inhuman memory combined with unbelievable discipline result in the thorough knowledge of the Codex Astartes. Such a remarkable achievement grants you a special blessing: every shot worthy of His finest warrior will be instantly replenished, so the enemies might taste even more of the glorious fury of thy weapons.",
-		path = "",
 	},
 	BLACK_RAGE = {
 		name = "Black Rage",
 		desc = "Burried deep inside you, a horrifying curse sleeps, a distant memory of the greatest betrayal, waiting for the chance to unleash upon the world and harvest the bloody crop of the enemies of the Imperium.",
-		path = "",
 	},
 	CHOGORIAN_SAVAGERY = {
 		name = "Chogorian Savagery",
 		desc = "Your noble and valiant heart can't stand the scum that dares to oppose the might of your Primarch to the extend of throwing you into the battle rage in the heat of the fight.",
-		path = "",
 	},
 	EMPERORS_PRAETORIAN = {
 		name = "Emperor's Praetorian",
 		desc = "Unbreakable body and adamant mind result in an outstanding steadfastness, striking even for the Space Marine, making you a true Bastion of the Imperium.",
-		path = "",
 	},
 	FENRISIAN_BLOOD = {
 		name = "Fenrisian Blood",
 		desc = "Cold winds of Fenris and noble taste of Mjød tempered your body and spirit, so not only you have become near immune to the extremes of the frost but also gained a special ability of transforming inner heat into the pure power of the warrior's rage.",
-		path = "",
 	},
 	NOCTURNE_FORGED = {
 		name = "Nocturne Forged",
 		desc = "A special kind of skin, bestowed upon you by the genes of the Primarch himself, allows you to survive an absolute extremes of the searing heat and effortlessly step through an incinerating inferno.",
-		path = "",
 	},
 	LIVING_SHADOW = {
 		name = "Living Shadow",
 		desc = "Decades of nonstop practice allow you to position your body in such a way that it near completely fades into the background, making you effectively invisible to the naked eye, assuming you are stationary.",
-		path = "",
 	},
 	UNCHAINED = {
 		name = "Unchained",
 		desc = "No secret shall remain veiled.",
-		path = "",
 	},
 	OMNISSIAHS_BLESSING = {
 		name = "Omnissiah's Blessing",
 		desc = "The vast majority of your body consists of highly advanced machinery which significantly enchanses your capabilities, provides solid foundation for futher augmentation and makes you immune to the most natural threats.",
-		path = "",
 	},
 	ETERNAL_VIGILANCE = {
 		name = "Eternal Vigilance",
 		desc = "Your eyelids were replaced with a multipurpose visor system connected directly to the brain. It will display your position, speed and orientation, condition of the energy system, locations and threat levels of all detected enemies. It features the auspex, global success chance and threat level calculators, advanced entity scanner and centralized console output. It may also assume direct control over the servoskull and mechadedrites. Let its sophistication be the bane of your foes. Use the button in top left corner to change the modes. Press [DOWN]+[USE] to capture the target. See console log for futher info.",
-		path = "",
 	},
 	BREATH_OF_MARS = {
 		name = "The Breath of Mars",
 		desc = "Your respiratory system is represented by the cognis rebreather tubes that plunge deep into the chest. When necessary you may draw upon a reservoir of polluted gases harvested from your homeworld.",
-		path = "",
 	},
 	MECHADENDRITES = {
 		name = "Mechadendrites",
 		desc = "A Mechadendrite is the term used for the bionic tentacle-like limb prosthetics. They are hard-wired into the central nervous system of the owner and surgically attached to the spine, so that user will be able to control them using neural impulses just like a biological limb.",
-		path = "",
 	},
 }
 
@@ -603,6 +646,7 @@ n40.CODEX.CREDITS = {
 	}},
 	{ "Special thanks to", { --sort alphabetically; include all Quires from CA
 		"ryyst",
+		"Ancient",
 		"etwas_merkwuerdig",
 		"Whollow",
 		"Vromikos",

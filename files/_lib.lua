@@ -32,11 +32,12 @@ function n40.setup_character( hooman )
 		n40.new_perk( char_data.skin, hooman, data )
 	end)
 
+	-- do add_vector_ctrl func that makes sure no duplicates are added
 	pen.magic_storage( hooman, "vector_ctrl", "value_string", "mods/Noita40K/files/misc/heat_controller.lua" )
 
 	--perks
 	--loadout
-	
+
 	return active
 end
 
