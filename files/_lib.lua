@@ -1,6 +1,17 @@
 dofile_once( "mods/index_core/files/_lib.lua" )
 dofile_once( "mods/Noita40K/files/_lists.lua" )
 
+function n40.add_vector_ctrl( entity_id, path )
+	local ctrls = EntityGetComponentIncludingDisabled( entity_id, "VariableStorageComponent" )
+	if( pen.t.loop( ctrls, function( i, comp_id )
+		if( ComponentGetValue2( comp_id, "value_string" ) == path ) then return true end
+	end)) then return end
+	EntityAddComponent2( entity_id, "VariableStorageComponent", {
+		name = "vector_ctrl",
+		value_string = path,
+	})
+end
+
 function n40.new_gun( id, hooman, data )
 end
 
@@ -31,9 +42,8 @@ function n40.setup_character( hooman )
 	local data = pen.lib.player_builder( hooman, function( hooman, data )
 		n40.new_perk( char_data.skin, hooman, data )
 	end)
-
-	-- do add_vector_ctrl func that makes sure no duplicates are added
-	pen.magic_storage( hooman, "vector_ctrl", "value_string", "mods/Noita40K/files/misc/heat_controller.lua" )
+	
+	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/heat_controller.lua" )
 
 	--perks
 	--loadout

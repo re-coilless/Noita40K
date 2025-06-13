@@ -8,10 +8,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- redo the sound banks to have proper uids
--- normalize and rebalance all the sounds
--- add randomness to several sounds
--- add multisounds
 -- custom char sounds
 -- translations
 -- make sure vector->index->n40 pipeline works as intended
@@ -141,6 +137,8 @@ end
 ]]
 
 function OnPlayerSpawned( hooman )
+	dofile_once( "mods/Noita40K/files/_lib.lua" )
+
 	local initer = "N40K_READY_TO_PURGE"
 	if GameHasFlagRun( initer ) then return end
 	GameAddFlagRun( initer )

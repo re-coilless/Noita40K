@@ -111,7 +111,7 @@
 	
 	<AudioComponent
 		file="mods/Noita40K/files/40K.bank"
-		event_root="projectiles/bolt_998"
+		event_root="items/guns/bolt_998"
 		set_latest_event_position="1"
 	></AudioComponent>
 
