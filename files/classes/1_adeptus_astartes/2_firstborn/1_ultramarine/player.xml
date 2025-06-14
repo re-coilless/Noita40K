@@ -13,8 +13,8 @@
 	<RectAnimation
 		name="collider"
 		pos_x="35" pos_y="123"
-		offset_x="-4" offset_y="-18"
-		frame_width="8" frame_height="21"
+		offset_x="-2" offset_y="-18"
+		frame_width="3" frame_height="21"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
@@ -237,7 +237,7 @@
 		frame_wait="0.11"
 		
 		><Event
-			frame="4" name="swim"
+			frame="1" name="swim"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
