@@ -1,7 +1,13 @@
 dofile_once( "mods/index_core/files/_lib.lua" )
 dofile_once( "mods/Noita40K/files/_lists.lua" )
 
+function n40.add_resistance( dmg_comp, type, multiplier )
+	local v = ComponentObjectGetValue2( dmg_comp, "damage_multipliers", type )
+	ComponentObjectSetValue2( dmg_comp, "damage_multipliers", type, multiplier*v )
+end
+
 function n40.add_vector_ctrl( entity_id, path )
+	if( not( pen.vld( path ))) then return end
 	local ctrls = EntityGetComponentIncludingDisabled( entity_id, "VariableStorageComponent" )
 	if( pen.t.loop( ctrls, function( i, comp_id )
 		if( ComponentGetValue2( comp_id, "value_string" ) == path ) then return true end
@@ -22,9 +28,10 @@ function n40.new_equipment( id, hooman, data )
 end
 
 function n40.new_perk( id, hooman, data )
-	n40.PERKS[ id ].func( hooman, data )
-	-- do the func
-	-- attach vector_ctrl path
+	local perk = n40.PERKS[ id ]
+	if( not( pen.vld( perk ))) then return end
+	n40.add_vector_ctrl( hooman, perk.vector_ctrl )
+	if( pen.vld( perk.func )) then perk.func( hooman, data ) end
 	-- append the perk id for icon
 end
 
@@ -40,14 +47,38 @@ function n40.setup_character( hooman )
 	local char_data = section_data.chars[ active.char ]
 
 	local data = pen.lib.player_builder( hooman, function( hooman, data )
+		ComponentSetValue2( data.char_comp, "fly_time_max", 0 )
+		ComponentSetValue2( data.char_comp, "fly_recharge_spd", 0 )
+		ComponentSetValue2( data.char_comp, "fly_recharge_spd_ground", 0 )
+		ComponentSetValue2( data.shot_comp, "eating_area_max", 0, 0 )
+		ComponentSetValue2( data.shot_comp, "eating_area_min", 0, 0 )
+		ComponentSetValue2( data.shot_comp, "eating_cells_per_frame", 0 )
+		ComponentSetValue2( data.shot_comp, "eating_delay_frames", -1 )
+		ComponentSetValue2( data.shot_comp, "eating_probability", 0 )
+
 		n40.new_perk( char_data.skin, hooman, data )
 	end)
 	
+	local perks = pen.t.add( pen.t.clone( char_data.perks or section_data.perks ), char_data.perks_add )
+	pen.t.loop( perks, function( i, v )
+		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
+		n40.new_perk( v, hooman, data )
+	end)
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/heat_controller.lua" )
 
-	--perks
-	--loadout
-
+	--break the loop if exceeds the inv size
+	pen.t.loop( char_data.guns or section_data.guns, function( i, v )
+		n40.new_gun(( char_data.guns or {})[i] or v, hooman, data )
+	end)
+	local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
+	pen.t.loop( items, function( i, v )
+		n40.new_item(( char_data.guns or {})[i] or v, hooman, data )
+	end)
+	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
+	pen.t.loop( equip, function( i, v )
+		n40.new_equipment( v, hooman, data )
+	end)
+	
 	return active
 end
 

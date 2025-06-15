@@ -8,9 +8,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- heat controller should make sure that the heat sprite is within 0.01 of main sprite (switching back to weapon resets it)
 -- translations
--- make sure vector->index->n40 pipeline works as intended
 -- fully setup ultramarine
 
 -- add physics_hit as AP damage that will be considered as x5 with physical armour penetration

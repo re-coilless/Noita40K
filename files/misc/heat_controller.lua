@@ -29,10 +29,20 @@ return function( entity_id )
             pen.magic_storage( gun_id, "heat", "value_float", heat*pen.magic_storage( gun_id, "heat_loss", "value_float" ))
         end
 
+        local pic_update = false
         local heat_perc = pen.rounder( 1/( 1 + math.exp( 12*( 0.45 - heat/max_heat ))), 100 )
         if( not( pen.eps_compare( alpha, heat_perc ))) then
             ComponentSetValue2( pics[2], "alpha", heat_perc )
-            EntityRefreshSprite( gun_id, pics[2])
+            pic_update = true
         end
+        
+        local main_z = ComponentGetValue2( pics[1], "z_index" )
+        local heat_z = ComponentGetValue2( pics[2], "z_index" )
+        if( main_z - heat_z < 0.01 ) then
+            ComponentSetValue2( pics[2], "z_index", main_z - 0.01 )
+            pic_update = true
+        end
+
+        if( pic_update ) then EntityRefreshSprite( gun_id, pics[2]) end
     end)
 end

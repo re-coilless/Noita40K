@@ -163,8 +163,29 @@ n40.PERKS = {
 			ComponentSetValue2( data.dmg_comp, "ragdoll_filenames_file",
 				"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/ragdoll/filenames.txt" )
 			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, 0 )
+			
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
 			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			
+			ComponentSetValue2( data.char_comp, "mass", 9 + ComponentGetValue2( data.char_comp, "mass" ))
+			
+			ComponentSetValue2( data.plat_comp, "swim_up_buoyancy_coeff", 0.2 )
+			ComponentSetValue2( data.plat_comp, "swim_idle_buoyancy_coeff", 0.1 )
+			ComponentSetValue2( data.plat_comp, "swim_down_buoyancy_coeff", 0 )
+			
+			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
+			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
+
+			n40.add_resistance( data.dmg_comp, "radioactive", 0.75 )
+			n40.add_resistance( data.dmg_comp, "fire", 0.75 )
+			n40.add_resistance( data.dmg_comp, "ice", 0.75 )
+			n40.add_resistance( data.dmg_comp, "poison", 0.75 )
+			n40.add_resistance( data.dmg_comp, "drill", 0.5 )
+			n40.add_resistance( data.dmg_comp, "physics_hit", 0.5 )
+			n40.add_resistance( data.dmg_comp, "explosion", 0.25 )
+			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
+			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
+			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
 		end,
 	},
 	MKVII_BLOOD_ANGEL = {
@@ -212,7 +233,7 @@ n40.PERKS = {
 		func = function( hooman, data )
 			EntityAddComponent2( hooman, "LuaComponent", {
 				script_damage_received = "mods/Noita40K/files/scripts/perks/second_heart.lua",
-				execute_every_n_frame = "-1",
+				execute_every_n_frame = -1,
 			})
 		end,
 	},
@@ -220,84 +241,114 @@ n40.PERKS = {
 		name = "Ossmodula",
 		desc = "The Ossmodula, also called the Ironheart, is surgically placed alongside the neophyte's pituitary gland at the base of the brain, thus becoming a part of the Space Marine's endocrine system, secretes a specially engineered form of human growth hormone. When the effects of this hormone are combined with a diet laced with microscopic ceramic-based minerals, they act to synthesise the rapid growth of an Astartes' skeleto-muscular system which results in an Astartes' superhuman strength and massive size compared to a baseline human male. Faith is your shield.",
 		func = function( hooman, data )
-			ComponentSetValue2( data.dmg_comp, "hp", ComponentGetValue2( data.dmg_comp, "hp")*2.5 )
-			ComponentSetValue2( data.dmg_comp, "max_hp", ComponentGetValue2( data.dmg_comp, "max_hp")*2.5 )
+			ComponentSetValue2( data.char_comp, "mass", 3 + ComponentGetValue2( data.char_comp, "mass" ))
+
+			ComponentSetValue2( data.dmg_comp, "hp", 10*ComponentGetValue2( data.dmg_comp, "hp" ))
+			ComponentSetValue2( data.dmg_comp, "max_hp", 10*ComponentGetValue2( data.dmg_comp, "max_hp" ))
+
+			ComponentSetValue2( data.dmg_comp, "fire_damage_amount",
+				0.1*ComponentGetValue2( data.dmg_comp, "fire_damage_amount" ))
+			ComponentSetValue2( data.dmg_comp, "minimum_knockback_force",
+				1 + ComponentGetValue2( data.dmg_comp, "minimum_knockback_force" ))
+			ComponentSetValue2( data.dmg_comp, "critical_damage_resistance",
+				math.min( 0.25 + ComponentGetValue2( data.dmg_comp, "critical_damage_resistance" ), 1 ))
+
+			n40.add_resistance( data.dmg_comp, "overeating", 0.75 )
+			n40.add_resistance( data.dmg_comp, "electricity", 0.75 )
+			n40.add_resistance( data.dmg_comp, "radioactive", 0.5 )
+			n40.add_resistance( data.dmg_comp, "fire", 0.5 )
+			n40.add_resistance( data.dmg_comp, "ice", 0.5 )
+			n40.add_resistance( data.dmg_comp, "poison", 0.1 )
 		end,
 	},
 	BISCOPEA = {
 		name = "Biscopea",
 		desc = "The Biscopea, also called the Forge of Strength, enhances a Space Marine's physical combat ability and survivability to superhuman levels should he live to become a full Astartes of a Space Marine Chapter. This organ is implanted into the chest cavity. It is small, approximately spherical and, like the Ossmodula, its primary action is hormonal. The presence of the Biscopea stimulates muscle growth throughout the body, greatly increasing a Space Marine's physical strength. A weapon cannot substitute for zeal.",
 		func = function( hooman, data )
-			--make the char stronger
-			edit_component_ultimate( entity_who_picked, "KickComponent", function(comp,vars) 
-				ComponentSetValue2( comp, "max_force", ComponentGetValue2( comp, "max_force" )*1.6 )
-				ComponentSetValue2( comp, "player_kickforce", ComponentGetValue2( comp, "player_kickforce" )*1.2 )
-				ComponentSetValue2( comp, "kick_damage", ComponentGetValue2( comp, "kick_damage" )*25 )
-				ComponentSetValue2( comp, "kick_knockback", ComponentGetValue2( comp, "kick_knockback" )*3 )
-			end)
+			ComponentSetValue2( data.char_comp, "mass", 2 + ComponentGetValue2( data.char_comp, "mass" ))
+
+			ComponentSetValue2( data.plat_comp, "run_velocity",
+				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
+				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
+				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
+
+			ComponentSetValue2( data.kick_comp, "max_force",
+				20*ComponentGetValue2( data.kick_comp, "max_force" ))
+			ComponentSetValue2( data.kick_comp, "player_kickforce",
+				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
+			ComponentSetValue2( data.kick_comp, "kick_damage",
+				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
+			ComponentSetValue2( data.kick_comp, "kick_knockback",
+				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
 		end,
 	},
 	LARRAMAN = {
 		name = "Larraman's Organ",
 		desc = "Larraman's Organ, also called the Healer, shaped like the Human liver but only the size of a golf ball, is placed within the chest cavity and manufactures the synthetic biological cells known as Larraman Cells. These biosynthetic cells serve the same physiological purpose for an Astartes as the normal Human body's platelets, serving to clot the blood lost from wounds, but act faster, more efficiently and more effectively. Losses are acceptable. Failure is not.",
 		func = function( hooman, data )
-			EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-			{ 
-				_tags = "larraman_frame",
-				name = "larraman_frame",
-				value_int = "600",
-			})
+			n40.add_resistance( data.dmg_comp, "healing", 2 )
+
+			-- EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
+			-- { 
+			-- 	_tags = "larraman_frame",
+			-- 	name = "larraman_frame",
+			-- 	value_int = "600",
+			-- })
 		
-			EntityAddComponent( entity_who_picked, "LuaComponent", 
-			{ 
-				script_source_file = "mods/Noita40K/files/scripts/perks/larraman.lua",
-				execute_every_n_frame = "1",
-			})
+			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
+			-- { 
+			-- 	script_source_file = "mods/Noita40K/files/scripts/perks/larraman.lua",
+			-- 	execute_every_n_frame = "1",
+			-- })
 			
-			EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-			{ 
-				_tags = "larraman_protects",
-				name = "larraman_protects",
-				value_int = "5",
-			})
+			-- EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
+			-- { 
+			-- 	_tags = "larraman_protects",
+			-- 	name = "larraman_protects",
+			-- 	value_int = "5",
+			-- })
 			
-			EntityAddComponent( entity_who_picked, "LuaComponent", 
-			{ 
-				_tags = "larraman_death",
-				script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
-				execute_every_n_frame = "-1",
-			})
+			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
+			-- { 
+			-- 	_tags = "larraman_death",
+			-- 	script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
+			-- 	execute_every_n_frame = "-1",
+			-- })
 		end,
 	},
 	OCCULOBE = {
 		name = "Occulobe",
 		desc = "The Occulobe, also called the Eye of Vengeance, sits at the base of the brain after being implanted along the optic nerve and connected to the retina, and provides hormonal and genetic stimuli which enable a Space Marine's eyes to respond to the optic-therapy that all neophytes must undergo in their Chapter's Apothecarium to allow sight in low-light conditions and near-darkness almost as well as in bright daylight. In the darkest of moments, the Emperor’s light shines brightest.",
 		func = function( hooman, data )
-			edit_component_ultimate( entity_who_picked, "LightComponent", function(comp,vars) 
-				ComponentSetValue2( comp, "radius", 1000 )
-			end)
-			
-			EntityAddComponent( entity_who_picked, "SpriteComponent", 
-			{ 
-				_tags = "fog_o_war_hole",
-				alpha = "0.5",
-				emissive = "0",
-				image_file = "mods/Noita40K/files/pics/misc_gfx/fog_of_war_hole_64.xml",
-				smooth_filtering = "1",
-				fog_of_war_hole = "1",
+			local eye_x, eye_y = EntityGetHotspot( hooman, "eye", nil, true )
+			EntityAddComponent2( hooman, "LightComponent", {
+				r = 255, g = 255, b = 255,
+				radius = 1000, offset_x = eye_x, offset_y = eye_y,
 			})
+			
+			-- EntityAddComponent( entity_who_picked, "SpriteComponent", 
+			-- { 
+			-- 	_tags = "fog_o_war_hole",
+			-- 	alpha = "0.5",
+			-- 	emissive = "0",
+			-- 	image_file = "mods/Noita40K/files/pics/misc_gfx/fog_of_war_hole_64.xml",
+			-- 	smooth_filtering = "1",
+			-- 	fog_of_war_hole = "1",
+			-- })
 		end,
 	},
 	SUS_AN = {
 		name = "Sus-an Membrane",
 		desc = "The Sus-an Membrane, also called the Hibernator, implanted within the neophyte's cranium, eventually merges with the recipient's cerebrum, becoming a full part of his neural architecture. The organ's functions are ineffective without follow-up chemical therapy and training by a Chapter's Apothecaries, but with sufficient practice and instruction a Space Marine can use this implant to enter a state of suspended animation, consciously or as an automatic reaction to extreme trauma, keeping the wounded Space Marine alive for Terran years. Over the faithful, death has no dominion.",
 		func = function( hooman, data )
-			EntityAddComponent( entity_who_picked, "LuaComponent", 
-			{
-				_tags = "sus_an",
-				script_damage_received = "mods/Noita40K/files/scripts/perks/sus_an.lua",
-				execute_every_n_frame = "-1",
-			})
+			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
+			-- {
+			-- 	_tags = "sus_an",
+			-- 	script_damage_received = "mods/Noita40K/files/scripts/perks/sus_an.lua",
+			-- 	execute_every_n_frame = "-1",
+			-- })
 		end,
 	},
 	CODEX_MASTERY = {
@@ -315,6 +366,7 @@ n40.PERKS = {
 	EMPERORS_PRAETORIAN = {
 		name = "Emperor's Praetorian",
 		desc = "Unbreakable body and adamant mind result in an outstanding steadfastness, striking even for the Space Marine, making you a true Bastion of the Imperium.",
+		-- [{ "damage_multipliers", "curse" }] = 0.25,
 	},
 	FENRISIAN_BLOOD = {
 		name = "Fenrisian Blood",
@@ -460,7 +512,9 @@ n40.CLASSES[1].sections[2].chars = {
 		-- equipment = {},
 		-- equipment_add = {},
 		
-		skin = "MKVII_ULTRAMARINE", perks_add = { "CODEX_MASTERY" }, -- perks_remove = {},
+		skin = "MKVII_ULTRAMARINE",
+		perks_add = { "CODEX_MASTERY" },
+		-- perks_remove = {},
 		-- func = nil,
 	},
 	{
