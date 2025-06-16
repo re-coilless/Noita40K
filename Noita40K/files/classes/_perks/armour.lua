@@ -1,9 +1,10 @@
-dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
-
-local hooman = GetUpdatedEntityID()
-local char_x, char_y, char_r, char_scale_x, char_scale_y = EntityGetTransform( hooman )
-
+return function( hooman )
+	local char_x, char_y, char_r, char_scale_x, char_scale_y = EntityGetTransform( hooman )
+end
+--[[
 SetRandomSeed( GameGetFrameNum(), char_x + char_y + hooman )
+
+--extract this to penman
 
 local radius = 50
 local energy_left = 0.8
@@ -131,3 +132,4 @@ if( #projectiles > 0 ) then
 		end
 	end
 end
+]]

@@ -1,0 +1,84 @@
+<Entity tags="hittable,teleportable_NOT,item_pickup" >
+	<LuaComponent
+		_tags="enabled_in_hand"
+		script_source_file="mods/n40ke_bss/files/scripts/item_controllers/offhand_controller.lua"
+		execute_every_n_frame="1"
+		vm_type="ONE_PER_COMPONENT_INSTANCE"
+	></LuaComponent>
+	
+	<LuaComponent
+		_enabled="0"
+		_tags="enabled_in_hand"
+		script_enabled_changed="mods/n40ke_bss/files/scripts/item_controllers/swap_killer.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+	
+	<LuaComponent
+		_tags="enabled_in_world,enabled_in_hand"
+		script_throw_item="mods/n40ke_bss/files/scripts/item_controllers/throw_controller.lua"
+		execute_every_n_frame="-1"
+	></LuaComponent>
+	
+	<AbilityComponent
+		throw_as_item="0"
+		><gun_config
+			deck_capacity="0"
+		></gun_config>
+	</AbilityComponent>
+	
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name="Offhand Bolt Pistol"
+		remove_on_death="1"
+		always_use_item_name_in_ui="1"
+		collect_nondefault_actions="1"
+		is_pickable="1"
+		is_equipable_forced="1"
+		ui_sprite="mods/n40ke_bss/files/pics/items_gfx/seraphim_bolt_pistol_offhand.png"
+		ui_description="Standard bolt pistol. [LMB] to toggle offhand mode."
+		preferred_inventory="QUICK" 
+		is_frozen="0"
+	></ItemComponent>
+	
+	<SimplePhysicsComponent
+		_tags="enabled_in_world"
+		can_go_up="0"
+	></SimplePhysicsComponent>
+	
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+	
+	<SpriteComponent 
+		_tags="enabled_in_world"
+		image_file="mods/n40ke_bss/files/pics/items_gfx/seraphim_bolt_pistol_offhand.xml"
+		rect_animation="0" 
+		next_rect_animation="0" 
+		offset_x="2"
+		offset_y="4"
+	></SpriteComponent>
+	
+	<VariableStorageComponent
+		_tags="is_offhanded"
+		name="is_offhanded"
+		value_bool="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="is_reloading"
+		name="is_reloading"
+		value_bool="1"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="reload_end"
+		name="reload_end"
+		value_int="0"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
+		_tags="ammo_current"
+		name="ammo_current"
+		value_int="5"
+	></VariableStorageComponent>
+</Entity>

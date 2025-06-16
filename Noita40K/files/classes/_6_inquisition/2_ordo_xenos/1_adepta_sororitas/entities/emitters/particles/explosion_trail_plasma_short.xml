@@ -1,0 +1,25 @@
+<Entity>
+	<Base file="data/entities/particles/particle_explosion/base_smoke_trail.xml">
+		<SetStartVelocityComponent
+			randomize_speed.min="100"
+			randomize_speed.max="150"
+		></SetStartVelocityComponent>
+		
+		<SpriteParticleEmitterComponent
+			sprite_file="data/particles/fire_blue.xml"
+		></SpriteParticleEmitterComponent>
+		
+		<SpriteParticleEmitterComponent
+			sprite_file="mods/n40ke_bss/files/pics/particles_gfx/plasma_cloud_tiny_$[1-4].xml"
+		></SpriteParticleEmitterComponent>
+		
+		<ParticleEmitterComponent 
+			emitted_material_name="plasma_he"
+		></ParticleEmitterComponent>
+		
+		<ParticleEmitterComponent 
+			emitted_material_name="plasma_dense"
+		></ParticleEmitterComponent>
+	</Base>
+</Entity>
+

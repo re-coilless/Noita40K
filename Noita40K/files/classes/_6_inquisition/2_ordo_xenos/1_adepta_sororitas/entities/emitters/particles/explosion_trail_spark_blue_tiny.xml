@@ -1,0 +1,9 @@
+<Entity>
+	<Base file="data/entities/particles/particle_explosion/explosion_trail_spark_blue_small.xml">
+		<SetStartVelocityComponent
+			randomize_speed.min="200"
+			randomize_speed.max="500"
+		></SetStartVelocityComponent>
+	</Base>
+</Entity>
+

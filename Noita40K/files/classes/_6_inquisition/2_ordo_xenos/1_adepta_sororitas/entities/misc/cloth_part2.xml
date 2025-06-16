@@ -1,0 +1,10 @@
+<Entity >
+	<SpriteComponent 
+		image_file="mods/n40ke_bss/files/entities/misc/cloth_part2.png" 
+		offset_x="0"
+		offset_y="1"
+		update_transform="0"
+		update_transform_rotation="0"
+		z_index="0.5999"
+	></SpriteComponent>
+</Entity>

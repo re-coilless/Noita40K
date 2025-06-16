@@ -6,6 +6,10 @@ function n40.add_resistance( dmg_comp, type, multiplier )
 	ComponentObjectSetValue2( dmg_comp, "damage_multipliers", type, multiplier*v )
 end
 
+function n40.add_effect( hooman, effect_id, frames )
+	ComponentSetValue2( GetGameEffectLoadTo( hooman, effect_id, true ), "frames", frames or -1 )
+end
+
 function n40.add_vector_ctrl( entity_id, path )
 	if( not( pen.vld( path ))) then return end
 	local ctrls = EntityGetComponentIncludingDisabled( entity_id, "VariableStorageComponent" )

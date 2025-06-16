@@ -1,0 +1,121 @@
+<Entity tags="beam">
+	<Entity name="ray1" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="110" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="lava" 
+				beam_radius="0.5" 
+				damage_to_cells="99999" 
+				damage_to_entities="0"
+				hit_particle_chance="100" 
+				max_cell_durability_to_destroy="20" 
+				max_length="50"
+			></laser>
+		</LaserEmitterComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray2" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="110" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="lava" 
+				beam_radius="0.5" 
+				damage_to_cells="99999" 
+				damage_to_entities="0"
+				hit_particle_chance="100" 
+				max_cell_durability_to_destroy="20" 
+				max_length="50"
+			></laser>
+		</LaserEmitterComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="0"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray3" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="110" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="fire" 
+				beam_radius="0.5" 
+				damage_to_cells="99999" 
+				damage_to_entities="0"
+				hit_particle_chance="100" 
+				max_cell_durability_to_destroy="20" 
+				max_length="45"
+			></laser>
+		</LaserEmitterComponent>
+
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="1"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<Entity name="ray4" tags="beam">
+		<LaserEmitterComponent 
+			_enabled="1" 
+			emit_until_frame="0" 
+			is_emitting="0" 
+			laser_angle_add_rad="0"
+			><laser 
+				audio_enabled="0" 
+				beam_particle_chance="110" 
+				beam_particle_fade="1" 
+				beam_particle_fade_reverse="0" 
+				beam_particle_type="fire" 
+				beam_radius="0.5" 
+				damage_to_cells="99999" 
+				damage_to_entities="0"
+				hit_particle_chance="100" 
+				max_cell_durability_to_destroy="20" 
+				max_length="45"
+			></laser>
+		</LaserEmitterComponent>
+		
+		<InheritTransformComponent>
+			<Transform 
+				position.x="0"
+				position.y="-1"
+			></Transform>
+		</InheritTransformComponent>
+	</Entity>
+	
+	<InheritTransformComponent
+		parent_hotspot_tag="shoot_pos"
+	></InheritTransformComponent>
+</Entity>

@@ -1,0 +1,10 @@
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/torso.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/head.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/right_shoulder.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/right_arm.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/right_leg.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/right_foot.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/left_shoulder.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/left_arm.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/left_leg.png
+mods/n40ke_bss/files/pics/classes_gfx/ragdoll/left_foot.png

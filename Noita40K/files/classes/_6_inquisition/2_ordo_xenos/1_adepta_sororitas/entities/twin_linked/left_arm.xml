@@ -1,0 +1,86 @@
+<Entity name="arm_l" tags="polymorphable_NOT,arm_left">
+	<CharacterDataComponent 
+	></CharacterDataComponent>
+	
+	<CharacterPlatformingComponent 
+		mouse_look="1"
+		mouse_look_buffer="1"
+	></CharacterPlatformingComponent>
+	
+	<SpriteAnimatorComponent>
+	</SpriteAnimatorComponent>
+	
+	<PlatformShooterPlayerComponent
+		center_camera_on_this_entity="0"
+		aiming_reticle_distance_from_character="60"
+		camera_max_distance_from_character="50"
+		move_camera_with_aim="0"
+		eating_cells_per_frame="0"
+	></PlatformShooterPlayerComponent>
+	
+	<GenomeDataComponent 
+		herd_id="player"
+		food_chain_rank="1"
+		is_predator="1"
+		berserk_dont_attack_friends="1"
+	></GenomeDataComponent>
+	
+	<Inventory2Component
+		quick_inventory_slots="1"
+		full_inventory_slots_x="1"
+		full_inventory_slots_y="1"
+	></Inventory2Component>
+	
+	<ItemPickUpperComponent
+		_enabled="1"
+		_tags="pickuper"
+		is_immune_to_kicks="1"
+    	is_in_npc="1"
+	></ItemPickUpperComponent>
+	
+	<ControlsComponent
+		enabled="0" 
+	></ControlsComponent>
+	
+	<HotspotComponent
+		_tags="shoot_pos"
+		offset.x="0" 
+		offset.y="0"
+	></HotspotComponent>
+	
+	<InheritTransformComponent
+		parent_hotspot_tag="left_arm_root"
+		use_root_parent="0"
+		only_position="0"
+		always_use_immediate_parent_rotation="1"
+	></InheritTransformComponent>
+	
+	<Entity name="arm_r" >
+		<HotspotComponent
+			_tags="hand"
+			sprite_hotspot_name="hand"
+		></HotspotComponent>
+		
+		<InheritTransformComponent
+			only_position="1"
+			always_use_immediate_parent_rotation="0"
+			parent_sprite_id="-1"
+			rotate_based_on_x_scale="0"
+			use_root_parent="0"
+		></InheritTransformComponent>
+		
+		<SpriteComponent
+			_tags="with_item"
+			image_file="mods/n40ke_bss/files/pics/classes_gfx/player_arm.xml"
+			z_index="0.6002"
+		></SpriteComponent>
+	</Entity>
+	
+	<LuaComponent
+		script_source_file="mods/n40ke_bss/files/entities/twin_linked/arm_controller.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+	
+	<Entity name="inventory_quick">
+	</Entity>
+</Entity>

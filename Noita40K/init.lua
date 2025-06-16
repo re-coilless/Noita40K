@@ -8,7 +8,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- translations
 -- fully setup ultramarine
 
 -- add physics_hit as AP damage that will be considered as x5 with physical armour penetration
@@ -48,6 +47,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- custom mnee frontend that ties all the mods together
 -- remove vanilla map
 
+-- some of the marine classes should recieve Land Device - full auto conversion kit for rifle
 -- battle sister is vanilla now
 -- madness combat style hands
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
@@ -105,6 +105,8 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )
 	
+	pen.add_translations( "mods/Noita40K/files/appends/translations.csv" )
+
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
 
 	--[[
