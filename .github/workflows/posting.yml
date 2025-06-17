@@ -17,13 +17,22 @@ jobs:
             REPO: ${{ github.repository }}
         run: |
             REPO_NAME="${REPO##*/}"
+            EMBED_COLOR=7419530
 
             JSON_CONTENT=$(jq -n \
                 --arg repo "$REPO_NAME" \
                 --arg author "$AUTHOR" \
                 --arg url "$COMMIT_URL" \
                 --arg msg "$COMMIT_MESSAGE" \
-                '{content: "New **[\($repo)]** Update *([\($msg)](\($url)))*"}')
+				--argjson color "$EMBED_COLOR" \
+            '{
+              embeds: [{
+                title: "New **[\($repo)]** Update",
+                description: "*([\($msg)](\($url)))*",
+                url: $url,
+                color: $color
+              }]
+            }')
 
             curl -X POST -H "Content-Type: application/json" \
                 -d "$JSON_CONTENT" \
