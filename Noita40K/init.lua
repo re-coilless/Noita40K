@@ -8,13 +8,10 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- reloading
+-- basic inventory layout
+-- gunplay
 -- fully setup ultramarine
-
--- add physics_hit as AP damage that will be considered as x5 with physical armour penetration
--- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
--- phycisal armour patch that prevents phasing and projectiles sometimes disappear + sound and sparks play only if the speed is above certain level
--- check speed + angle for armour penetration
--- top 10% of armour should have rickoshet chance, the higher - the more
 
 -- jumppack is an "item" (do a separate inventory space for equipment)
 -- SpriteStainsComponent sprite_id for multisprite stains
@@ -33,8 +30,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8), enemies hit with shockwaves should be briefly stunned if they don't have void-sealed status
 -- turning around with heavy weapon resets it to point up
 -- casings are being ejected at different speeds based on char facing
-
--- vector basic spell system rewrite (wand is the center part of the thing, player is optional)
+-- muzzle flash is being handled by the gun itself
 
 ---------------------------------------------------------------------------
 

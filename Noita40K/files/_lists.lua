@@ -246,8 +246,8 @@ n40.PERKS = {
 			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
 				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
 			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
-				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
-
+				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
+			
 			ComponentSetValue2( data.kick_comp, "max_force",
 				20*ComponentGetValue2( data.kick_comp, "max_force" ))
 			ComponentSetValue2( data.kick_comp, "player_kickforce",
@@ -572,9 +572,9 @@ n40.CLASSES[6].sections = {
 	},
 }
 
-n40.CLASSES[6].sections[2].chars = {
+n40.CLASSES[6].sections[1].chars = {
 	{
-		name = "$n40_CLASS_6_2_1", desc = "$n40_CLASS_6_2_1_",
+		name = "$n40_CLASS_6_1_1", desc = "$n40_CLASS_6_1_1_",
 	},
 }
 
