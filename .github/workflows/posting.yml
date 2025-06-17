@@ -1,4 +1,4 @@
-name: Update Posting
+name: Updating
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
   notify-discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Update Posting
+      - name: Updating
         env:
           SECRET_URL: ${{ secrets.WEBHOOK_URL }}
           SECRET_COLOR: ${{ secrets.REPO_COLOR }}
