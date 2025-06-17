@@ -25,7 +25,7 @@ jobs:
             --arg repo_url "$REPO_URL" \
             --arg com_url "$COMMIT_URL" \
             --arg com_msg "$COMMIT_MESSAGE" \
-            --argjson color "$REPO_COLOR" \
+            --arg color "$REPO_COLOR" \
           '{
             embeds: [{
               title: "New **[\($repo_name)]** Update",
