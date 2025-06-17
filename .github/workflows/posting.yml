@@ -30,7 +30,7 @@ jobs:
             --arg emoji "$SECRET_EMOJI" \
           '{
             embeds: [{
-              title: "[\($emoji)] New **[\($repo_name)]** Update",
+              title: "\($emoji) New **[\($repo_name)]** Update",
               description: "*([\($com_msg)](\($com_url)))*",
               url: $repo_url,
               color: $color
