@@ -16,10 +16,10 @@ jobs:
             COMMIT_URL: ${{ github.event.head_commit.url }}
             REPO: ${{ github.repository }}
         run: |
-            REPO_NAME=$(echo "$REPO" | cut -d'/' -f2)
+            REPO_NAME="${REPO##*/}"
 
             JSON_CONTENT=$(jq -n \
-                --arg repo "$REPO" \
+                --arg repo "$REPO_NAME" \
                 --arg author "$AUTHOR" \
                 --arg url "$COMMIT_URL" \
                 --arg msg "$COMMIT_MESSAGE" \
