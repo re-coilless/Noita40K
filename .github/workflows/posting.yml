@@ -11,28 +11,27 @@ jobs:
     steps:
       - name: Update Posting
         env:
-            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-            COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-            COMMIT_URL: ${{ github.event.head_commit.url }}
-            REPO: ${{ github.repository }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+          REPO: ${{ github.repository }}
         run: |
-            REPO_NAME="${REPO##*/}"
-			REPO_URL="https://github.com/${REPO}/archive/refs/heads/main.zip"
-			echo "Repo URL: $REPO_URL"
-			
-            JSON_CONTENT=$(jq -n \
-                --arg repo_name "$REPO_NAME" \
-				--arg repo_url "$REPO_URL" \
-                --arg com_url "$COMMIT_URL" \
-                --arg com_msg "$COMMIT_MESSAGE" \
-            '{
-              embeds: [{
-                title: "New **[\($repo_name)]** Update",
-                description: "*([\($com_msg)](\($com_url)))*",
-                url: $repo_url
-              }]
-            }')
+          REPO_NAME="${REPO##*/}"
+          REPO_URL="https://github.com/${REPO}/archive/refs/heads/main.zip"
 
-            curl -X POST -H "Content-Type: application/json" \
-                -d "$JSON_CONTENT" \
-                "$DISCORD_WEBHOOK_URL"
+          JSON_CONTENT=$(jq -n \
+            --arg repo_name "$REPO_NAME" \
+            --arg repo_url "$REPO_URL" \
+            --arg com_url "$COMMIT_URL" \
+            --arg com_msg "$COMMIT_MESSAGE" \
+          '{
+            embeds: [{
+              title: "New **[\($repo_name)]** Update",
+              description: "*([\($com_msg)](\($com_url)))*",
+              url: $repo_url
+            }]
+          }')
+
+          curl -X POST -H "Content-Type: application/json" \
+            -d "$JSON_CONTENT" \
+            "$DISCORD_WEBHOOK_URL"
