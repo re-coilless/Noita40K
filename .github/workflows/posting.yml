@@ -18,17 +18,20 @@ jobs:
         run: |
           REPO_NAME="${REPO##*/}"
           REPO_URL="https://github.com/${REPO}/archive/refs/heads/main.zip"
+          EMBED_COLOR=7419530
 
           JSON_CONTENT=$(jq -n \
             --arg repo_name "$REPO_NAME" \
             --arg repo_url "$REPO_URL" \
             --arg com_url "$COMMIT_URL" \
             --arg com_msg "$COMMIT_MESSAGE" \
+            --argjson color "$REPO_COLOR" \
           '{
             embeds: [{
               title: "New **[\($repo_name)]** Update",
               description: "*([\($com_msg)](\($com_url)))*",
-              url: $repo_url
+              url: $repo_url,
+              color: $color
             }]
           }')
 
