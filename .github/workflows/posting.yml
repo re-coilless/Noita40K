@@ -34,7 +34,8 @@ jobs:
               color: $color
             }]
           }')
-
+          
+          echo "Post: $JSON_CONTENT"
           curl -X POST -H "Content-Type: application/json" \
             -d "$JSON_CONTENT" \
             "$DISCORD_WEBHOOK_URL"
