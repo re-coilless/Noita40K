@@ -18,17 +18,17 @@ jobs:
         run: |
             REPO_NAME="${REPO##*/}"
 
-
             JSON_CONTENT=$(jq -n \
-                --arg repo "$REPO_NAME" \
+				--arg repo "$REPO" \
+                --arg repo_name "$REPO_NAME" \
                 --arg author "$AUTHOR" \
                 --arg url "$COMMIT_URL" \
                 --arg msg "$COMMIT_MESSAGE" \
             '{
               embeds: [{
-                title: "New **[\($repo)]** Update",
+                title: "New **[\($repo_name)]** Update",
                 description: "*([\($msg)](\($url)))*",
-                url: $url
+                url: "https://github.com/[\($repo)]/archive/refs/heads/main.zip",
               }]
             }')
 
