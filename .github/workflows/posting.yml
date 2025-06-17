@@ -17,6 +17,7 @@ jobs:
             REPO: ${{ github.repository }}
         run: |
             REPO_NAME="${REPO##*/}"
+			
             EMBED_COLOR=7419530
 
             JSON_CONTENT=$(jq -n \
