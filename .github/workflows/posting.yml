@@ -17,7 +17,7 @@ jobs:
             REPO: ${{ github.repository }}
         run: |
             REPO_NAME="${REPO##*/}"
-			
+
             EMBED_COLOR=7419530
 
             JSON_CONTENT=$(jq -n \
@@ -25,7 +25,7 @@ jobs:
                 --arg author "$AUTHOR" \
                 --arg url "$COMMIT_URL" \
                 --arg msg "$COMMIT_MESSAGE" \
-				--argjson color "$EMBED_COLOR" \
+				--arg color "$EMBED_COLOR" \
             '{
               embeds: [{
                 title: "New **[\($repo)]** Update",
