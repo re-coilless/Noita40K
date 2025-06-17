@@ -18,7 +18,7 @@ jobs:
         run: |
           REPO_NAME="${REPO##*/}"
           REPO_URL="https://github.com/${REPO}/archive/refs/heads/main.zip"
-          EMBED_COLOR=7419530
+          REPO_COLOR=7419530
 
           JSON_CONTENT=$(jq -n \
             --arg repo_name "$REPO_NAME" \
@@ -34,7 +34,7 @@ jobs:
               color: $color
             }]
           }')
-          
+
           echo "Post: $JSON_CONTENT"
           curl -X POST -H "Content-Type: application/json" \
             -d "$JSON_CONTENT" \
