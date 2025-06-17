@@ -21,7 +21,7 @@ jobs:
             --arg author "$AUTHOR" \
             --arg url "$COMMIT_URL" \
             --arg msg "$COMMIT_MESSAGE" \
-            '{content: "**New ($repo) Update**\n[\($msg)](\($url))"}')
+            '{content: "**New [\($repo)] Update**\n[\($msg)](\($url))"}')
 
           curl -X POST -H "Content-Type: application/json" \
             -d "$JSON_CONTENT" \
