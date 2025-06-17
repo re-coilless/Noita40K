@@ -14,12 +14,14 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           COMMIT_URL: ${{ github.event.head_commit.url }}
+          REPO: ${{ github.repository }}
         run: |
           JSON_CONTENT=$(jq -n \
+            --arg repo "$REPO" \
             --arg author "$AUTHOR" \
             --arg url "$COMMIT_URL" \
             --arg msg "$COMMIT_MESSAGE" \
-            '{content: "*testing*\n[\($msg)](\($url))"}')
+            '{content: "**New [$repo] Update**\n[\($msg)](\($url))"}')
 
           curl -X POST -H "Content-Type: application/json" \
             -d "$JSON_CONTENT" \
