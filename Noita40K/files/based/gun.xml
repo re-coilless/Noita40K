@@ -1,4 +1,4 @@
-<Entity tags="teleportable_NOT,gun" >
+<Entity tags="gun40k" >
 	<AbilityComponent
         ui_name="_"
 		drop_as_item_on_death="1"

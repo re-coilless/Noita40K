@@ -8,8 +8,9 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- reloading
--- basic inventory layout
+-- bonus free design devlog
+-- reloading (add phantom slot that does fake swap)
+-- ammo swap check
 -- gunplay
 -- fully setup ultramarine
 
@@ -102,6 +103,7 @@ function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )
 	
 	pen.add_translations( "mods/Noita40K/files/appends/translations.csv" )
+	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua" )
 
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
 

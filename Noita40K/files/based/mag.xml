@@ -1,4 +1,4 @@
-<Entity tags="mag" >
+<Entity tags="mag40k" >
     <ItemComponent
         _tags="enabled_in_world"
 		play_spinning_animation="0"

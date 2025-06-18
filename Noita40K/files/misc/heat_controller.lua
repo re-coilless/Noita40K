@@ -8,7 +8,7 @@
 
 return function( entity_id )
     local x, y = EntityGetTransform( entity_id )
-    pen.t.loop( EntityGetInRadiusWithTag( x, y, 500, "gun" ), function( i, gun_id )
+    pen.t.loop( EntityGetInRadiusWithTag( x, y, 500, "gun40k" ), function( i, gun_id )
         local pics = EntityGetComponentIncludingDisabled( gun_id, "SpriteComponent" )
         local max_heat = pen.magic_storage( gun_id, "heat_max", "value_float" ) or -1
         if( not( pen.vld( pics )) or max_heat <= 0 ) then return end
