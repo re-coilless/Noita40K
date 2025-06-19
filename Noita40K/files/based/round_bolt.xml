@@ -1,0 +1,50 @@
+<Entity>
+	<Base file="mods/Noita40K/files/based/round.xml" >
+		<ProjectileComponent
+			ragdoll_fx_on_collision="BLOOD_SPRAY"
+			on_death_explode="1"
+			on_lifetime_out_explode="1"
+		></ProjectileComponent>
+
+		<SpriteComponent
+			emissive="1"
+			additive="1"
+			fog_of_war_hole="1"
+			image_file="mods/Noita40K/files/items/rounds/bolt_998_he.png"
+		></SpriteComponent>
+	</Base>
+	
+	<SpriteComponent
+		has_special_scale="1"
+		special_scale_x="1"
+		special_scale_y="1"
+		alpha="0.5"
+		image_file="data/particles/fog_of_war_hole.xml"
+		smooth_filtering="1"
+		fog_of_war_hole="1"
+	></SpriteComponent>
+
+	<LightComponent
+		radius="64"
+		r="255"
+		g="100"
+		b="10"
+	></LightComponent>
+	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		steps_per_frame="100"
+		is_circle="0"
+		radius="2"
+		loop="1"
+		temperature_reaction_temp="1000"
+		ignite_materials="1"
+	></MagicConvertMaterialComponent>
+	
+	<AudioLoopComponent
+		file="data/audio/Desktop/projectiles.snd"
+		event_name="projectiles/rocket_passby"
+		set_speed_parameter="1"
+		auto_play="1"
+	></AudioLoopComponent>
+</Entity>

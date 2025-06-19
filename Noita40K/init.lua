@@ -8,10 +8,17 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- bonus free design devlog
--- reloading (add phantom slot that does fake swap)
--- ammo swap check
 -- gunplay
+-- custom rickoshet angle implementation
+-- muzzle flash is being handled by the gun itself
+-- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8), enemies hit with shockwaves should be briefly stunned if they don't have void-sealed status
+
+-- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
+-- add clanking sound for the last 25% of shots from the mag
+-- turning around with heavy weapon resets it to point up
+-- casings are being ejected at different speeds based on char facing
+
+-- bonus free design devlog
 -- fully setup ultramarine
 
 -- jumppack is an "item" (do a separate inventory space for equipment)
@@ -22,16 +29,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
 -- chainsword projectiles lifetime is 2x of what it should be
 -- rmb action should be obtained from controls comp Fire2
-
--- remove friendly fire from projectiles themselves
--- bolter rounds should be only effective against meat while rifle round should go through anything it instakills
--- all weapons scripts should run through index
--- add clanking sound for the last 25% of shots from the mag
--- add rickoshet angles (somehow bouncy orb and that extra bouncy shit have different angles)
--- fancy explosions with shockwave visualization through shaders (https://youtu.be/ypNJHZt2cX8), enemies hit with shockwaves should be briefly stunned if they don't have void-sealed status
--- turning around with heavy weapon resets it to point up
--- casings are being ejected at different speeds based on char facing
--- muzzle flash is being handled by the gun itself
 
 ---------------------------------------------------------------------------
 
