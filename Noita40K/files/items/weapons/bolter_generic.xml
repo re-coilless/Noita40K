@@ -22,6 +22,8 @@
 			offset_y="5"
 			z_index="0.95"
 		></SpriteComponent>
+
+		<VelocityComponent mass="0.5" />
     </Base>
 	
 	<HotspotComponent
@@ -34,7 +36,7 @@
         offset.x="4"
         offset.y="-3"
 	></HotspotComponent>
-
+	
 	<VariableStorageComponent
 		name="ammo_type"
 		value_string="bolt_998"
@@ -42,6 +44,10 @@
 	<VariableStorageComponent
 		name="cycling"
 		value_int="10"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="vector_handling"
+		value_float="0.75"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"

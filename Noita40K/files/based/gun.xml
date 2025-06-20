@@ -39,6 +39,7 @@
 
 	<VelocityComponent
 		_tags="enabled_in_world"
+		mass="0.05"
 		gravity_y="400"
 		air_friction="0.55"
 		terminal_velocity="1000"

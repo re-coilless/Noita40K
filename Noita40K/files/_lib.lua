@@ -62,7 +62,7 @@ function n40.setup_character( hooman )
 		ComponentSetValue2( data.inv_comp, "quick_inventory_slots", 10 )
 		ComponentSetValue2( data.inv_comp, "full_inventory_slots_x", 99 )
 		ComponentSetValue2( data.inv_comp, "full_inventory_slots_y", 6 )
-
+		
 		n40.new_perk( char_data.skin, hooman, data )
 	end)
 	
