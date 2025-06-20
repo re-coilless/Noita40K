@@ -11,7 +11,7 @@ table.insert( actions,
 	price = 250, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
-	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 50, h = 1 }},
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_he_M.xml",
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
 	
