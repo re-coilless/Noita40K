@@ -21,7 +21,7 @@
 	<ProjectileComponent
 		friendly_fire="0"
 		explosion_dont_damage_shooter="0"
-		lob_min="1"
+		lob_min="0.8"
 		lob_max="1"
 		lifetime="200"
 		speed_min="2000"
@@ -43,6 +43,7 @@
 		ragdoll_fx_on_collision="NORMAL"
 		camera_shake_when_shot="0"
 		shoot_light_flash_radius="128"
+		muzzle_flash_file=""
 		create_shell_casing="0"
 		on_collision_die="1"
 		on_death_explode="0"
@@ -84,4 +85,9 @@
 		offset_y="0.5"
 		image_file="mods/Noita40K/files/items/rounds/bolt_998_he.png"
 	></SpriteComponent>
+
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/based/round.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
 </Entity>

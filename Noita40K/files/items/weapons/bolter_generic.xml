@@ -28,8 +28,8 @@
 	
 	<HotspotComponent
         _tags="shoot_pos"
-        offset.x="10"
-        offset.y="-2.5"
+        offset.x="13"
+        offset.y="-2"
 	></HotspotComponent>
 	<HotspotComponent
         _tags="eject_pos"

@@ -3,7 +3,7 @@
 -- armor script is a single-function pen.armor() thing that does an on-hit function (add new table to penman to house all gameplay-first functionality)
 -- phycisal armour patch that prevents phasing and projectiles sometimes disappear + sound and sparks play only if the speed is above certain level
 -- check speed + angle for armour penetration
--- top 10% of armour should have rickoshet chance, the higher - the more
+-- top 10% of armour should be sloped
 
 return function( hooman )
 	local char_x, char_y, char_r, char_scale_x, char_scale_y = EntityGetTransform( hooman )
