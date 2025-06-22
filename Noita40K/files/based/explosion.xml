@@ -1,0 +1,97 @@
+<Entity serialize="0" name="explosion" >
+    <SpriteComponent
+		alpha="0"
+		image_file="mods/Noita40K/files/based/explosion_wave.png"
+        offset_x="128"
+        offset_y="128"
+		fog_of_war_hole="0"
+        smooth_filtering="1"
+		next_rect_animation=""
+		rect_animation=""
+		emissive="0"
+		additive="0"
+		z_index="-10.01"
+	></SpriteComponent>
+
+    <SpriteComponent
+		alpha="0"
+		image_file="mods/Noita40K/files/based/explosion_fire.png"
+        offset_x="128"
+        offset_y="128"
+		fog_of_war_hole="0"
+        smooth_filtering="1"
+		next_rect_animation=""
+		rect_animation=""
+		emissive="0"
+		additive="1"
+		z_index="-10.02"
+	></SpriteComponent>
+
+    <SpriteComponent
+		alpha="0.7"
+		image_file="mods/Noita40K/files/based/explosion_fire.png"
+        offset_x="128"
+        offset_y="128"
+		fog_of_war_hole="1"
+        smooth_filtering="1"
+		next_rect_animation=""
+		rect_animation=""
+		emissive="0"
+		additive="0"
+		z_index="-10.02"
+	></SpriteComponent>
+
+    <SpriteComponent
+		alpha="0"
+		image_file="mods/Noita40K/files/based/explosion_fog.png"
+        offset_x="128"
+        offset_y="128"
+		fog_of_war_hole="0"
+        smooth_filtering="1"
+		next_rect_animation=""
+		rect_animation=""
+		emissive="0"
+		additive="0"
+		z_index="-10.03"
+	></SpriteComponent>
+
+    <LuaComponent
+		script_source_file="mods/Noita40K/files/based/explosion.lua"
+		execute_every_n_frame="1"
+        execute_on_added="1"
+	></LuaComponent>
+
+    <VariableStorageComponent
+		name="speed"
+		value_float="20"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="size"
+		value_float="20"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="alpha"
+		value_float="1"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="force"
+		value_float="3"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="damage"
+		value_float="0"
+	></VariableStorageComponent>
+
+    <VariableStorageComponent
+		name="shrapnell"
+		value_float="0"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="shrapnell_speed"
+		value_float="1000"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="shrapnell_damage"
+		value_float="0"
+	></VariableStorageComponent>
+</Entity>

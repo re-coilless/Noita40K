@@ -49,7 +49,8 @@ function n40.setup_character( hooman )
 	local class_data = n40.CLASSES[ active.class ]
 	local section_data = class_data.sections[ active.section ]
 	local char_data = section_data.chars[ active.char ]
-
+	
+	EntityAddTag( hooman, "vector_ctrl" )
 	local data = pen.lib.player_builder( hooman, function( hooman, data )
 		ComponentSetValue2( data.char_comp, "fly_time_max", 0 )
 		ComponentSetValue2( data.char_comp, "fly_recharge_spd", 0 )

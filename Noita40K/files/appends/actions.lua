@@ -16,11 +16,7 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
 	
 	action = function()
-		local eject = function( ejector_x, ejector_y, r, s_x, s_y, gun_id, card_id, action )
-			--play bolt ejection sound (and make sure bolt feed sound plays on return)
-			--ejector smoke and sparks (customizable per-spell)
-		end
-		local flash = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+		pen.gunshot( function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
 			local v_x, v_y = 0, 0
 			local hooman = EntityGetRootEntity( gun_id )
 			local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
@@ -31,10 +27,10 @@ table.insert( actions,
 				v_y = v_y - ComponentGetValue2( plat_comp, "pixel_gravity" )/60
 				if( ComponentGetValue2( char_comp, "is_on_ground" )) then v_y = v_y - 60 end
 			end
-
+			
 			pen.magic_particles( muzzle_x, muzzle_y, r, {
 				delay = 2,
-				fading = 5,
+				fading = 6,
 				lifetime = 4,
 				additive= true,
 				emissive = true,
@@ -44,13 +40,13 @@ table.insert( actions,
 				color = { 230, 88, 0},
 				alpha_end = 0.1,
 				color_end = { 59, 42, 32 },
-
-				velocity = { 180, 0 },
-				slowdown = { -50, 0, 1 },
-				global_velocity = { v_x, v_y },
+				
+				velocity = { 140, 0 },
+				slowdown = { -20, 0, 1 },
+				global_velocity = { v_x/2, v_y/2 },
 			})
 			pen.magic_particles( muzzle_x, muzzle_y, r, {
-				fading = 5,
+				fading = 7,
 				lifetime = 2,
 				additive= true,
 				emissive = true,
@@ -58,16 +54,15 @@ table.insert( actions,
 
 				alpha = 0.9,
 				color = { 230, 88, 0 },
-				alpha_end = 0.1,
+				alpha_end = 0.2,
 				color_end = { 59, 42, 32 },
 
 				scale = { 0.7, 0.5 },
 				v_range = { 0, -75, 0, 75 },
-				global_velocity = { v_x, v_y },
+				global_velocity = { v_x/2, v_y/2 },
 			})
-		end
+		end)
 
-		pen.gunshot( eject, flash )
 		c.spread_degrees = c.spread_degrees + 10.0
 	end,
 })

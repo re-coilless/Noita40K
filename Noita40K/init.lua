@@ -8,12 +8,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- do advanced aiming
--- fancy explosions with shockwave visualization through sprite emitters + smooth_filtering sprites (https://youtu.be/ypNJHZt2cX8), enemies hit with shockwaves should be briefly stunned if they don't have void-sealed status
--- add clanking sound for the last 25% of shots from the mag
--- casings are being ejected at different speeds based on char facing
--- stalker bolter ammo should have almost no knockback + make knockback to be less on other rounds
-
 -- bonus free design devlog
 -- fully setup ultramarine
 
@@ -28,6 +22,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 ---------------------------------------------------------------------------
 
+-- custom status effect system though HitEffectComp (thanks Extol)
 -- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)

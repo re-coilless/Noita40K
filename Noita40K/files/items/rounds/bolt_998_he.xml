@@ -8,7 +8,7 @@
 			file="mods/Noita40K/files/40K.bank"
 			event_root="items/guns/bolt_998"
 		></AudioComponent>
-
+		
 		<ProjectileComponent
 			damage="2"
 			knockback_force="2.5"
@@ -26,7 +26,7 @@
 				physics_explosion_power.max="1.5"
 				explosion_radius="8"
 				load_this_entity="mods/Noita40K/files/effects/explosion_bolt_998.xml"
-				sparks_enabled="1"
+				sparks_enabled="0"
 				sparks_count_min="15"
 				sparks_count_max="30"
 				material_sparks_enabled="1"

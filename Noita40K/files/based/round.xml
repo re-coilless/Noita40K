@@ -1,4 +1,4 @@
-<Entity tags="teleportable_NOT,projectile">
+<Entity serialize="0" tags="teleportable_NOT,projectile" >
 	<VelocityComponent
 		affect_physics_bodies="1"
 		gravity_y="20"

@@ -36,7 +36,7 @@ if( can_rico and will_coll and v > 900 ) then
             ComponentSetValue2( vel_comp, "mVelocity", v_x, v_y )
             EntitySetTransform( proj_id, point_x, point_y )
             -- EntityApplyTransform( proj_id, point_x, point_y )
-            -- release sparks + play sound
+            -- release sparks + play decaying sound loop from projectile
         end
     end
 end

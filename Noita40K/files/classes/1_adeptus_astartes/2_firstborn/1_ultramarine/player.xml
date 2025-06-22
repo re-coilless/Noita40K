@@ -362,7 +362,7 @@
 		loop="0"
 		
 		><Event
-			frame="3" name="kick"
+			frame="2" name="kick"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
