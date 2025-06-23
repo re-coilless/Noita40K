@@ -62,8 +62,8 @@
 	></LuaComponent>
 
     <VariableStorageComponent
-		name="speed"
-		value_float="20"
+		name="time"
+		value_float="15"
 	></VariableStorageComponent>
     <VariableStorageComponent
 		name="size"
@@ -83,15 +83,23 @@
 	></VariableStorageComponent>
 
     <VariableStorageComponent
-		name="shrapnell"
-		value_float="0"
+		name="shrapnel"
+		value_float="5"
 	></VariableStorageComponent>
     <VariableStorageComponent
-		name="shrapnell_speed"
-		value_float="1000"
+		name="shrapnel_speed"
+		value_float="500"
 	></VariableStorageComponent>
     <VariableStorageComponent
-		name="shrapnell_damage"
-		value_float="0"
+		name="shrapnel_damage"
+		value_float="1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="shrapnel_time"
+		value_float="1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="shrapnel_file"
+		value_string="mods/Noita40K/files/based/shrapnel.xml"
 	></VariableStorageComponent>
 </Entity>

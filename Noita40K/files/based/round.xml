@@ -8,12 +8,6 @@
 
 	<AudioComponent
 		file="data/audio/Desktop/projectiles.bank"
-		event_root="projectiles/bullet_arrow"
-		set_latest_event_position="1"
-	></AudioComponent>
-
-	<AudioComponent
-		file="data/audio/Desktop/projectiles.bank"
 		audio_physics_material="projectile"
 		event_root="projectiles/hit"
 	></AudioComponent>
@@ -87,7 +81,15 @@
 	></SpriteComponent>
 
 	<LuaComponent
+		execute_on_added="1"
+		execute_on_removed="1"
 		script_source_file="mods/Noita40K/files/based/round.lua"
-		execute_every_n_frame="1"
+		execute_every_n_frame="-1"
+		enable_coroutines="1"
 	></LuaComponent>
+
+	<VariableStorageComponent
+		name="explosion"
+		value_string=""
+	></VariableStorageComponent>
 </Entity>
