@@ -1,0 +1,32 @@
+<Entity name="explosion" >
+	<Base file="mods/Noita40K/files/based/explosion.xml" >
+		<VariableStorageComponent
+			name="size"
+			value_float="40"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="damage"
+			value_float="0"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="force"
+			value_float="3"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="time"
+			value_float="20"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="shrapnel"
+			value_float="15"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="shrapnel_time"
+			value_float="1.5"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="shrapnel_speed"
+			value_float="800"
+		></VariableStorageComponent>
+	</Base>
+</Entity>

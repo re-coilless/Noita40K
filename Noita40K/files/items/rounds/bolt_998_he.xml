@@ -3,16 +3,10 @@
 		<VelocityComponent
 			air_friction="-2"
 		></VelocityComponent>
-
-		<AudioComponent
-			file="mods/Noita40K/files/40K.bank"
-			event_root="items/guns/bolt_998"
-		></AudioComponent>
 		
 		<ProjectileComponent
 			damage="2"
 			knockback_force="2.5"
-			hit_particle_force_multiplier="0.1"
 			ragdoll_force_multiplier="0.03"
 			camera_shake_when_shot="2"
 			on_death_explode="1"
@@ -25,9 +19,6 @@
 				physics_explosion_power.min="0.5"
 				physics_explosion_power.max="1.5"
 				explosion_radius="8"
-				sparks_enabled="0"
-				sparks_count_min="15"
-				sparks_count_max="30"
 				material_sparks_enabled="1"
 				material_sparks_count_min="0"
 				material_sparks_count_max="2"

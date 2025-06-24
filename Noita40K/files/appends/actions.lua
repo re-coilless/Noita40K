@@ -1,5 +1,45 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
+n40.MFLASH = {
+	bolter = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			delay = 2, fading = 6, lifetime = 4,
+			additive= true, emissive = true, count = { 2, 3 },
+			
+			alpha = 0.9, color = { 230, 88, 0},
+			alpha_end = 0.1, color_end = { 59, 42, 32 },
+			
+			global_velocity = { v_x/2, v_y/2 },
+			velocity = { 140, 0 }, slowdown = { -20, 0, 1 },
+		})
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			fading = 5, lifetime = 2,
+			additive= true, emissive = true, count = { 2, 3 },
+
+			alpha = 0.9, color = { 230, 88, 0 },
+			alpha_end = 0.2, color_end = { 59, 42, 32 },
+
+			global_velocity = { v_x/2, v_y/2 },
+			scale = { 0.7, 0.5 }, v_range = { 0, -75, 0, 75 },
+		})
+	end,
+
+	carbine = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			fading = 7, lifetime = 4,
+			additive= true, emissive = true, count = { 5, 7 },
+
+			alpha = 0.9, color = { 230, 88, 0 },
+			alpha_end = 0.2, color_end = { 59, 42, 32 },
+
+			scale = { 0.7, 0.7 }, p_range = { -0.5, -1.5, 0.5, 1.5 },
+			global_velocity = { v_x/2, v_y/2 }, v_range = { 100, -20, 150, 20 },
+		})
+	end,
+}
+
 table.insert( actions,
 {
 	id = "BOLT_998_HE_M",
@@ -16,54 +56,47 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
 	
 	action = function()
-		pen.gunshot( function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
-			local v_x, v_y = 0, 0
-			local hooman = EntityGetRootEntity( gun_id )
-			local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
-			local plat_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" )
-			if( pen.vld( char_comp, true ) and pen.vld( plat_comp, true )) then
-				v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
-				if( pen.get_sign( s_x ) == pen.get_sign( v_x )) then v_x = -v_x end
-				v_y = v_y - ComponentGetValue2( plat_comp, "pixel_gravity" )/60
-				if( ComponentGetValue2( char_comp, "is_on_ground" )) then v_y = v_y - 60 end
-			end
-			
-			pen.magic_particles( muzzle_x, muzzle_y, r, {
-				delay = 2,
-				fading = 6,
-				lifetime = 4,
-				additive= true,
-				emissive = true,
-				count = { 2, 3 },
-				
-				alpha = 0.9,
-				color = { 230, 88, 0},
-				alpha_end = 0.1,
-				color_end = { 59, 42, 32 },
-				
-				velocity = { 140, 0 },
-				slowdown = { -20, 0, 1 },
-				global_velocity = { v_x/2, v_y/2 },
-			})
-			pen.magic_particles( muzzle_x, muzzle_y, r, {
-				fading = 7,
-				lifetime = 2,
-				additive= true,
-				emissive = true,
-				count = { 2, 3 },
-
-				alpha = 0.9,
-				color = { 230, 88, 0 },
-				alpha_end = 0.2,
-				color_end = { 59, 42, 32 },
-
-				scale = { 0.7, 0.5 },
-				v_range = { 0, -75, 0, 75 },
-				global_velocity = { v_x/2, v_y/2 },
-			})
-		end)
-
+		pen.gunshot( n40.MFLASH.bolter )
 		c.spread_degrees = c.spread_degrees + 10.0
+	end,
+})
+
+table.insert( actions,
+{
+	id = "BOLT_50MM_AP_HE_S",
+	name = "Bolt 50mm APHE (Small Mag)",
+	description = "Standard bolt carbine magazine of 3-rounds.",
+	sprite = "mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png",
+	
+	type = ACTION_TYPE_PROJECTILE,
+	price = 400, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/Noita40K/files/items/rounds/bolt_50mmc.xml" },
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_50mm_aphe.xml", r = 12, h = 50 }},
+	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_50mm" },
+	
+	action = function()
+		pen.gunshot( n40.MFLASH.carbine )
+		c.spread_degrees = c.spread_degrees + 30.0
+		c.damage_critical_chance = c.damage_critical_chance + 20
+	end,
+})
+
+table.insert( actions,
+{
+	id = "CANISTER_S_PYRUM",
+	name = "Small Fuel Canister of Pyrum-Petrol",
+	description = "Small fuel tank designed for low-powered melta tools.",
+	sprite = "mods/Noita40K/files/items/mags/canister_S_pyrum.png",
+	
+	type = ACTION_TYPE_OTHER,
+	price = 200, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
+
+	action = function()
+		--pen.beamshot
 	end,
 })
 
@@ -158,69 +191,6 @@ table.insert( actions,
 		c.spread_degrees = c.spread_degrees + 15.0
 		c.damage_critical_chance = c.damage_critical_chance + 10
 		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 25.0
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "50MM_BOLT_AP_HE_MAG_SMALL",
-	name 		= "Small 50mm Bolt Mag AP HE",
-	description = "3-round standard bolt carbine magazine.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/50mm_bolt_ap_he_mag_small.png",
-	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_50mm_AP_HE.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 400,
-	mana              = 200,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/50mm_bolt_ap_he_mag_small.xml",
-	action = function()
-		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_50mm_AP_HE.xml" )
-		c.fire_rate_wait = c.fire_rate_wait + 10
-		c.reload_time = c.reload_time + 60
-		c.spread_degrees = c.spread_degrees + 30.0
-		c.damage_critical_chance = c.damage_critical_chance + 20
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 100.0
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "ADAMANTIUM_CARBON_TEETH",
-	name 		= "Adamantium-Carbon Alloy Teeth",
-	description = "Razor-sharp chainedge made of adamantium-carbon alloy.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/adamantium_carbon_teeth.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 10,
-	mana              = 0,
-	max_uses          = -1,
-	
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "chainedge_state" )
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "PYRUM_PETROL_CANISTER_SMALL",
-	name 		= "Small Pyrum-Petrol Fuel Canister",
-	description = "Small fuel tank designed for low-power melta-based tools.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/pyrum_petrol_canister_small.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 200,
-	mana              = 5,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/pyrum_petrol_canister_small.xml",
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "melta_state" )
 	end,
 })
 

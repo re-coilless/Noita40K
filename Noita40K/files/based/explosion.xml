@@ -1,20 +1,6 @@
 <Entity serialize="0" name="explosion" >
     <SpriteComponent
 		alpha="0"
-		image_file="mods/Noita40K/files/based/explosion_wave.png"
-        offset_x="128"
-        offset_y="128"
-		fog_of_war_hole="0"
-        smooth_filtering="1"
-		next_rect_animation=""
-		rect_animation=""
-		emissive="0"
-		additive="0"
-		z_index="-10.01"
-	></SpriteComponent>
-
-    <SpriteComponent
-		alpha="0"
 		image_file="mods/Noita40K/files/based/explosion_fire.png"
         offset_x="128"
         offset_y="128"
@@ -26,19 +12,19 @@
 		additive="1"
 		z_index="-10.02"
 	></SpriteComponent>
-
-    <SpriteComponent
-		alpha="0.7"
-		image_file="mods/Noita40K/files/based/explosion_fire.png"
+	
+	<SpriteComponent
+		alpha="0"
+		image_file="mods/Noita40K/files/based/explosion_wave.png"
         offset_x="128"
         offset_y="128"
-		fog_of_war_hole="1"
+		fog_of_war_hole="0"
         smooth_filtering="1"
 		next_rect_animation=""
 		rect_animation=""
 		emissive="0"
 		additive="0"
-		z_index="-10.02"
+		z_index="-10.01"
 	></SpriteComponent>
 
     <SpriteComponent
@@ -55,51 +41,65 @@
 		z_index="-10.03"
 	></SpriteComponent>
 
+	<SpriteComponent
+		alpha="0.7"
+		image_file="mods/Noita40K/files/based/explosion_fire.png"
+        offset_x="128"
+        offset_y="128"
+		fog_of_war_hole="1"
+        smooth_filtering="1"
+		next_rect_animation=""
+		rect_animation=""
+		emissive="0"
+		additive="0"
+		z_index="-10.02"
+	></SpriteComponent>
+
     <LuaComponent
 		script_source_file="mods/Noita40K/files/based/explosion.lua"
 		execute_every_n_frame="1"
         execute_on_added="1"
 	></LuaComponent>
 
-    <VariableStorageComponent
-		name="time"
-		value_float="15"
-	></VariableStorageComponent>
-    <VariableStorageComponent
+	<VariableStorageComponent
 		name="size"
 		value_float="20"
 	></VariableStorageComponent>
-    <VariableStorageComponent
-		name="alpha"
-		value_float="1"
-	></VariableStorageComponent>
-    <VariableStorageComponent
-		name="force"
-		value_float="3"
-	></VariableStorageComponent>
-    <VariableStorageComponent
+	<VariableStorageComponent
 		name="damage"
 		value_float="0"
 	></VariableStorageComponent>
-
-    <VariableStorageComponent
+	<VariableStorageComponent
+		name="force"
+		value_float="3"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="time"
+		value_float="15"
+	></VariableStorageComponent>
+	<VariableStorageComponent
 		name="shrapnel"
 		value_float="5"
-	></VariableStorageComponent>
-    <VariableStorageComponent
-		name="shrapnel_speed"
-		value_float="500"
-	></VariableStorageComponent>
-    <VariableStorageComponent
-		name="shrapnel_damage"
-		value_float="1"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="shrapnel_time"
 		value_float="1"
 	></VariableStorageComponent>
 	<VariableStorageComponent
+		name="shrapnel_speed"
+		value_float="500"
+	></VariableStorageComponent>
+    
+    <VariableStorageComponent
+		name="shrapnel_damage"
+		value_float="1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
 		name="shrapnel_file"
 		value_string="mods/Noita40K/files/based/shrapnel.xml"
+	></VariableStorageComponent>
+    <VariableStorageComponent
+		name="alpha"
+		value_float="1"
 	></VariableStorageComponent>
 </Entity>

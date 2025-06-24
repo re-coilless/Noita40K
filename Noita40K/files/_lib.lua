@@ -22,13 +22,21 @@ function n40.add_vector_ctrl( entity_id, path )
 	})
 end
 
-function n40.new_gun( id, hooman, data )
-end
+function n40.new_item( item, hooman, data, set_active )
+	if( not( pen.vld( item ))) then return end
+	
+	local x, y = EntityGetTransform( hooman )
+	local gun_id = EntityLoad( item.path, x, y )
+	index.pick_up_item( hooman, index.get_item_data( gun_id ), false, true )
 
-function n40.new_item( id, hooman, data )
-end
+	local item_comp = EntityGetFirstComponentIncludingDisabled( gun_id, "ItemComponent" )
+	if( pen.vld( item_comp, true )) then
+		ComponentSetValue2( item_comp, "item_name", item.name )
+		ComponentSetValue2( item_comp, "ui_description", item.desc )
+	end
 
-function n40.new_equipment( id, hooman, data )
+	if( pen.vld( item.func )) then item.func( hooman, data ) end
+	if( set_active ) then pen.reset_active_item( hooman, pen.get_item_num( index.D.invs_p.q, gun_id ), false ) end
 end
 
 function n40.new_perk( id, hooman, data )
@@ -76,16 +84,12 @@ function n40.setup_character( hooman )
 
 	--break the loop if exceeds the inv size
 	pen.t.loop( char_data.guns or section_data.guns, function( i, v )
-		n40.new_gun(( char_data.guns or {})[i] or v, hooman, data )
+		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or v ], hooman, data, i == 1 )
 	end)
-	local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
-	pen.t.loop( items, function( i, v )
-		n40.new_item(( char_data.guns or {})[i] or v, hooman, data )
-	end)
-	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
-	pen.t.loop( equip, function( i, v )
-		n40.new_equipment( v, hooman, data )
-	end)
+	-- local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
+	-- pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
+	-- local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
+	-- pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
 	
 	return active
 end

@@ -18,7 +18,7 @@
 		lifetime="60"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			texture_file="mods/Noita40K/files/map/matters/darkfire.png" 
 			color="FF20003D"
 		></Graphics>
 	</CellData>
@@ -40,7 +40,7 @@
 		lifetime="60"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			texture_file="mods/Noita40K/files/map/matters/darkfire.png" 
 			color="ffff00a6"
 		></Graphics>
 	</CellData>
@@ -65,7 +65,7 @@
 		durability="19"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/darkfire.png" 
+			texture_file="mods/Noita40K/files/map/matters/darkfire.png" 
 			color="FF6c00ce"
 		></Graphics>
 	</CellData>
@@ -95,7 +95,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/warpclot.png" 
+			texture_file="mods/Noita40K/files/map/matters/warpclot.png" 
 			color="FF6c00ce"
 		></Graphics>
 	</CellData>
@@ -131,7 +131,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/warpclot.png" 
+			texture_file="mods/Noita40K/files/map/matters/warpclot.png" 
 			color="FF6c00ce"
 			fire_colors_index="2"
 		></Graphics>
@@ -158,7 +158,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_virus.png" 
+			texture_file="mods/Noita40K/files/map/matters/exterminatus_virus.png" 
 			color="ff8c7b1a"
 		></Graphics>
 		<StatusEffects>
@@ -208,7 +208,7 @@
 			emit_cosmetic_particles="1"
 		></ParticleEffect>
 		<Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_runner.png" 
+			texture_file="mods/Noita40K/files/map/matters/exterminatus_runner.png" 
 			color="ff8c7b1b"
 		></Graphics>
 		<StatusEffects>
@@ -242,7 +242,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_spore.png" 
+			texture_file="mods/Noita40K/files/map/matters/exterminatus_spore.png" 
 			color="ff8c7b1c"
 		></Graphics>
 	</CellData>
@@ -277,7 +277,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_hunter.png" 
+			texture_file="mods/Noita40K/files/map/matters/exterminatus_hunter.png" 
 			color="ff8c7b1d"
 			fire_colors_index="3"
 		></Graphics>
@@ -307,7 +307,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/exterminatus_fighter.png" 
+			texture_file="mods/Noita40K/files/map/matters/exterminatus_fighter.png" 
 			color="ff8c7b1e"
 		></Graphics>
 	</CellData>
@@ -333,7 +333,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/ruptor_virus.png" 
+			texture_file="mods/Noita40K/files/map/matters/ruptor_virus.png" 
 			color="ffb6d4f4"
 		></Graphics>
 		<StatusEffects>
@@ -389,7 +389,7 @@
 			emit_cosmetic_particles="1"
 		></ParticleEffect>
 		<Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/ruptor_spore.png" 
+			texture_file="mods/Noita40K/files/map/matters/ruptor_spore.png" 
 			color="ffb8d9ff"
 		></Graphics>
 		<StatusEffects>
@@ -472,7 +472,7 @@
 			emit_cosmetic_particles="0"
 		></ParticleEffect>
 		<Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_he.png" 
+			texture_file="mods/Noita40K/files/map/matters/plasma_he.png" 
 			color="ffefffff"
 		></Graphics>
 	</CellData>
@@ -499,7 +499,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics 
-			texture_file="mods/Noita40K/files/pics/matters_gfx/heavy_smoke.png" 
+			texture_file="mods/Noita40K/files/map/matters/heavy_smoke.png" 
 			color="99fffffe"
 		></Graphics>
 	</CellData>
@@ -553,7 +553,7 @@
 			count.max="2"
 		></ParticleEffect>
 		<Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_dense.png" 
+			texture_file="mods/Noita40K/files/map/matters/plasma_dense.png" 
 			color="ff51ecff"
 		></Graphics>
 	</CellData>
@@ -581,7 +581,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasma_unstable.png" 
+			texture_file="mods/Noita40K/files/map/matters/plasma_unstable.png" 
 			color="ffec090f"
 		></Graphics>
 	</CellData>
@@ -623,7 +623,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics 
-			texture_file="mods/Noita40K/files/pics/matters_gfx/promethium.png" 
+			texture_file="mods/Noita40K/files/map/matters/promethium.png" 
 			color="b2812929"
 			fire_colors_index="5"
 		></Graphics>
@@ -804,7 +804,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			texture_file="mods/Noita40K/files/map/matters/plasteel.png"
 			color="ff94b0c2"
 		></Graphics>
 	</CellData>
@@ -832,7 +832,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			texture_file="mods/Noita40K/files/map/matters/plasteel.png"
 			color="ff94b0c2"
 		></Graphics>
 	</CellData>
@@ -863,7 +863,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			texture_file="mods/Noita40K/files/map/matters/plasteel.png"
 			color="ff94b0c2"
 		></Graphics>
 	</CellData>
@@ -876,7 +876,7 @@
 		wang_color="80333c57"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel_dark.png"
+			texture_file="mods/Noita40K/files/map/matters/plasteel_dark.png"
 			color="ff333c57"
 		></Graphics>
 	</CellDataChild>
@@ -907,7 +907,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/deflagrating_matter.png"
+			texture_file="mods/Noita40K/files/map/matters/deflagrating_matter.png"
 			color="ff2a2a2a"
 		></Graphics>
 	</CellData>
@@ -956,7 +956,7 @@
 			count.max="2"
 		></ParticleEffect>
 		<Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/osculant_matter.png"
+			texture_file="mods/Noita40K/files/map/matters/osculant_matter.png"
 			color="fffdfeff"
 		></Graphics>
 		<StatusEffects>
@@ -984,7 +984,7 @@
 		hp="100" 
 		platform_type="0"
 		><Graphics 
-			texture_file="mods/Noita40K/files/pics/matters_gfx/spook.png" 
+			texture_file="mods/Noita40K/files/map/matters/spook.png" 
 			color="fff1ffff"
 		></Graphics>
 		<StatusEffects>
@@ -1019,7 +1019,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/unrefined_auramite.png"
+			texture_file="mods/Noita40K/files/map/matters/unrefined_auramite.png"
 			color="ffffd773"
 		></Graphics>
 	</CellData>
@@ -1047,7 +1047,7 @@
 		show_in_creative_mode="1"
 		
 		><Graphics
-			texture_file="mods/Noita40K/files/pics/matters_gfx/plasteel.png"
+			texture_file="mods/Noita40K/files/map/matters/plasteel.png"
 			color="ff94b0c2"
 		></Graphics>
 	</CellData>

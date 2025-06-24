@@ -4,7 +4,7 @@
 --make guns with a parent but not equipped cool two times slower
 --there should be delta handling for guns that are outside the range
 
---degrate firerate at high heat and lower accuracy, overheat on full-auto guns has a chance to trigger runaway detonation in the form of uncontrolled fast firing magdump with radnomized intervals and insanely low accuracy (continue to detonate even in inventory)
+--degrate firerate at high heat and lower accuracy, overheat on full-auto guns has a chance to trigger runaway detonation in the form of uncontrolled fast firing magdump with randomized intervals and insanely low accuracy (continue to detonate even in inventory)
 
 return function( entity_id )
     local x, y = EntityGetTransform( entity_id )

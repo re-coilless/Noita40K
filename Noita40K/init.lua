@@ -5,23 +5,11 @@ else return end
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appends/actions.lua" )
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
-ModMaterialsFileAdd( "mods/Noita40K/files/appends/matters.xml" )
+ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- bonus free design devlog
--- fully setup ultramarine
-
--- jumppack is an "item" (do a separate inventory space for equipment)
--- SpriteStainsComponent sprite_id for multisprite stains
--- all equipment should be hotspot attached as it must be universal
-
--- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
--- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
--- chainsword projectiles lifetime is 2x of what it should be
--- rmb action should be obtained from controls comp Fire2
-
----------------------------------------------------------------------------
-
+-- shooting at the flat walls to the left of the char results in ricochet
+-- do quick class bootup intro animation on world pre update (should block inputs)
 -- custom status effect system though HitEffectComp (thanks Extol)
 -- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
@@ -95,68 +83,5 @@ function OnModInit()
 			custom_horizontal = { 100, },
 		},
 	}
-	]]
-end
-
---[[
-function OnWorldPreUpdate()
-	--Flags
-	if( GameHasFlagRun( "poli_handling_time" )) then
-		GameRemoveFlagRun( "poli_handling_time" )
-	end
-	
-	if( GameHasFlagRun( "damage_was_prevented" )) then
-		GameRemoveFlagRun( "damage_was_prevented" )
-	end
-end
-]]
-
-function OnPlayerSpawned( hooman )
-	dofile_once( "mods/Noita40K/files/_lib.lua" )
-
-	local initer = "N40K_READY_TO_PURGE"
-	if GameHasFlagRun( initer ) then return end
-	GameAddFlagRun( initer )
-
-	local active = n40.setup_character( hooman )
-
-	local x, y = EntityGetTransform( hooman )
-	EntityLoad( "mods/Noita40K/files/items/weapons/bolter_generic.xml", x, y )
-	
-	--[[
-	--Nothing to see here
-	if( ModSettingGetNextValue( "Noita40K.BEST_GAMEPLAY_EVER" )) then
-		EntityAddComponent( hooman, "LuaComponent", 
-		{ 
-			script_source_file = "mods/Noita40K/files/scripts/player/meme_controller.lua",
-			execute_every_n_frame = "1",
-		})
-
-		GlobalsSetValue( "MEMER", "0" )
-		
-		local angle = 0
-		for i = 1,8 do
-			local laser = EntityLoad( "mods/Noita40K/files/entities/misc/meme_laser.xml", x, y )
-			local emit_comp = EntityGetFirstComponentIncludingDisabled( laser, "LaserEmitterComponent" )
-			ComponentSetValue2( emit_comp, "laser_angle_add_rad", math.rad( angle ))
-			EntityAddChild( hooman, laser )
-			angle = angle + 45
-		end
-		
-		ComponentObjectSetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" ), "damage_multipliers", "projectile", 0 )
-		
-		EntityAddComponent( hooman, "AudioLoopComponent", 
-		{ 
-			_tags = "enabled_in_world,ultramar_anthem",
-			file = "mods/Noita40K/files/40K.bank",
-			event_name = "fx/ultramar_anthem",
-			volume_autofade_speed = "0.25",
-		})
-	end
-	
-	--Random stuff
-	if( ModSettingGetNextValue( "Noita40K.UI_MODE" ) == 1 ) then
-		new_notification( "First time?", "Open the inventory." )
-	end
 	]]
 end

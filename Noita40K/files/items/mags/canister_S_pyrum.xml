@@ -1,0 +1,7 @@
+<Entity tags="canister_S_pyrum">
+	<Base file="mods/Noita40K/files/based/mag.xml" > 
+		<SpriteComponent
+			image_file="mods/Noita40K/files/items/mags/canister_S_pyrum.png" 
+		></SpriteComponent>
+	</Base>
+</Entity>

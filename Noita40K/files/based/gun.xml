@@ -1,6 +1,6 @@
 <Entity tags="gun40k" >
 	<AbilityComponent
-        ui_name="_"
+        ui_name=""
 		drop_as_item_on_death="1"
 		entity_count="1"
 		entity_file=""
@@ -26,7 +26,7 @@
         ></gun_config>
         <gunaction_config
 			speed_multiplier="1"
-			spread_degrees="-10"
+			spread_degrees="0"
             fire_rate_wait="0"
         ></gunaction_config>
     </AbilityComponent>
@@ -35,6 +35,11 @@
 		_tags="enabled_in_world"
 		is_pickable="1"
 		play_hover_animation="1"
+		remove_on_death="1"
+		always_use_item_name_in_ui="1"
+		collect_nondefault_actions="1"
+		preferred_inventory="QUICK" 
+		is_frozen="0"
 	></ItemComponent>
 
 	<VelocityComponent
@@ -66,7 +71,6 @@
 		image_file="data/items_gfx/handgun.xml" 
 		next_rect_animation="default" 
 		rect_animation="default"
-		z_index="-1.5"
 	></SpriteComponent>
 	<SpriteComponent 
 		_tags="enabled_in_world,enabled_in_hand"
@@ -78,11 +82,5 @@
 		emissive="1"
 		fog_of_war_hole="0"
 		smooth_filtering="1"
-		z_index="-1.51"
 	></SpriteComponent>
-
-	<LightComponent 
-		_tags="enabled_in_world"
-		radius="64"
-	></LightComponent>
 </Entity>

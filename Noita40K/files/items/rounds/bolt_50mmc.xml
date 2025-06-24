@@ -1,0 +1,6 @@
+<Entity name="plasteel_thin|2" >
+	<Base file="mods/Noita40K/files/based/casing.xml" >
+		<VelocityComponent mass="10" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/rounds/bolt_50mmc.png" />
+	</Base>
+</Entity>

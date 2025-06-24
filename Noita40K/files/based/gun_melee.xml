@@ -1,0 +1,3 @@
+<Entity tags="gun_melee" >
+	<Base file="mods/Noita40K/files/based/gun.xml" />
+</Entity>

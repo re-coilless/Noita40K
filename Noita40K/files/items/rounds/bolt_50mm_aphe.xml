@@ -1,0 +1,69 @@
+<Entity name="round_bolt_50mm" >
+	<Base file="mods/Noita40K/files/based/round_bolt.xml" >
+		<VelocityComponent
+			air_friction="-4"
+			mass="2"
+		></VelocityComponent>
+		
+		<ProjectileComponent
+			damage="5"
+			lifetime="400"
+			speed_min="2500"
+			speed_max="3000"
+			knockback_force="5"
+			ground_penetration_coeff="1.8"
+			velocity_sets_scale_coeff="0.8"
+			hit_particle_force_multiplier="1"
+			ragdoll_force_multiplier="0.12"
+			ragdoll_fx_on_collision="BLOOD_EXPLOSION"
+			shoot_light_flash_radius="256"
+			camera_shake_when_shot="6"
+			on_death_explode="1"
+			on_lifetime_out_explode="1"
+			><config_explosion
+				damage="2"
+				ray_energy="600000"
+				max_durability_to_destroy="15"
+				camera_shake="8"
+				physics_explosion_power.min="3"
+				physics_explosion_power.max="5"
+				explosion_radius="16"
+				material_sparks_enabled="1"
+				material_sparks_count_min="2"
+				material_sparks_count_max="6"
+				hole_destroy_liquid="1"
+				stains_radius="18"
+			></config_explosion>
+		</ProjectileComponent>
+
+		<SpriteComponent
+			image_file="mods/Noita40K/files/items/rounds/bolt_50mm_aphe.png"
+		></SpriteComponent>
+		
+		<LightComponent
+			radius="128"
+			r="239" g="58" b="12"
+		></LightComponent>
+		
+		<VariableStorageComponent
+			value_string="mods/Noita40K/files/effects/explosion_bolt_50mm.xml"
+		></VariableStorageComponent>
+	</Base>
+	
+	<ParticleEmitterComponent
+		emitted_material_name="fire"
+		emit_real_particles="1"
+		direction_random_deg="5"
+		x_vel_min="-30"
+		x_vel_max="-40"
+		y_vel_min="0"
+		y_vel_max="0"
+		lifetime_min="3"
+		lifetime_max="6"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		delay_frames="3"
+		fade_based_on_lifetime="1"
+		color="FF0000"
+	></ParticleEmitterComponent>
+</Entity>

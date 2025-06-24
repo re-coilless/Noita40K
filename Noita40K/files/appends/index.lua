@@ -1,4 +1,15 @@
-table.insert( GLOBAL_MUTATORS, function() index.D.can_tinker = true end)
+table.insert( GLOBAL_MUTATORS, function()
+    dofile_once( "mods/Noita40K/files/_lib.lua" )
+
+    local xD = index.D
+    xD.can_tinker = true
+	
+	local initer = "N40K_READY_TO_PURGE"
+	if( GameHasFlagRun( initer )) then return end
+	GameAddFlagRun( initer )
+
+	local active = n40.setup_character( xD.player_id )
+end)
 
 GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
     local xD = index.D
@@ -38,8 +49,6 @@ GUI_STRUCT.icons.perks = function( screen_w, screen_h, xys ) return { unpack( xy
 GUI_STRUCT.icons.ingestions = index.new_generic_ingestions
 GUI_STRUCT.icons.stains = index.new_generic_stains
 GUI_STRUCT.icons.effects = index.new_generic_effects
-
--- ammo swap check
 
 GUI_STRUCT.gmodder = nil
 GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
@@ -116,18 +125,23 @@ local wand_cat = pen.t.get( ITEM_CATS, "WAND", nil, nil, {})
 local spell_cat = pen.t.get( ITEM_CATS, "SPELL", nil, nil, {})
 local item_cat = pen.t.get( ITEM_CATS, "ITEM", nil, nil, {})
 
+-- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
+-- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
+-- chainsword projectiles lifetime is 2x of what it should be
+-- rmb action should be obtained from controls comp Fire2
+
 table.insert( ITEM_CATS, 1, {
     id = "GUN40K",
     name = "Gun",
     is_wand = true, is_quickest = true,
     
     on_check = function( item_id ) return EntityHasTag( item_id, "gun40k" ) end,
-    on_info_name = wand_cat.on_info_name,
     on_data = wand_cat.on_data,
     on_processed_forced = wand_cat.on_processed_forced,
 
     on_tooltip = wand_cat.on_tooltip,
     on_inventory = function( info, pic_x, pic_y, state_tbl, slot_dims )
+        -- ammo swap check
         -- reloading (add phantom slot, one per unique mag type, that does fake swap; discarded mag continues flying with gravity past the slot it wanted to swap with)
 
         local xD = index.D
@@ -165,6 +179,10 @@ table.insert( ITEM_CATS, 2, {
 table.insert( ITEM_CATS, 3, {
     id = "EQUIPMENT40K",
     name = "Equipment",
+
+    -- jumppack is an "item" (do a separate inventory space for equipment)
+    -- SpriteStainsComponent sprite_id for multisprite stains
+    -- all equipment should be hotspot attached as it must be universal
 
     on_check = function( item_id ) return EntityHasTag( item_id, "equipment40k" ) end,
     on_data = item_cat.on_data,

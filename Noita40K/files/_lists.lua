@@ -1,28 +1,28 @@
 n40 = n40 or {}
 
-n40.GUNS = --obtain stats and such dynamically from xml parsing, write names/descs to guns from here
+n40.GUNS = --obtain codex stats from xml parsing
 {
 	-- SLOT 1 (good all-arounder)
 	BOLTER_GENERIC = {
 		name = "$n40_GUN_bolter_generic", desc = "$n40_GUN_bolter_generic_",
-		path = "mods/Noita40K/files/items/weapons/bolter.xml",
+		path = "mods/Noita40K/files/items/weapons/bolter_generic.xml",
 		-- func = nil,
 	},
 	BOLTER_COMBIMELTA = {
 		name = "$n40_GUN_bolter_combimelta", desc = "$n40_GUN_bolter_combimelta_",
-		path = "mods/Noita40K/files/items/weapons/bolter_betrayers_bane.xml",
+		path = "mods/Noita40K/files/items/weapons/bolter_combimelta.xml",
 	},
 	BOLTER_INCENDIARY = {
 		name = "$n40_GUN_bolter_incendiary", desc = "$n40_GUN_bolter_incendiary_",
-		path = "mods/Noita40K/files/items/weapons/bolter_drakes_roar.xml",
+		path = "mods/Noita40K/files/items/weapons/bolter_incendiary.xml",
 	},
 	BOLTER_RAPID = {
 		name = "$n40_GUN_bolter_rapid", desc = "$n40_GUN_bolter_rapid_",
-		path = "mods/Noita40K/files/items/weapons/bolter_octavios_burden.xml",
+		path = "mods/Noita40K/files/items/weapons/bolter_rapid.xml",
 	},
 	BOLTER_ARCHEO = {
 		name = "$n40_GUN_bolter_archeo", desc = "$n40_GUN_bolter_archeo_",
-		path = "mods/Noita40K/files/items/weapons/bolter_ravenwing.xml",
+		path = "mods/Noita40K/files/items/weapons/bolter_archeo.xml",
 	},
 	BOLTER_STALKER = {
 		name = "$n40_GUN_bolter_stalker", desc = "$n40_GUN_bolter_stalker_",
@@ -33,7 +33,7 @@ n40.GUNS = --obtain stats and such dynamically from xml parsing, write names/des
 		path = "mods/Noita40K/files/items/weapons/volkite_pistol.xml",
 	},
 
-	-- SLOT 2 (niche and skill-based)
+	-- SLOT 2 (niche-use and skill-based)
 	BOLTER_RIFLE = {
 		name = "$n40_GUN_bolter_rifle", desc = "$n40_GUN_bolter_rifle_",
 		path = "mods/Noita40K/files/items/weapons/bolter_rifle.xml",
@@ -418,7 +418,7 @@ n40.CLASSES[1].sections = {
 	{
 		name = "$n40_CLASS_1_2", desc = "$n40_CLASS_1_2_",
 
-		guns = { "BOLTER", "BOLTER_RIFLE", "SWORD_CHAIN", "MELTA_CUTTER" },
+		guns = { "BOLTER_GENERIC", "BOLTER_RIFLE", "SWORD_CHAIN", "MELTA_CUTTER" },
 		items = { "GRENADE_HE", "GRENADE_HE" },
 		equipment = { "JUMPPACK" },
 		perks = {

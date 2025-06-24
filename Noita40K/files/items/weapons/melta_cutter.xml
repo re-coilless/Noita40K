@@ -1,36 +1,12 @@
-<Entity name="Melta_Cutter" tags="custom_wand,energy_gun,melta_cutter">
-	<AbilityComponent
-		sprite_file="mods/Noita40K/files/pics/guns_gfx/cutter.xml"
-        ui_name="Melta-Cutter"
-		add_these_child_actions="PYRUM_PETROL_CANISTER_SMALL"
-		drop_as_item_on_death="1"
-		entity_count="1"
-		entity_file=""
-		mana_charge_speed="100"
-		mana_max="500"
-        max_amount_in_inventory="1"
-        shooting_reduces_amount_in_inventory="0"
-		fast_projectile="0"
-		swim_propel_amount="0"
-		throw_as_item="0"
-		amount_in_inventory="1"
-        cooldown_frames="0"
-		use_gun_script="1"
-		item_recoil_offset_coeff="0"
-		item_recoil_rotation_coeff="0"
-		never_reload="0"
-		><gun_config
-            shuffle_deck_when_empty="0"
-            deck_capacity="1"
-			actions_per_round="1"
-			reload_time="0"
-        ></gun_config>
-        <gunaction_config
-			speed_multiplier="1"
-			spread_degrees="0"
-            fire_rate_wait="0"
-        ></gunaction_config>
-    </AbilityComponent>	
+<Entity name="melta_cutter" >
+	<Base file="mods/Noita40K/files/based/gun_energy.xml" >
+		<AbilityComponent
+			sprite_file="mods/Noita40K/files/items/weapons/melta_cutter.png"
+			add_these_child_actions="CANISTER_S_PYRUM"
+		></AbilityComponent>
+		<SpriteComponent offset_x="9" offset_y="2" />
+		<VelocityComponent mass="2.5" />
+    </Base>
 	
 	<HotspotComponent
         _tags="shoot_pos"
@@ -38,26 +14,22 @@
         offset.y="3.5"
 	></HotspotComponent>
 	
-	<LuaComponent
-		_enabled="0"
-		_tags="enabled_in_hand"
-		script_enabled_changed="mods/Noita40K/files/scripts/trash_killer.lua"
-		execute_every_n_frame="-1"
-	></LuaComponent>
-	
-	<LuaComponent
-		_tags="enabled_in_hand"
-		script_source_file="mods/Noita40K/files/scripts/gun_controllers/cutter_controller.lua"
-		execute_every_n_frame="1"
-		vm_type="ONE_PER_COMPONENT_INSTANCE"
-	></LuaComponent>
-	
-	<LuaComponent
-		_enabled="0"
-		_tags="enabled_in_hand"
-		script_enabled_changed="mods/Noita40K/files/scripts/deprimer.lua"
-		execute_every_n_frame="-1"
-	></LuaComponent>
+	<VariableStorageComponent
+		name="ammo_type"
+		value_string="canister_S"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="vector_handling"
+		value_float="-0.25"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="3000"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.99"
+	></VariableStorageComponent>
 	
 	<AudioLoopComponent
 		_tags="enabled_in_hand,melta_is_going"
@@ -65,49 +37,4 @@
 		event_name="projectiles/cutter/beam_loop"
 		volume_autofade_speed="0.25"
 	></AudioLoopComponent>
-	
-	<AudioLoopComponent
-		_tags="enabled_in_hand,melting_flesh"
-		file="mods/Noita40K/files/40K.bank"
-		event_name="guns/melting_flesh"
-		volume_autofade_speed="0.25"
-	></AudioLoopComponent>
-	
-	<Base file="data/entities/base_item.xml" >
-        <ItemComponent
-            item_name="default_gun"
-            remove_on_death="1"
-            collect_nondefault_actions="1" 
-			preferred_inventory="QUICK" 
-			is_frozen="0"
-        ></ItemComponent>
-    </Base>
-	
-	<VariableStorageComponent
-		_tags="melta_state"
-		name="state"
-		value_bool="0"
-	></VariableStorageComponent>
-	
-	<VariableStorageComponent
-		_tags="overheated"
-		name="overheated"
-		value_bool="0"
-	></VariableStorageComponent>
-	
-	<VariableStorageComponent
-		_tags="trash_tag"
-		name="trash_tag"
-		value_string="beam"
-	></VariableStorageComponent>
-	
-	<VariableStorageComponent
-		_tags="ammo_type"
-		name="ammo_type"
-		value_string="pyrum_small"
-	></VariableStorageComponent>
-	
-	<ManaReloaderComponent
-        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
-    ></ManaReloaderComponent>
 </Entity>

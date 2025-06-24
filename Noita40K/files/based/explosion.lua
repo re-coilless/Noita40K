@@ -5,7 +5,7 @@ local x, y, r, s_x, s_y = EntityGetTransform( exp_id )
 
 local cnt = ComponentGetValue2( GetUpdatedComponentID(), "mTimesExecuted" )
 local pics = EntityGetComponentIncludingDisabled( exp_id, "SpriteComponent" )
-local pic_wave, pic_fire, pic_hole, pic_fog = pics[1], pics[2], pics[3], pics[4]
+local pic_fire, pic_wave, pic_fog, pic_hole = pics[1], pics[2], pics[3], pics[4]
 
 explosion_data = explosion_data or {}
 if( explosion_data[ exp_id ] == nil ) then

@@ -1,16 +1,16 @@
-<Entity name="mag_bolt_998" >
+<Entity name="mag_bolt_50mm" >
 	<Base file="mods/Noita40K/files/based/mag.xml" > 
 		<SpriteComponent 
-			image_file="mods/Noita40K/files/items/mags/bolt_998_he_M.png" 
+			image_file="mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png" 
 		></SpriteComponent>
 	</Base>
 	
 	<VariableStorageComponent
 		name="ammo_max"
-		value_int="200"
+		value_int="300"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="round"
-		value_string="mods/Noita40K/files/gui/icons/ammo_bolt_998_he.png"
+		value_string="mods/Noita40K/files/gui/icons/ammo_bolt_50mm_aphe.png"
 	></VariableStorageComponent>
 </Entity>

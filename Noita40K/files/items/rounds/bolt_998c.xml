@@ -1,7 +1,5 @@
-<Entity name="brass" >
+<Entity name="plasteel_thin" >
 	<Base file="mods/Noita40K/files/based/casing.xml" >
-		<SpriteComponent
-			image_file="mods/Noita40K/files/items/rounds/bolt_998c.png"
-		></SpriteComponent>
+		<SpriteComponent image_file="mods/Noita40K/files/items/rounds/bolt_998c.png" />
 	</Base>
 </Entity>
