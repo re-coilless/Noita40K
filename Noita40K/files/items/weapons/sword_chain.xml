@@ -14,6 +14,20 @@
 	></HotspotComponent>
 	
 	<VariableStorageComponent
+		name="vector_no_handling"
+		value_bool="1"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
+		name="blade_length"
+		value_float="20"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="ctrl_script"
+		value_string="mods/Noita40K/files/items/weapons/sword_chain.lua"
+	></VariableStorageComponent>
+	
+	<VariableStorageComponent
 		name="heat_max"
 		value_float="10"
 	></VariableStorageComponent>

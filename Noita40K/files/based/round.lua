@@ -22,7 +22,7 @@ function wake_up_waiting_threads()
     if( not( pen.vld( vel_comp, true ))) then return end
 
 
-    --separate this to penman
+    
     local x, y = EntityGetTransform( proj_id )
     local v_x, v_y = ComponentGetValue2( vel_comp, "mVelocity" )
     local last_x, last_y = ComponentGetValue2( vel_comp, "mPrevPosition" )
@@ -51,31 +51,41 @@ function wake_up_waiting_threads()
                 ComponentSetValue2( vel_comp, "mVelocity", v_x, v_y )
                 EntitySetTransform( proj_id, point_x, point_y )
                 -- EntityApplyTransform( proj_id, point_x, point_y )
-                -- release sparks + play decaying sound loop from projectile
+
+                -- play decaying sound loop from projectile
+                pen.magic_particles( point_x, point_y, math.rad( 180 ) + n_angle, {
+                    fading = 7, lifetime = 2,
+                    additive = true, emissive = true, count = { 2, 3 },
+                    
+                    alpha = 0.9, alpha_end = 0.1,
+                    color = { 237, 141, 45 },
+                    
+                    v_range = { 0, -50, 200, 50 }, slowdown = { -20, 0, 1 },
+                })
             end
         end
     end
 
 
 
-    true_v_memo = true_v_memo or {}
+    proj_memo = proj_memo or {}
     local true_v = { x - last_x, y - last_y }
-    local last_true_v = true_v_memo[ proj_id ] or true_v
+    proj_memo[ proj_id ] = proj_memo[ proj_id ] or {}
+    local last_true_v = proj_memo[ proj_id ].true_v or true_v
     local acceleration = math.sqrt(( true_v[1] - last_true_v[1])^2 + ( true_v[2] - last_true_v[2])^2 )
-    true_v_memo[ proj_id ] = true_v
+    proj_memo[ proj_id ].true_v = true_v
 
     local lob_min = math.floor( 10*ComponentGetValue2( proj_comp, "lob_min" ))
     local lob_max = math.ceil( 10*ComponentGetValue2( proj_comp, "lob_max" ))
     if( acceleration > math.random( lob_min, lob_max )) then ComponentSetValue2( proj_comp, "lifetime", 0 ) end
 
-
+    
 
     local frame_num = GameGetFrameNum()
     local just_hit = ComponentGetValue2( proj_comp, "mLastFrameDamaged" ) == frame_num --stolen from Apotheosis
     if( just_hit ) then
-        local hit_list = ComponentGetValue2( proj_comp, "mDamagedEntities" )
-        --loop through the table, check IsAlive or just hp value on each of them
-        --if at least one is still alive, set lifetime to 0
-        --memorize all of the entities and ignore them on the next check
+        if( pen.t.loop( ComponentGetValue2( proj_comp, "mDamagedEntities" ), function( i, hit_id )
+            if( EntityGetIsAlive( hit_id )) then return true end
+        end)) then ComponentSetValue2( proj_comp, "lifetime", 0 ) end
     end
 end

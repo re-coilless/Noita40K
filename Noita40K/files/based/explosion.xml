@@ -102,4 +102,8 @@
 		name="alpha"
 		value_float="1"
 	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="sfx_root"
+		value_string="|mods/Noita40K/files/40K.bank|effects/explosions|"
+	></VariableStorageComponent>
 </Entity>

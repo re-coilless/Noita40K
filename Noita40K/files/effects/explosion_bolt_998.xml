@@ -1,3 +1,16 @@
 <Entity name="explosion" >
-	<Base file="mods/Noita40K/files/based/explosion.xml" />
+	<Base file="mods/Noita40K/files/based/explosion.xml" >
+		<VariableStorageComponent
+			name="size"
+			value_float="20"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="damage"
+			value_float="1"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="force"
+			value_float="0.5"
+		></VariableStorageComponent>
+	</Base>
 </Entity>

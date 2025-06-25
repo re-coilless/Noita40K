@@ -62,6 +62,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     
     xD.xys.wands = { 40, 20 }
     -- show a weapon+item wheel at the pointer, force 20 fps when holding down weapon select button
+    -- add small non-clickable indicators of equipped weapons and items at the bottom left of the screen
 
     local w, h, step = 0, 0, 1
     if( xD.is_opened ) then
@@ -125,11 +126,6 @@ local wand_cat = pen.t.get( ITEM_CATS, "WAND", nil, nil, {})
 local spell_cat = pen.t.get( ITEM_CATS, "SPELL", nil, nil, {})
 local item_cat = pen.t.get( ITEM_CATS, "ITEM", nil, nil, {})
 
--- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
--- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
--- chainsword projectiles lifetime is 2x of what it should be
--- rmb action should be obtained from controls comp Fire2
-
 table.insert( ITEM_CATS, 1, {
     id = "GUN40K",
     name = "Gun",
@@ -143,6 +139,7 @@ table.insert( ITEM_CATS, 1, {
     on_inventory = function( info, pic_x, pic_y, state_tbl, slot_dims )
         -- ammo swap check
         -- reloading (add phantom slot, one per unique mag type, that does fake swap; discarded mag continues flying with gravity past the slot it wanted to swap with)
+        -- first mag slots, then attachment slots (every attachment slot schematically points to the part of the gun it will occupy; allow overriding on-hover slot numbers with custom text)
 
         local xD = index.D
         if( not( xD.is_opened )) then return end
@@ -180,9 +177,9 @@ table.insert( ITEM_CATS, 3, {
     id = "EQUIPMENT40K",
     name = "Equipment",
 
-    -- jumppack is an "item" (do a separate inventory space for equipment)
     -- SpriteStainsComponent sprite_id for multisprite stains
     -- all equipment should be hotspot attached as it must be universal
+    -- jumppack should apply rotation to character on acceleraion
 
     on_check = function( item_id ) return EntityHasTag( item_id, "equipment40k" ) end,
     on_data = item_cat.on_data,
@@ -192,4 +189,63 @@ table.insert( ITEM_CATS, 3, {
 
     on_gui_world = item_cat.on_gui_world,
     on_pickup = item_cat.on_pickup,
+})
+
+table.insert( ITEM_CATS, 4, {
+    id = "ATTACHMENT40K",
+    name = "Attachment",
+
+    on_check = function( item_id ) return EntityHasTag( item_id, "attachment40k" ) end,
+    on_data = spell_cat.on_data,
+    on_processed = spell_cat.on_processed,
+
+    on_tooltip = spell_cat.on_tooltip,
+    on_slot_check = spell_cat.on_slot_check,
+    on_swap = spell_cat.on_swap,
+    on_slot = spell_cat.on_slot,
+
+    on_gui_world = spell_cat.on_gui_world,
+})
+
+local gun_cat = pen.t.get( ITEM_CATS, "GUN40K", nil, nil, {})
+
+table.insert( ITEM_CATS, 1, {
+    id = "GUN40K_ENERGY",
+    name = "Energy Weapon",
+    is_wand = true, is_quickest = true,
+    
+    on_check = function( item_id ) return EntityHasTag( item_id, "gun40k_energy" ) end,
+    on_data = gun_cat.on_data,
+    on_processed_forced = gun_cat.on_processed_forced,
+
+    on_tooltip = gun_cat.on_tooltip,
+    on_inventory = gun_cat.on_inventory,
+    on_slot = gun_cat.on_slot, -- in-slot heat and charge percentage indicators but no literal bullet counters except for the ones on-screen
+    
+    on_gui_world = gun_cat.on_gui_world,
+    on_gui_pause = gun_cat.on_gui_pause,
+    on_pickup = gun_cat.on_pickup,
+})
+
+table.insert( ITEM_CATS, 1, {
+    id = "GUN40K_MELEE",
+    name = "Melee Weapon",
+    is_wand = true, is_quickest = true,
+    
+    on_check = function( item_id ) return EntityHasTag( item_id, "gun40k_melee" ) end,
+    on_data = gun_cat.on_data,
+    on_processed_forced = gun_cat.on_processed_forced,
+
+    ctrl_script = function( info )
+        --check button down
+        --do bladeshot (default to simulated if no default hit profile varstorage is defined)
+    end,
+
+    on_tooltip = gun_cat.on_tooltip,
+    on_inventory = gun_cat.on_inventory,
+    on_slot = gun_cat.on_slot, -- in-slot color-based mag percentage indicators but no literal bullet counters except for the ones on-screen
+
+    on_gui_world = gun_cat.on_gui_world,
+    on_gui_pause = gun_cat.on_gui_pause,
+    on_pickup = gun_cat.on_pickup,
 })

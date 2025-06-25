@@ -11,6 +11,7 @@
 			speed_min="2500"
 			speed_max="3000"
 			knockback_force="5"
+			penetrate_entities="1"
 			ground_penetration_coeff="1.8"
 			velocity_sets_scale_coeff="0.8"
 			hit_particle_force_multiplier="1"

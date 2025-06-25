@@ -1,13 +1,13 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 n40.MFLASH = {
-	bolter = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+	["bolt_998"] = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
 		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
 		pen.magic_particles( muzzle_x, muzzle_y, r, {
 			delay = 2, fading = 6, lifetime = 4,
-			additive= true, emissive = true, count = { 2, 3 },
+			additive = true, emissive = true, count = { 2, 3 },
 			
-			alpha = 0.9, color = { 230, 88, 0},
+			alpha = 0.9, color = { 230, 88, 0 },
 			alpha_end = 0.1, color_end = { 59, 42, 32 },
 			
 			global_velocity = { v_x/2, v_y/2 },
@@ -15,7 +15,7 @@ n40.MFLASH = {
 		})
 		pen.magic_particles( muzzle_x, muzzle_y, r, {
 			fading = 5, lifetime = 2,
-			additive= true, emissive = true, count = { 2, 3 },
+			additive = true, emissive = true, count = { 2, 3 },
 
 			alpha = 0.9, color = { 230, 88, 0 },
 			alpha_end = 0.2, color_end = { 59, 42, 32 },
@@ -25,11 +25,11 @@ n40.MFLASH = {
 		})
 	end,
 
-	carbine = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+	["bolt_50mm"] = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
 		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
 		pen.magic_particles( muzzle_x, muzzle_y, r, {
 			fading = 7, lifetime = 4,
-			additive= true, emissive = true, count = { 5, 7 },
+			additive = true, emissive = true, count = { 5, 7 },
 
 			alpha = 0.9, color = { 230, 88, 0 },
 			alpha_end = 0.2, color_end = { 59, 42, 32 },
@@ -56,7 +56,7 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
 	
 	action = function()
-		pen.gunshot( n40.MFLASH.bolter )
+		pen.gunshot( n40.MFLASH.bolt_998 )
 		c.spread_degrees = c.spread_degrees + 10.0
 	end,
 })
@@ -77,7 +77,7 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_50mm" },
 	
 	action = function()
-		pen.gunshot( n40.MFLASH.carbine )
+		pen.gunshot( n40.MFLASH.bolt_50mm )
 		c.spread_degrees = c.spread_degrees + 30.0
 		c.damage_critical_chance = c.damage_critical_chance + 20
 	end,
@@ -95,9 +95,7 @@ table.insert( actions,
 	spawn_requires_flag = "never_spawn_this_action",
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
 
-	action = function()
-		--pen.beamshot
-	end,
+	action = function() --[[pen.beamshot()]] end,
 })
 
 --[[

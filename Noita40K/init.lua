@@ -8,6 +8,8 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
+-- kicking sound should be produced by different event
 -- shooting at the flat walls to the left of the char results in ricochet
 -- do quick class bootup intro animation on world pre update (should block inputs)
 -- custom status effect system though HitEffectComp (thanks Extol)

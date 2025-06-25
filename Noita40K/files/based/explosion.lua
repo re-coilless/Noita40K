@@ -32,7 +32,11 @@ if( explosion_data[ exp_id ] == nil ) then
         table.insert( data.shrapnel_tbl, id )
     end
 
-    --standartized multisound size-based sfxes
+    local event = ( data.force > data.damage ) and "/force_" or "/pressure_"
+    local event_size = data.size < 25 and "S" or ( data.size < 50 and "M" or "L" )
+    local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
+    pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
+
     explosion_data[ exp_id ] = data
 end
 
@@ -61,5 +65,6 @@ for i,v in ipairs({ pic_wave, pic_fog, pic_fire }) do EntityRefreshSprite( exp_i
 
 --enemies hit with shockwaves should have contusion effect (rapidly decaying drunkness and inversed movement) applied if they don't have void-sealed status
 --push objects as shockwave passes
+--wavefront damage should be scaled based on size, var storage is just a multiplier
 
 if( cnt > data.time ) then EntityKill( exp_id ) end

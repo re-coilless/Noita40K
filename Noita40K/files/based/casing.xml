@@ -1,4 +1,4 @@
-<Entity serialize="0" name="brass" >
+<Entity serialize="0" name="plasteel_thin" >
 	<VelocityComponent
 		gravity_y="1000"
 		air_friction="3"

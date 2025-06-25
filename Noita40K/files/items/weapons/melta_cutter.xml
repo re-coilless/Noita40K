@@ -30,11 +30,4 @@
 		name="heat_loss"
 		value_float="0.99"
 	></VariableStorageComponent>
-	
-	<AudioLoopComponent
-		_tags="enabled_in_hand,melta_is_going"
-		file="mods/Noita40K/files/40K.bank"
-		event_name="projectiles/cutter/beam_loop"
-		volume_autofade_speed="0.25"
-	></AudioLoopComponent>
 </Entity>
