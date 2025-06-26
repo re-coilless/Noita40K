@@ -1,0 +1,29 @@
+<Entity>
+	<Base file="mods/Noita40K/files/based/beam_effect.xml" />
+	
+	<CellEaterComponent
+		radius="3"
+		eat_probability="60"
+		ignored_material_tag="[indestructible]"
+	></CellEaterComponent>
+	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		steps_per_frame="10"
+		is_circle="1"
+		radius="5"
+		loop="1"
+		temperature_reaction_temp="10000"
+		ignite_materials="1"
+    ></MagicConvertMaterialComponent>
+	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_material_tag="[liquid]"
+		steps_per_frame="200"
+		to_material="smoke"
+		is_circle="1"
+		radius="5"
+		loop="1"
+    ></MagicConvertMaterialComponent>
+</Entity>

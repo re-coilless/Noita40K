@@ -1,0 +1,3 @@
+<Entity serialize="0" name="beam_effect" >
+	<LifetimeComponent lifetime="2" />
+</Entity>

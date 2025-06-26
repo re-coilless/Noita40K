@@ -13,7 +13,16 @@
         offset.x="14"
         offset.y="3.5"
 	></HotspotComponent>
-	
+
+	<VariableStorageComponent
+		name="beam"
+		value_string="mods/Noita40K/files/items/rounds/beam_melta_cutter.xml"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="beam_length"
+		value_float="10"
+	></VariableStorageComponent>
+
 	<VariableStorageComponent
 		name="ammo_type"
 		value_string="canister_S"
@@ -28,6 +37,6 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.99"
+		value_float="0.999"
 	></VariableStorageComponent>
 </Entity>

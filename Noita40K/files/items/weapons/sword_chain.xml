@@ -33,7 +33,7 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.99"
+		value_float="0.995"
 	></VariableStorageComponent>
 	
 	<AudioLoopComponent

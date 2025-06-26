@@ -1,0 +1,9 @@
+<Entity serialize="0" name="beam" >
+	<LifetimeComponent lifetime="2" />
+	
+	<AudioComponent
+		file="mods/Noita40K/files/40K.bank"
+		event_root="items/beams/pyrum" 
+		set_latest_event_position="1"
+	></AudioComponent>
+</Entity>

@@ -1,4 +1,4 @@
---cool by liquids + add light source
+--cool by liquids + add light source (do this through heating comp and check the number of pixels converted)
 --smoke from barrel (through sprite emitter)
 --remove comp if heat pic does not exist
 --make guns with a parent but not equipped cool two times slower
