@@ -8,8 +8,9 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
--- muzzle flash should bd per-gun instead of per-spell (allow spells to modify them though)
+-- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
 -- kicking sound should be produced by different event
 -- shooting at the flat walls to the left of the char results in ricochet
