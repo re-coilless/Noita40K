@@ -64,6 +64,7 @@ ComponentSetValue2( pic_hole, "visible", cnt < 3 )
 for i,v in ipairs({ pic_wave, pic_fog, pic_fire }) do EntityRefreshSprite( exp_id, v ) end
 
 --enemies hit with shockwaves should have contusion effect (rapidly decaying drunkness and inversed movement) applied if they don't have void-sealed status
+--check showave hit by gettign distance to each of the four hitbox center points (deal damage every frame but spread the total number listed between them)
 --push objects as shockwave passes
 --wavefront damage should be scaled based on size, var storage is just a multiplier
 

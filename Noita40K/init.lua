@@ -24,6 +24,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- custom mnee frontend on the main menu
 -- remove vanilla map
 
+-- two handed weapons
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
 -- battle sister is vanilla now
 -- madness combat style hands

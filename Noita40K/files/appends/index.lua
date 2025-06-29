@@ -50,7 +50,7 @@ GUI_STRUCT.icons.ingestions = index.new_generic_ingestions
 GUI_STRUCT.icons.stains = index.new_generic_stains
 GUI_STRUCT.icons.effects = index.new_generic_effects
 
-GUI_STRUCT.gmodder = nil
+GUI_STRUCT.gmodder = nil --this is needed still
 GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     local xD, xM = index.D, index.M
     local root_x, root_y = unpack( xys.full_inv or { 0, 0 })
@@ -221,7 +221,7 @@ table.insert( ITEM_CATS, 1, {
     on_tooltip = gun_cat.on_tooltip,
     on_inventory = gun_cat.on_inventory,
     on_slot = gun_cat.on_slot, -- in-slot heat and charge percentage indicators but no literal bullet counters except for the ones on-screen
-    
+
     on_gui_world = gun_cat.on_gui_world,
     on_gui_pause = gun_cat.on_gui_pause,
     on_pickup = gun_cat.on_pickup,
