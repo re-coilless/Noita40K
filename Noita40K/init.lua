@@ -8,6 +8,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- equipment is handled by inv.update event, not by items themselves
 -- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
 -- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
@@ -22,11 +23,9 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- MaterialSuckerComponent randomized_position for osculant device
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- custom mnee frontend on the main menu
--- remove vanilla map
 
 -- two handed weapons
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
--- battle sister is vanilla now
 -- madness combat style hands
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- codex should have lore word hyperlinks that show tips on hower
@@ -35,7 +34,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- combat wolf with custom ai for Space Wolf
 -- option to align ammo at the center of the screen
 -- smoothen blood rage edge effect transition
--- custom taunts for the marines
 -- exterminatus should squirt some juice directly at nearby sentient entities
 -- stable main menu height
 -- Eternal vigilance ability to hack robots allegiance to yours through a minigame + raven's test for admech hacking minigame (with layers)
@@ -46,7 +44,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- check bloodtype for threat level
 -- two-stage beacon event
 -- salamnder gets flamer as rifle replacement
--- extension documentation
 -- sister of silence sword can be holstered on the back for instaswing on lmb (has to be reholstered manually each time by holding the button in inventory, gives slight speed boost, spine armor and shows on back when done so)
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
 -- ConvertMaterialOnAreaInstantly
@@ -57,7 +54,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
--- Use rack2 for advanced audio design
 -- burning with promethium fire or being ot low hp should apply "void compomized" debuff that restores all status effect weaknesses that armor negates (can be fixed either in the "holy mountain" or with a "reseal kit")
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
 -- ogryn mode than makes all lore caveman like

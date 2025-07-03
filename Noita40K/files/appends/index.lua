@@ -28,8 +28,8 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
             pic_x, pic_y, pen.LAYERS.MAIN_BACK, xD.player_id, { dmg_data = data, length = 50, is_left = true })
         pain_flash = bar_data.red_shift
 
-        local max_hp_text, hp_text = pen.get_short_num( bar_data.max_hp ), pen.get_short_num( bar_data.hp )
-        local tip = index.hud_text_fix( "$hud_health" )..( xD.short_hp and hp_text.."/"..max_hp_text or bar_data.hp.."/"..bar_data.max_hp )
+        local hp_max_text, hp_text = pen.get_short_num( bar_data.hp_max ), pen.get_short_num( bar_data.hp )
+        local tip = index.hud_text_fix( "$hud_health" )..( xD.short_hp and hp_text.."/"..hp_max_text or bar_data.hp.."/"..bar_data.hp_max )
         index.tipping( pic_x - 1, pic_y - 1, nil, bar_data.length + 4, 8, tip, { pos = { pic_x - 1, pic_y + 10 }, is_left = true })
         pic_y = pic_y + 10
     end)

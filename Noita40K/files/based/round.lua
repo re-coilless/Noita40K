@@ -86,6 +86,9 @@ function wake_up_waiting_threads()
     if( just_hit ) then
         if( pen.t.loop( ComponentGetValue2( proj_comp, "mDamagedEntities" ), function( i, hit_id )
             if( EntityGetIsAlive( hit_id )) then return true end
-        end)) then ComponentSetValue2( proj_comp, "lifetime", 0 ) end
+        end)) then
+            ComponentSetValue2( proj_comp, "lifetime", 0 )
+            ComponentSetValue2( vel_comp, "mVelocity", 0, 0 )
+        end
     end
 end

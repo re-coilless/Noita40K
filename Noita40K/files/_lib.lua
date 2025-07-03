@@ -27,7 +27,7 @@ function n40.new_item( item, hooman, data, set_active )
 	
 	local x, y = EntityGetTransform( hooman )
 	local gun_id = EntityLoad( item.path, x, y )
-	index.pick_up_item( hooman, index.get_item_data( gun_id ), false, true )
+	index.pick_up_item( hooman, index.get_item_info( gun_id ), false, true )
 
 	local item_comp = EntityGetFirstComponentIncludingDisabled( gun_id, "ItemComponent" )
 	if( pen.vld( item_comp, true )) then
