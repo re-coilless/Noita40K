@@ -30,7 +30,7 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
 
         local hp_max_text, hp_text = pen.get_short_num( bar_data.hp_max ), pen.get_short_num( bar_data.hp )
         local tip = index.hud_text_fix( "$hud_health" )..( xD.short_hp and hp_text.."/"..hp_max_text or bar_data.hp.."/"..bar_data.hp_max )
-        index.tipping( pic_x - 1, pic_y - 1, nil, bar_data.length + 4, 8, tip, { pos = { pic_x - 1, pic_y + 10 }, is_left = true })
+        index.tipping( pic_x - 1, pic_y - 1, nil, { bar_data.length + 4, 8 }, tip, { pos = { pic_x - 1, pic_y + 10 }, is_left = true })
         pic_y = pic_y + 10
     end)
     GameSetPostFxParameter( "low_health_indicator_alpha_proper", xD.hp_flashing_intensity*pain_flash, 0, 0, 0 )
@@ -50,7 +50,57 @@ GUI_STRUCT.icons.ingestions = index.new_generic_ingestions
 GUI_STRUCT.icons.stains = index.new_generic_stains
 GUI_STRUCT.icons.effects = index.new_generic_effects
 
-GUI_STRUCT.gmodder = nil --this is needed still
+GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
+    local xD = index.D
+    local data = xD.gmod
+    if( not( xD.is_opened )) then return end
+    if( not( pen.vld( data ))) then return end
+    if( data.is_hidden ) then return end
+    
+    local w, h = pen.get_text_dims( data.name, true )
+    local pic_x, pic_y = ( screen_w + w )/2, 13
+    
+    local new_mode = xD.global_mode
+    local arrow_left_c, arrow_right_c = nil, nil
+    local gonna_reset, gonna_highlight, arrow_left_a, arrow_right_a = false, false, 0.3, 0.3
+    local clicked, r_clicked, is_hovered = pen.new_interface( pic_x - ( 11 + w ), pic_y - 11, 15, 10, pen.LAYERS.TIPS )
+    if( is_hovered ) then arrow_left_c, arrow_left_a = pen.PALETTE.VNL.YELLOW, 1 end
+    gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
+    if( clicked or index.get_input( "invmode_previous" )) then new_mode, arrow_left_a = new_mode - 1, 1 end
+    
+    clicked, r_clicked, is_hovered = pen.new_interface( pic_x - 10, pic_y - 11, 15, 10, pen.LAYERS.TIPS )
+    if( is_hovered ) then arrow_right_c, arrow_right_a = pen.PALETTE.VNL.YELLOW, 1 end
+    gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
+    if( clicked or index.get_input( "invmode_next" )) then new_mode, arrow_right_a = new_mode + 1, 1 end
+    
+    is_hovered, clicked, r_clicked = index.tipping( pic_x - ( 6 + w ), pic_y - 11, pen.LAYERS.TIPS, { w + 6, 10 },
+        { data.name, data.desc }, { tid = "slot", fully_featured = true, pos = { pic_x, pic_y }, is_left = true, do_corrections = true })
+    gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
+
+    if( gonna_reset ) then for i,gmod in ipairs( xD.gmods ) do if( gmod.is_default ) then new_mode = i; break end end end
+
+    pen.new_text( pic_x - ( 3 + w ), pic_y - ( 2 + h ),
+        pen.LAYERS.MAIN, data.name, { color = data.color, alpha = gonna_highlight and 1 or 0.3 })
+    xD.box_func( pic_x - ( 4 + w ), pic_y - 9, pen.LAYERS.MAIN_BACK, { w + 2, 6 })
+    
+    pen.new_image( pic_x - ( 12 + w ), pic_y - 10, pen.LAYERS.MAIN_BACK,
+        "data/ui_gfx/keyboard_cursor_right.png", { color = arrow_left_c, alpha = arrow_left_a })
+    pen.new_image( pic_x - 2, pic_y - 10, pen.LAYERS.MAIN_BACK,
+        "data/ui_gfx/keyboard_cursor.png", { color = arrow_right_c, alpha = arrow_right_a })
+
+    if( xD.global_mode == new_mode ) then return end
+
+    local go_ahead = true
+    while( go_ahead ) do
+        if( new_mode > #xD.gmods ) then new_mode = 1 elseif( new_mode < 1 ) then new_mode = #xD.gmods end
+        go_ahead = xD.gmods[ new_mode ].is_hidden or false
+        if( go_ahead ) then new_mode = new_mode + ( arrow_left_a == 1 and -1 or 1 ) end
+    end
+
+    index.play_sound( gonna_reset and "reset" or "click" )
+    GlobalsSetValue( index.GLOBAL_GLOBAL_MODE, tostring( new_mode ))
+end
+
 GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     local xD, xM = index.D, index.M
     local root_x, root_y = unpack( xys.full_inv or { 0, 0 })
@@ -66,10 +116,12 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
 
     local w, h, step = 0, 0, 1
     if( xD.is_opened ) then
-        local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
-        local alpha = 0.5*math.cos( math.pi*delta/30 )
-        pen.new_image( -2, -2, pen.LAYERS.BACKGROUND + 1.1,
-            "data/ui_gfx/empty_black.png", { s_x = screen_w + 4, s_y = screen_h + 4, alpha = alpha })
+        if( not( xD.gmod.can_see )) then
+            local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
+            local alpha = 0.5*math.cos( math.pi*delta/30 )
+            pen.new_image( -2, -2, pen.LAYERS.BACKGROUND + 1.1,
+                "data/ui_gfx/empty_black.png", { s_x = screen_w + 4, s_y = screen_h + 4, alpha = alpha })
+        end
 
         local full_depth = #xD.slot_state[ xD.invs_p.f ][1]
         xys.inv_root, xys.full_inv = { root_x - 3, root_y - 3 }, { root_x + 2, root_y + 26 }

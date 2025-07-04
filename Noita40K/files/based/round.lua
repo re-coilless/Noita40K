@@ -84,11 +84,24 @@ function wake_up_waiting_threads()
     local frame_num = GameGetFrameNum()
     local just_hit = ComponentGetValue2( proj_comp, "mLastFrameDamaged" ) == frame_num --stolen from Apotheosis
     if( just_hit ) then
+        v = math.sqrt( v_x^2 + v_y^2 )
+        local friction = ComponentGetValue2( vel_comp, "air_friction" )
+        local angle, perc = math.atan2( v_y, v_x ), math.max( 1/math.max( math.abs( friction ), 1.25 ), 0.6 )
+        
+        proj_memo[ proj_id ].hit_tbl = proj_memo[ proj_id ].hit_tbl or {}
         if( pen.t.loop( ComponentGetValue2( proj_comp, "mDamagedEntities" ), function( i, hit_id )
+            if( proj_memo[ proj_id ].hit_tbl[ hit_id ] ~= nil ) then return end
             if( EntityGetIsAlive( hit_id )) then return true end
+            proj_memo[ proj_id ].hit_tbl[ hit_id ] = 1
+
+            v = perc*v
+            angle = angle + math.rad( pen.generic_random( 1, 5, nil, true ))
         end)) then
             ComponentSetValue2( proj_comp, "lifetime", 0 )
             ComponentSetValue2( vel_comp, "mVelocity", 0, 0 )
+        else
+            v_x, v_y = v*math.cos( angle ), v*math.sin( angle )
+            ComponentSetValue2( vel_comp, "mVelocity", v_x, v_y )
         end
     end
 end

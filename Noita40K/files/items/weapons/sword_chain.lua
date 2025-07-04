@@ -15,13 +15,14 @@ return function( info )
     local data = { m = 0.15, is_debugging = true }
     if( xD.Controls.lmb[3] or memo.swing_start ) then
         data.active = true
+        local shake = pen.generic_random( 0.5, 1.5, nil, true )
         if( not( memo.swing_done ) and memo.swing_start ) then
             data.drift = { r = 130, x = 5, y = 3 }
             is_swinging = true
         elseif( memo.swing_done and xD.Controls.lmb[3]) then
-            data.drift = { r = 80, x = 3, y = 2, a = "ixp0.15", m = 0.75 }
+            data.drift = { r = 80, x = 3 + shake, y = 2 + shake, a = "ixp0.15", m = 0.75 }
         else
-            data.drift = { r = -30, x = -2, y = -4, a = "wgt2", m = 0.5 }
+            data.drift = { r = -30, x = -2 + shake/4, y = -4 + shake/4, a = "wgt2", m = 0.5 }
             memo.swing_start = not( xD.Controls.lmb[1])
         end
     else memo.swing_done, memo.swing_start = false, false end

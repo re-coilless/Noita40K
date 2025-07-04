@@ -8,7 +8,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- equipment is handled by inv.update event, not by items themselves
+-- equipment/attachments are handled by inv.update event, not by items themselves
 -- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
 -- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
