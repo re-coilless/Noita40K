@@ -4,6 +4,7 @@ return function( info )
     -- second anim does x10 damage and is being charged up progressively (indicated by sound and sparks)
     -- if the third anim is triggered while blade is hitting the target, do x2 damage for the next 5 frames
     -- if no blade is installed, do nothing
+    -- do cutting sfxes based on blood type
 
     local xD, xM = index.D, index.M
     if( xD.active_item ~= info.id ) then return end

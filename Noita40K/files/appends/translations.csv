@@ -31,6 +31,9 @@ n40_GUN_lasgun_mitra_,"Mitralocks are a type of Las-weapon used by the Adeptus M
 
 
 
+n40_ITEM_bayonet_l,Marine Bayonet,,,,,,,,,,,,,
+n40_ITEM_bayonet_l_,"An oversized bayonet, fit for transhuman weaponry.",,,,,,,,,,,,,
+
 n40_ITEM_grenade_he,grenade,,,,,,,,,,,,,
 n40_ITEM_grenade_he_,grenade,,,,,,,,,,,,,
 n40_ITEM_grenade_hei,grenade,,,,,,,,,,,,,
@@ -52,10 +55,10 @@ n40_EQUIPMENT_shield_s_,shield,,,,,,,,,,,,,
 n40_EQUIPMENT_refractor,Refractor Field,,,,,,,,,,,,,
 n40_EQUIPMENT_refractor_,"Refractor Field distorts the image of the wearer with a shimmering cloak of gravitic force. Incoming attacks that strike the shield will be refracted into multi-spectrum bursts that dissipate into harmlessness.",,,,,,,,,,,,,
 
-n40_EQUIPMENT_jumppack,jumppack,,,,,,,,,,,,,
-n40_EQUIPMENT_jumppack_,jumppack,,,,,,,,,,,,,
-n40_EQUIPMENT_jumppack_upgrade,jumppack upgrade,,,,,,,,,,,,,
-n40_EQUIPMENT_jumppack_upgrade_,jumppack upgrade,,,,,,,,,,,,,
+n40_EQUIPMENT_jumppack_l,Marine Jumppack,,,,,,,,,,,,,
+n40_EQUIPMENT_jumppack_l_,"Bulky and unviewdly, it's about the only man-portable thing to lift a fully equipped Space Marine in the air.",,,,,,,,,,,,,
+n40_EQUIPMENT_jumppack_l_upgrade,jumppack upgrade,,,,,,,,,,,,,
+n40_EQUIPMENT_jumppack_l_upgrade_,jumppack upgrade,,,,,,,,,,,,,
 
 n40_EQUIPMENT_servoskull,Servo-skull,,,,,,,,,,,,,
 n40_EQUIPMENT_servoskull_,"A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. Your model was drastically redesigned to better serve its master: it is able to perform low level operations with highly hazardous xenotech, store certain types of data and process any matter into its basic components. You may interact with the red buttons on the servointerface via the [RMB].",,,,,,,,,,,,,

@@ -1,0 +1,10 @@
+<Entity name="equipment_jumppack_l_vis" >
+	<SpriteComponent
+        image_file="mods/Noita40K/files/items/equipment/jumppack_l.png" 
+        offset_x="9" offset_y="3" z_index="0.65"
+    ></SpriteComponent>
+	
+	<InheritTransformComponent
+		parent_hotspot_tag="back"
+	></InheritTransformComponent>  
+</Entity>

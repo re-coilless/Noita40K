@@ -1,9 +1,9 @@
-<Entity tags="attachment40k" >
+<Entity tags="equipment40k" >
     <ItemComponent
         _tags="enabled_in_world"
 		play_spinning_animation="0"
         preferred_inventory="FULL"
-		ui_sprite="mods/Noita40K/files/items/attachments/bayonet_l.png"
+		ui_sprite="mods/Noita40K/files/items/equipment/jumppack_l.png"
     ></ItemComponent>
 	
     <HitboxComponent 
@@ -24,9 +24,9 @@
 
     <SpriteComponent 
         _tags="enabled_in_world,item_identified"
-        image_file="mods/Noita40K/files/items/attachments/bayonet_l.png" 
-        offset_x="8.5"
-        offset_y="1.5"
+        image_file="mods/Noita40K/files/items/equipment/jumppack_l.png" 
+        offset_x="9"
+        offset_y="5"
         z_index="-1.51"
     ></SpriteComponent>
 	
@@ -39,10 +39,10 @@
 	
 	<VariableStorageComponent
 		name="type"
-		value_string="underbarrel"
+		value_string="back"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="update"
-		value_string="mods/Noita40K/files/items/attachments/bayonet_l.lua"
+		value_string="mods/Noita40K/files/items/equipment/jumppack_l.lua"
 	></VariableStorageComponent>
 </Entity>

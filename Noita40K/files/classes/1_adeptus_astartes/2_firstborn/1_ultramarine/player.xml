@@ -458,4 +458,5 @@
 	<Hotspot name="eye" color="880000" />
 	<Hotspot name="center" color="ff0000" />
 	<Hotspot name="arm_r" color="00ff00" />
+	<Hotspot name="back" color="0000ff" />
 </Sprite>

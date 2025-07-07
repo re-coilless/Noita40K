@@ -37,6 +37,7 @@ n40.GUNS = --obtain codex stats from xml parsing
 	BOLTER_RIFLE = {
 		name = "$n40_GUN_bolter_rifle", desc = "$n40_GUN_bolter_rifle_",
 		path = "mods/Noita40K/files/items/weapons/bolter_rifle.xml",
+		func = function( hooman, data ) n40.new_item( n40.ITEMS.BAYONET_L, hooman, data ) end,
 	},
 	DARKFIRE_RIFLE = {
 		name = "$n40_GUN_darkfire_rifle", desc = "$n40_GUN_darkfire_rifle_",
@@ -65,6 +66,12 @@ n40.GUNS = --obtain codex stats from xml parsing
 }
 
 n40.ITEMS = {
+	-- attachments
+	BAYONET_L = {
+		name = "$n40_ITEM_bayonet_l", desc = "$n40_ITEM_bayonet_l_",
+		path = "mods/Noita40K/files/items/attachments/bayonet_l.xml",
+	},
+
 	-- throwables
 	GRENADE_HE = {
 		name = "$n40_ITEM_grenade_he", desc = "$n40_ITEM_grenade_he_",
@@ -106,12 +113,12 @@ n40.EQUIPMENT = {
 	},
 
 	-- mobility
-	JUMPPACK = {
-		name = "$n40_EQUIPMENT_jumppack", desc = "$n40_EQUIPMENT_jumppack_",
-		path = "",
+	JUMPPACK_L = {
+		name = "$n40_EQUIPMENT_jumppack_l", desc = "$n40_EQUIPMENT_jumppack_l_",
+		path = "mods/Noita40K/files/items/equipment/jumppack_l.xml",
 	},
-	JUMPPACK_UPGRADE = {
-		name = "$n40_EQUIPMENT_jumppack_upgrade", desc = "$n40_EQUIPMENT_jumppack_upgrade_",
+	JUMPPACK_L_UPGRADE = {
+		name = "$n40_EQUIPMENT_jumppack_l_upgrade", desc = "$n40_EQUIPMENT_jumppack_l_upgrade_",
 		path = "",
 	},
 
@@ -420,7 +427,7 @@ n40.CLASSES[1].sections = {
 
 		guns = { "BOLTER_GENERIC", "BOLTER_RIFLE", "SWORD_CHAIN", "MELTA_CUTTER" },
 		items = { "GRENADE_HE", "GRENADE_HE" },
-		equipment = { "JUMPPACK" },
+		equipment = { "JUMPPACK_L" },
 		perks = {
 			"SECOND_HEART",
 			"OSSMODULA",
@@ -477,7 +484,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_white_scar.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_white_scar.png",
 
-		equipment = { [1] = "JUMPPACK_UPGRADE" },
+		equipment = { [1] = "JUMPPACK_L_UPGRADE" },
 		skin = "MKVII_WHITE_SCAR", perks_add = { "CHOGORIAN_SAVAGERY" },
 	},
 	{

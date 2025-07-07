@@ -8,7 +8,10 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- equipment/attachments are handled by inv.update event, not by items themselves
+-- perks
+-- make sure all vanilla ui elements are usable
+-- reloading
+
 -- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
 -- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
@@ -20,10 +23,12 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
--- MaterialSuckerComponent randomized_position for osculant device
 -- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
 -- custom mnee frontend on the main menu
+-- fix shift clicking to have proper callbacks
+-- allow shift clicking equipment
 
+-- both material and entity tips are hotkeyed and near the pointer, entity tips are attached to the in-world entitties and highlight the hitbox with a line that connects to the name
 -- two handed weapons
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
 -- madness combat style hands

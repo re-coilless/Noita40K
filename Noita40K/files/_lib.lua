@@ -88,8 +88,8 @@ function n40.setup_character( hooman )
 	end)
 	-- local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
 	-- pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
-	-- local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
-	-- pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
+	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
+	pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
 	
 	return active
 end

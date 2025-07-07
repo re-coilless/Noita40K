@@ -3,11 +3,25 @@ table.insert( GLOBAL_MUTATORS, function()
 
     local xD = index.D
     xD.can_tinker = true
-	
+    xD.invs[ xD.invs_p.f ].kind = { "universal" }
+    xD.invs[ xD.invs_p.f ].update = function( inv_info, item_info_old, item_info_new, slot_data )
+        local equipment_zone = xD.inv_quick_size + 2
+        local do_old = ( item_info_old.inv_slot or { equipment_zone })[1] >= equipment_zone
+        local do_new = ( slot_data or {}).is_equipment
+
+        index.M.is_updating = true
+        local func_out = pen.magic_storage( item_info_old.id, "update", "value_string" )
+        if( do_old and pen.vld( func_out )) then dofile( func_out )( inv_info, item_info_old, true ) end
+        local func_in = pen.magic_storage( item_info_new.id, "update", "value_string" )
+        if( do_new and pen.vld( func_in )) then dofile( func_in )( inv_info, item_info_new, false ) end
+        index.M.is_updating = nil
+    end
+    
 	local initer = "N40K_READY_TO_PURGE"
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )
 
+    GlobalsSetValue( mnee.G_FORCED, "1" )
 	local active = n40.setup_character( xD.player_id )
 end)
 
@@ -17,7 +31,7 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
     local pic_x, pic_y = unpack( xys.hp or { 0, 0 })
     
     xD.xys.world_tip = { screen_w + 23, 20 }
-
+    
     local pain_flash = 0
     pen.hallway( function()
         if( not( pen.vld( data ))) then return end
@@ -161,6 +175,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
         for k = 1,equipment_size do
             local i, e = xD.inv_quick_size + k + 1, 1
             w, h = index.new_generic_slot( equipment_x, screen_h - 20, {
+                is_equipment = true,
                 inv_slot = { i, e }, inv_id = xD.invs_p.f,
                 id = xD.slot_state[ xD.invs_p.f ][i][e],
             }, xD.is_opened, true, false )
@@ -184,14 +199,76 @@ table.insert( ITEM_CATS, 1, {
     is_wand = true, is_quickest = true,
     
     on_check = function( item_id ) return EntityHasTag( item_id, "gun40k" ) end,
-    on_data = wand_cat.on_data,
+    on_data = function( info, wip_item_list )
+        local xD = index.D
+        info.wand_info = {
+            shuffle_deck_when_empty = ComponentObjectGetValue2( info.AbilityC, "gun_config", "shuffle_deck_when_empty" ),
+            actions_per_round = ComponentObjectGetValue2( info.AbilityC, "gun_config", "actions_per_round" ),
+            deck_capacity = ComponentObjectGetValue2( info.AbilityC, "gun_config", "deck_capacity" ),
+            spread_degrees = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "spread_degrees" ),
+            mana_max = ComponentGetValue2( info.AbilityC, "mana_max" ),
+            mana_charge_speed = ComponentGetValue2( info.AbilityC, "mana_charge_speed" ),
+            mana = ComponentGetValue2( info.AbilityC, "mana" ),
+
+            never_reload = ComponentGetValue2( info.AbilityC, "never_reload" ),
+            reload_time = ComponentObjectGetValue2( info.AbilityC, "gun_config", "reload_time" ) +
+                            ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "reload_time" ),
+            delay_time = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "fire_rate_wait" ),
+            reload_frame = math.max( ComponentGetValue2( info.AbilityC, "mReloadNextFrameUsable" ) - xD.frame_num, 0 ),
+            delay_frame = math.max( ComponentGetValue2( info.AbilityC, "mNextFrameUsable" ) - xD.frame_num, 0 ),
+
+            speed_multiplier = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "speed_multiplier" ),
+            lifetime_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "lifetime_add" ),
+            bounces = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "bounces" ),
+
+            crit_chance = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_critical_chance" ),
+            crit_mult = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_critical_multiplier" ),
+
+            damage_electricity_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_electricity_add" ),
+            damage_explosion_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_explosion_add" ),
+            damage_fire_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_fire_add" ),
+            damage_melee_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_melee_add" ),
+            damage_projectile_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_projectile_add" ),
+        }
+        
+        local check_func = function( inv_info, item_info )
+            --ammo check + make sure attachment type matches slot type
+            return item_info.is_spell or false
+        end
+        local update_func = function( inv_info, item_info_old, item_info_new, slot_data )
+            index.M.is_updating = true
+            local func_out = pen.magic_storage( item_info_old.id, "update", "value_string" )
+            if( pen.vld( func_out )) then dofile( func_out )( inv_info, item_info_old, true ) end
+            local func_in = pen.magic_storage( item_info_new.id, "update", "value_string" )
+            if( pen.vld( func_in )) then dofile( func_in )( inv_info, item_info_new, false ) end
+            index.M.is_updating = nil
+
+            return pen.vld( inv_info.in_hand, true )
+        end
+        local sort_func = function( a, b )
+            local inv_slot = { 0, 0 }
+            local is_perma = { false, false }
+            pen.t.loop({ a, b }, function( i,v )
+                local item_comp = EntityGetFirstComponentIncludingDisabled( v, "ItemComponent" )
+                if( not( pen.vld( item_comp, true ))) then return end
+                is_perma[i] = ComponentGetValue2( item_comp, "permanently_attached" )
+                inv_slot[i] = math.max( ComponentGetValue2( item_comp, "inventory_slot" ), 0 )
+            end)
+            return ( is_perma[1] and not( is_perma[2])) or ( not( is_perma[2]) and inv_slot[1] < inv_slot[2])
+        end
+        
+        xD.invs_i[ info.id ] = index.get_inv_info(
+            info.id, { info.wand_info.deck_capacity, 1 }, { "full" }, nil, check_func, update_func, nil, sort_func )
+        
+        return info
+    end,
     on_processed_forced = wand_cat.on_processed_forced,
 
     on_tooltip = wand_cat.on_tooltip,
     on_inventory = function( info, pic_x, pic_y, state_tbl, slot_dims )
-        -- ammo swap check
         -- reloading (add phantom slot, one per unique mag type, that does fake swap; discarded mag continues flying with gravity past the slot it wanted to swap with)
         -- first mag slots, then attachment slots (every attachment slot schematically points to the part of the gun it will occupy; allow overriding on-hover slot numbers with custom text)
+        -- dynamically add attachment slots based on hotspots
 
         local xD = index.D
         if( not( xD.is_opened )) then return end
@@ -246,15 +323,33 @@ table.insert( ITEM_CATS, 3, {
 table.insert( ITEM_CATS, 4, {
     id = "ATTACHMENT40K",
     name = "Attachment",
+    is_spell = true,
 
     on_check = function( item_id ) return EntityHasTag( item_id, "attachment40k" ) end,
-    on_data = spell_cat.on_data,
+    on_data = item_cat.on_data,
     on_processed = spell_cat.on_processed,
 
-    on_tooltip = spell_cat.on_tooltip,
+    on_tooltip = item_cat.on_tooltip,
     on_slot_check = spell_cat.on_slot_check,
     on_swap = spell_cat.on_swap,
-    on_slot = spell_cat.on_slot,
+    on_slot = function( info, pic_x, pic_y, state_tbl, rmb_func, drag_func, hov_func, hov_scale, slot_dims )
+        local xD, xM = index.D, index.M
+        local angle, anim_speed = 0, xD.spell_anim_frames
+        local is_considered = state_tbl.is_dragged or state_tbl.is_hov
+        if( state_tbl.can_drag ) then
+            angle = -math.rad( 5 )
+            if( not( is_considered )) then
+                angle = anim_speed == 0 and 0 or angle*math.sin(( xD.frame_num%%anim_speed )*math.pi/anim_speed )
+            else angle = 1.5*angle end
+        end
+        
+        local pic_z = index.slot_z( info.id, pen.LAYERS.ICONS )
+        index.new_slot_pic( pic_x, pic_y, pic_z, info.pic, false, hov_scale, false, nil, angle )
+        local is_active = pen.vld( hov_func ) and state_tbl.is_hov and state_tbl.is_opened
+        index.pinning({ "slot", info.id }, is_active, hov_func, { info, "slot", pic_x - 10, pic_y + 7, pen.LAYERS.TIPS, true })
+
+        return info, ( state_tbl.is_hov and state_tbl.can_drag ) and 1 or nil
+    end,
 
     on_gui_world = spell_cat.on_gui_world,
 })
