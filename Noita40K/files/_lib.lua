@@ -43,8 +43,9 @@ function n40.new_perk( id, hooman, data )
 	local perk = n40.PERKS[ id ]
 	if( not( pen.vld( perk ))) then return end
 	n40.add_vector_ctrl( hooman, perk.vector_ctrl )
-	if( pen.vld( perk.func )) then perk.func( hooman, data ) end
+	if( pen.vld( perk.func )) then data = perk.func( hooman, data ) or data end
 	-- append the perk id for icon
+	return data
 end
 
 function n40.setup_character( hooman )
@@ -71,16 +72,16 @@ function n40.setup_character( hooman )
 		ComponentSetValue2( data.inv_comp, "quick_inventory_slots", 10 )
 		ComponentSetValue2( data.inv_comp, "full_inventory_slots_x", 99 )
 		ComponentSetValue2( data.inv_comp, "full_inventory_slots_y", 6 )
-		
-		n40.new_perk( char_data.skin, hooman, data )
+		return n40.new_perk( char_data.skin, hooman, data )
 	end)
 	
 	local perks = pen.t.add( pen.t.clone( char_data.perks or section_data.perks ), char_data.perks_add )
 	pen.t.loop( perks, function( i, v )
 		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
-		n40.new_perk( v, hooman, data )
+		data = n40.new_perk( v, hooman, data )
 	end)
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/heat_controller.lua" )
+	pen.lib.set_matter_damage( hooman, data )
 
 	--break the loop if exceeds the inv size
 	pen.t.loop( char_data.guns or section_data.guns, function( i, v )

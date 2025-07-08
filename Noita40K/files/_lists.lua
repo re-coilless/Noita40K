@@ -168,9 +168,18 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
 			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
 			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
+			-- data.breathing_immune = true
+			data.contact_immune = true
+			data.threshold_burn = 2*( data.threshold_burn or 25 )
+			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
+			data.threshold_radiation = 999
+			data.threshold_piercing = 999
+			data.threshold_poison = 999
 
 			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/classes/_perks/armour.lua" )
+
+			return data
 		end,
 	},
 	MKVII_BLOOD_ANGEL = {
@@ -241,6 +250,9 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "fire", 0.5 )
 			n40.add_resistance( data.dmg_comp, "ice", 0.5 )
 			n40.add_resistance( data.dmg_comp, "poison", 0.1 )
+			data.threshold_poison = 10*( data.threshold_poison or 10 )
+			data.threshold_radiation = 5*( data.threshold_radiation or 10 )
+			return data
 		end,
 	},
 	BISCOPEA = {
@@ -268,8 +280,6 @@ n40.PERKS = {
 	LARRAMAN = {
 		name = "$n40_PERK_larraman", desc = "$n40_PERK_larraman_",
 		func = function( hooman, data )
-			n40.add_resistance( data.dmg_comp, "healing", 2 )
-
 			-- EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
 			-- { 
 			-- 	_tags = "larraman_frame",
@@ -296,6 +306,10 @@ n40.PERKS = {
 			-- 	script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
 			-- 	execute_every_n_frame = "-1",
 			-- })
+
+			n40.add_resistance( data.dmg_comp, "healing", 2 )
+			data.threshold_heal = -math.min( 0.1*( math.abs( data.threshold_heal or 0 ) + 1 ), 0.5 )
+			return data
 		end,
 	},
 	OCCULOBE = {
