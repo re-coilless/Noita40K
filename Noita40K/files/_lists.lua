@@ -39,6 +39,7 @@ n40.GUNS = --obtain codex stats from xml parsing
 		path = "mods/Noita40K/files/items/weapons/bolter_rifle.xml",
 		func = function( hooman, data ) n40.new_item( n40.ITEMS.BAYONET_L, hooman, data ) end,
 	},
+	-- salamnder gets flamer as rifle replacement
 	DARKFIRE_RIFLE = {
 		name = "$n40_GUN_darkfire_rifle", desc = "$n40_GUN_darkfire_rifle_",
 		path = "mods/Noita40K/files/items/weapons/darkfire_rifle.xml",
@@ -168,6 +169,7 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
 			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
 			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
+
 			-- data.breathing_immune = true
 			data.contact_immune = true
 			data.threshold_burn = 2*( data.threshold_burn or 25 )
@@ -177,7 +179,9 @@ n40.PERKS = {
 			data.threshold_poison = 999
 
 			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
-			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/classes/_perks/armour.lua" )
+			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
 
 			return data
 		end,
@@ -221,10 +225,10 @@ n40.PERKS = {
 	-- abilities
 	SECOND_HEART = {
 		name = "$n40_PERK_second_heart", desc = "$n40_PERK_second_heart_",
-		-- vector_ctrl = "",
 		func = function( hooman, data )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_status.lua" )
 			EntityAddComponent2( hooman, "LuaComponent", {
-				script_damage_received = "mods/Noita40K/files/scripts/perks/second_heart.lua",
+				script_damage_received = "mods/Noita40K/files/classes/_perks/second_heart.lua",
 				execute_every_n_frame = -1,
 			})
 		end,
@@ -240,7 +244,7 @@ n40.PERKS = {
 			ComponentSetValue2( data.dmg_comp, "fire_damage_amount",
 				0.1*ComponentGetValue2( data.dmg_comp, "fire_damage_amount" ))
 			ComponentSetValue2( data.dmg_comp, "minimum_knockback_force",
-				1 + ComponentGetValue2( data.dmg_comp, "minimum_knockback_force" ))
+				10*math.max( ComponentGetValue2( data.dmg_comp, "minimum_knockback_force" ), 50 ))
 			ComponentSetValue2( data.dmg_comp, "critical_damage_resistance",
 				math.min( 0.25 + ComponentGetValue2( data.dmg_comp, "critical_damage_resistance" ), 1 ))
 
@@ -250,14 +254,17 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "fire", 0.5 )
 			n40.add_resistance( data.dmg_comp, "ice", 0.5 )
 			n40.add_resistance( data.dmg_comp, "poison", 0.1 )
+
 			data.threshold_poison = 10*( data.threshold_poison or 10 )
 			data.threshold_radiation = 5*( data.threshold_radiation or 10 )
+
 			return data
 		end,
 	},
 	BISCOPEA = {
 		name = "$n40_PERK_biscopea", desc = "n40_PERK_biscopea_",
 		func = function( hooman, data )
+			--requires ossmodula
 			ComponentSetValue2( data.char_comp, "mass", 2 + ComponentGetValue2( data.char_comp, "mass" ))
 
 			ComponentSetValue2( data.plat_comp, "run_velocity",
@@ -280,35 +287,12 @@ n40.PERKS = {
 	LARRAMAN = {
 		name = "$n40_PERK_larraman", desc = "$n40_PERK_larraman_",
 		func = function( hooman, data )
-			-- EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-			-- { 
-			-- 	_tags = "larraman_frame",
-			-- 	name = "larraman_frame",
-			-- 	value_int = "600",
-			-- })
-		
-			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
-			-- { 
-			-- 	script_source_file = "mods/Noita40K/files/scripts/perks/larraman.lua",
-			-- 	execute_every_n_frame = "1",
-			-- })
-			
-			-- EntityAddComponent( entity_who_picked, "VariableStorageComponent", 
-			-- { 
-			-- 	_tags = "larraman_protects",
-			-- 	name = "larraman_protects",
-			-- 	value_int = "5",
-			-- })
-			
-			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
-			-- { 
-			-- 	_tags = "larraman_death",
-			-- 	script_damage_received = "mods/Noita40K/files/scripts/perks/larraman_death.lua",
-			-- 	execute_every_n_frame = "-1",
-			-- })
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_stress.lua" )
+			--regeneration that consumes adrenaline to heal
 
 			n40.add_resistance( data.dmg_comp, "healing", 2 )
 			data.threshold_heal = -math.min( 0.1*( math.abs( data.threshold_heal or 0 ) + 1 ), 0.5 )
+
 			return data
 		end,
 	},
@@ -317,24 +301,23 @@ n40.PERKS = {
 		func = function( hooman, data )
 			local eye_x, eye_y = EntityGetHotspot( hooman, "eye", nil, true )
 			EntityAddComponent2( hooman, "LightComponent", {
-				r = 255, g = 255, b = 255,
-				radius = 1000, offset_x = eye_x, offset_y = eye_y,
+				r = 200, g = 255, b = 200,
+				radius = 250, offset_x = -eye_x, offset_y = -eye_y,
 			})
-			
-			-- EntityAddComponent( entity_who_picked, "SpriteComponent", 
-			-- { 
-			-- 	_tags = "fog_o_war_hole",
-			-- 	alpha = "0.5",
-			-- 	emissive = "0",
-			-- 	image_file = "mods/Noita40K/files/pics/misc_gfx/fog_of_war_hole_64.xml",
-			-- 	smooth_filtering = "1",
-			-- 	fog_of_war_hole = "1",
-			-- })
+			EntityAddComponent2( hooman, "SpriteComponent", {
+				smooth_filtering = true, fog_of_war_hole = true,
+				alpha = 0.5, offset_x = 65 - eye_x, offset_y = 32 - eye_y,
+				image_file = "mods/Noita40K/files/classes/_perks/occulobe_vision.png",
+			})
 		end,
 	},
 	SUS_AN = {
 		name = "$n40_PERK_sus_an", desc = "$n40_PERK_sus_an_",
 		func = function( hooman, data )
+			-- requires larraman
+			-- the life should be regenning and regen speed and quality should be based on adrenaline
+			-- lowers max_force overtime, the faster the regen, the less is lost
+
 			-- EntityAddComponent( entity_who_picked, "LuaComponent", 
 			-- {
 			-- 	_tags = "sus_an",
@@ -343,6 +326,7 @@ n40.PERKS = {
 			-- })
 		end,
 	},
+	-- add a secondary layer of unique legion perks that is permananetly unlocked by staying at high adrenaline for long time
 	CODEX_MASTERY = {
 		name = "$n40_PERK_codex_mastery", desc = "$n40_PERK_codex_mastery_",
 	},
@@ -365,7 +349,7 @@ n40.PERKS = {
 	LIVING_SHADOW = {
 		name = "$n40_PERK_living_shadow", desc = "$n40_PERK_living_shadow_",
 	},
-	UNCHAINED = {
+	UNCHAINED = { --special access pass
 		name = "$n40_PERK_unchained", desc = "$n40_PERK_unchained_",
 	},
 	OMNISSIAHS_BLESSING = {

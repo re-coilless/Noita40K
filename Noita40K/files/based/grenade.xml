@@ -1,0 +1,18 @@
+<Entity>
+	<Base file="mods/Noita40K/files/based/item.xml" >
+		<SpriteComponent offset_x="4.5" offset_y="4.5" />
+	</Base>
+	
+	<VariableStorageComponent
+		name="fuse"
+		value_int="60"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="detonation"
+		value_string=""
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="ctrl_script"
+		value_string="mods/Noita40K/files/based/grenade.lua"
+	></VariableStorageComponent>
+</Entity>

@@ -1,0 +1,48 @@
+<Entity tags="item_physics,item_pickup" >
+	<PhysicsBodyComponent 
+		_tags="enabled_in_world"
+		uid="1" 
+		allow_sleep="1" 
+		angular_damping="0" 
+		fixed_rotation="0" 
+		is_bullet="1" 
+		linear_damping="0"
+		auto_clean="0"
+		kills_entity="1"
+		hax_fix_going_through_ground="1"
+		on_death_leave_physics_body="1"
+		on_death_really_leave_body="1"
+	></PhysicsBodyComponent>
+	
+	<PhysicsImageShapeComponent 
+		body_id="1"
+		centered="1"
+		image_file=""
+		material="plasteel_thin_box2d"
+	></PhysicsImageShapeComponent>
+	
+	<VelocityComponent
+		_tags="enabled_in_world"
+	></VelocityComponent>
+	
+	<SpriteComponent
+		_tags="enabled_in_hand,enabled_in_world"
+		_enabled="0"
+		offset_x="8"
+		offset_y="8"
+		image_file=""
+		z_index="-1.51"
+	></SpriteComponent>
+	
+	<ItemComponent
+		_tags="enabled_in_world"
+		item_name=""
+		max_child_items="0"
+		is_pickable="1"
+		is_equipable_forced="1"
+		always_use_item_name_in_ui="1"
+		ui_sprite=""
+		ui_description=""
+		preferred_inventory="QUICK"
+	></ItemComponent>
+</Entity>

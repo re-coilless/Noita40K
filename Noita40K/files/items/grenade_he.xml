@@ -1,0 +1,12 @@
+<Entity name="grenade_he" >
+	<Base file="mods/Noita40K/files/based/grenade.xml">
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/grenade_he.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/grenade_he.png" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/grenade_he.png" />
+		
+		<VariableStorageComponent
+			name="detonation"
+			value_string="mods/Noita40K/files/items/grenade_he.lua"
+		></VariableStorageComponent>
+	</Base>
+</Entity>

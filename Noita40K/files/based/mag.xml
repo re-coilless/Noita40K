@@ -1,43 +1,7 @@
 <Entity tags="mag40k" >
-    <ItemComponent
-        _tags="enabled_in_world"
-		play_spinning_animation="0"
-        preferred_inventory="FULL"
-    ></ItemComponent>
+	<Base file="mods/Noita40K/files/based/item.xml" >
+		<ItemComponent preferred_inventory="FULL" />
+	</Base>
 	
-    <HitboxComponent 
-        _tags="enabled_in_world"
-        aabb_min_x="-4" 
-        aabb_max_x="4" 
-        aabb_min_y="-3" 
-        aabb_max_y="3"
-    ></HitboxComponent>
-
-    <SimplePhysicsComponent
-        _tags="enabled_in_world" 
-    ></SimplePhysicsComponent>
-
-    <VelocityComponent
-        _tags="enabled_in_world"
-    ></VelocityComponent>
-
-    <SpriteComponent 
-        _tags="enabled_in_world,item_identified"
-        image_file="data/ui_gfx/gun_actions/empty.png" 
-        offset_x="8"
-        offset_y="17"
-        z_index="-1.51"
-    ></SpriteComponent>
-
-    <SpriteOffsetAnimatorComponent
-        _tags="enabled_in_world"
-        y_amount="1"
-        y_speed="2.5"
-        sprite_id="0"
-    ></SpriteOffsetAnimatorComponent>
-	
-	<ItemActionComponent 
-        _tags="enabled_in_world"
-        action_id="" 
-    ></ItemActionComponent>
+	<ItemActionComponent _tags="enabled_in_world" action_id="" />
 </Entity>

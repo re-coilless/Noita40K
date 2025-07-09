@@ -31,28 +31,16 @@ function wake_up_waiting_threads()
     local v = math.sqrt( v_x^2 + v_y^2 )
     local can_rico = ComponentGetValue2( proj_comp, "bounce_energy" ) > 0
     if( can_rico and will_coll and v > 900 ) then
-        local point_x = coll_x - pen.get_sign( v_x )
-        local point_y = coll_y - pen.get_sign( v_y )
+        local point_x, point_y = coll_x - pen.get_sign( v_x ), coll_y - pen.get_sign( v_y )
         local n_found, n_x, n_y, n_dist = GetSurfaceNormal( point_x, point_y, 1.1, 40 )
-        if( n_found ) then
-            local p_angle = math.atan2( v_y, v_x )
-            local n_angle = math.atan2( n_y, n_x )
-            local angle = math.abs( math.deg( n_angle - p_angle ))%90
-            
-            local min_rico, max_rico = 65, 85
-            local will_rico = angle > max_rico
-            if( not( will_rico ) and angle > min_rico ) then
-                will_rico = math.random() < ( angle - min_rico )/( max_rico - min_rico )
-            end
-
-            if( will_rico ) then
-                local r_angle = p_angle + 2*( n_angle - p_angle )
-                v_x, v_y = -v*math.cos( r_angle ), -v*math.sin( r_angle )
-                ComponentSetValue2( vel_comp, "mVelocity", v_x, v_y )
+        if( n_found ) then -- play decaying sound loop from projectile
+            local p_angle, n_angle = math.atan2( v_y, v_x ), math.atan2( n_y, n_x )
+            local v_x, v_y = pen.ricochet( v, p_angle, n_angle )
+            if( v_x ~= nil ) then
                 EntitySetTransform( proj_id, point_x, point_y )
                 -- EntityApplyTransform( proj_id, point_x, point_y )
+                ComponentSetValue2( vel_comp, "mVelocity", v_x, v_y )
 
-                -- play decaying sound loop from projectile
                 pen.magic_particles( point_x, point_y, math.rad( 180 ) + n_angle, {
                     fading = 7, lifetime = 2,
                     additive = true, emissive = true, count = { 2, 3 },

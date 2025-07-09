@@ -1,48 +1,14 @@
 <Entity tags="equipment40k" >
-    <ItemComponent
-        _tags="enabled_in_world"
-		play_spinning_animation="0"
-        preferred_inventory="FULL"
-		ui_sprite="mods/Noita40K/files/items/equipment/jumppack_l.png"
-    ></ItemComponent>
-	
-    <HitboxComponent 
-        _tags="enabled_in_world"
-        aabb_min_x="-4" 
-        aabb_max_x="4" 
-        aabb_min_y="-3" 
-        aabb_max_y="3"
-    ></HitboxComponent>
-
-    <SimplePhysicsComponent
-        _tags="enabled_in_world" 
-    ></SimplePhysicsComponent>
-
-    <VelocityComponent
-        _tags="enabled_in_world"
-    ></VelocityComponent>
-
-    <SpriteComponent 
-        _tags="enabled_in_world,item_identified"
-        image_file="mods/Noita40K/files/items/equipment/jumppack_l.png" 
-        offset_x="9"
-        offset_y="5"
-        z_index="-1.51"
-    ></SpriteComponent>
-	
-    <SpriteOffsetAnimatorComponent
-        _tags="enabled_in_world"
-        y_amount="1"
-        y_speed="2.5"
-        sprite_id="0"
-    ></SpriteOffsetAnimatorComponent>
+	<Base file="mods/Noita40K/files/based/item.xml" >
+		<ItemComponent preferred_inventory="FULL" />
+	</Base>
 	
 	<VariableStorageComponent
 		name="type"
-		value_string="back"
+		value_string=""
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="update"
-		value_string="mods/Noita40K/files/items/equipment/jumppack_l.lua"
+		value_string=""
 	></VariableStorageComponent>
 </Entity>

@@ -1,8 +1,12 @@
 <Entity name="equipment_jumppack_l" >
 	<Base file="mods/Noita40K/files/based/equipment.xml" >
-		<ItemComponent
-			ui_sprite="mods/Noita40K/files/items/equipment/jumppack_l.png"
-		></ItemComponent>
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/equipment/jumppack_l.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/equipment/jumppack_l.png" />
+		
+		<SpriteComponent
+			offset_x="9" offset_y="5"
+			image_file="mods/Noita40K/files/items/equipment/jumppack_l.png"
+		></SpriteComponent>
 		
 		<VariableStorageComponent
 			name="type"

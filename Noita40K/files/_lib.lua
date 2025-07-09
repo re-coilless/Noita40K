@@ -80,7 +80,7 @@ function n40.setup_character( hooman )
 		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
 		data = n40.new_perk( v, hooman, data )
 	end)
-	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/heat_controller.lua" )
+	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_heat.lua" )
 	pen.lib.set_matter_damage( hooman, data )
 
 	--break the loop if exceeds the inv size

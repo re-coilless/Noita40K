@@ -1,6 +1,6 @@
-dofile_once( "mods/Noita40K/files/_lib.lua" )
-
 function damage_received( damage, message, entity_thats_responsible, is_fatal )
+	dofile_once( "mods/Noita40K/files/_lib.lua" )
+	
 	local hooman = GetUpdatedEntityID()
 	if( not( is_fatal )) then return end
 	
