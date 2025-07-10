@@ -1,6 +1,7 @@
 <Entity tags="equipment40k" >
 	<Base file="mods/Noita40K/files/based/item.xml" >
 		<ItemComponent preferred_inventory="FULL" />
+		<AbilityComponent _remove_from_base="1" />
 	</Base>
 	
 	<VariableStorageComponent

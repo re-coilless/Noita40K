@@ -2,7 +2,7 @@
 	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
 		<AbilityComponent
 			sprite_file="mods/Noita40K/files/items/weapons/bolter_rifle.png"
-			add_these_child_actions="BOLT_50MM_AP_HE_S"
+			add_these_child_actions="N40_BOLT_50MM_APHE_S"
 			><gun_config deck_capacity="2" />
 			<gunaction_config speed_multiplier="1.5" spread_degrees="-30" />
 		</AbilityComponent>

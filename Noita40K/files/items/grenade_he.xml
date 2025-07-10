@@ -5,8 +5,8 @@
 		<SpriteComponent image_file="mods/Noita40K/files/items/grenade_he.png" />
 		
 		<VariableStorageComponent
-			name="detonation"
-			value_string="mods/Noita40K/files/items/grenade_he.lua"
+			name="explosion"
+			value_string="mods/Noita40K/files/effects/explosion_grenade_he.xml"
 		></VariableStorageComponent>
 	</Base>
 </Entity>

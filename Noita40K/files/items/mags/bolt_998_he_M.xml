@@ -1,8 +1,8 @@
 <Entity name="mag_bolt_998" >
-	<Base file="mods/Noita40K/files/based/mag.xml" > 
-		<SpriteComponent 
-			image_file="mods/Noita40K/files/items/mags/bolt_998_he_M.png" 
-		></SpriteComponent>
+	<Base file="mods/Noita40K/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/mags/bolt_998_he_M.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/bolt_998_he_M_.png" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/mags/bolt_998_he_M_.png" />
 	</Base>
 	
 	<VariableStorageComponent

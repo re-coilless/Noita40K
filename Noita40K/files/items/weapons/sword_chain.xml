@@ -2,6 +2,7 @@
 	<Base file="mods/Noita40K/files/based/gun_melee.xml" >
 		<AbilityComponent
 			sprite_file="mods/Noita40K/files/items/weapons/sword_chain.png"
+			add_these_child_actions="N40_BLADE_ADAMANTIUM_TEETH"
 		></AbilityComponent>
 		<SpriteComponent offset_x="5" offset_y="2" />
 		<VelocityComponent mass="0.2" />

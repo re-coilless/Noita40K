@@ -2,7 +2,7 @@
 	<Base file="mods/Noita40K/files/based/gun_energy.xml" >
 		<AbilityComponent
 			sprite_file="mods/Noita40K/files/items/weapons/melta_cutter.png"
-			add_these_child_actions="CANISTER_S_PYRUM"
+			add_these_child_actions="N40_CANISTER_S_PYRUM"
 		></AbilityComponent>
 		<SpriteComponent offset_x="9" offset_y="2" />
 		<VelocityComponent mass="2.5" />

@@ -1,16 +1,20 @@
 return function( info )
-    -- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
-    -- make chainsword be a chainsaw (exhaust, engine revving) but make it stop working underwater (requires several attempts while outside to restart)
-    -- second anim does x10 damage and is being charged up progressively (indicated by sound and sparks)
-    -- if the third anim is triggered while blade is hitting the target, do x2 damage for the next 5 frames
-    -- if no blade is installed, do nothing
-    -- do cutting sfxes based on blood type
-
     local xD, xM = index.D, index.M
     if( xD.active_item ~= info.id ) then return end
     pen.c.sword_state = pen.c.sword_state or {}
     pen.c.sword_state[ info.id ] = pen.c.sword_state[ info.id ] or {}
     
+    -- stops working underwater (requires several attempts while outside to restart, no swinging)
+
+    -- make sure there's mag installed by looping through inventory and checking is_spell
+
+    -- make chainsword be a chainsaw (exhaust, engine revving)
+    
+    -- chainsword should overheat while cutting through metal + permanently decrease physics_hit resistance
+    -- second anim does x10 damage and is being charged up progressively (indicated by sound and sparks)
+    -- if the third anim is triggered while blade is hitting the target, do x2 damage as long as every frame damage is dealt
+    -- do cutting vfxes based on blood type
+
     local is_swinging = false
     local memo = pen.c.sword_state[ info.id ]
     local data = { m = 0.15, is_debugging = true }

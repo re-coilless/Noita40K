@@ -14,6 +14,8 @@ return function( hooman )
 	-- 	EntityLoad( "mods/Noita40K/files/entities/emitters/blessed_iron_halo.xml", char_x, char_y + p_hitbox_offset )
 	-- end
 
+	-- damage threshold (below armor rating damage_recieved/armor_rating passes)
+
 	pen.armorsim( hooman, { rating = 100, func = function( hooman, proj_id, x, y, data )
 		--top 10% of armour should have double ricochet window
 		--do blessing by having a chance to x10 armor rating after a deflection attempt until next deflection

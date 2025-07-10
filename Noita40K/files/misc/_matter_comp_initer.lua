@@ -1,4 +1,4 @@
-function init( entity_id )
+function init( entity_id ) --declare this in xml
 	local matter_name = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( entity_id, "VariableStorageComponent", "matter_name" ), "value_string" )
 	local sucker_comp = EntityGetFirstComponentIncludingDisabled( entity_id, "MaterialSuckerComponent" )
 	local amount = 1000

@@ -81,14 +81,16 @@ function n40.setup_character( hooman )
 		data = n40.new_perk( v, hooman, data )
 	end)
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_heat.lua" )
+	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_taunt.lua" )
+	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_stress.lua" )
 	pen.lib.set_matter_damage( hooman, data )
 
 	--break the loop if exceeds the inv size
 	pen.t.loop( char_data.guns or section_data.guns, function( i, v )
 		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or v ], hooman, data, i == 1 )
 	end)
-	-- local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
-	-- pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
+	local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
+	pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
 	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
 	pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
 	

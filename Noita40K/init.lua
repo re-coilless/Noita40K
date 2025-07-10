@@ -8,11 +8,13 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- grenades (rmb to activate, lmb to throw)
--- taunts (voiceline type is being picked based on stress)
+-- chainsword
+-- on-spot explosion creation + do all explosion sfxes
 -- make sure all vanilla ui elements are usable
 -- reloading
+-- design of n40 post
 
+-- do frag grenade that has directed spread
 -- separate stress to vector
 -- all ctrl scripts must be constantly running, behavior controlled by varstorages
 -- targetting is integrated into index info system

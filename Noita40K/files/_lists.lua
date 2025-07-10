@@ -76,7 +76,7 @@ n40.ITEMS = {
 	-- throwables
 	GRENADE_HE = {
 		name = "$n40_ITEM_grenade_he", desc = "$n40_ITEM_grenade_he_",
-		path = "",
+		path = "mods/Noita40K/files/items/grenade_he.xml",
 	},
 	GRENADE_HEI = {
 		name = "$n40_ITEM_grenade_hei", desc = "$n40_ITEM_grenade_hei_",
@@ -147,6 +147,7 @@ n40.PERKS = {
 				"mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/"..char_name.."/ragdoll/filenames.txt" )
 			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, 0 )
 			
+			pen.magic_storage( hooman, "taunt_voice", "value_string", "12/taunts_1" )
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
 			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
 			
@@ -287,7 +288,6 @@ n40.PERKS = {
 	LARRAMAN = {
 		name = "$n40_PERK_larraman", desc = "$n40_PERK_larraman_",
 		func = function( hooman, data )
-			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_stress.lua" )
 			--regeneration that consumes adrenaline to heal
 
 			n40.add_resistance( data.dmg_comp, "healing", 2 )
@@ -452,7 +452,7 @@ n40.CLASSES[1].sections[2].chars = {
 
 		-- guns = {},
 		-- items = {},
-		items_add = { "GRENADE_FLASHBANG" },
+		--items_add = { "GRENADE_FLASHBANG" },
 		-- equipment = {},
 		-- equipment_add = {},
 		

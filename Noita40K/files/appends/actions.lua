@@ -1,5 +1,14 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
+function n40.init_blade_action( id, data )
+	return {
+		id = id, name = data.name, description = data.desc,
+		sprite = data.pic, custom_xml_file = data.card, price = data.cost,
+		mod = "Noita40K", type = ACTION_TYPE_OTHER, mana = 0, max_uses = -1,
+		spawn_requires_flag = "never_spawn_this_action", action = function() end,
+	}
+end
+
 n40.MFLASH = {
 	["bolt_998"] = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
 		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
@@ -42,9 +51,8 @@ n40.MFLASH = {
 
 table.insert( actions,
 {
-	id = "BOLT_998_HE_M",
-	name = "Bolt .998 HE (Medium Mag)",
-	description = "Standard bolter magazine of 20-rounds.",
+	id = "N40_BOLT_998_HE_M",
+	name = "$n40_MAG_bolt_998_he_m", description = "$n40_MAG_bolt_998_he_m_",
 	sprite = "mods/Noita40K/files/items/mags/bolt_998_he_M.png",
 	
 	mod = "Noita40K",
@@ -64,9 +72,8 @@ table.insert( actions,
 
 table.insert( actions,
 {
-	id = "BOLT_50MM_AP_HE_S",
-	name = "Bolt 50mm APHE (Small Mag)",
-	description = "Standard bolt carbine magazine of 3-rounds.",
+	id = "N40_BOLT_50MM_APHE_S",
+	name = "$n40_MAG_bolt_50mm_aphe_s", description = "$n40_MAG_bolt_50mm_aphe_s_",
 	sprite = "mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png",
 	
 	mod = "Noita40K",
@@ -87,9 +94,8 @@ table.insert( actions,
 
 table.insert( actions,
 {
-	id = "CANISTER_S_PYRUM",
-	name = "Small Fuel Canister of Pyrum-Petrol",
-	description = "Small fuel tank designed for low-powered melta tools.",
+	id = "N40_CANISTER_S_PYRUM",
+	name = "$n40_MAG_canister_s_pyrum", description = "$n40_MAG_canister_s_pyrum_",
 	sprite = "mods/Noita40K/files/items/mags/canister_S_pyrum.png",
 	
 	mod = "Noita40K",
@@ -281,3 +287,11 @@ table.insert( actions,
 	end,
 })
 ]]
+
+table.insert( actions, n40.init_blade_action( "N40_BLADE_ADAMANTIUM_TEETH", {
+	cost = 50,
+	name = "$n40_MAG_blade_adamantium_teeth",
+	desc = "$n40_MAG_blade_adamantium_teeth_",
+	pic = "mods/Noita40K/files/items/mags/blade_adamantium_teeth.png",
+	card = "mods/Noita40K/files/items/mags/blade_adamantium_teeth.xml",
+}))

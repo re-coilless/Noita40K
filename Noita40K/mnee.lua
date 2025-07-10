@@ -13,18 +13,18 @@ _BINDINGS[ "Noita40K" ] = {
 		desc = "Shout a voiceline.",
 		keys = {[ "x" ] = 1 },
 	},
-	capture = {
+	jumppack = {
 		order_id = "ac",
+		allow_special = true,
+		name = "Jumppack",
+		desc = "Dash towards the pointer.",
+		keys = {[ "mouse_middle" ] = 1 },
+	},
+	capture = {
+		order_id = "ad",
 		allow_special = true,
 		name = "Capture",
 		desc = "Lock onto the target.",
 		keys = {[ "z" ] = 1 },
 	},
-	jumppack = {
-		order_id = "ad",
-		allow_special = true,
-		name = "Jumppack",
-		desc = "Dash towards the pointer.",
-		keys = {[ "mouse_middle" ] = 1 },
-	}
 }

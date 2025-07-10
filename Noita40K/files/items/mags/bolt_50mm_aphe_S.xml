@@ -1,8 +1,8 @@
 <Entity name="mag_bolt_50mm" >
-	<Base file="mods/Noita40K/files/based/mag.xml" > 
-		<SpriteComponent 
-			image_file="mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png" 
-		></SpriteComponent>
+	<Base file="mods/Noita40K/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/bolt_50mm_aphe_S_.png" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/mags/bolt_50mm_aphe_S_.png" />
 	</Base>
 	
 	<VariableStorageComponent

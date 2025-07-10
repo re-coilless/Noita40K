@@ -50,12 +50,12 @@
 {ff3e2297-1b87-4844-9210-222e88f3eb41} event:/classes/12/mk7/step_wood
 {de9261bf-eb75-4e87-b0ce-29483eedb5c9} event:/classes/12/mk7/swim
 {870d4f59-323a-420f-b703-987d79c3df58} event:/classes/12/mk7/throw
-{4ba7542e-bc89-4a7a-bbb6-133264d6e7a5} event:/classes/12/taunts_A1
-{49c160ca-cce7-418a-ad09-c966af7d3d39} event:/classes/12/taunts_A2
-{3f59b789-456e-47f2-b8d7-2ba5bad86610} event:/classes/12/taunts_B1
-{dd1900c6-7dae-4c9e-beb5-d5283e2644e9} event:/classes/12/taunts_B2
+{3f59b789-456e-47f2-b8d7-2ba5bad86610} event:/classes/12/taunts_1
+{4ba7542e-bc89-4a7a-bbb6-133264d6e7a5} event:/classes/12/taunts_1_
+{dd1900c6-7dae-4c9e-beb5-d5283e2644e9} event:/classes/12/taunts_2
+{49c160ca-cce7-418a-ad09-c966af7d3d39} event:/classes/12/taunts_2_
 {42373831-cca0-417b-94dd-c13efa9428d3} event:/classes/32/dendrite_wriggling
-{f54319a2-db7b-4da3-95c7-e0dab90ef7dc} event:/classes/32/taunts_B1
+{f54319a2-db7b-4da3-95c7-e0dab90ef7dc} event:/classes/32/taunts_1
 {52ea60b5-5276-436d-9aa0-432ae3cc95d5} event:/effects/armor_hit
 {4badce01-5a3c-419c-b86d-b26e5ea63675} event:/effects/burst
 {3ee85007-9c5d-47fe-bc55-4d3f4e9d4365} event:/effects/explosions/pressure_M
