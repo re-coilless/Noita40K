@@ -8,25 +8,25 @@
 
 return function( entity_id )
     local x, y = EntityGetTransform( entity_id )
-    pen.t.loop( EntityGetInRadiusWithTag( x, y, 500, "gun40k" ), function( i, gun_id )
-        local pics = EntityGetComponentIncludingDisabled( gun_id, "SpriteComponent" )
-        local max_heat = pen.magic_storage( gun_id, "heat_max", "value_float" ) or -1
+    pen.t.loop( EntityGetInRadiusWithTag( x, y, 500, "heat40k" ), function( i, entity_id )
+        local pics = EntityGetComponentIncludingDisabled( entity_id, "SpriteComponent" )
+        local max_heat = pen.magic_storage( entity_id, "heat_max", "value_float" ) or -1
         if( not( pen.vld( pics )) or max_heat <= 0 ) then return end
-        
         if( not( pen.vld( pics[2], true ))) then return end
+        
         if( ComponentGetValue2( pics[2], "emissive" )) then
             ComponentSetValue2( pics[2], "emissive", false )
             ComponentSetValue2( pics[2], "image_file",
                 string.gsub( ComponentGetValue2( pics[1], "image_file" ), "%.png$", "_heat.png" ))
             ComponentSetValue2( pics[2], "offset_x", ComponentGetValue2( pics[1], "offset_x" ) + 1 )
             ComponentSetValue2( pics[2], "offset_y", ComponentGetValue2( pics[1], "offset_y" ) + 1 )
-            EntityRefreshSprite( gun_id, pics[2])
+            EntityRefreshSprite( entity_id, pics[2])
         end
 
         local alpha = ComponentGetValue2( pics[2], "alpha" )
-        local heat = pen.magic_storage( gun_id, "heat", "value_float" ) or 0
+        local heat = pen.magic_storage( entity_id, "heat", "value_float" ) or 0
         if( heat > 0 ) then
-            pen.magic_storage( gun_id, "heat", "value_float", heat*pen.magic_storage( gun_id, "heat_loss", "value_float" ))
+            pen.magic_storage( entity_id, "heat", "value_float", heat*pen.magic_storage( entity_id, "heat_loss", "value_float" ))
         end
 
         local pic_update = false
@@ -43,6 +43,6 @@ return function( entity_id )
             pic_update = true
         end
 
-        if( pic_update ) then EntityRefreshSprite( gun_id, pics[2]) end
+        if( pic_update ) then EntityRefreshSprite( entity_id, pics[2]) end
     end)
 end

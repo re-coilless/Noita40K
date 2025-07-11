@@ -40,5 +40,12 @@ function wake_up_waiting_threads()
     local fuse = pen.magic_storage( entity_id, "fuse", "value_int" )
     if(( fuse or -1 ) < 0 ) then return end
     pen.magic_storage( entity_id, "fuse", "value_int", fuse - 1 )
+    
+    local x, y = EntityGetTransform( entity_id )
+    local pic_x, pic_y = pen.world2gui( x, y )
+    local text = "["..math.floor(( fuse + 10 )/20 ).."]"
+    pen.new_shadowed_text( pic_x, pic_y - 10, pen.LAYERS.WORLD_FRONT, text, {
+        alpha = 0.75, is_centered_x = true, is_centered_y = true, color = pen.PALETTE.N40.HOLO_1 })
+    
     if( fuse == 0 ) then EntityKill( entity_id ) end
 end

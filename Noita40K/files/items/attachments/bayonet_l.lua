@@ -23,6 +23,7 @@ else
 		if( index.D.active_item ~= gun_id ) then return end
 		
 		--should only work if pos delta is high enough
+		--on slice just dlea damage but on stab check armor pen and if succeeds impale the enemy with disabling their ai
 		
 		local hooman = EntityGetRootEntity( gun_id )
 		local _, _, r = EntityGetTransform( gun_id )

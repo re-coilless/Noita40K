@@ -16,7 +16,7 @@ if( explosion_data[ exp_id ] == nil ) then
     data.shrapnel_damage = data.shrapnel_damage*data.damage/10
     data.shrapnel_time = data.shrapnel_time*data.time/2
     data.shrapnel_tbl = {}
-
+    
     local count = math.floor( data.shrapnel + 0.5 )
     local who_shot = pen.magic_storage( exp_id, "author", "value_int" )
     local shrapnel = pen.magic_storage( exp_id, "shrapnel_file", "value_string" )
@@ -32,10 +32,30 @@ if( explosion_data[ exp_id ] == nil ) then
         table.insert( data.shrapnel_tbl, id )
     end
 
+    data.size = math.max( 2*data.size, 1 )
+    data.force = math.max( data.force, 0.01 )
     local event = ( data.force > data.damage ) and "/force_" or "/pressure_"
     local event_size = data.size < 25 and "S" or ( data.size < 50 and "M" or "L" )
     local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
     pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
+
+    local k_size_energy = ( 14336 + 3.483 )/( 1 + math.pow( data.size/1.638, 1.695 )) - 3.483
+    local k_force_energy = math.max( 32397 - ( 290 + 32397 )/( 1 + math.pow( data.force/1.311, 2.996 )), 1 )
+    
+    local k_size_shake = 22 + ( 0.237 - 22 )/( 1 + math.pow( data.size/116, 1.535 ))
+    local k_force_shake = 6.328*( 1 - 1/( 1 + math.pow( data.force/1.2, 1.081 )))
+    
+    local k_size_impact = ( 25 + 0.304 )/( 1 + math.pow( data.size/4.87, 0.921 )) - 0.304
+    local k_force_impact = 200 + ( 2.35 - 200 )/( 1 + math.pow( data.force/24, 12.315 ))
+    
+    --redo the scaling
+    pen.magic_explosion( x, y, {
+        shooter = who_shot, light = 0.2,
+        radius = math.ceil( data.size/2.5 ),
+        energy = math.ceil( math.max( k_size_energy*k_force_energy, 1 )),
+        shake = math.max( math.min( k_size_shake*k_force_shake, 20 ), 0 ),
+        impact = math.floor( math.max( math.min( k_size_impact*k_force_impact, 20 ), 20 )),
+    })
 
     explosion_data[ exp_id ] = data
 end
@@ -53,8 +73,6 @@ pen.t.loop( data.shrapnel_tbl, function( i, proj_id )
     ComponentSetValue2( pic_comp, "alpha", 1.5*( 1 - anim ))
     EntityRefreshSprite( proj_id, pic_comp )
 end)
-
---add light
 
 local fog_anim = 1 - pen.animate( 1, cnt, { ease_out = "exp3", frames = data.time })
 ComponentSetValue2( pic_wave, "alpha", ( 1 - anim )*data.alpha )

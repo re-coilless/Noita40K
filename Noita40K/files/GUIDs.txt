@@ -98,11 +98,14 @@
 {d740f0c4-15a8-49b3-9cad-a2012f737f66} event:/items/guns/reload
 {c9103f61-5104-4c00-b40e-a62098cd672a} event:/items/guns/reload_darkfire
 {5f7c8646-2cfa-458e-a6b7-aa55b12c3e8c} event:/items/guns/reload_energy
+{3092f5f1-27d9-452c-ba4e-3c7bdf4e2b24} event:/items/guns/sollex/end
 {b32ce1ae-39ef-41d0-b698-a3f2753e252e} event:/items/guns/sollex/loop
 {f1fabc88-5fed-4310-81d9-30cc3d18a769} event:/items/guns/sollex/shoot
-{c8616d0a-3df8-4945-b06e-fb38f68b4b2f} event:/items/guns/sword_chain/loop
-{cc2efad3-e187-42f1-acd0-461956c8bd72} event:/items/guns/sword_chain/slice_armor
-{d60bbdb1-ebe6-45f9-8515-6a285703e7a0} event:/items/guns/sword_chain/slice_flesh
+{c8616d0a-3df8-4945-b06e-fb38f68b4b2f} event:/items/guns/sword_chain/cut
+{6adc0d80-34ac-4565-aea7-a9014f3ddd98} event:/items/guns/sword_chain/cut_
+{9990eb93-a8bb-4a21-bb10-cc24bca06a2b} event:/items/guns/sword_chain/idle
+{d60bbdb1-ebe6-45f9-8515-6a285703e7a0} event:/items/guns/sword_chain/tear
+{cc2efad3-e187-42f1-acd0-461956c8bd72} event:/items/guns/sword_chain/tear_metal
 {28930cd0-b21a-41eb-a6ed-35d373cbe01f} event:/items/jumppack/ignition
 {9cb7f67f-da97-4736-a5e4-73def38758f3} event:/items/jumppack/loop
 {e22e7787-c8bc-49af-ac0b-d488b00c1ecf} event:/items/osculant_device/extract

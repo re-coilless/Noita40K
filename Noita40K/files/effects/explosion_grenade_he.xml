@@ -2,7 +2,7 @@
 	<Base file="mods/Noita40K/files/based/explosion.xml" >
 		<VariableStorageComponent
 			name="size"
-			value_float="100"
+			value_float="50"
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="damage"

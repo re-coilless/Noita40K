@@ -52,7 +52,7 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
     return { pic_x, pic_y }
 end
 GUI_STRUCT.bars.air = function( screen_w, screen_h, xys ) return { unpack( xys.hp )} end
-GUI_STRUCT.bars.flight = function( screen_w, screen_h, xys ) return { unpack( xys.air )} end --(indicate the charge level with sound)
+GUI_STRUCT.bars.flight = function( screen_w, screen_h, xys ) return { unpack( xys.air )} end
 GUI_STRUCT.bars.action.mana = function( screen_w, screen_h, xys ) return { unpack( xys.flight )} end
 GUI_STRUCT.bars.action.reload = function( screen_w, screen_h, xys ) return { unpack( xys.mana )} end
 GUI_STRUCT.bars.action.delay = function( screen_w, screen_h, xys ) return { unpack( xys.reload )} end
@@ -308,7 +308,6 @@ table.insert( ITEM_CATS, 3, {
 
     -- SpriteStainsComponent sprite_id for multisprite stains
     -- all equipment should be hotspot attached as it must be universal
-    -- jumppack should apply rotation to character on acceleraion
 
     on_check = function( item_id ) return EntityHasTag( item_id, "equipment40k" ) end,
     on_data = item_cat.on_data,
@@ -390,7 +389,7 @@ table.insert( ITEM_CATS, 1, {
 
     on_tooltip = gun_cat.on_tooltip,
     on_inventory = gun_cat.on_inventory,
-    on_slot = gun_cat.on_slot, -- in-slot color-based mag percentage indicators but no literal bullet counters except for the ones on-screen
+    on_slot = gun_cat.on_slot,
 
     on_gui_world = gun_cat.on_gui_world,
     on_gui_pause = gun_cat.on_gui_pause,

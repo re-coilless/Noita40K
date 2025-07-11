@@ -8,10 +8,11 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- chainsword
--- on-spot explosion creation + do all explosion sfxes
--- make sure all vanilla ui elements are usable
--- reloading
+--force_S, force_M, force_L
+--pressure_S, pressure_M, pressure_L
+
+-- universal ui glowing function that scales a smooth cicle
+-- make sure all vanilla ui elements are usable + reloading
 -- design of n40 post
 
 -- do frag grenade that has directed spread

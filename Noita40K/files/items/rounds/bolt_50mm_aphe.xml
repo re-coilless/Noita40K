@@ -19,8 +19,8 @@
 			ragdoll_fx_on_collision="BLOOD_EXPLOSION"
 			shoot_light_flash_radius="256"
 			camera_shake_when_shot="6"
-			on_death_explode="1"
-			on_lifetime_out_explode="1"
+			on_death_explode="0"
+			on_lifetime_out_explode="0"
 			><config_explosion
 				damage="2"
 				ray_energy="600000"

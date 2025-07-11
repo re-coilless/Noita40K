@@ -9,8 +9,8 @@
 			knockback_force="2.5"
 			ragdoll_force_multiplier="0.03"
 			camera_shake_when_shot="2"
-			on_death_explode="1"
-			on_lifetime_out_explode="1"
+			on_death_explode="0"
+			on_lifetime_out_explode="0"
 			><config_explosion
 				damage="0.5"
 				ray_energy="200000"

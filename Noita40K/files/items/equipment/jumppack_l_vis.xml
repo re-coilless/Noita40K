@@ -1,8 +1,27 @@
-<Entity name="equipment_jumppack_l_vis" >
+<Entity name="equipment_jumppack_l_vis" tags="heat40k" >
 	<SpriteComponent
         image_file="mods/Noita40K/files/items/equipment/jumppack_l.png" 
         offset_x="9" offset_y="3" z_index="0.65"
     ></SpriteComponent>
+	<SpriteComponent
+		alpha="0"
+		image_file="data/items_gfx/handgun.xml" 
+		next_rect_animation="default" 
+		rect_animation="default"
+		additive="1"
+		emissive="1"
+		fog_of_war_hole="0"
+		smooth_filtering="1"
+	></SpriteComponent>
+	
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="100"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.995"
+	></VariableStorageComponent>
 	
 	<InheritTransformComponent
 		parent_hotspot_tag="back"
