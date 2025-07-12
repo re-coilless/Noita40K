@@ -1,7 +1,7 @@
 table.insert( GLOBAL_MUTATORS, function()
     dofile_once( "mods/Noita40K/files/_lib.lua" )
+    local xD, xM = index.D, index.M
 
-    local xD = index.D
     xD.can_tinker = true
     xD.invs[ xD.invs_p.f ].kind = { "universal" }
     xD.invs[ xD.invs_p.f ].update = function( inv_info, item_info_old, item_info_new, slot_data )
@@ -9,26 +9,36 @@ table.insert( GLOBAL_MUTATORS, function()
         local do_old = ( item_info_old.inv_slot or { equipment_zone })[1] >= equipment_zone
         local do_new = ( slot_data or {}).is_equipment
 
-        index.M.is_updating = true
+        xM.is_updating = true
         local func_out = pen.magic_storage( item_info_old.id, "update", "value_string" )
         if( do_old and pen.vld( func_out )) then dofile( func_out )( inv_info, item_info_old, true ) end
         local func_in = pen.magic_storage( item_info_new.id, "update", "value_string" )
         if( do_new and pen.vld( func_in )) then dofile( func_in )( inv_info, item_info_new, false ) end
-        index.M.is_updating = nil
+        xM.is_updating = nil
     end
+
+    local hooman = xD.player_id
+
+    local eid_pr = hooman.."_r_anim"
+    xM.char_flip_memo = xM.char_flip_memo or {}
+    pen.c.estimator_memo = pen.c.estimator_memo or {}
+    local x, y, r, s_x, s_y = EntityGetTransform( hooman )
+    pen.c.estimator_memo[ eid_pr ] = (( xM.char_flip_memo[ hooman ] or s_x ) ~= s_x ) and 0 or r
+    EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "exp1.75" ), s_x, s_y )
+    xM.char_flip_memo[ hooman ] = s_x
     
 	local initer = "N40K_READY_TO_PURGE"
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )
 
     GlobalsSetValue( mnee.G_FORCED, "1" )
-	local active = n40.setup_character( xD.player_id )
+	local active = n40.setup_character( hooman )
 end)
 
 GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
     local xD = index.D
     local data = xD.DamageModel
-    local pic_x, pic_y = unpack( xys.hp or { 0, 0 })
+    local pic_x, pic_y = unpack( xys.hp or { 3, 2 })
     
     xD.xys.world_tip = { screen_w + 23, 20 }
     
@@ -44,7 +54,8 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
 
         local hp_max_text, hp_text = pen.get_short_num( bar_data.hp_max ), pen.get_short_num( bar_data.hp )
         local tip = index.hud_text_fix( "$hud_health" )..( xD.short_hp and hp_text.."/"..hp_max_text or bar_data.hp.."/"..bar_data.hp_max )
-        index.tipping( pic_x - 1, pic_y - 1, nil, { bar_data.length + 4, 8 }, tip, { pos = { pic_x - 1, pic_y + 10 }, is_left = true })
+        index.tipping( pic_x - 2, pic_y - 1, nil,
+            { bar_data.length + 4, 8 }, tip, { pos = { pic_x + bar_data.length + 5, pic_y + 1 }})
         pic_y = pic_y + 10
     end)
     GameSetPostFxParameter( "low_health_indicator_alpha_proper", xD.hp_flashing_intensity*pain_flash, 0, 0, 0 )
@@ -59,10 +70,61 @@ GUI_STRUCT.bars.action.delay = function( screen_w, screen_h, xys ) return { unpa
 GUI_STRUCT.gold = function( screen_w, screen_h, xys ) return { unpack( xys.delay )} end
 GUI_STRUCT.orbs = function( screen_w, screen_h, xys ) return { unpack( xys.gold )} end
 
+GUI_STRUCT.icons.ingestions = function( screen_w, screen_h, xys )
+    local xD = index.D
+    local pic_x, pic_y = screen_w - 41, 20
+
+    local data = xD.icon_data.ings
+    pen.hallway( function()
+        if( not( pen.vld( data ))) then return end
+        if( xD.is_opened or xD.gmod.menu_capable ) then return end
+        pic_y = pic_y + 3
+
+        for i,info in ipairs( data ) do
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 1 )
+            pic_x, pic_y = pic_x, pic_y + step_y - 1
+        end
+
+        pic_y = pic_y + 4
+    end)
+    return { pic_x, pic_y }
+end
+GUI_STRUCT.icons.stains = function( screen_w, screen_h, xys )
+    local xD = index.D
+    local data = xD.icon_data.stains
+    local pic_x, pic_y = unpack( xys.ingestions )
+    pen.hallway( function()
+        if( not( pen.vld( data ))) then return end
+        if( xD.is_opened or xD.gmod.menu_capable ) then return end
+
+        for i,info in ipairs( data ) do
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 2 )
+            pic_x, pic_y = pic_x, pic_y + step_y
+        end
+
+        pic_y = pic_y + 3
+    end)
+    return { pic_x, pic_y }
+end
+GUI_STRUCT.icons.effects = function( screen_w, screen_h, xys )
+    local xD = index.D
+    local data = xD.icon_data.misc
+    local pic_x, pic_y = unpack( xys.stains )
+    pen.hallway( function()
+        if( not( pen.vld( data ))) then return end
+        if( xD.is_opened or xD.gmod.menu_capable ) then return end
+
+        for i,info in ipairs( data ) do
+            if( info.amount < 2 ) then info.txt = "" end
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 3 )
+            pic_x, pic_y = pic_x, pic_y + step_y
+        end
+
+        pic_y = pic_y + 3
+    end)
+    return { pic_x, pic_y }
+end
 GUI_STRUCT.icons.perks = function( screen_w, screen_h, xys ) return { unpack( xys.effects )} end
-GUI_STRUCT.icons.ingestions = index.new_generic_ingestions
-GUI_STRUCT.icons.stains = index.new_generic_stains
-GUI_STRUCT.icons.effects = index.new_generic_effects
 
 GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
     local xD = index.D
@@ -189,6 +251,121 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     return { root_x, root_y }, { pic_x, pic_y }
 end
 
+GUI_STRUCT.info = function( screen_w, screen_h, xys )
+    local xD, xM = index.D, index.M
+    local function do_info( p_x, p_y, txt, alpha, is_right, hover_func )
+        local offset_x = 0
+        txt = pen.capitalizer( txt )
+        if( is_right ) then
+            local w,h = pen.get_text_dims( txt, true )
+            offset_x = w + 1; p_x = p_x - offset_x
+        end
+
+        local color = pen.vld( hover_func ) and hover_func( offset_x ) or nil
+        pen.new_shadowed_text( p_x, p_y, pen.LAYERS.MAIN, txt, { color = color, alpha = alpha })
+    end
+    
+    local pic_x, pic_y = 0, 0
+    xM.ui_info = xM.ui_info or { 0, 0 }
+    pen.hallway( function()
+        if( xD.is_opened and xD.gmod.show_full ) then return end
+        if( xM.ui_info[1] == 0 and xD.pointer_delta[3] >= xD.info_threshold ) then return end
+
+        local info = ""
+        local best_kind, dist_tbl = -1, {}
+        local x, y = unpack( xD.pointer_world )
+        pen.t.loop( EntityGetInRadius( x, y, xD.info_radius ), function( i, entity_id )
+            if( entity_id == xD.player_id ) then return end
+            if( EntityGetRootEntity( entity_id ) ~= entity_id ) then return end
+
+            local kind, name = {}, ""
+            local item_comp = EntityGetFirstComponentIncludingDisabled( entity_id, "ItemComponent" )
+            local info_comp = EntityGetFirstComponentIncludingDisabled( entity_id, "UIInfoComponent" )
+            if( pen.vld( info_comp, true )) then name = GameTextGetTranslatedOrNot( ComponentGetValue2( info_comp, "name" ) or "" ) end
+
+            if( index.check_item_name( name )) then
+                kind = { 0, name }
+            elseif( pen.vld( item_comp, true ) and ComponentGetValue2( item_comp, "is_pickable" )) then
+                local name_func = function( item_id, item_comp, default_name )
+                    local name = index.get_entity_name( item_id, item_comp )
+                    return pen.vld( name ) and name or default_name
+                end
+                pen.t.loop( xD.item_cats, function( k, cat )
+                    if( not( cat.on_check( entity_id ))) then return end
+                    local func = pen.vld( cat.on_info_name ) and cat.on_info_name or name_func
+                    kind = { k, func( entity_id, item_comp, cat.name )}
+                    return true
+                end)
+            elseif( EntityHasTag( entity_id, "hittable" ) or EntityHasTag( entity_id, "mortal" )) then
+                name = index.get_entity_name( entity_id )
+                if( index.check_item_name( name )) then kind = { 0, GameTextGetTranslatedOrNot( name )} end
+            end
+
+            if( not( pen.vld( kind ))) then return end
+            if( best_kind < 0 or best_kind > kind[1]) then best_kind = kind[1] end
+            table.insert( dist_tbl, { entity_id, unpack( kind )})
+        end)
+        if( pen.vld( dist_tbl )) then
+            local the_one = pen.get_closest(
+                xD.pointer_world[1], xD.pointer_world[2], dist_tbl, nil, nil, function( thing ) return thing[2] == best_kind end)
+            if( the_one ~= 0 ) then info = the_one[3] end
+        end
+        
+        local fading = 1
+        if( index.check_item_name( info )) then
+            xM.ui_info = { info, math.max( xM.ui_info[2], xD.frame_num )}
+        elseif( xM.ui_info[1] ~= 0 ) then
+            info = xM.ui_info[1]
+
+            local delta = xD.frame_num - xM.ui_info[2]
+            if( delta > 2*xD.info_fading ) then
+                xM.ui_info, info = nil, ""
+            elseif( delta > xD.info_fading ) then
+                fading = math.max( fading*math.sin(( 2*xD.info_fading - delta )*math.pi/( 2*xD.info_fading )), 0.01 )
+            end
+        end
+
+        if( not( pen.vld( info ))) then return end
+        local tip_anim = (( pen.c.ttips or {})[ "dft" ] or {}).going or 0
+        local is_obstructed = xD.dragger.item_id > 0 or ( xD.frame_num - tip_anim ) < 2
+
+        pic_x, pic_y = unpack( xD.pointer_ui )
+        pic_x, pic_y = pic_x + ( is_obstructed and -2 or 6 ), pic_y + 3
+        do_info( pic_x, pic_y, info, fading*xD.info_pointer_alpha, is_obstructed )
+    end)
+    pen.hallway( function()
+        if( xD.gmod.menu_capable ) then return end
+
+        xM.mtr_prb = xM.mtr_prb or { 0, 0 }
+        local fading, matter = 0.5, xM.mtr_prb[1]
+        if( xD.pointer_matter > 0 ) then
+            matter = xD.pointer_matter
+            xM.mtr_prb = { xD.pointer_matter, math.max( xM.mtr_prb[2], xD.frame_num )}
+        elseif( xM.mtr_prb[1] > 0 ) then
+            local delta = xD.frame_num - xM.mtr_prb[2]
+            if( delta > 2*xD.info_fading ) then
+                xM.mtr_prb, matter = nil, 0
+            elseif( delta > xD.info_fading ) then
+                fading = math.max( fading*math.sin(( 2*xD.info_fading - delta )*math.pi/( 2*xD.info_fading )), 0.01 )
+            end
+        end
+
+        if( matter == 0 and xD.info_mtr_state ~= 3 ) then return end
+        if( xD.info_mtr_state ~= 1 or xM.mtr_prb[2] > xD.frame_num ) then
+            fading = xD.info_mtr_state == 3 and 1 or math.min( fading*4, 1 )
+        end
+        
+        local no_matter = xD.info_mtr_state == 3 and matter == 0
+        local txt = GameTextGetTranslatedOrNot( no_matter and "$mat_air" or CellFactory_GetUIName( matter ))
+        do_info( screen_w - 5, 3, txt, fading, true, function( offset_x )
+            local _,_,is_hovered = pen.new_interface( pic_x + 2 - offset_x, pic_y - 1, offset_x, 8, pen.LAYERS.TIPS )
+            if( is_hovered ) then xM.mtr_prb = { matter, xD.frame_num + 300 } end
+            return is_hovered and pen.PALETTE.VNL.YELLOW or pen.PALETTE.W
+        end)
+    end)
+    return { pic_x, pic_y }
+end
+
 local wand_cat = pen.t.get( ITEM_CATS, "WAND", nil, nil, {})
 local spell_cat = pen.t.get( ITEM_CATS, "SPELL", nil, nil, {})
 local item_cat = pen.t.get( ITEM_CATS, "ITEM", nil, nil, {})
@@ -266,7 +443,6 @@ table.insert( ITEM_CATS, 1, {
 
     on_tooltip = wand_cat.on_tooltip,
     on_inventory = function( info, pic_x, pic_y, state_tbl, slot_dims )
-        -- reloading (add phantom slot, one per unique mag type, that does fake swap; discarded mag continues flying with gravity past the slot it wanted to swap with)
         -- first mag slots, then attachment slots (every attachment slot schematically points to the part of the gun it will occupy; allow overriding on-hover slot numbers with custom text)
         -- dynamically add attachment slots based on hotspots
 
@@ -277,6 +453,8 @@ table.insert( ITEM_CATS, 1, {
         pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.full_inv )
         w, h = xD.wand_func( pic_x - 3*pen.b2n( state_tbl.in_hand ), pic_y + 2, info, state_tbl.in_hand )
         xD.xys.wands = { pic_x, pic_y + h }
+
+        -- reloading (add phantom slot if ammo is not equal to max, one per unique mag type; discarded mag continues flying with gravity past the slot it wanted to swap with not matter if inv is closed or opened)
     end,
     on_slot = wand_cat.on_slot, -- in-slot color-based mag percentage indicators but no literal bullet counters except for the ones on-screen
 

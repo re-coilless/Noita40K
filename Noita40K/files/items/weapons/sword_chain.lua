@@ -49,6 +49,7 @@ return function( info )
         
         -- permanently decrease physics_hit resistance
         -- do cutting vfxes based on blood type
+        -- apply status effect that disables ai (Shock and Agony)
 
         if( max_heat <= 0 ) then return end
         pen.c.extra_heat = ( pen.c.extra_heat or 0 ) + 1 --only for metal

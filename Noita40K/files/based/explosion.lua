@@ -34,7 +34,7 @@ if( explosion_data[ exp_id ] == nil ) then
 
     data.size = math.max( 2*data.size, 1 )
     data.force = math.max( data.force, 0.01 )
-    local event = ( data.force > data.damage ) and "/force_" or "/pressure_"
+    local event = ( data.force > data.damage ) and "/supersonic_" or "/hypersonic_" --the difference should be impact-based
     local event_size = data.size < 25 and "S" or ( data.size < 50 and "M" or "L" )
     local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
     pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )

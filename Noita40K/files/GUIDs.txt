@@ -58,8 +58,12 @@
 {f54319a2-db7b-4da3-95c7-e0dab90ef7dc} event:/classes/32/taunts_1
 {52ea60b5-5276-436d-9aa0-432ae3cc95d5} event:/effects/armor_hit
 {4badce01-5a3c-419c-b86d-b26e5ea63675} event:/effects/burst
-{3ee85007-9c5d-47fe-bc55-4d3f4e9d4365} event:/effects/explosions/pressure_M
-{427971b7-b9ef-4af6-b13c-3d94d65c312a} event:/effects/explosions/pressure_S
+{05010565-59d2-4fb8-a534-14fb78df2366} event:/effects/explosions/hypersonic_L
+{3ee85007-9c5d-47fe-bc55-4d3f4e9d4365} event:/effects/explosions/hypersonic_M
+{427971b7-b9ef-4af6-b13c-3d94d65c312a} event:/effects/explosions/hypersonic_S
+{4d5961fc-51c8-401f-a6ce-0a0ec11aab82} event:/effects/explosions/supersonic_L
+{68812158-7f92-4220-b8c1-b804e6a0aa32} event:/effects/explosions/supersonic_M
+{28572a5e-72c1-42a7-a4e7-a181ac1101a2} event:/effects/explosions/supersonic_S
 {ae936efc-66b6-4272-a495-6c582a17a75c} event:/effects/melt
 {60cdd0ad-847f-42fa-88dc-677fba1b6f7f} event:/effects/slash
 {55af6719-e07b-4369-ac54-9af2ba23accc} event:/effects/stab

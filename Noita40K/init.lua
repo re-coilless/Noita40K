@@ -8,12 +8,12 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
---force_S, force_M, force_L
---pressure_S, pressure_M, pressure_L
-
--- universal ui glowing function that scales a smooth cicle
--- make sure all vanilla ui elements are usable + reloading
+-- redo explosion scaling
+-- basic index logger
+-- power words
 -- design of n40 post
+-- clean up armor (both hiisi smg and shotguns should work properly)
+-- raycast interpolation
 
 -- do frag grenade that has directed spread
 -- separate stress to vector
@@ -34,6 +34,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- custom mnee frontend in the main menu
 -- fix shift clicking to have proper callbacks
 -- allow shift clicking equipment
+-- heat explosion creates a cone of bigger and bigger explosion entites with raycast and a single frame delay betwenn each one
 
 -- both material and entity tips are hotkeyed and near the pointer, entity tips are attached to the in-world entitties and highlight the hitbox with a line that connects to the name
 -- two handed weapons

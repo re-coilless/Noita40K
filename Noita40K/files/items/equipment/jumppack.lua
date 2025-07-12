@@ -16,8 +16,9 @@ else
 		local heat = pen.magic_storage( vis_id, "heat", "value_float" ) or 0
 		local max_heat = pen.magic_storage( vis_id, "heat_max", "value_float" )
 		if( heat > max_heat ) then return end --the penalty is waiting until cools down to half
-
-		local x, y = EntityGetTransform( vis_id )
+		
+		local x, y, _, s_x, s_y = EntityGetTransform( hooman )
+		local pack_x, pack_y = EntityGetTransform( vis_id )
 
 		local dmg_comp = EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" )
 		local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
@@ -43,7 +44,7 @@ else
 		
 		--efficiency depends on char mass
 		--hovering is three times more efficient
-		--tilt the character towards the direction they are moving (based on speed with a limit)
+		--if is trying to fly but speed is over (gravity+10*thrust), activate afterburner that makes it so the speed reaches zero in 10 frames but proportionally reduces effiency 
 
 		--activate high-temp entity
 		--if is on the ground and starting to fly, do ignition
@@ -54,7 +55,12 @@ else
 		local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
 		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )/60
 		local thrust = pen.magic_storage( info.id, "thrust", "value_float" )
-		if( v_y > -thrust ) then v_y = -( gravity + thrust ) end
+		if( will_fly ) then v_y = math.max( v_y - 2*gravity, v_y - ( gravity + thrust )) end
+		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/20 end
+
+		local char_tilt = 0
+		if( will_fly ) then char_tilt = will_move and ( is_left and -15 or 15 ) or s_x*5 end
+		if( char_tilt ~= 0 ) then EntitySetTransform( hooman, x, y, math.rad( char_tilt ), s_x, s_y ) end
 
 		-- local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" )
 		-- local angle = 0 - math.atan2( aiming_y, aiming_x )
@@ -89,8 +95,8 @@ else
 		-- end
 
 		ComponentSetValue2( char_comp, "mVelocity", v_x, v_y )
-		pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/jumppack/loop", true }, x, y )
-		
+		pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/jumppack/loop", true }, pack_x, pack_y )
+
 		--indicate the heat level with sound and color
 		--this should work with life support
 		-- pen.magic_particles( x, y, math.rad( 90 ), {
