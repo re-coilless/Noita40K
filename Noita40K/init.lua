@@ -9,11 +9,11 @@ ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 -- redo explosion scaling
--- basic index logger
 -- power words
 -- design of n40 post
 -- clean up armor (both hiisi smg and shotguns should work properly)
 -- raycast interpolation
+-- fair mod contibution
 
 -- do frag grenade that has directed spread
 -- separate stress to vector

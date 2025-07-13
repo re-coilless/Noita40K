@@ -7,7 +7,7 @@
 	
 	<VariableStorageComponent
 		name="ammo_max"
-		value_int="200"
+		value_int="20"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="round"
