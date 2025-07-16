@@ -32,30 +32,45 @@ if( explosion_data[ exp_id ] == nil ) then
         table.insert( data.shrapnel_tbl, id )
     end
 
-    data.size = math.max( 2*data.size, 1 )
+    data.size = math.max( data.size, 1 )
+    local s = data.size
     data.force = math.max( data.force, 0.01 )
-    local event = ( data.force > data.damage ) and "/supersonic_" or "/hypersonic_" --the difference should be impact-based
-    local event_size = data.size < 25 and "S" or ( data.size < 50 and "M" or "L" )
-    local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
-    pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
+    local f = data.force
+    
+    --energy 1 10 20 50 250 | 1 2 7 15 25 | 0.5 2 6 1 0.8
 
-    local k_size_energy = ( 14336 + 3.483 )/( 1 + math.pow( data.size/1.638, 1.695 )) - 3.483
-    local k_force_energy = math.max( 32397 - ( 290 + 32397 )/( 1 + math.pow( data.force/1.311, 2.996 )), 1 )
+    -- size 1 10 20 50 250 | 5 3 2 0.2 0.1
+    local kes = math.log( 50227*math.exp( -99*s/820 + 919/( 820*math.pow( 894/695, s )))/719 + 294/271 )
+    -- force 1 2 7 15 25 | 0.1 0.75 3 5 8
+    local kef = -2*f - 173*( -f - 826/171 )*math.log( math.log( f*( f - 92/537 ) + 3169/997 ))/166 + 58/559
     
-    local k_size_shake = 22 + ( 0.237 - 22 )/( 1 + math.pow( data.size/116, 1.535 ))
-    local k_force_shake = 6.328*( 1 - 1/( 1 + math.pow( data.force/1.2, 1.081 )))
-    
-    local k_size_impact = ( 25 + 0.304 )/( 1 + math.pow( data.size/4.87, 0.921 )) - 0.304
-    local k_force_impact = 200 + ( 2.35 - 200 )/( 1 + math.pow( data.force/24, 12.315 ))
-    
-    --redo the scaling
+    --shake 1 10 20 50 250 | 1 2 7 15 25 | 0.5 4 8 15 30
+
+    -- size 1 10 20 50 250 | 1 4 6 10 15
+    local kss = s*( -998*math.log( s + 7/41 )/927 + math.log( s + 778/531 ) + 56/117 ) - 205/969
+    -- force 1 2 7 15 25 | 0.5 1 1.33 1.5 2
+    local ksf = 176*f*( f - 13/745 )/148535 + 15136/( 103761*( 32/275 + math.exp( -311*f/177 )))
+
+    --impact 1 10 20 50 250 | 1 2 7 15 25 | 3 10 15 12 4
+
+    -- size 1 10 20 50 250 | 15 10 7.5 4 1
+    local kis = -32/491 - 228592/( 817*( -s - 7351/418 ))
+    -- force 1 2 7 15 25 | 0.2 1 2 3 4
+    local kif = 72*math.pow( f, 549/862 )/155 - math.pow( 646/( 981*f ), f ) + 216/551
+
     pen.magic_explosion( x, y, {
         shooter = who_shot, light = 0.2,
         radius = math.ceil( data.size/2.5 ),
-        energy = math.ceil( math.max( k_size_energy*k_force_energy, 1 )),
-        shake = math.max( math.min( k_size_shake*k_force_shake, 20 ), 0 ),
-        impact = math.floor( math.max( math.min( k_size_impact*k_force_impact, 20 ), 20 )),
+        shake = math.min( math.max( kss*ksf, 0 ), 30 ),
+        energy = math.ceil( math.max( 100000*( kes*kef ), 1 )),
+        impact = math.floor( math.min( math.max( kis*kif, 10 ), 20 )),
     })
+    
+    local diameter = 2*data.size
+    local event = ( data.time/diameter < 0.4 ) and "/supersonic_" or "/hypersonic_"
+    local event_size = diameter < 30 and "S" or ( diameter < 75 and "M" or "L" )
+    local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
+    pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
 
     explosion_data[ exp_id ] = data
 end
@@ -63,6 +78,8 @@ end
 local data = explosion_data[ exp_id ]
 local anim = pen.animate( 1, cnt, { ease_out = "exp", frames = data.time })
 EntitySetTransform( exp_id, x, y, r, ( anim*data.size + 1 )/256, ( anim*data.size + 1 )/256 )
+
+-- heat explosion creates a cone of bigger and bigger explosion entites with raycast and a single frame delay betwenn each one
 
 pen.t.loop( data.shrapnel_tbl, function( i, proj_id )
     if( not( EntityGetIsAlive( proj_id ))) then return end

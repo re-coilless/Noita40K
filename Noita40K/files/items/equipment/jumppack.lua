@@ -42,7 +42,8 @@ else
 		local is_active = will_fly or will_move or will_dash or will_hover
 		if( not( is_active )) then return end
 		
-		--efficiency depends on char mass
+		--efficiency decreases with higher char mass
+		--increase efficiency with horizontal speed
 		--hovering is three times more efficient
 		--if is trying to fly but speed is over (gravity+10*thrust), activate afterburner that makes it so the speed reaches zero in 10 frames but proportionally reduces effiency 
 

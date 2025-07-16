@@ -102,7 +102,7 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 200, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 0.5, h = 7 }},
+	projectiles = {{ r = 1.5, h = 7 }},
 	--pyrum decreases length and increases damage; changes color to be more yellow
 	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
 		point_action = function( data, point_x, point_y, k, is_final )

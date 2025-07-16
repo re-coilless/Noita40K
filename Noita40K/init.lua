@@ -8,46 +8,43 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- redo explosion scaling
--- power words
--- design of n40 post
--- clean up armor (both hiisi smg and shotguns should work properly)
 -- raycast interpolation
+-- clean up armor (both hiisi smg and shotguns should work properly)
+-- separate stress to vector
+
+-- news role (direct broadcasting)
+-- design of n40 post
 -- fair mod contibution
 
--- do frag grenade that has directed spread
--- separate stress to vector
--- all ctrl scripts must be constantly running, behavior controlled by varstorages
 -- targetting is integrated into index info system
 -- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
 -- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
--- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
 -- kicking sound should be produced by different event
 -- shooting at the flat walls to the left of the char almost always results in ricochet
--- do quick class bootup intro animation on world pre update (should block inputs + display tips)
--- custom status effect system though HitEffectComp (thanks Extol)
 -- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
--- emissive eyes with correct z (make trailing red eyes for rage modes; steal Alex's method of encoding?)
+-- ammo display with an option to align at the center of the screen or at the pointer
+-- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
+-- ledge mounting anim
+
+-- do frag grenade that has directed spread
+-- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
+-- do quick class bootup intro animation on world pre update (should block inputs + display tips)
+-- custom status effect system though HitEffectComp (thanks Extol)
+-- make trailing red eyes for rage modes
 -- custom mnee frontend in the main menu
 -- fix shift clicking to have proper callbacks
 -- allow shift clicking equipment
--- heat explosion creates a cone of bigger and bigger explosion entites with raycast and a single frame delay betwenn each one
 
--- both material and entity tips are hotkeyed and near the pointer, entity tips are attached to the in-world entitties and highlight the hitbox with a line that connects to the name
--- two handed weapons
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
 -- madness combat style hands
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- codex should have lore word hyperlinks that show tips on hower
--- overload shader (somehow vertex shader is being overwritten by refractor)
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens + add "select" button on the desc page
 -- combat wolf with custom ai for Space Wolf
--- option to align ammo at the center of the screen
 -- exterminatus should squirt some juice directly at nearby sentient entities
--- stable main menu height
 -- Eternal vigilance ability to hack robots allegiance to yours through a minigame + raven's test for admech hacking minigame (with layers)
 -- "target has expired"
 -- include detailed PL calcuator explanation in seraphim
@@ -58,18 +55,14 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- music is a single track that evolves based on events and biomes
 -- put new link in the desc https://cortex-command-community.github.io/
 -- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class)
--- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
--- ledge mounting anim
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
--- burning with promethium fire or being ot low hp should apply "void compomized" debuff that restores all status effect weaknesses that armor negates (can be fixed either in the "holy mountain" or with a "reseal kit")
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
 -- ogryn mode than makes all lore caveman like
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
--- custom ai should get the baseline terrain info from REing the wang gen, then run simple real-time checks to get box2d geometry and extra check every terrain altering thing (like explosions)
--- ?clot and warpmatter ambient sound
+-- ?clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )

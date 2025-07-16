@@ -29,7 +29,7 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="vector_handling"
-		value_float="-0.25"
+		value_float="-1.5"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"

@@ -10,7 +10,7 @@
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="force"
-			value_float="0.5"
+			value_float="1.5"
 		></VariableStorageComponent>
 	</Base>
 </Entity>

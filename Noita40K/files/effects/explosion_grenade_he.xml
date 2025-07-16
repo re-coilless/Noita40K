@@ -10,11 +10,11 @@
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="force"
-			value_float="5"
+			value_float="15"
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="time"
-			value_float="30"
+			value_float="35"
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="shrapnel"
