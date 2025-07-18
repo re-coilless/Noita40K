@@ -16,7 +16,7 @@ return function( info )
     local memo = pen.c.sword_state[ info.id ]
     local x, y = EntityGetTransform( info.id )
     local is_swinging, is_cutting = false, false
-    local data = { m = 0.15, is_debugging = true, dmg = 5/25 }
+    local data = { m = 0.15, is_debugging = false, dmg = 5/25 }
     if( may_swing and ( xD.Controls.lmb[3] or memo.swing_start )) then
         data.active, memo.engine = true, true
         local shake = pen.generic_random( 0.5, 1.5, nil, true )
@@ -29,6 +29,7 @@ return function( info )
             data.drift = { r = 80, x = 3 + shake, y = 2 + shake, a = "ixp0.15", m = 0.75 }
         else
             --charges up the swing (indicated by sound and sparks, at full charge starts applying heat)
+            --add minimal charge level, letting go before it will abort the swing
             data.drift = { r = -30, x = -2 + shake/4, y = -4 + shake/4, a = "wgt2", m = 0.5 }
             memo.swing_start = not( xD.Controls.lmb[1])
         end
@@ -42,17 +43,21 @@ return function( info )
     else memo.swing_done, memo.swing_start = false, false end
 
     local max_heat = pen.magic_storage( info.id, "heat_max", "value_float" ) or -1
-    data.f = function( hit_id, hit_x, hit_y, dmg_mult, k )
+    data.on_hit = function( hit_id, hit_x, hit_y, dmg_mult, k )
         local is_metal = false --if got armor rating or ragdoll is made from metal
         pen.play_sound({ "mods/Noita40K/files/40K.bank",
             "items/guns/sword_chain/tear"..( is_metal and "_metal" or "" ), true }, hit_x, hit_y )
         
         -- permanently decrease physics_hit resistance
         -- do cutting vfxes based on blood type
-        -- apply status effect that disables ai (Shock and Agony)
+        -- apply status effect that disables ai (name's Agony)
 
         if( max_heat <= 0 ) then return end
         pen.c.extra_heat = ( pen.c.extra_heat or 0 ) + 1 --only for metal
+    end
+    data.on_active = function( hooman, x, y, r, length )
+        pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/beam_sword_physical.xml",
+            x + length*math.cos( r ), y + length*math.sin( r ), -600*math.cos( r ), -600*math.sin( r ))
     end
     if( pen.c.extra_heat ~= nil ) then
         local heat = pen.magic_storage( info.id, "heat", "value_float" ) or 0

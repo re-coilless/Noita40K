@@ -8,7 +8,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- raycast interpolation
 -- clean up armor (both hiisi smg and shotguns should work properly)
 -- separate stress to vector
 

@@ -105,7 +105,7 @@ table.insert( actions,
 	projectiles = {{ r = 1.5, h = 7 }},
 	--pyrum decreases length and increases damage; changes color to be more yellow
 	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
-		point_action = function( data, point_x, point_y, k, is_final )
+		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
 			if( k%5 ~= 0 and not( is_final )) then return end
 			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
 			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
@@ -114,7 +114,7 @@ table.insert( actions,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
 	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true },
-
+	
 	action = function() pen.gunshot() end,
 })
 
