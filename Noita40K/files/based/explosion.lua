@@ -20,6 +20,7 @@ if( explosion_data[ exp_id ] == nil ) then
     local count = math.floor( data.shrapnel + 0.5 )
     local who_shot = pen.magic_storage( exp_id, "author", "value_int" )
     local shrapnel = pen.magic_storage( exp_id, "shrapnel_file", "value_string" )
+    local stains = pen.magic_storage( exp_id, "stains", "value_bool" ) or false
     for i = 1,count do
         local angle = math.rad( 360 )/count*( i + math.random()/2 ) --do directional explosion here
         local v_x, v_y = math.cos( angle )*data.shrapnel_speed, math.sin( angle )*data.shrapnel_speed
@@ -61,6 +62,7 @@ if( explosion_data[ exp_id ] == nil ) then
     pen.magic_explosion( x, y, {
         shooter = who_shot, light = 0.2,
         radius = math.ceil( data.size/2.5 ),
+        stains = stains and data.size or nil,
         shake = math.min( math.max( kss*ksf, 0 ), 30 ),
         energy = math.ceil( math.max( 100000*( kes*kef ), 1 )),
         impact = math.floor( math.min( math.max( kis*kif, 10 ), 20 )),

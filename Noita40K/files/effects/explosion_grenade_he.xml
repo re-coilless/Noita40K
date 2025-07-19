@@ -28,5 +28,15 @@
 			name="shrapnel_speed"
 			value_float="1000"
 		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="shrapnel_damage"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="shrapnel_file"
+		></VariableStorageComponent>
+		<VariableStorageComponent
+			name="stains"
+			value_bool="1"
+		></VariableStorageComponent>
 	</Base>
 </Entity>

@@ -10,21 +10,23 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 -- clean up armor (both hiisi smg and shotguns should work properly)
 -- separate stress to vector
-
--- news role (direct broadcasting)
--- design of n40 post
--- fair mod contibution
-
 -- targetting is integrated into index info system
 -- energy weapons should have ammo consumption based on gun
 -- char jump sound is not playing cause jump velocity is too big
 -- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
 -- kicking sound should be produced by different event
 -- shooting at the flat walls to the left of the char almost always results in ricochet
--- turn sprite_pipeline into full on spritesheet generator that optimizes the atlas and xml
 -- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
 -- ammo display with an option to align at the center of the screen or at the pointer
+
+-- main menu
+-- inventory (three main styles: physical, holographic and phychic)
+
+-- news role (direct broadcasting)
+-- design of n40 post
+-- fair mod contibution
+
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- ledge mounting anim
 

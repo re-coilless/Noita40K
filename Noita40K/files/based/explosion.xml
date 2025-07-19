@@ -99,6 +99,10 @@
 		value_string="mods/Noita40K/files/based/shrapnel.xml"
 	></VariableStorageComponent>
     <VariableStorageComponent
+		name="stains"
+		value_bool="0"
+	></VariableStorageComponent>
+	<VariableStorageComponent
 		name="alpha"
 		value_float="1"
 	></VariableStorageComponent>

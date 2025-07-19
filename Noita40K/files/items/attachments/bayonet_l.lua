@@ -23,7 +23,7 @@ else
 		if( index.D.active_item ~= gun_id ) then return end
 		
 		--should only work if pos delta is high enough
-		--on slice just dlea damage but on stab check armor pen and if succeeds impale the enemy with disabling their ai
+		--on slice just deal damage but on stab check armor pen and if succeeds impale the enemy with Agony status effect
 		
 		local hooman = EntityGetRootEntity( gun_id )
 		local _, _, r = EntityGetTransform( gun_id )
@@ -31,6 +31,6 @@ else
 		local hit_action = function( hit_id, k, hit_x, hit_y, dmg_mult, is_final )
 			EntityInflictDamage( hit_id, dmg_mult*0.02, "DAMAGE_DRILL", "slash", "NORMAL", 0, 0, hooman, hit_x, hit_y, 0 )
 		end
-		pen.raytrace_entities( blade_x, blade_y, r, 15, hit_action, { is_debugging = true, shooter = hooman })
+		pen.raytrace_entities( blade_x, blade_y, r, 15, hit_action, { uid = info.id, is_debugging = false, shooter = hooman })
 	end
 end

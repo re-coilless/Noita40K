@@ -45,7 +45,7 @@ else
 		--efficiency decreases with higher char mass
 		--increase efficiency with horizontal speed
 		--hovering is three times more efficient
-		--if is trying to fly but speed is over (gravity+10*thrust), activate afterburner that makes it so the speed reaches zero in 10 frames but proportionally reduces effiency 
+		--if is trying to enter hover but speed is over (gravity+10*thrust), activate afterburner that makes it so the speed reaches zero in 10 frames but proportionally reduces effiency
 
 		--activate high-temp entity
 		--if is on the ground and starting to fly, do ignition
@@ -63,8 +63,8 @@ else
 		if( will_fly ) then char_tilt = will_move and ( is_left and -15 or 15 ) or s_x*5 end
 		if( char_tilt ~= 0 ) then EntitySetTransform( hooman, x, y, math.rad( char_tilt ), s_x, s_y ) end
 
-		-- local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" )
-		-- local angle = 0 - math.atan2( aiming_y, aiming_x )
+		local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" )
+		local angle = -math.atan2( aim_x, aim_y )
 		
 		-- local delta_vel_x = math.cos( angle )*JUMPPACK_SPEED
 		-- local delta_vel_y = math.sin( angle )*JUMPPACK_SPEED
@@ -97,18 +97,31 @@ else
 
 		ComponentSetValue2( char_comp, "mVelocity", v_x, v_y )
 		pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/jumppack/loop", true }, pack_x, pack_y )
-
-		--indicate the heat level with sound and color
-		--this should work with life support
-		-- pen.magic_particles( x, y, math.rad( 90 ), {
-		-- 	delay = 2, fading = 6, lifetime = 4,
-		-- 	additive = true, emissive = true, count = { 2, 3 },
+		
+		--jet to the left looks different from the one to the right
+		--indicate the heat level with sound (dynamically change pitch) and color
+		local jet_angle = -pen.get_sign( aim_x )*math.rad( 145 )
+		pen.magic_particles( pack_x, pack_y + 5, jet_angle, {
+			uid = info.id, z_index = 5, render_back = true,
+			fading = 7, additive = true, count = { 5, 10 },
 			
-		-- 	alpha = 0.9, color = { 230, 88, 0 },
-		-- 	alpha_end = 0.1, color_end = { 59, 42, 32 },
+			scale = { 0.5, 0.75 },
+			alpha = 1, color = { 230, 88, 0 },
+			alpha_end = 0.1, color_end = { 59, 42, 32 },
 			
-		-- 	global_velocity = { v_x/2, v_y/2 },
-		-- 	velocity = { 140, 0 }, slowdown = { -20, 0, 1 },
-		-- })
+			p_range = { -5, -2, 5, 0 },
+			global_velocity = { 0, -150 }, velocity = { 0, -100 },
+		})
+		pen.magic_particles( pack_x + v_x/60, pack_y + 7 + v_y/60, jet_angle, {
+			uid = info.id.."_alt", z_index = 5, render_back = true,
+			fading = 10, additive = true, count = { 3, 7 },
+			
+			scale = { 0.75, 1 },
+			alpha = 1, color = { 230, 88, 0 },
+			alpha_end = 0.1, color_end = { 59, 42, 32 },
+			
+			p_range = { -4, -4, 4, 0 },
+			global_velocity = { 0, -150 }, velocity = { 0, -100 },
+		})
 	end
 end
