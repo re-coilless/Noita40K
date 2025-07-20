@@ -183,8 +183,8 @@
 		loop="0"
 		
 		><Event
-			frame="0" name="jump"
-			check_physics_material="1"
+			frame="0" name="jump_sfx"
+			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
 			probability="1"
@@ -362,7 +362,15 @@
 		loop="0"
 		
 		><Event
-			frame="2" name="kick"
+			frame="1" name="kick_sfx"
+			check_physics_material="0"
+			max_distance="500"
+			on_finished="0"
+			probability="1"
+		></Event>
+		
+		<Event
+			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"
@@ -377,6 +385,14 @@
 		loop="0"
 
 		><Event
+			frame="1" name="kick_sfx"
+			check_physics_material="0"
+			max_distance="500"
+			on_finished="0"
+			probability="1"
+		></Event>
+		
+		<Event
 			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"
@@ -392,6 +408,14 @@
 		loop="0"
 
 		><Event
+			frame="1" name="kick_sfx"
+			check_physics_material="0"
+			max_distance="500"
+			on_finished="0"
+			probability="1"
+		></Event>
+		
+		<Event
 			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"
@@ -407,6 +431,14 @@
 		loop="0"
 
 		><Event
+			frame="1" name="kick_sfx"
+			check_physics_material="0"
+			max_distance="500"
+			on_finished="0"
+			probability="1"
+		></Event>
+		
+		<Event
 			frame="3" name="kick"
 			check_physics_material="0"
 			max_distance="500"

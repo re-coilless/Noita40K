@@ -5,7 +5,7 @@ if((( index or {}).D or {}).player_id ~= nil ) then
         if( xD.active_item ~= info.id ) then return end
 
         local clicked, r_clicked = pen.new_interface(
-            xD.pointer_ui[1] - 10, xD.pointer_ui[2] - 10, 20, 20, pen.LAYERS.TIPS_FRONT - 100 )
+            xD.pointer_ui[1] - 10, xD.pointer_ui[2] - 10, 20, 20, pen.LAYERS.WORLD_BACK + 100 )
         if( r_clicked ) then
             local fuse = pen.magic_storage( info.id, "fuse", "value_int" )
             if( fuse < 0 ) then

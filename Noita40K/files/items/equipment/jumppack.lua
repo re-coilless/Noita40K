@@ -28,6 +28,8 @@ else
 		local is_right = ComponentGetValue2( ctrl_comp, "mButtonDownRight" )
 		local is_left = ComponentGetValue2( ctrl_comp, "mButtonDownLeft" )
 		local will_fly = ComponentGetValue2( ctrl_comp, "mButtonDownUp" )
+		will_fly = will_fly or ComponentGetValue2( ctrl_comp, "mButtonDownFly" )
+		will_fly = will_fly or ComponentGetValue2( ctrl_comp, "mButtonDownJump" )
 
 		local is_grounded = ComponentGetValue2( char_comp, "is_on_ground" )
 		local may_hover = pen.magic_storage( info.id, "may_hover", "value_bool" )
@@ -54,10 +56,11 @@ else
 		pen.magic_storage( vis_id, "heat", "value_float", heat + waste )
 
 		local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
-		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )/60
+		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )
 		local thrust = pen.magic_storage( info.id, "thrust", "value_float" )
-		if( will_fly ) then v_y = math.max( v_y - 2*gravity, v_y - ( gravity + thrust )) end
-		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/20 end
+		if( will_fly ) then v_y = math.max( -gravity, v_y - thrust ) end
+		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/2 end
+		if(( will_fly or will_dash ) and is_grounded ) then v_y = v_y - gravity/4 end
 
 		local char_tilt = 0
 		if( will_fly ) then char_tilt = will_move and ( is_left and -15 or 15 ) or s_x*5 end

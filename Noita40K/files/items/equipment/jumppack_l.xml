@@ -24,7 +24,7 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="thrust"
-		value_float="150"
+		value_float="20"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="may_dash"

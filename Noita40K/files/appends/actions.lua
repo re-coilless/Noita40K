@@ -1,5 +1,12 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
+function n40.muzzle_flash( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
+	-- action.muzzle_flash
+	local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
+	local flash_func = n40.MUZZLE_FLASHES[ EntityGetName( gun_id )]
+	return ( flash_func or n40.MUZZLE_FLASHES.bolter )( muzzle_x, muzzle_y, r, v_x, v_y, gun_id )
+end
+
 function n40.init_blade_action( id, data )
 	return {
 		id = id, name = data.name, description = data.desc,
@@ -8,46 +15,6 @@ function n40.init_blade_action( id, data )
 		spawn_requires_flag = "never_spawn_this_action", action = function() end,
 	}
 end
-
-n40.MFLASH = {
-	["bolt_998"] = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
-		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
-		pen.magic_particles( muzzle_x, muzzle_y, r, {
-			delay = 2, fading = 6, lifetime = 4,
-			additive = true, emissive = true, count = { 2, 3 },
-			
-			alpha = 0.9, color = { 230, 88, 0 },
-			alpha_end = 0.1, color_end = { 59, 42, 32 },
-			
-			global_velocity = { v_x/2, v_y/2 },
-			velocity = { 140, 0 }, slowdown = { -20, 0, 1 },
-		})
-		pen.magic_particles( muzzle_x, muzzle_y, r, {
-			fading = 5, lifetime = 2,
-			additive = true, emissive = true, count = { 2, 3 },
-
-			alpha = 0.9, color = { 230, 88, 0 },
-			alpha_end = 0.2, color_end = { 59, 42, 32 },
-
-			global_velocity = { v_x/2, v_y/2 },
-			scale = { 0.7, 0.5 }, v_range = { 0, -75, 0, 75 },
-		})
-	end,
-
-	["bolt_50mm"] = function( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
-		local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
-		pen.magic_particles( muzzle_x, muzzle_y, r, {
-			fading = 7, lifetime = 4,
-			additive = true, emissive = true, count = { 5, 7 },
-
-			alpha = 0.9, color = { 230, 88, 0 },
-			alpha_end = 0.2, color_end = { 59, 42, 32 },
-
-			scale = { 0.7, 0.7 }, p_range = { -0.5, -1.5, 0.5, 1.5 },
-			global_velocity = { v_x/2, v_y/2 }, v_range = { 100, -20, 150, 20 },
-		})
-	end,
-}
 
 table.insert( actions,
 {
@@ -65,7 +32,7 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
 	
 	action = function()
-		pen.gunshot( n40.MFLASH.bolt_998 )
+		pen.gunshot( n40.muzzle_flash )
 		c.spread_degrees = c.spread_degrees + 10.0
 	end,
 })
@@ -86,7 +53,7 @@ table.insert( actions,
 	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_50mm" },
 	
 	action = function()
-		pen.gunshot( n40.MFLASH.bolt_50mm )
+		pen.gunshot( n40.muzzle_flash )
 		c.spread_degrees = c.spread_degrees + 30.0
 		c.damage_critical_chance = c.damage_critical_chance + 20
 	end,
@@ -114,7 +81,7 @@ table.insert( actions,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
 	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true },
-	
+
 	action = function() pen.gunshot() end,
 })
 

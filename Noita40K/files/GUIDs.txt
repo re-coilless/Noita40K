@@ -29,7 +29,7 @@
 {9911f894-5c95-467e-aef6-7955bbf9d35e} event:/classes/12/mk7/jump_snow
 {0221e090-7b89-44f3-91e5-249c50404354} event:/classes/12/mk7/jump_water
 {bf520245-bfd7-48e7-9be3-439cf6d21b0e} event:/classes/12/mk7/jump_wood
-{0795ecfa-83aa-4e68-ba4a-9640d523bb9e} event:/classes/12/mk7/kick
+{0795ecfa-83aa-4e68-ba4a-9640d523bb9e} event:/classes/12/mk7/kick_sfx
 {c3efde36-78d0-4fae-bf7b-c71417f4c00f} event:/classes/12/mk7/land_gravel
 {5fe86092-c584-47ce-97b2-2fe426aabd1e} event:/classes/12/mk7/land_ice
 {3e35fdfc-3ec2-4997-a1b6-181601c977dc} event:/classes/12/mk7/land_metal

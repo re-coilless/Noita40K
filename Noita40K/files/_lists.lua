@@ -615,3 +615,41 @@ n40.CODEX.CREDITS = {
 }
 
 n40.QUOTES = "$n40_EXTRA_quotes" --encoded table + add like 30 more
+
+n40.MUZZLE_FLASHES = {
+	bolter = function( muzzle_x, muzzle_y, r, v_x, v_y, gun_id )
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			delay = 2, fading = 6, lifetime = 4,
+			additive = true, emissive = true, count = { 2, 3 },
+			
+			alpha = 0.9, color = { 230, 88, 0 },
+			alpha_end = 0.1, color_end = { 59, 42, 32 },
+			
+			global_velocity = { v_x/2, v_y/2 },
+			velocity = { 140, 0 }, slowdown = { -20, 0, 1 },
+		})
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			fading = 5, lifetime = 2,
+			additive = true, emissive = true, count = { 2, 3 },
+
+			alpha = 0.9, color = { 230, 88, 0 },
+			alpha_end = 0.2, color_end = { 59, 42, 32 },
+
+			global_velocity = { v_x/2, v_y/2 },
+			scale = { 0.7, 0.5 }, v_range = { 0, -75, 0, 75 },
+		})
+	end,
+
+	bolter_rifle = function( muzzle_x, muzzle_y, r, v_x, v_y, gun_id )
+		pen.magic_particles( muzzle_x, muzzle_y, r, {
+			fading = 7, lifetime = 4,
+			additive = true, emissive = true, count = { 5, 7 },
+
+			alpha = 0.9, color = { 230, 88, 0 },
+			alpha_end = 0.2, color_end = { 59, 42, 32 },
+
+			scale = { 0.7, 0.7 }, p_range = { -0.5, -1.5, 0.5, 1.5 },
+			global_velocity = { v_x/2, v_y/2 }, v_range = { 100, -20, 150, 20 },
+		})
+	end,
+}

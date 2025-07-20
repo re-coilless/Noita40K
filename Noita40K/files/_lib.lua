@@ -81,8 +81,8 @@ function n40.setup_character( hooman )
 		data = n40.new_perk( v, hooman, data )
 	end)
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_heat.lua" )
+	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_anims.lua" )
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_taunt.lua" )
-	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_stress.lua" )
 	pen.lib.set_matter_damage( hooman, data )
 
 	--break the loop if exceeds the inv size

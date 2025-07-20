@@ -8,20 +8,16 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- clean up armor (both hiisi smg and shotguns should work properly)
--- separate stress to vector
--- targetting is integrated into index info system
--- energy weapons should have ammo consumption based on gun
--- char jump sound is not playing cause jump velocity is too big
--- muzzle flash should be per-gun instead of per-spell (allow spells to modify them the same way as beam altering goes)
--- kicking sound should be produced by different event
 -- shooting at the flat walls to the left of the char almost always results in ricochet
--- nuke all old settings
 -- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
--- ammo display with an option to align at the center of the screen or at the pointer
+-- energy weapons should have ammo consumption based on gun
+-- make heat to work with jumppack
+-- add heat debuffs
 
+-- targetting is integrated into index info system
+-- ammo display with an option to align at the center of the screen or at the pointer
 -- main menu
--- inventory (three main styles: physical, holographic and phychic)
+-- inventory (three main styles: physical, holographic and psychic)
 
 -- news role (direct broadcasting)
 -- design of n40 post
@@ -68,6 +64,17 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )
 	
+	if( pen.vld( pen.setting_get( "Noita40K.CURRENT_CLASS" ))) then
+		local rot = { "ARMOR_DEFLECTION_CHANCE", "BAYONET_HIT_FORCE", "BAYONET_HIT_VELOCITY",
+			"BAYONET_MAX_DAMAGE", "CLASS_SELECTION", "CLASS_STATS", "CLIPBOARD_INFO", "CURRENT_CLASS",
+			"CURRENT_SKIN", "CUSTOM_LOADOUT", "DATABASED_NAMES", "DENDRITES_SOUND", "DISABLE_SHADERS",
+			"ENABLE_CUSTOM_LOADOUT", "JUMPPACK_BURNING_RATE", "JUMPPACK_REAL_FIRE", "JUMPPACK_SPEED",
+			"MAG_AUTORELOAD", "MAX_AMMO_SHOWN_FULL", "NOTE_INFO", "PURITY_CONTROL", "QUEST_INFO", "",
+			"REFRACTOR_VISUALS", "RELOAD_TAP_WAIT", "RESETER", "SHOW_PERKS", "SHOW_REMINDED", "VERSION",
+			"SHOW_REMINDER", "SKIN_ONLY", "SPAWN_LIFE_EATER", "TOOLTIP_MODE", "TUTORIAL_MODE", "UI_MODE" }
+		for i,v in ipairs( rot ) do ModSettingRemove( "Noita40K."..v ) end
+	end
+
 	pen.add_translations( "mods/Noita40K/files/appends/translations.csv" )
 	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua" )
 
