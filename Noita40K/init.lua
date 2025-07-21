@@ -8,11 +8,9 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- shooting at the flat walls to the left of the char almost always results in ricochet
--- add proper [liquid]/[gas]/[solid] tags to custom matters (cleanup matter list overall)
 -- energy weapons should have ammo consumption based on gun
 -- make heat to work with jumppack
--- add heat debuffs
+-- add heat debuffs (swords get buffed with heat)
 
 -- targetting is integrated into index info system
 -- ammo display with an option to align at the center of the screen or at the pointer
@@ -25,6 +23,8 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- ledge mounting anim
+-- new modular anim system (make sure stains work with it)
+-- ?clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
 
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
@@ -59,7 +59,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
--- ?clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )
