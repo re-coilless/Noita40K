@@ -4,7 +4,7 @@
 	<!-- darkfire -->
 	<CellData
 		name="darkfire"
-		ui_name="Darkfire"
+		ui_name="$n40_MATTER_darkfire"
 		ui_desc=""
 		
 		cell_type="gas"
@@ -33,7 +33,7 @@
 		_inherit_reactions="0"
 		
 		name="warpflame"
-		ui_name="Warpflame"
+		ui_name="$n40_MATTER_warpflame"
 		ui_desc=""
 		wang_color="806c00cf"
 		
@@ -45,7 +45,7 @@
 	
 	<CellData
 		name="warpmatter"
-		ui_name="Warpmatter"
+		ui_name="$n40_MATTER_warpmatter"
 		ui_desc=""
 		
 		cell_type="solid"
@@ -74,7 +74,7 @@
 	
 	<CellData
 		name="warpclot"
-		ui_name="Clot"
+		ui_name="$n40_MATTER_warpclot"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -112,7 +112,7 @@
 		_inherit_reactions="0"
 		
 		name="unstable_warpclot"
-		ui_name="Clot"
+		ui_name="$n40_MATTER_unstable_warpclot"
 		ui_desc=""
 		wang_color="806c00cc"
 		
@@ -134,7 +134,7 @@
 	<!-- life-eater virus -->
 	<CellData
 		name="exterminatus_gas"
-		ui_name="Exterminatus Virus"
+		ui_name="$n40_MATTER_exterminatus_gas"
 		ui_desc=""
 		
 		cell_type="gas"
@@ -169,7 +169,7 @@
 	
 	<CellData
 		name="exterminatus_juice"
-		ui_name="Exterminatus Hound"
+		ui_name="$n40_MATTER_exterminatus_juice"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -227,7 +227,7 @@
 	
 	<CellData
 		name="exterminatus_solid"
-		ui_name="Exterminatus Spore"
+		ui_name="$n40_MATTER_exterminatus_solid"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -265,7 +265,7 @@
 	
 	<CellData
 		name="exterminatus_hunter"
-		ui_name="Exterminatus Hunter"
+		ui_name="$n40_MATTER_exterminatus_hunter"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -310,7 +310,7 @@
 	
 	<CellData
 		name="exterminatus_reaper"
-		ui_name="Exterminatus Reaper"
+		ui_name="$n40_MATTER_exterminatus_reaper"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -348,7 +348,7 @@
 	
 	<CellData
 		name="ruptor_gas"
-		ui_name="Ruptor Virus"
+		ui_name="$n40_MATTER_ruptor_gas"
 		ui_desc=""
 		
 		cell_type="gas"
@@ -382,7 +382,7 @@
 	
 	<CellData 
 		name="ruptor_juice"
-		ui_name="Ruptor Spores"
+		ui_name="$n40_MATTER_ruptor_juice"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -445,7 +445,7 @@
 	<!-- misc fire -->
 	<CellData 
 		name="promethium_fire"
-		ui_name="Promethium Fire"
+		ui_name="$n40_MATTER_promethium_fire"
 		ui_desc=""
 		
 		cell_type="fire"
@@ -477,10 +477,43 @@
 		</StatusEffects>
 	</CellData>
 	
-	<!-- misc gases -->
+	<CellData
+		name="plasma_unstable"
+		ui_name="$n40_MATTER_plasma_unstable"
+		ui_desc=""
+		
+		cell_type="liquid"
+		liquid_gravity="0.1"
+		liquid_sand="0"
+		wang_color="80ec090f"
+		tags="[hot]"
+		show_in_creative_mode="1"
+		
+		lifetime="10"
+		density="0"
+		requires_oxygen="0"
+		electrical_conductivity="1"
+		gfx_glow="255"
+		
+		burnable="0"
+		generates_smoke="0"
+		generates_flames="0"
+		temperature_of_fire="100"
+		always_ignites_damagemodel="0"
+		
+		audio_physics_material_event="snow"
+		
+		danger_fire="1"
+		
+		><Graphics
+			texture_file="mods/Noita40K/files/map/matters/plasma_unstable.png"
+			color="ffec090f"
+		></Graphics>
+	</CellData>
+	
 	<CellData
 		name="plasma_he"
-		ui_name="High-Energy Plasma"
+		ui_name="$n40_MATTER_plasma_he"
 		ui_desc=""
 		
 		cell_type="gas"
@@ -540,40 +573,8 @@
 	</CellData>
 	
 	<CellData
-		name="heavy_smoke"
-		ui_name="Heavy Smoke"
-		ui_desc=""
-		
-		cell_type="gas"
-		liquid_sand="0"
-		liquid_stains="1"
-		liquid_stains_self="1"
-		liquid_sprite_stain_shaken_drop_chance="0"
-		liquid_gravity="0.5"
-		liquid_sticks_to_ceiling="50"
-		wang_color="80fffffe"
-		tags="[gas]"
-		show_in_creative_mode="1"
-		
-		lifetime="10000"
-		density="1"
-		requires_oxygen="0"
-		
-		on_fire="0"
-		burnable="0"
-		generates_smoke="0"
-		temperature_of_fire="60"
-		
-		><Graphics 
-			texture_file="mods/Noita40K/files/map/matters/heavy_smoke.png"
-			color="99fffffe"
-		></Graphics>
-	</CellData>
-	
-	<!-- misc liquids -->
-	<CellData
 		name="plasma_dense"
-		ui_name="Dense Plasma"
+		ui_name="$n40_MATTER_plasma_dense"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -636,43 +637,42 @@
 		</StatusEffects>
 	</CellData>
 	
+	<!-- misc gases -->
 	<CellData
-		name="plasma_unstable"
-		ui_name="Unstable Plasma"
+		name="heavy_smoke"
+		ui_name="$n40_MATTER_heavy_smoke"
 		ui_desc=""
 		
-		cell_type="liquid"
-		liquid_gravity="0.1"
+		cell_type="gas"
 		liquid_sand="0"
-		wang_color="80ec090f"
-		tags="[hot]"
+		liquid_stains="1"
+		liquid_stains_self="1"
+		liquid_sprite_stain_shaken_drop_chance="0"
+		liquid_gravity="0.5"
+		liquid_sticks_to_ceiling="50"
+		wang_color="80fffffe"
+		tags="[gas]"
 		show_in_creative_mode="1"
 		
-		lifetime="10"
-		density="0"
+		lifetime="10000"
+		density="1"
 		requires_oxygen="0"
-		electrical_conductivity="1"
-		gfx_glow="255"
 		
+		on_fire="0"
 		burnable="0"
 		generates_smoke="0"
-		generates_flames="0"
-		temperature_of_fire="100"
-		always_ignites_damagemodel="0"
+		temperature_of_fire="60"
 		
-		audio_physics_material_event="snow"
-		
-		danger_fire="1"
-		
-		><Graphics
-			texture_file="mods/Noita40K/files/map/matters/plasma_unstable.png"
-			color="ffec090f"
+		><Graphics 
+			texture_file="mods/Noita40K/files/map/matters/heavy_smoke.png"
+			color="99fffffe"
 		></Graphics>
 	</CellData>
 	
+	<!-- misc liquids -->
 	<CellData
 		name="promethium"
-		ui_name="Promethium"
+		ui_name="$n40_MATTER_promethium"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -725,7 +725,7 @@
 	
 	<CellData
 		name="amasec"
-		ui_name="Amasec"
+		ui_name="$n40_MATTER_amasec"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -751,7 +751,7 @@
 	
 	<CellData
 		name="mjod"
-		ui_name="Mjød"
+		ui_name="$n40_MATTER_mjod"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -777,7 +777,7 @@
 	
 	<CellData
 		name="plasteel_molten"
-		ui_name="Molten Plasteel"
+		ui_name="$n40_MATTER_plasteel_molten"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -819,7 +819,7 @@
 		_inherit_reactions="1"
 		
 		name="plasteel_box2d_molten"
-		ui_name="Molten Plasteel"
+		ui_name="$n40_MATTER_plasteel_box2d_molten"
 		wang_color="ffebcdf1"
 	></CellDataChild>
 	
@@ -828,7 +828,7 @@
 		_inherit_reactions="1"
 		
 		name="plasteel_thin_molten"
-		ui_name="Molten Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin_molten"
 		wang_color="ffebcdf2"
 	></CellDataChild>
 	
@@ -837,7 +837,7 @@
 		_inherit_reactions="1"
 		
 		name="plasteel_thin_dark_molten"
-		ui_name="Molten Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin_dark_molten"
 		wang_color="ffebcdf3"
 	></CellDataChild>
 	
@@ -846,14 +846,14 @@
 		_inherit_reactions="1"
 		
 		name="plasteel_thin_box2d_molten"
-		ui_name="Molten Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin_box2d_molten"
 		wang_color="ffebcdf4"
 	></CellDataChild>
 	
 	<!-- misc box2d -->
 	<CellData
 		name="brass_box2d"
-		ui_name="gunmetal"
+		ui_name="$n40_MATTER_brass_box2d"
 		ui_desc=""
 		
 		cell_type="solid"
@@ -889,7 +889,7 @@
 	
 	<CellData
 		name="plasteel_box2d"
-		ui_name="Plasteel"
+		ui_name="$n40_MATTER_plasteel_box2d"
 		ui_desc=""
 		
 		cell_type="solid"
@@ -922,7 +922,7 @@
 	
 	<CellData
 		name="plasteel_thin_box2d"
-		ui_name="Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin_box2d"
 		ui_desc=""
 		
 		cell_type="solid"
@@ -956,7 +956,7 @@
 	<!-- misc sands and solids -->
 	<CellData
 		name="plasteel_thin"
-		ui_name="Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -992,8 +992,9 @@
 	<CellDataChild
 		_parent="plasteel_thin"
 		_inherit_reactions="1"
+		
 		name="plasteel_thin_dark"
-		ui_name="Plasteel"
+		ui_name="$n40_MATTER_plasteel_thin_dark"
 		wang_color="80333c57"
 		
 		><Graphics
@@ -1004,7 +1005,7 @@
 	
 	<CellData
 		name="deflagrating_matter"
-		ui_name="Deflagrating Matter"
+		ui_name="$n40_MATTER_deflagrating_matter"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -1040,7 +1041,7 @@
 	
 	<CellData
 		name="osculant_matter"
-		ui_name="Osculant Matter"
+		ui_name="$n40_MATTER_osculant_matter"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -1101,7 +1102,7 @@
 	
 	<CellData
 		name="spook"
-		ui_name="Spook"
+		ui_name="$n40_MATTER_spook"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -1133,7 +1134,7 @@
 	
 	<CellData
 		name="unrefined_auramite"
-		ui_name="Unrefined Auramite"
+		ui_name="$n40_MATTER_unrefined_auramite"
 		ui_desc=""
 		
 		cell_type="liquid"
@@ -1169,7 +1170,7 @@
 	
 	<CellData
 		name="plasteel"
-		ui_name="Plasteel"
+		ui_name="$n40_MATTER_plasteel"
 		ui_desc=""
 		
 		cell_type="solid"

@@ -4,4 +4,9 @@
 		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/canister_S_pyrum_.png" />
 		<SpriteComponent image_file="mods/Noita40K/files/items/mags/canister_S_pyrum_.png" />
 	</Base>
+	
+	<VariableStorageComponent
+		name="ammo_max"
+		value_int="10000"
+	></VariableStorageComponent>
 </Entity>

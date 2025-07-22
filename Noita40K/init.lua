@@ -8,35 +8,32 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
--- energy weapons should have ammo consumption based on gun
--- make heat to work with jumppack
--- add heat debuffs (swords get buffed with heat)
+-- news role (direct broadcasting)
+-- design of n40 post
+-- fair mod contibution
 
 -- targetting is integrated into index info system
 -- ammo display with an option to align at the center of the screen or at the pointer
 -- main menu
 -- inventory (three main styles: physical, holographic and psychic)
-
--- news role (direct broadcasting)
--- design of n40 post
--- fair mod contibution
+-- do class bootup intro animation on world pre update (should block inputs + display tips)
+-- custom mnee frontend
+-- fix shift clicking to have proper callbacks
+-- allow shift clicking equipment
+-- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- ledge mounting anim
 -- new modular anim system (make sure stains work with it)
--- ?clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
+-- madness combat style hands
+
+-- new status effect system (maybe though HitEffectComp, thanks Extol)
+-- make trailing red eyes for rage modes
 
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
--- do quick class bootup intro animation on world pre update (should block inputs + display tips)
--- custom status effect system though HitEffectComp (thanks Extol)
--- make trailing red eyes for rage modes
--- custom mnee frontend in the main menu
--- fix shift clicking to have proper callbacks
--- allow shift clicking equipment
-
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
--- madness combat style hands
+-- clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- codex should have lore word hyperlinks that show tips on hower
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens + add "select" button on the desc page
@@ -58,7 +55,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- ogryn mode than makes all lore caveman like
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
--- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )

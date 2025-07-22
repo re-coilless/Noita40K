@@ -22,7 +22,7 @@ return function( info )
         local shake = pen.generic_random( 0.5, 1.5, nil, true )
         if( not( memo.swing_done ) and memo.swing_start ) then
             --play extra sound
-            data.drift = { r = 150, x = 5, y = 3 }
+            data.drift = { r = 150, x = 5, y = 3, m = 1/( memo.resist or 1 )}
             is_swinging, data.dmg = true, 10*data.dmg
         elseif( memo.swing_done and xD.Controls.lmb[3]) then
             -- if triggered while blade is hitting the target, do x2 damage as long as every frame damage is dealt
@@ -35,6 +35,7 @@ return function( info )
         end
 
         is_cutting = memo.swing_start or memo.swing_done
+        memo.resist = nil
 
         pen.play_sound({
             "mods/Noita40K/files/40K.bank", "items/guns/sword_chain/cut", true }, x, y )
@@ -47,6 +48,7 @@ return function( info )
         local is_metal = false --if got armor rating or ragdoll is made from metal
         pen.play_sound({ "mods/Noita40K/files/40K.bank",
             "items/guns/sword_chain/tear"..( is_metal and "_metal" or "" ), true }, hit_x, hit_y )
+        pen.c.extra_resist = math.min(( pen.c.extra_resist or 0 ) + ( is_metal and 5 or 1 ), 50 )
         
         -- permanently decrease physics_hit resistance
         -- do cutting vfxes based on blood type
@@ -58,6 +60,11 @@ return function( info )
     data.on_active = function( hooman, x, y, r, length )
         pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/beam_sword_physical.xml",
             x + length*math.cos( r ), y + length*math.sin( r ), -600*math.cos( r ), -600*math.sin( r ))
+    end
+    if( pen.c.extra_resist ~= nil ) then
+        --set target swing angle to current angle + 10 deg
+        memo.resist = pen.c.extra_resist
+        pen.c.extra_resist = nil
     end
     if( pen.c.extra_heat ~= nil ) then
         local heat = pen.magic_storage( info.id, "heat", "value_float" ) or 0

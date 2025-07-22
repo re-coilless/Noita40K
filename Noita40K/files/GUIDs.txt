@@ -96,12 +96,10 @@
 {d75c47c7-f0e7-4a78-9744-2ccfc48c4d14} event:/items/guns/bolt_50mm/shoot
 {c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/items/guns/bolt_998/shoot
 {2e00123b-923c-4dd2-9623-d7a78f6c8e58} event:/items/guns/bolt_998/shoot_sabot
-{f1fba245-85ad-442e-a325-1550b9a98edd} event:/items/guns/dryfire_ballistic
+{f1fba245-85ad-442e-a325-1550b9a98edd} event:/items/guns/dryfire
 {15ffd515-8128-481d-a7ee-9e39c2d003d0} event:/items/guns/dryfire_energy
-{a71643b3-575c-4631-851b-2b0715577637} event:/items/guns/overheat_energy
 {d740f0c4-15a8-49b3-9cad-a2012f737f66} event:/items/guns/reload
-{c9103f61-5104-4c00-b40e-a62098cd672a} event:/items/guns/reload_darkfire
-{5f7c8646-2cfa-458e-a6b7-aa55b12c3e8c} event:/items/guns/reload_energy
+{c9103f61-5104-4c00-b40e-a62098cd672a} event:/items/guns/reload_energy
 {3092f5f1-27d9-452c-ba4e-3c7bdf4e2b24} event:/items/guns/sollex/end
 {b32ce1ae-39ef-41d0-b698-a3f2753e252e} event:/items/guns/sollex/loop
 {f1fabc88-5fed-4310-81d9-30cc3d18a769} event:/items/guns/sollex/shoot
@@ -114,6 +112,8 @@
 {9cb7f67f-da97-4736-a5e4-73def38758f3} event:/items/jumppack/loop
 {e22e7787-c8bc-49af-ac0b-d488b00c1ecf} event:/items/osculant_device/extract
 {d401c5ee-3a20-49ea-8996-375acaf306c1} event:/items/osculant_device/synthesize
+{5f7c8646-2cfa-458e-a6b7-aa55b12c3e8c} event:/items/overheat_end
+{a71643b3-575c-4631-851b-2b0715577637} event:/items/overheat_start
 {0dcf543d-a02d-40c1-9771-722a2d125b93} event:/items/pin_pull
 {3a848091-90e8-4fda-9fbd-fb2fc85fb740} event:/items/refractor_field/off
 {5b155da0-42fc-4957-940f-1f11200523b1} event:/items/refractor_field/on

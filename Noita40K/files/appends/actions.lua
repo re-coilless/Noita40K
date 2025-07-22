@@ -1,19 +1,10 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 function n40.muzzle_flash( muzzle_x, muzzle_y, r, s_x, s_y, gun_id, card_id, action )
-	-- action.muzzle_flash
+	-- use action.muzzle_flash to apply projectile-based flash mutation
 	local v_x, v_y = pen.get_speed( EntityGetRootEntity( gun_id ))
 	local flash_func = n40.MUZZLE_FLASHES[ EntityGetName( gun_id )]
 	return ( flash_func or n40.MUZZLE_FLASHES.bolter )( muzzle_x, muzzle_y, r, v_x, v_y, gun_id )
-end
-
-function n40.init_blade_action( id, data )
-	return {
-		id = id, name = data.name, description = data.desc,
-		sprite = data.pic, custom_xml_file = data.card, price = data.cost,
-		mod = "Noita40K", type = ACTION_TYPE_OTHER, mana = 0, max_uses = -1,
-		spawn_requires_flag = "never_spawn_this_action", action = function() end,
-	}
 end
 
 table.insert( actions,
@@ -59,6 +50,31 @@ table.insert( actions,
 	end,
 })
 
+function n40.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
+	local data = action.beam
+	data.shooter = EntityGetRootEntity( gun_id )
+	data.card = card_id
+	data.gun = gun_id
+	data.uid = gun_id
+	
+	local beam_path = pen.magic_storage( gun_id, "beam", "value_string" )
+	local length = pen.magic_storage( gun_id, "beam_length", "value_float" )
+	
+	pen.c.beam_ids = pen.c.beam_ids or {}
+	pen.child_play( pen.c.beam_ids[ gun_id ], function( parent, child, i )
+		pen.t.loop( EntityGetComponentIncludingDisabled( child, "LaserEmitterComponent" ), function( i, comp )
+			ComponentSetValue2( comp, "is_emitting", true )
+		end)
+	end)
+	
+	pen.life_support( pen.c.beam_ids, gun_id, beam_path, beam_x, beam_y, r )
+	pen.raytrace_entities( beam_x, beam_y, r, length, function( hit_id, hit_x, hit_y, dmg_mult, k )
+		if( pen.vld( data.f )) then data.f( hit_id, hit_x, hit_y ) end
+		EntityInflictDamage( hit_id, dmg_mult*( data.dmg or 0.02 ), data.dmg_type or "DAMAGE_MATERIAL",
+			data.dmg_msg or "beam", data.dmg_effect or "NORMAL", 0, 0, hooman, hit_x, hit_y, 0 )
+	end, data )
+end
+
 table.insert( actions,
 {
 	id = "N40_CANISTER_S_PYRUM",
@@ -80,9 +96,9 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
 
-	action = function() pen.gunshot() end,
+	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
 --[[
@@ -254,6 +270,15 @@ table.insert( actions,
 	end,
 })
 ]]
+
+function n40.init_blade_action( id, data )
+	return {
+		id = id, name = data.name, description = data.desc,
+		sprite = data.pic, custom_xml_file = data.card, price = data.cost,
+		mod = "Noita40K", type = ACTION_TYPE_OTHER, mana = 0, max_uses = -1,
+		spawn_requires_flag = "never_spawn_this_action", action = function() end,
+	}
+end
 
 table.insert( actions, n40.init_blade_action( "N40_BLADE_ADAMANTIUM_TEETH", {
 	cost = 50,

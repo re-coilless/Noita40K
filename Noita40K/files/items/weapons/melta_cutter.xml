@@ -28,6 +28,10 @@
 		value_string="canister_S"
 	></VariableStorageComponent>
 	<VariableStorageComponent
+		name="ammo_efficiency"
+		value_float="1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
 		name="vector_handling"
 		value_float="-1.5"
 	></VariableStorageComponent>

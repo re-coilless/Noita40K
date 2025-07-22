@@ -335,3 +335,47 @@ n40_CODEX_credits_extra,Special Thanks to,,,,,,,,,,,,,
 
 
 n40_EXTRA_quotes,"{""Fear not death, for the soul of the faithful man never dies."",""Duty prevails."",""Victory needs no explanation, defeat allows none."",""To admit defeat is to blaspheme against the Emperor."",""Let faith protect your mind and metal your flesh.""}",,,,,,,,,,,,,
+
+
+
+n40_MATTER_darkfire,Darkfire,,,,,,,,,,,,,
+n40_MATTER_warpflame,Warpflame,,,,,,,,,,,,,
+n40_MATTER_warpmatter,Warpmatter,,,,,,,,,,,,,
+n40_MATTER_warpclot,Clot,,,,,,,,,,,,,
+n40_MATTER_unstable_warpclot,Weeping Clot,,,,,,,,,,,,,
+
+n40_MATTER_exterminatus_gas,Exterminatus Vector,,,,,,,,,,,,,
+n40_MATTER_exterminatus_juice,Exterminatus Hound,,,,,,,,,,,,,
+n40_MATTER_exterminatus_solid,Exterminatus Spore,,,,,,,,,,,,,
+n40_MATTER_exterminatus_hunter,Exterminatus Stalker,,,,,,,,,,,,,
+n40_MATTER_exterminatus_reaper,Exterminatus Reaper,,,,,,,,,,,,,
+n40_MATTER_ruptor_gas,Ruptor Vector,,,,,,,,,,,,,
+n40_MATTER_ruptor_juice,Ruptor Spores,,,,,,,,,,,,,
+
+n40_MATTER_promethium_fire,Promethium Fire,,,,,,,,,,,,,
+n40_MATTER_plasma_unstable,Supercritical Plasma,,,,,,,,,,,,,
+n40_MATTER_plasma_he,High-Energy Plasma,,,,,,,,,,,,,
+n40_MATTER_plasma_dense,Low-Energy Plasma,,,,,,,,,,,,,
+
+n40_MATTER_heavy_smoke,Heavy Smoke,,,,,,,,,,,,,
+
+n40_MATTER_promethium,Promethium,,,,,,,,,,,,,
+n40_MATTER_amasec,Amasec,,,,,,,,,,,,,
+n40_MATTER_mjod,Mjød,,,,,,,,,,,,,
+n40_MATTER_plasteel_molten,Molten Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_box2d_molten,Molten Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_thin_molten,Molten Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_thin_dark_molten,Molten Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_thin_box2d_molten,Molten Plasteel,,,,,,,,,,,,,
+
+n40_MATTER_brass_box2d,Gunmetal,,,,,,,,,,,,,
+n40_MATTER_plasteel_box2d,Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_thin_box2d,Plasteel,,,,,,,,,,,,,
+
+n40_MATTER_plasteel_thin,Plasteel,,,,,,,,,,,,,
+n40_MATTER_plasteel_thin_dark,Plasteel,,,,,,,,,,,,,
+n40_MATTER_deflagrating_matter,Deflagrating Matter,,,,,,,,,,,,,
+n40_MATTER_osculant_matter,Osculant Matter,,,,,,,,,,,,,
+n40_MATTER_spook,Spook,,,,,,,,,,,,,
+n40_MATTER_unrefined_auramite,Unrefined Auramite,,,,,,,,,,,,,
+n40_MATTER_plasteel,Plasteel,,,,,,,,,,,,,

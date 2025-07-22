@@ -8,17 +8,23 @@ if( index.M.is_updating ) then
 	end
 else
 	return function( info )
-		local xD = index.D
+		local xD, xM = index.D, index.M
+
 		local hooman = xD.player_id
 		local vis_id = pen.get_child( hooman, "equipment_jumppack_l_vis" )
 		if( not( pen.vld( vis_id, true ))) then return end
 
-		local heat = pen.magic_storage( vis_id, "heat", "value_float" ) or 0
-		local max_heat = pen.magic_storage( vis_id, "heat_max", "value_float" )
-		if( heat > max_heat ) then return end --the penalty is waiting until cools down to half
-		
 		local x, y, _, s_x, s_y = EntityGetTransform( hooman )
 		local pack_x, pack_y = EntityGetTransform( vis_id )
+		
+		if(( pen.magic_storage( vis_id, "heat_cutoff", "value_float" ) or -1 ) > 0 ) then return end
+
+		local heat = pen.magic_storage( vis_id, "heat", "value_float" ) or 0
+		local max_heat = pen.magic_storage( vis_id, "heat_max", "value_float" )
+		if( heat > max_heat ) then
+			pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/overheat_start" }, pack_x, pack_y )
+			pen.magic_storage( vis_id, "heat_cutoff", "value_float", 0.25 )
+		end
 
 		local dmg_comp = EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" )
 		local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
@@ -59,14 +65,14 @@ else
 		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )
 		local thrust = pen.magic_storage( info.id, "thrust", "value_float" )
 		if( will_fly ) then v_y = math.max( -gravity, v_y - thrust ) end
-		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/2 end
+		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/2.5 end
 		if(( will_fly or will_dash ) and is_grounded ) then v_y = v_y - gravity/4 end
 
 		local char_tilt = 0
 		if( will_fly ) then char_tilt = will_move and ( is_left and -15 or 15 ) or s_x*5 end
 		if( char_tilt ~= 0 ) then EntitySetTransform( hooman, x, y, math.rad( char_tilt ), s_x, s_y ) end
-
-		local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" )
+		
+		local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" ) --use mMousePos instead
 		local angle = -math.atan2( aim_x, aim_y )
 		
 		-- local delta_vel_x = math.cos( angle )*JUMPPACK_SPEED

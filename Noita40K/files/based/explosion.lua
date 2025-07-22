@@ -59,6 +59,15 @@ if( explosion_data[ exp_id ] == nil ) then
     -- force 1 2 7 15 25 | 0.2 1 2 3 4
     local kif = 72*math.pow( f, 549/862 )/155 - math.pow( 646/( 981*f ), f ) + 216/551
 
+    local diameter = 2*data.size
+    local is_hyper = data.time/diameter > 0.4
+    if( is_hyper ) then
+        local off_x, off_y = math.cos( r ), math.sin( r )
+        local x_lock = RaytracePlatforms( x, y, x - off_x, y ) and RaytracePlatforms( x, y, x + off_x, y )
+        local y_lock = RaytracePlatforms( x, y, x, y - off_y ) and RaytracePlatforms( x, y, x, y + off_y )
+        if( x_lock or y_lock ) then kes, kss, kis = 1.5*kes, kss/2, 1.25*kis end
+    end
+    
     pen.magic_explosion( x, y, {
         shooter = who_shot, light = 0.2,
         radius = math.ceil( data.size/2.5 ),
@@ -68,8 +77,7 @@ if( explosion_data[ exp_id ] == nil ) then
         impact = math.floor( math.min( math.max( kis*kif, 10 ), 20 )),
     })
     
-    local diameter = 2*data.size
-    local event = ( data.time/diameter < 0.4 ) and "/supersonic_" or "/hypersonic_"
+    local event = is_hyper and "/hypersonic_" or "/supersonic_"
     local event_size = diameter < 30 and "S" or ( diameter < 75 and "M" or "L" )
     local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
     pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
