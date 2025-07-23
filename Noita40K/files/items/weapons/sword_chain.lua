@@ -57,10 +57,6 @@ return function( info )
         if( max_heat <= 0 ) then return end
         pen.c.extra_heat = ( pen.c.extra_heat or 0 ) + 1 --only for metal
     end
-    data.on_active = function( hooman, x, y, r, length )
-        pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/beam_sword_physical.xml",
-            x + length*math.cos( r ), y + length*math.sin( r ), -600*math.cos( r ), -600*math.sin( r ))
-    end
     if( pen.c.extra_resist ~= nil ) then
         --set target swing angle to current angle + 10 deg
         memo.resist = pen.c.extra_resist
@@ -72,9 +68,18 @@ return function( info )
         pen.c.extra_heat = nil
     end
 
+    pen.c.sword_cutting = memo.swing_start or memo.swing_done
+    data.on_active = function( hooman, x, y, r, length )
+        for i = 1,( pen.c.sword_cutting and 3 or 1 ) do
+            pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/beam_sword_physical.xml",
+                x + length*math.cos( r ), y + length*math.sin( r ), -600*math.cos( r ), -600*math.sin( r ))
+        end
+    end
+
     local is_done = pen.bladesim( info.id, data )
     if( is_done and is_swinging ) then memo.swing_done, memo.swing_start = true, false end
     if( not( memo.engine )) then return end
+    pen.c.sword_cutting = nil
 
     local pics = EntityGetComponentIncludingDisabled( info.id, "SpriteComponent" )
     local anim = math.floor( GameGetFrameNum()/( is_cutting and 2 or 5 ))%2 == 0 and "A" or "B"

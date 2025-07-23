@@ -24,7 +24,7 @@ table.insert( GLOBAL_MUTATORS, function()
     pen.c.estimator_memo = pen.c.estimator_memo or {}
     local x, y, r, s_x, s_y = EntityGetTransform( hooman )
     pen.c.estimator_memo[ eid_pr ] = (( xM.char_flip_memo[ hooman ] or s_x ) ~= s_x ) and 0 or r
-    EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "exp1.75" ), s_x, s_y )
+    EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "ixp0.25" ), s_x, s_y )
     xM.char_flip_memo[ hooman ] = s_x
     
 	local initer = "N40K_READY_TO_PURGE"
@@ -264,13 +264,18 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         local color = pen.vld( hover_func ) and hover_func( offset_x ) or nil
         pen.new_shadowed_text( p_x, p_y, pen.LAYERS.MAIN, txt, { color = color, alpha = alpha })
     end
-    
+
     local pic_x, pic_y = 0, 0
+    if( xD.is_opened ) then return { pic_x, pic_y } end
+
+    --hovering over valid targets highlights their hitbox (pick the largest limit to each side; do entity raycasting to check whether they will be hit)
+    --all valid targets are highlighted with an arrow below if no hitbox is shown
+    --hovering over enemies and holding a hotkey displays their name
+
+    --additionally highlight all everything that has ItemComponent and no parent, display the name below on hover (dots to the side expand to the size of the name)    
+    
     xM.ui_info = xM.ui_info or { 0, 0 }
     pen.hallway( function()
-        if( xD.is_opened and xD.gmod.show_full ) then return end
-        if( xM.ui_info[1] == 0 and xD.pointer_delta[3] >= xD.info_threshold ) then return end
-
         local info = ""
         local best_kind, dist_tbl = -1, {}
         local x, y = unpack( xD.pointer_world )
@@ -333,8 +338,9 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         pic_x, pic_y = pic_x + ( is_obstructed and -2 or 6 ), pic_y + 3
         do_info( pic_x, pic_y, info, fading*xD.info_pointer_alpha, is_obstructed )
     end)
+
     pen.hallway( function()
-        if( xD.gmod.menu_capable ) then return end
+        --matter is triggered by a separate hotkey, fade in the screen-wide crosshair and displays matter name to the top left
 
         xM.mtr_prb = xM.mtr_prb or { 0, 0 }
         local fading, matter = 0.5, xM.mtr_prb[1]

@@ -26,6 +26,7 @@ else
 			pen.magic_storage( vis_id, "heat_cutoff", "value_float", 0.25 )
 		end
 
+		local frame_num = GameGetFrameNum()
 		local dmg_comp = EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" )
 		local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
 		local plat_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" )
@@ -37,6 +38,13 @@ else
 		will_fly = will_fly or ComponentGetValue2( ctrl_comp, "mButtonDownFly" )
 		will_fly = will_fly or ComponentGetValue2( ctrl_comp, "mButtonDownJump" )
 
+		pen.c.magic_particle_ids = pen.c.magic_particle_ids or {}
+		local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
+		local thrust = pen.magic_storage( info.id, "thrust", "value_float" )
+		local is_firing = EntityGetIsAlive( pen.c.magic_particle_ids[ info.id ] or 0 )
+		local d_ground = frame_num - ComponentGetValue2( char_comp, "mLastFrameOnGround" )
+		if( not( is_firing ) and d_ground < 10 and v_y < -1.5*thrust ) then will_fly = false end
+		
 		local is_grounded = ComponentGetValue2( char_comp, "is_on_ground" )
 		local may_hover = pen.magic_storage( info.id, "may_hover", "value_bool" )
 		may_hover = may_hover and not( is_grounded or ComponentGetValue2( dmg_comp, "mAirAreWeInWater" ))
@@ -60,16 +68,15 @@ else
 		--dash is two time more powerful but four times less efficient
 		local waste = 1 - ( pen.magic_storage( info.id, "efficiency", "value_float" ) or 0 )
 		pen.magic_storage( vis_id, "heat", "value_float", heat + waste )
-
+		
 		local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
 		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )
-		local thrust = pen.magic_storage( info.id, "thrust", "value_float" )
 		if( will_fly ) then v_y = math.max( -gravity, v_y - thrust ) end
 		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/2.5 end
-		if(( will_fly or will_dash ) and is_grounded ) then v_y = v_y - gravity/4 end
+		if( is_grounded and ( will_fly or will_dash )) then v_y = v_y - gravity/4 end
 
 		local char_tilt = 0
-		if( will_fly ) then char_tilt = will_move and ( is_left and -15 or 15 ) or s_x*5 end
+		if( will_fly ) then char_tilt = will_move and ( is_left and -10 or 10 ) or s_x*3 end
 		if( char_tilt ~= 0 ) then EntitySetTransform( hooman, x, y, math.rad( char_tilt ), s_x, s_y ) end
 		
 		local aim_x, aim_y = ComponentGetValue2( ctrl_comp, "mAimingVector" ) --use mMousePos instead

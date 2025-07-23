@@ -8,12 +8,14 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
 ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
+-- ammo display with an option to align at the center of the screen or at the pointer
+-- new status effect system (maybe though HitEffectComp, thanks Extol)
+-- make trailing red eyes for rage modes
+
 -- news role (direct broadcasting)
 -- design of n40 post
 -- fair mod contibution
 
--- targetting is integrated into index info system
--- ammo display with an option to align at the center of the screen or at the pointer
 -- main menu
 -- inventory (three main styles: physical, holographic and psychic)
 -- do class bootup intro animation on world pre update (should block inputs + display tips)
@@ -26,9 +28,6 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- ledge mounting anim
 -- new modular anim system (make sure stains work with it)
 -- madness combat style hands
-
--- new status effect system (maybe though HitEffectComp, thanks Extol)
--- make trailing red eyes for rage modes
 
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)

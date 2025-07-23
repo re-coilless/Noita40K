@@ -37,27 +37,27 @@ if( explosion_data[ exp_id ] == nil ) then
     local s = data.size
     data.force = math.max( data.force, 0.01 )
     local f = data.force
-    
-    --energy 1 10 20 50 250 | 1 2 7 15 25 | 0.5 2 6 1 0.8
 
     -- size 1 10 20 50 250 | 5 3 2 0.2 0.1
     local kes = math.log( 50227*math.exp( -99*s/820 + 919/( 820*math.pow( 894/695, s )))/719 + 294/271 )
     -- force 1 2 7 15 25 | 0.1 0.75 3 5 8
     local kef = -2*f - 173*( -f - 826/171 )*math.log( math.log( f*( f - 92/537 ) + 3169/997 ))/166 + 58/559
-    
-    --shake 1 10 20 50 250 | 1 2 7 15 25 | 0.5 4 8 15 30
+    -- energy 1 10 20 50 250 | 1 2 7 15 25 | 0.5 2 6 1 0.8
+    local energy = kes*kef
 
     -- size 1 10 20 50 250 | 1 4 6 10 15
     local kss = s*( -998*math.log( s + 7/41 )/927 + math.log( s + 778/531 ) + 56/117 ) - 205/969
     -- force 1 2 7 15 25 | 0.5 1 1.33 1.5 2
     local ksf = 176*f*( f - 13/745 )/148535 + 15136/( 103761*( 32/275 + math.exp( -311*f/177 )))
-
-    --impact 1 10 20 50 250 | 1 2 7 15 25 | 3 10 15 12 4
-
+    -- shake 1 10 20 50 250 | 1 2 7 15 25 | 0.5 4 8 15 30
+    local shake = kss*ksf
+    
     -- size 1 10 20 50 250 | 15 10 7.5 4 1
     local kis = -32/491 - 228592/( 817*( -s - 7351/418 ))
     -- force 1 2 7 15 25 | 0.2 1 2 3 4
     local kif = 72*math.pow( f, 549/862 )/155 - math.pow( 646/( 981*f ), f ) + 216/551
+    -- impact 1 10 20 50 250 | 1 2 7 15 25 | 3 10 15 12 4
+    local impact = kis*kif
 
     local diameter = 2*data.size
     local is_hyper = data.time/diameter > 0.4
@@ -65,16 +65,16 @@ if( explosion_data[ exp_id ] == nil ) then
         local off_x, off_y = math.cos( r ), math.sin( r )
         local x_lock = RaytracePlatforms( x, y, x - off_x, y ) and RaytracePlatforms( x, y, x + off_x, y )
         local y_lock = RaytracePlatforms( x, y, x, y - off_y ) and RaytracePlatforms( x, y, x, y + off_y )
-        if( x_lock or y_lock ) then kes, kss, kis = 1.5*kes, kss/2, 1.25*kis end
+        if( x_lock or y_lock ) then energy, diameter, impact = energy + 1, diameter/1.5, impact + 5 end
     end
     
     pen.magic_explosion( x, y, {
         shooter = who_shot, light = 0.2,
-        radius = math.ceil( data.size/2.5 ),
+        radius = math.ceil( diameter/5 ),
         stains = stains and data.size or nil,
-        shake = math.min( math.max( kss*ksf, 0 ), 30 ),
-        energy = math.ceil( math.max( 100000*( kes*kef ), 1 )),
-        impact = math.floor( math.min( math.max( kis*kif, 10 ), 20 )),
+        shake = math.min( math.max( shake, 0 ), 30 ),
+        energy = math.ceil( math.max( 100000*energy, 1 )),
+        impact = math.floor( math.min( math.max( impact, 10 ), 20 )),
     })
     
     local event = is_hyper and "/hypersonic_" or "/supersonic_"
