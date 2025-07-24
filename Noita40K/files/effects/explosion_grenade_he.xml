@@ -6,7 +6,7 @@
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="damage"
-			value_float="4"
+			value_float="1.5"
 		></VariableStorageComponent>
 		<VariableStorageComponent
 			name="force"

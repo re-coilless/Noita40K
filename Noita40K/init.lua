@@ -54,6 +54,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- ogryn mode than makes all lore caveman like
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
+-- permanent status effects that are designed to be abused through procedural interactions
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )

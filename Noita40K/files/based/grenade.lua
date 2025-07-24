@@ -31,7 +31,10 @@ else --thanks Dexter and Horscht
     if( string.find( exp, "%.lua$" ) == nil ) then
         local x, y = EntityGetTransform( entity_id )
         local who_shot = pen.magic_storage( entity_id, "author", "value_int" )
-        pen.magic_storage( EntityLoad( exp, x, y ), "author", "value_int", who_shot )
+
+        GlobalsSetValue( pen.GLOBAL_WHO_SHOT, who_shot or EntityGetRootEntity( entity_id ))
+        EntityLoad( exp, x, y )
+        GlobalsSetValue( pen.GLOBAL_WHO_SHOT, "" )
     else dofile( exp )( entity_id ) end
 end
 
@@ -44,8 +47,9 @@ function wake_up_waiting_threads()
     local x, y = EntityGetTransform( entity_id )
     local pic_x, pic_y = pen.world2gui( x, y )
     local text = "["..math.floor(( fuse + 10 )/20 ).."]"
-    pen.new_shadowed_text( pic_x, pic_y - 10, pen.LAYERS.WORLD_FRONT, text, {
+    local dims = pen.new_shadowed_text( pic_x, pic_y - 10, pen.LAYERS.WORLD_FRONT, text, {
         alpha = 0.75, is_centered_x = true, is_centered_y = true, color = pen.PALETTE.N40.HOLO_1 })
+    -- pen.new_glowing( pic_x - 1, pic_y - 9, pen.LAYERS.WORLD_FRONT + 0.1, dims[1], dims[2], pen.PALETTE.N40.HOLO_1, 0.5 )
     
     if( fuse == 0 ) then EntityKill( entity_id ) end
 end

@@ -253,22 +253,11 @@ end
 
 GUI_STRUCT.info = function( screen_w, screen_h, xys )
     local xD, xM = index.D, index.M
-    local function do_info( p_x, p_y, txt, alpha, is_right, hover_func )
-        local offset_x = 0
-        txt = pen.capitalizer( txt )
-        if( is_right ) then
-            local w,h = pen.get_text_dims( txt, true )
-            offset_x = w + 1; p_x = p_x - offset_x
-        end
-
-        local color = pen.vld( hover_func ) and hover_func( offset_x ) or nil
-        pen.new_shadowed_text( p_x, p_y, pen.LAYERS.MAIN, txt, { color = color, alpha = alpha })
-    end
 
     local pic_x, pic_y = 0, 0
     if( xD.is_opened ) then return { pic_x, pic_y } end
 
-    --hovering over valid targets highlights their hitbox (pick the largest limit to each side; do entity raycasting to check whether they will be hit)
+    --hovering over valid targets highlights their hitbox (pick the largest limit to each side; do entity raycasting to check whether they will be hit from firearm shot_pos)
     --all valid targets are highlighted with an arrow below if no hitbox is shown
     --hovering over enemies and holding a hotkey displays their name
 
@@ -336,7 +325,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
         pic_x, pic_y = unpack( xD.pointer_ui )
         pic_x, pic_y = pic_x + ( is_obstructed and -2 or 6 ), pic_y + 3
-        do_info( pic_x, pic_y, info, fading*xD.info_pointer_alpha, is_obstructed )
+        -- do_info( pic_x, pic_y, info, fading*xD.info_pointer_alpha, is_obstructed )
     end)
 
     pen.hallway( function()
@@ -363,11 +352,11 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         
         local no_matter = xD.info_mtr_state == 3 and matter == 0
         local txt = GameTextGetTranslatedOrNot( no_matter and "$mat_air" or CellFactory_GetUIName( matter ))
-        do_info( screen_w - 5, 3, txt, fading, true, function( offset_x )
-            local _,_,is_hovered = pen.new_interface( pic_x + 2 - offset_x, pic_y - 1, offset_x, 8, pen.LAYERS.TIPS )
-            if( is_hovered ) then xM.mtr_prb = { matter, xD.frame_num + 300 } end
-            return is_hovered and pen.PALETTE.VNL.YELLOW or pen.PALETTE.W
-        end)
+        -- do_info( screen_w - 5, 3, txt, fading, true, function( offset_x )
+        --     local _,_,is_hovered = pen.new_interface( pic_x + 2 - offset_x, pic_y - 1, offset_x, 8, pen.LAYERS.TIPS )
+        --     if( is_hovered ) then xM.mtr_prb = { matter, xD.frame_num + 300 } end
+        --     return is_hovered and pen.PALETTE.VNL.YELLOW or pen.PALETTE.W
+        -- end)
     end)
     return { pic_x, pic_y }
 end

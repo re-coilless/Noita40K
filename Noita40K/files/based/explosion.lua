@@ -7,8 +7,8 @@ local cnt = ComponentGetValue2( GetUpdatedComponentID(), "mTimesExecuted" )
 local pics = EntityGetComponentIncludingDisabled( exp_id, "SpriteComponent" )
 local pic_fire, pic_wave, pic_fog, pic_hole = pics[1], pics[2], pics[3], pics[4]
 
-explosion_data = explosion_data or {}
-if( explosion_data[ exp_id ] == nil ) then
+pen.c.explosion_data = pen.c.explosion_data or {}
+if( not( pen.vld( pen.c.explosion_data[ exp_id ]))) then
     local data = {}
     local tbl = { "time", "size", "alpha", "force", "damage",
         "shrapnel", "shrapnel_speed", "shrapnel_damage", "shrapnel_time" }
@@ -18,7 +18,7 @@ if( explosion_data[ exp_id ] == nil ) then
     data.shrapnel_tbl = {}
     
     local count = math.floor( data.shrapnel + 0.5 )
-    local who_shot = pen.magic_storage( exp_id, "author", "value_int" )
+    local who_shot = tonumber( GlobalsGetValue( pen.GLOBAL_WHO_SHOT, "" ))
     local shrapnel = pen.magic_storage( exp_id, "shrapnel_file", "value_string" )
     local stains = pen.magic_storage( exp_id, "stains", "value_bool" ) or false
     for i = 1,count do
@@ -81,13 +81,15 @@ if( explosion_data[ exp_id ] == nil ) then
     local event_size = diameter < 30 and "S" or ( diameter < 75 and "M" or "L" )
     local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
     pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
-
-    explosion_data[ exp_id ] = data
+    
+    data.wave_xy = { x, y }
+    data.wave_who = who_shot
+    data.wave_dmg = data.damage*math.sqrt( energy )/5
+    pen.c.explosion_data[ exp_id ] = data
 end
 
-local data = explosion_data[ exp_id ]
+local data = pen.c.explosion_data[ exp_id ]
 local anim = pen.animate( 1, cnt, { ease_out = "exp", frames = data.time })
-EntitySetTransform( exp_id, x, y, r, ( anim*data.size + 1 )/256, ( anim*data.size + 1 )/256 )
 
 -- heat explosion creates a cone of bigger and bigger explosion entites with raycast and a single frame delay betwenn each one
 
@@ -108,9 +110,40 @@ ComponentSetValue2( pic_fire, "alpha", cnt > 1 and 0 or 1 )
 ComponentSetValue2( pic_hole, "visible", cnt < 3 )
 for i,v in ipairs({ pic_wave, pic_fog, pic_fire }) do EntityRefreshSprite( exp_id, v ) end
 
---enemies hit with shockwaves should have contusion effect (rapidly decaying drunkness and inversed movement) applied if they don't have void-sealed status
---check showave hit by gettign distance to each of the four hitbox center points (deal damage every frame but spread the total number listed between them)
---push objects as shockwave passes
---wavefront damage should be scaled based on size, var storage is just a multiplier
+x, y = unpack( data.wave_xy )
+local wave_delta = anim*data.size + 1
+local wave_dmg = ( 1 - anim )*data.wave_dmg
+EntitySetTransform( exp_id, x, y, r, wave_delta/256, wave_delta/256 )
+pen.t.loop( pen.get_killable( x, y, math.max( 2*wave_delta, 50 )), function( i, hit_id )
+    if( hit_id == data.wave_who ) then return end --add herd checks
+    if( 25*wave_dmg <= 1 ) then return true end
+
+    local h_x, h_y = EntityGetTransform( hit_id )
+    pen.t.loop( EntityGetComponent( hit_id, "HitboxComponent" ), function( e, box_id )
+        pen.t.loop({
+            ComponentGetValue2( box_id, "aabb_min_x" ),
+            ComponentGetValue2( box_id, "aabb_max_x" ),
+            ComponentGetValue2( box_id, "aabb_min_y" ),
+            ComponentGetValue2( box_id, "aabb_max_y" ),
+        }, function( k, off )
+            local box_x = h_x + ( k > 2 and 0 or off )
+            local box_y = h_y + ( k > 2 and off or 0 )
+            if( RaytracePlatforms( x, y, h_x, h_y )) then return end
+            if( math.sqrt(( box_x - x )^2 + ( box_y - y )^2 ) > wave_delta ) then return end
+            
+            EntityInflictDamage( hit_id, wave_dmg, "DAMAGE_MATERIAL_WITH_FLASH",
+                "shockwave impact", "NONE", 0, 0, data.wave_who, box_x, box_y, 0 )
+            
+            --enemies hit with shockwaves should have Contusion effect (rapidly decaying drunkness and inversed movement) applied if they don't have void-sealed status
+        end)
+    end)
+end)
+
+local coef = -3*( 1 - anim )*data.force
+PhysicsApplyForceOnArea( function( _, _, obj_x, obj_y, v_x, v_y, v_r )
+    local angle = math.atan2( y - obj_y, x - obj_x )
+    local f_x, f_y = coef*math.cos( angle ), coef*math.sin( angle )
+    return obj_x, obj_y, f_x, f_y, math.abs( angle ) < math.rad( 90 ) and coef/60 or -coef/60
+end, nil, x - wave_delta, y - wave_delta, x + wave_delta, y + wave_delta )
 
 if( cnt > data.time ) then EntityKill( exp_id ) end

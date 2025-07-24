@@ -6,13 +6,15 @@ else --thanks Dexter and Horscht
     local proj_id = GetUpdatedEntityID()
     local exp = pen.magic_storage( proj_id, "explosion", "value_string" )
     if( pen.vld( exp )) then
+        local proj_comp = EntityGetFirstComponentIncludingDisabled( proj_id, "ProjectileComponent" )
+        local who_shot = ComponentGetValue2( proj_comp, "mWhoShot" )
+        GlobalsSetValue( pen.GLOBAL_WHO_SHOT, who_shot )
+
         local x, y, r = EntityGetTransform( proj_id )
         local exp_id = EntityLoad( exp, x, y )
         EntitySetTransform( exp_id, x, y, r )
 
-        local proj_comp = EntityGetFirstComponentIncludingDisabled( proj_id, "ProjectileComponent" )
-        local who_shot = ComponentGetValue2( proj_comp, "mWhoShot" )
-        pen.magic_storage( exp_id, "author", "value_int", who_shot )
+        GlobalsSetValue( pen.GLOBAL_WHO_SHOT, "" )
     end
 end
 
