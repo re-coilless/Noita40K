@@ -188,9 +188,31 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     
     xD.xys.wands = { 40, 20 }
     -- show a weapon+item wheel at the pointer, force 20 fps when holding down weapon select button
-    -- add small non-clickable indicators of equipped weapons and items at the bottom left of the screen
-
+    -- make wheel swap scroll in opposite direction
+    
     local w, h, step = 0, 0, 1
+    xD.hide_slot_tips = not( xD.is_opened )
+    local gun_belt_y = xD.is_opened and 20 or ( screen_h - ( xD.inv_quickest_size + 1 )*20 - 10 )
+    for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quickest ) do
+        w, h = index.new_generic_slot( pic_x + 10, gun_belt_y, {
+            inv_slot = { i, -1 },
+            inv_id = xD.invs_p.q, id = slot,
+            force_equip = index.get_input( "quickest_"..i ), --this seems to fuck with rifle momentum, make sure aim-based implementation is fine
+        }, xD.is_opened, false, true )
+        gun_belt_y = gun_belt_y + h + step
+    end
+
+    local item_belt_x = xD.is_opened and ( screen_w - ( xD.inv_quick_size*20 + 35 )) or 30
+    local backpack_x, backpack_y = item_belt_x, 20
+    for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quick ) do
+        w, h = index.new_generic_slot( item_belt_x, xD.is_opened and pic_y or ( screen_h - 30 ), {
+            inv_slot = { i, -2 },
+            inv_id = xD.invs_p.q, id = slot,
+            force_equip = index.get_input( "quick_"..i ),
+        }, xD.is_opened, false, true )
+        item_belt_x = item_belt_x + w + step
+    end
+
     if( xD.is_opened ) then
         if( not( xD.gmod.can_see )) then
             local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
@@ -202,24 +224,6 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
         local full_depth = #xD.slot_state[ xD.invs_p.f ][1]
         xys.inv_root, xys.full_inv = { root_x - 3, root_y - 3 }, { root_x + 2, root_y + 26 }
 
-        local gun_belt_y = 20
-        for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quickest ) do
-            w, h = index.new_generic_slot( pic_x + 10, gun_belt_y, {
-                inv_slot = { i, -1 },
-                inv_id = xD.invs_p.q, id = slot,
-            }, xD.is_opened, false, true )
-            gun_belt_y = gun_belt_y + h + step
-        end
-
-        local item_belt_x = screen_w - ( xD.inv_quick_size*20 + 35 ) --space for quests and main menu
-        local backpack_x, backpack_y = item_belt_x, 20
-        for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quick ) do
-            w, h = index.new_generic_slot( item_belt_x, 0, {
-                inv_slot = { i, -2 },
-                inv_id = xD.invs_p.q, id = slot,
-            }, xD.is_opened, false, true )
-            item_belt_x = item_belt_x + w + step
-        end
         for i = 1,( xD.inv_quick_size + 1 ) do
             for e = 1,( xD.inv_quick_size - 1 ) do
                 w, h = index.new_generic_slot( backpack_x, backpack_y, {

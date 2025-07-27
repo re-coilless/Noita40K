@@ -29,6 +29,8 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- new modular anim system (make sure stains work with it)
 -- madness combat style hands
 
+-- scope is pictire-in picture zoom shader at the pointer + x1.5 max cam distance
+-- new camera controller that allows one to look further and faster (put in vector; make sure is not overwhelming)
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle

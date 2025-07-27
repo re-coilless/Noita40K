@@ -50,7 +50,7 @@ function wake_up_waiting_threads()
     local dims = pen.new_shadowed_text( pic_x, pic_y - 10, pen.LAYERS.WORLD_FRONT, text, {
         alpha = 0.75, is_centered_x = true, is_centered_y = true, color = pen.PALETTE.N40.HOLO_1 })
     local glow_id = pen.h.new_glowing( entity_id, pic_x - 1, pic_y - 9,
-        pen.LAYERS.MAIN_FRONT + 0.1, dims[1], dims[2], pen.PALETTE.N40.HOLO_1, 0.5 )
+        pen.LAYERS.MAIN_FRONT + 0.1, dims[1], dims[2], pen.PALETTE.N40.HOLO_1, 0.75 )
     pen.magic_storage( glow_id, "gui_x", "value_float", pic_x - 1 )
     pen.magic_storage( glow_id, "gui_y", "value_float", pic_y - 9 )
     
