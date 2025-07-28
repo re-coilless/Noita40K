@@ -10,7 +10,11 @@
 		value_int="20"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="round"
+		name="icon_round"
 		value_string="mods/Noita40K/files/gui/icons/ammo_bolt_998_he.png"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="icon_shell"
+		value_string="mods/Noita40K/files/gui/icons/shell_bolt_998.png"
 	></VariableStorageComponent>
 </Entity>

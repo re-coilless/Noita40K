@@ -189,7 +189,8 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     xD.xys.wands = { 40, 20 }
     -- show a weapon+item wheel at the pointer, force 20 fps when holding down weapon select button
     -- make wheel swap scroll in opposite direction
-    
+    -- unselected guns on hud should be with high alpha
+
     local w, h, step = 0, 0, 1
     xD.hide_slot_tips = not( xD.is_opened )
     local gun_belt_y = xD.is_opened and 20 or ( screen_h - ( xD.inv_quickest_size + 1 )*20 - 10 )
@@ -260,6 +261,23 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
     local pic_x, pic_y = 0, 0
     if( xD.is_opened ) then return { pic_x, pic_y } end
+    
+    local ammo_x, ammo_y = 38, 35
+    pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
+        --stack same ammo types from different mags horizontally
+        --stack different ammo types vertically
+        --on fired do simulated fly of the shell
+        --if total ammo is less than item slots - 1, display them at full
+        --draw a connecting line from the gun selected to the ammo
+
+        if( not( id[1])) then return end
+        local mag = pen.t.get( xD.item_list, id[1], nil, nil, {})
+        if( not( pen.vld( mag.mag ))) then return end
+        
+        local w, h = pen.get_pic_dims( mag.mag.round )
+        pen.new_image( ammo_x, screen_h - ammo_y - h, pen.LAYERS.MAIN, mag.mag.round )
+        pen.new_text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
+    end)
 
     --hovering over valid targets highlights their hitbox (pick the largest limit to each side; do entity raycasting to check whether they will be hit from firearm shot_pos)
     --all valid targets are highlighted with an arrow below if no hitbox is shown
@@ -546,6 +564,14 @@ table.insert( ITEM_CATS, 2, {
             parent_id = pen.t.get( wip_item_list, parent_id, nil, nil, {})
             if( parent_id.is_wand ) then info.in_wand = parent_id.id end
         end
+
+        info.mag = {
+            ammo = pen.magic_storage( info.id, "ammo", "value_int" ),
+            max = pen.magic_storage( info.id, "ammo_max", "value_int" ),
+            round = pen.magic_storage( info.id, "icon_round", "value_string" ),
+            shell = pen.magic_storage( info.id, "icon_shell", "value_string" ),
+        }
+        info.mag.ammo = info.mag.ammo or info.mag.max
 
         local may_use = pen.vld( info.AbilityC, true )
         may_use = may_use and GameGetGameEffectCount( xD.player_id, "ABILITY_ACTIONS_MATERIALIZED" ) > 0
