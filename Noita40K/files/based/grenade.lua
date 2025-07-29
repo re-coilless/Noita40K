@@ -47,12 +47,12 @@ function wake_up_waiting_threads()
     local x, y = EntityGetTransform( entity_id )
     local pic_x, pic_y = pen.world2gui( x, y )
     local text = "["..math.floor(( fuse + 10 )/20 ).."]"
-    local dims = pen.new_shadowed_text( pic_x, pic_y - 10, pen.LAYERS.WORLD_FRONT, text, {
-        alpha = 0.75, is_centered_x = true, is_centered_y = true, color = pen.PALETTE.N40.HOLO_1 })
-    local glow_id = pen.h.new_glowing( entity_id, pic_x - 1, pic_y - 9,
-        pen.LAYERS.MAIN_FRONT + 0.1, dims[1], dims[2], pen.PALETTE.N40.HOLO_1, 0.75 )
-    pen.magic_storage( glow_id, "gui_x", "value_float", pic_x - 1 )
-    pen.magic_storage( glow_id, "gui_y", "value_float", pic_y - 9 )
+    local dims = pen.new_shadowed_text( pic_x, pic_y - 15, pen.LAYERS.WORLD_FRONT, text, {
+        is_centered_x = true, color = pen.PALETTE.N40.HOLO_1, color_shadow = pen.PALETTE.N40.HOLO_3 })
+    -- local glow_id = pen.h.new_glowing( entity_id, pic_x - 1, pic_y - 9,
+    --     pen.LAYERS.MAIN_FRONT + 0.1, dims[1], dims[2], pen.PALETTE.N40.HOLO_1, 0.75 )
+    -- pen.magic_storage( glow_id, "gui_x", "value_float", pic_x - 1 )
+    -- pen.magic_storage( glow_id, "gui_y", "value_float", pic_y - 9 )
     
     if( fuse == 0 ) then EntityKill( entity_id ) end
 end

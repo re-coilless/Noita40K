@@ -127,6 +127,8 @@ end
 GUI_STRUCT.icons.perks = function( screen_w, screen_h, xys ) return { unpack( xys.effects )} end
 
 GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
+    --integrate UI settings into this, they get lowered in the middle from above
+
     local xD = index.D
     local data = xD.gmod
     if( not( xD.is_opened )) then return end
@@ -262,7 +264,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
     local pic_x, pic_y = 0, 0
     if( xD.is_opened ) then return { pic_x, pic_y } end
     
-    local ammo_x, ammo_y = 38, 35
+    local ammo_x, ammo_y = 37, 35
     pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
         --stack same ammo types from different mags horizontally
         --stack different ammo types vertically
@@ -273,114 +275,223 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         if( not( id[1])) then return end
         local mag = pen.t.get( xD.item_list, id[1], nil, nil, {})
         if( not( pen.vld( mag.mag ))) then return end
-        
+        if( not( pen.vld( mag.mag.round ))) then return end
+
         local w, h = pen.get_pic_dims( mag.mag.round )
         pen.new_image( ammo_x, screen_h - ammo_y - h, pen.LAYERS.MAIN, mag.mag.round )
         pen.new_text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
     end)
-
-    --hovering over valid targets highlights their hitbox (pick the largest limit to each side; do entity raycasting to check whether they will be hit from firearm shot_pos)
-    --all valid targets are highlighted with an arrow below if no hitbox is shown
-    --hovering over enemies and holding a hotkey displays their name
-
-    --additionally highlight all everything that has ItemComponent and no parent, display the name below on hover (dots to the side expand to the size of the name)    
     
-    xM.ui_info = xM.ui_info or { 0, 0 }
     pen.hallway( function()
-        local info = ""
-        local best_kind, dist_tbl = -1, {}
-        local x, y = unpack( xD.pointer_world )
-        pen.t.loop( EntityGetInRadius( x, y, xD.info_radius ), function( i, entity_id )
-            if( entity_id == xD.player_id ) then return end
-            if( EntityGetRootEntity( entity_id ) ~= entity_id ) then return end
+        local enemy_tbl = {[0] = true }
+        if( pen.vld( xD.active_info ) and xD.active_info.is_wand ) then
+            local m_x, m_y = unpack( xD.pointer_world )
+            local ray_x, ray_y = pen.get_hotspot_pos( xD.active_item, "shoot_pos" )
+            local _, _, r = EntityGetTransform( xD.active_item )
+            pen.raytrace_entities( ray_x, ray_y, r, 200, function( hit_id, hit_x, hit_y, dmg_mult, k )
+                enemy_tbl[ hit_id ] = true
+            end, { shooter = xD.player_id, is_debugging = false })
+        else
+            local dude = pen.get_closest( xD.pointer_world[1], xD.pointer_world[2],
+                pen.get_killable( xD.pointer_world[1], xD.pointer_world[2], 25 ), true, nil,
+                function( thing ) return EntityGetRootEntity( thing ) == thing and xD.player_id ~= thing end)
+            enemy_tbl[ dude or 0 ] = true
+        end
 
-            local kind, name = {}, ""
-            local item_comp = EntityGetFirstComponentIncludingDisabled( entity_id, "ItemComponent" )
-            local info_comp = EntityGetFirstComponentIncludingDisabled( entity_id, "UIInfoComponent" )
-            if( pen.vld( info_comp, true )) then name = GameTextGetTranslatedOrNot( ComponentGetValue2( info_comp, "name" ) or "" ) end
+        local got_name = false
+        pen.t.loop( enemy_tbl, function( enemy_id )
+            if( enemy_id == 0 ) then return end
 
-            if( index.check_item_name( name )) then
-                kind = { 0, name }
-            elseif( pen.vld( item_comp, true ) and ComponentGetValue2( item_comp, "is_pickable" )) then
+            local offs = { -3, 3, -3, 3 }
+            pen.t.loop( EntityGetComponent( enemy_id, "HitboxComponent" ), function( i, box )
+                offs[1] = math.min( offs[1], ComponentGetValue2( box, "aabb_min_x" ))
+                offs[2] = math.max( offs[2], ComponentGetValue2( box, "aabb_max_x" ))
+                offs[3] = math.min( offs[3], ComponentGetValue2( box, "aabb_min_y" ))
+                offs[4] = math.max( offs[4], ComponentGetValue2( box, "aabb_max_y" ))
+            end)
+
+            local mark_x, mark_y = 0, 0
+            local e_x, e_y = EntityGetTransform( enemy_id )
+            local pic = "mods/Noita40K/files/gui/info/_hitbox.png" --maybe do green for friendlies
+            mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[3])
+            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic )
+            mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[3])
+            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1 })
+            mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[4])
+            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_y = -1 })
+            mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[4])
+            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1, s_y = -1 })
+
+            if( got_name or not( pen.check_bounds( xD.pointer_world, offs, { e_x, e_y }))) then return end
+            local name = index.get_entity_name( enemy_id )
+            if( not( pen.vld( name ))) then return end
+            got_name = true
+
+            --anims for name and hitbox
+
+            local name_x, name_y = pen.world2gui( e_x, e_y + offs[4])
+            pen.new_shadowed_text( name_x, name_y, pen.LAYERS.WORLD_UI - 0.1,
+                string.lower( name ), { color = pen.PALETTE.N40.HOLO_RED_2, alpha = 0.8, is_centered_x = true })
+        end)
+
+        pen.t.loop( pen.get_killable( xD.cam_xy[1], xD.cam_xy[2], 250 ), function( i, enemy_id )
+            if( EntityGetRootEntity( enemy_id ) ~= enemy_id ) then return end
+            if( enemy_tbl[ enemy_id ] ~= nil ) then return end
+            if( xD.player_id == enemy_id ) then return end
+
+            local gene_comp = EntityGetFirstComponentIncludingDisabled( enemy_id, "GenomeDataComponent" )
+            local is_hostile = not( pen.vld( gene_comp )) or EntityGetHerdRelation( enemy_id, xD.player_id ) < 95
+            if( not( is_hostile )) then return end
+
+            local box_comp = EntityGetFirstComponentIncludingDisabled( enemy_id, "HitboxComponent" )
+            if( not( pen.vld( box_comp, true ))) then return end
+            local off = ComponentGetValue2( box_comp, "aabb_min_y" )
+
+            local e_x, e_y = EntityGetTransform( enemy_id )
+            local mark_x, mark_y = pen.world2gui( e_x, e_y + off - 5 )
+            pen.new_image( mark_x - 1.5, mark_y, pen.LAYERS.WORLD_UI + 0.1, "mods/Noita40K/files/gui/info/_target.png" )
+        end)
+    end)
+    
+    pen.hallway( function()
+        local dist_tbl = {}
+        local items = EntityGetInRadius( xD.pointer_world[1], xD.pointer_world[2], 50 )
+        pen.t.loop( items, function( i, item_id )
+            if( EntityGetRootEntity( item_id ) ~= item_id ) then return end
+
+            local item_comp = EntityGetFirstComponentIncludingDisabled( item_id, "ItemComponent" )
+            if( not( pen.vld( item_comp, true ))) then return end
+
+            local i_x, i_y = EntityGetTransform( item_id )
+            local mark_x, mark_y = pen.world2gui( i_x, i_y + 7 )
+            pen.new_image( mark_x - 3, mark_y, pen.LAYERS.WORLD_UI + 0.05,
+                "mods/Noita40K/files/gui/info/_item.png", { alpha = 0.75 })
+
+            local name = ""
+            local info_comp = EntityGetFirstComponentIncludingDisabled( item_id, "UIInfoComponent" )
+            if( pen.vld( info_comp, true )) then name = ComponentGetValue2( info_comp, "name" ) end
+            
+            if( not( pen.vld( name )) and ComponentGetValue2( item_comp, "is_pickable" )) then
                 local name_func = function( item_id, item_comp, default_name )
                     local name = index.get_entity_name( item_id, item_comp )
                     return pen.vld( name ) and name or default_name
                 end
                 pen.t.loop( xD.item_cats, function( k, cat )
-                    if( not( cat.on_check( entity_id ))) then return end
+                    if( not( cat.on_check( item_id ))) then return end
                     local func = pen.vld( cat.on_info_name ) and cat.on_info_name or name_func
-                    kind = { k, func( entity_id, item_comp, cat.name )}
+                    name = func( item_id, item_comp, cat.name )
                     return true
                 end)
-            elseif( EntityHasTag( entity_id, "hittable" ) or EntityHasTag( entity_id, "mortal" )) then
-                name = index.get_entity_name( entity_id )
-                if( index.check_item_name( name )) then kind = { 0, GameTextGetTranslatedOrNot( name )} end
             end
 
-            if( not( pen.vld( kind ))) then return end
-            if( best_kind < 0 or best_kind > kind[1]) then best_kind = kind[1] end
-            table.insert( dist_tbl, { entity_id, unpack( kind )})
+            if( not( pen.vld( name ))) then return end
+            table.insert( dist_tbl, { item_id, GameTextGetTranslatedOrNot( name )})
         end)
-        if( pen.vld( dist_tbl )) then
-            local the_one = pen.get_closest(
-                xD.pointer_world[1], xD.pointer_world[2], dist_tbl, nil, nil, function( thing ) return thing[2] == best_kind end)
-            if( the_one ~= 0 ) then info = the_one[3] end
-        end
-        
-        local fading = 1
-        if( index.check_item_name( info )) then
-            xM.ui_info = { info, math.max( xM.ui_info[2], xD.frame_num )}
-        elseif( xM.ui_info[1] ~= 0 ) then
-            info = xM.ui_info[1]
 
-            local delta = xD.frame_num - xM.ui_info[2]
-            if( delta > 2*xD.info_fading ) then
-                xM.ui_info, info = nil, ""
-            elseif( delta > xD.info_fading ) then
-                fading = math.max( fading*math.sin(( 2*xD.info_fading - delta )*math.pi/( 2*xD.info_fading )), 0.01 )
-            end
-        end
+        local item = pen.get_closest( xD.pointer_world[1], xD.pointer_world[2], dist_tbl )
+        if( not( pen.vld( item ))) then return end
 
-        if( not( pen.vld( info ))) then return end
-        local tip_anim = (( pen.c.ttips or {})[ "dft" ] or {}).going or 0
-        local is_obstructed = xD.dragger.item_id > 0 or ( xD.frame_num - tip_anim ) < 2
+        local i_x, i_y = EntityGetTransform( item[1])
+        if( not( pen.check_bounds( xD.pointer_world, { -10, 10, -10, 10 }, { i_x, i_y }))) then return end
 
-        pic_x, pic_y = unpack( xD.pointer_ui )
-        pic_x, pic_y = pic_x + ( is_obstructed and -2 or 6 ), pic_y + 3
-        -- do_info( pic_x, pic_y, info, fading*xD.info_pointer_alpha, is_obstructed )
+        local name_x, name_y = pen.world2gui( i_x, i_y + 9 ) --name appearing anim
+        pen.new_shadowed_text( name_x, name_y, pen.LAYERS.WORLD_UI - 0.5,
+            string.lower( item[2]), { color = pen.PALETTE.N40.HOLO_2, alpha = 0.8, is_centered_x = true })
     end)
 
     pen.hallway( function()
-        --matter is triggered by a separate hotkey, fade in the screen-wide crosshair and displays matter name to the top left
-
-        xM.mtr_prb = xM.mtr_prb or { 0, 0 }
-        local fading, matter = 0.5, xM.mtr_prb[1]
-        if( xD.pointer_matter > 0 ) then
-            matter = xD.pointer_matter
-            xM.mtr_prb = { xD.pointer_matter, math.max( xM.mtr_prb[2], xD.frame_num )}
-        elseif( xM.mtr_prb[1] > 0 ) then
-            local delta = xD.frame_num - xM.mtr_prb[2]
-            if( delta > 2*xD.info_fading ) then
-                xM.mtr_prb, matter = nil, 0
-            elseif( delta > xD.info_fading ) then
-                fading = math.max( fading*math.sin(( 2*xD.info_fading - delta )*math.pi/( 2*xD.info_fading )), 0.01 )
-            end
-        end
-
-        if( matter == 0 and xD.info_mtr_state ~= 3 ) then return end
-        if( xD.info_mtr_state ~= 1 or xM.mtr_prb[2] > xD.frame_num ) then
-            fading = xD.info_mtr_state == 3 and 1 or math.min( fading*4, 1 )
-        end
+        if( not( xD.matter_action )) then return end
         
-        local no_matter = xD.info_mtr_state == 3 and matter == 0
-        local txt = GameTextGetTranslatedOrNot( no_matter and "$mat_air" or CellFactory_GetUIName( matter ))
-        -- do_info( screen_w - 5, 3, txt, fading, true, function( offset_x )
-        --     local _,_,is_hovered = pen.new_interface( pic_x + 2 - offset_x, pic_y - 1, offset_x, 8, pen.LAYERS.TIPS )
-        --     if( is_hovered ) then xM.mtr_prb = { matter, xD.frame_num + 300 } end
-        --     return is_hovered and pen.PALETTE.VNL.YELLOW or pen.PALETTE.W
-        -- end)
+        local matter = xD.pointer_matter
+        local name = GameTextGetTranslatedOrNot( matter == 0 and "$mat_air" or CellFactory_GetUIName( matter ))
+        if( not( pen.vld( name ))) then return end
+
+        local off = 7
+        local pic = "mods/Noita40K/files/gui/info/_matter.png"
+        pen.new_image( xD.pointer_ui[1] - 0.5, -off,
+            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[2]/7 })
+        pen.new_image( xD.pointer_ui[1] - 0.5, screen_h + off,
+            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_h - xD.pointer_ui[2])/7 })
+        pen.new_image( -off, xD.pointer_ui[2],
+            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
+        pen.new_image( screen_w + off, xD.pointer_ui[2],
+            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
+
+        --anims for crosshair and name
+
+        pen.new_shadowed_text( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
+            pen.LAYERS.WORLD_UI - 1, string.lower( name), { color = pen.PALETTE.N40.HOLO_1, alpha = 0.8 })
     end)
     return { pic_x, pic_y }
+end
+
+GUI_STRUCT.logger = function( screen_w, screen_h, xys )
+    local xD, xM = index.D, index.M
+
+    local log = GlobalsGetValue( index.GLOBAL_CUSTOM_LOG, "" )
+    if( log ~= "" ) then
+        for v in string.gmatch( pen.DIV_0..log, pen.ptrn( 0 )) do table.insert( xM.log, v ) end
+        GlobalsSetValue( index.GLOBAL_CUSTOM_LOG, "" )
+    end
+
+    if( not( pen.vld( xM.log ))) then return end
+    if( not( xD.custom_logging )) then return end
+
+    --special messages should be displayed all at once
+    --a setting to have no scrollbar and just display n messages at a time (continuuosly purge the list, so it contains no more than a screen-full)
+    --clear button + pos dragger + setting to pick how many messages are displayed at once
+
+    local frame_num = GameGetFrameNum()
+    xM.logger_memo = xM.logger_memo or {}
+    xM.logger_memo.max_l = xM.logger_memo.max_l or 100
+    local length = math.min( screen_w - 30, xM.logger_memo.max_l + 10 )
+    xM.logger_memo.shake = xM.logger_memo.shake or { 0, 0 }
+
+    local k, accum = #xM.log, 0
+    local last_num, last_msg = 0, ""
+    for i = math.max( k - 1000, 1 ), k do
+        local msg = xM.log[i]
+        if( pen.vld( msg )) then
+            if( last_msg == msg ) then
+                xM.log[i], accum = "", accum + 1
+                if( i == k ) then xM.logger_memo.shake = { last_num, frame_num } end
+            else last_num, last_msg = i, msg end
+        else accum = accum + 1 end
+    end
+
+    local height = 55
+    local text_height = 9*( #xM.log - accum )
+    local is_small = text_height < height
+    
+    local pic_z = pen.LAYERS.BACKGROUND + 10
+    local pic_x, pic_y = unpack( xys.logger or {
+        xD.is_opened and 20 or ( screen_w - length - 10 ), screen_h - height - 2 })
+    pen.new_scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
+        local h = 0
+        local pos_y = is_small and ( height - text_height ) or scroll_pos
+        for i = math.max( k - 1000, 1 ), k do
+            if( pen.vld( xM.log[i])) then
+                if( pos_y > -10 and pos_y < ( height + 1 )) then
+                    local pos_x = 0
+                    if( xM.logger_memo.shake[1] == i ) then
+                        local drift = math.max(( xM.logger_memo.shake[2] + 30 ) - frame_num, 0 )
+                        pos_x = pen.animate({ 0, 5 }, drift, { ease_out = "sin", frames = 30 })
+                    end
+                    
+                    local dims = pen.new_shadowed_text( pos_x, pos_y, pic_z,
+                        xM.log[i], { fully_featured = true, line_offset = -2, is_right_x = false })
+                    if( dims[1] > xM.logger_memo.max_l ) then xM.logger_memo.max_l = dims[1] end
+                end
+                pos_y, h = pos_y + 9, h + 9
+            end
+        end
+        return h + 1
+    end, {
+        scroll_step = 9,
+        forced_zone_x = 20,
+        is_left = ( pic_x < screen_w/2 ),
+        hide_bar = true, bottom_start = true
+    })
 end
 
 local wand_cat = pen.t.get( ITEM_CATS, "WAND", nil, nil, {})

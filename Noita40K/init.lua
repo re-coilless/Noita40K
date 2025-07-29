@@ -2,11 +2,13 @@ if( ModIsEnabled( "mnee" )) then
 	ModLuaFileAppend( "mods/mnee/bindings.lua", "mods/Noita40K/mnee.lua" )
 else return end
 
+ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
+ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
+ModMagicNumbersFileAdd( "mods/Noita40K/files/appends/magic_numbers.xml" )
+
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appends/actions.lua" )
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
-ModMaterialsFileAdd( "mods/Noita40K/files/map/matters/_.xml" )
-ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 
 -- ammo display with an option to align at the center of the screen or at the pointer
 -- new status effect system (maybe though HitEffectComp, thanks Extol)
@@ -49,7 +51,7 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 -- ConvertMaterialOnAreaInstantly
 -- music is a single track that evolves based on events and biomes
 -- put new link in the desc https://cortex-command-community.github.io/
--- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class)
+-- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class; put it as universal vector module)
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
