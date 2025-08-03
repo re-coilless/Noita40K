@@ -10,29 +10,27 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
--- ammo display with an option to align at the center of the screen or at the pointer
--- new status effect system (maybe though HitEffectComp, thanks Extol)
 -- make trailing red eyes for rage modes
 
 -- news role (direct broadcasting)
 -- design of n40 post
 -- fair mod contibution
 
+-- redo reloading system
 -- main menu
 -- inventory (three main styles: physical, holographic and psychic)
 -- do class bootup intro animation on world pre update (should block inputs + display tips)
 -- custom mnee frontend
--- fix shift clicking to have proper callbacks
 -- allow shift clicking equipment
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- ledge mounting anim
--- new modular anim system (make sure stains work with it)
 -- madness combat style hands
 
--- scope is pictire-in picture zoom shader at the pointer + x1.5 max cam distance
--- new camera controller that allows one to look further and faster while caring less about movement (put in vector; make sure is not overwhelming)
+-- hotkey to automatically throw the first grenade
+-- hotkey for quick melee (only simple swords support this)
+-- scope is picture-in-picture zoom shader at the pointer + x1.5 max cam distance
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
@@ -51,7 +49,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ConvertMaterialOnAreaInstantly
 -- music is a single track that evolves based on events and biomes
 -- put new link in the desc https://cortex-command-community.github.io/
--- mobile game tier tutorial that remembers which steps were shown and doesn't show em again (per-class; put it as universal vector module)
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage

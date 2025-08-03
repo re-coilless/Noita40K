@@ -2,7 +2,7 @@ return function( hooman )
     local voice = pen.magic_storage( hooman, "taunt_voice", "value_string" )
     if( not( pen.vld( voice ))) then return end
 
-    local bind = mnee.mnin( "bind", { "Noita40K", "taunt" }, { pressed = true, dirty = true })
+    local bind = mnee.mnin( "bind", { "Noita40K", "taunt" }, { pressed = true })
     if( not( bind )) then return end
 
     pen.c.taunt_cooldown = pen.c.taunt_cooldown or {}

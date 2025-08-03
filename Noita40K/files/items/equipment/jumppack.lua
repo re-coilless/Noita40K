@@ -51,7 +51,7 @@ else
 		local will_hover = not( will_fly ) and may_hover and ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
 
 		local may_dash = pen.magic_storage( info.id, "may_dash", "value_bool" )
-		local will_dash = mnee.mnin( "bind", { "Noita40K", "jumppack" }, { dirty = true, pressed = true })
+		local will_dash = mnee.mnin( "bind", { "Noita40K", "jumppack" }, { pressed = true })
 		will_dash = not( will_move ) and may_dash and will_dash
 
 		local will_move = will_fly and ( is_left or is_right )

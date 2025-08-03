@@ -282,7 +282,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         pen.new_text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
     end)
     
-    pen.hallway( function()
+    pen.hallway( function() -- account for beam length and melee weapon range
         local enemy_tbl = {[0] = true }
         if( pen.vld( xD.active_info ) and xD.active_info.is_wand ) then
             local m_x, m_y = unpack( xD.pointer_world )
