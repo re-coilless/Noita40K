@@ -30,8 +30,7 @@ table.insert( GLOBAL_MUTATORS, function()
 	local initer = "N40K_READY_TO_PURGE"
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )
-
-    GlobalsSetValue( mnee.G_FORCED, "1" )
+    
 	local active = n40.setup_character( hooman )
 end)
 
@@ -468,7 +467,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
         xD.is_opened and 20 or ( screen_w - length - 10 ), screen_h - height - 2 })
     pen.new_scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
         local h = 0
-        local pos_y = is_small and ( height - text_height ) or scroll_pos
+        local pos_y = is_small and ( height - text_height ) or scroll_pos[1]
         for i = math.max( k - 1000, 1 ), k do
             if( pen.vld( xM.log[i])) then
                 if( pos_y > -10 and pos_y < ( height + 1 )) then
@@ -485,7 +484,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
                 pos_y, h = pos_y + 9, h + 9
             end
         end
-        return h + 1
+        return { h + 1, 1 }
     end, {
         scroll_step = 9,
         forced_zone_x = 20,

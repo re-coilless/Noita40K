@@ -56,6 +56,8 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
 -- permanent status effects that are designed to be abused through procedural interactions
+-- mrshll pack builder
+-- global currency is accumulated through holotype collection – a miniboss enemies that can be harvested for smaples on defeat (the kill must be clean) to later to delivered for analysis to the STC (maybe make it take irl time)
 
 function OnModInit()
 	dofile_once( "mods/Noita40K/files/_lib.lua" )

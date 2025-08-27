@@ -602,7 +602,7 @@ n40.CODEX.CREDITS = {
 		{ "pants", 999999 },
 	}},
 	{ "$n40_CODEX_credits_extra", { --sort alphabetically; include all Quires from CA
-		{ "ryyst", true }, --some are always at the top os the list
+		{ "ryyst", true }, --some are always at the top of the list
 		{ "Copi", true },
 		"Ancient",
 		"etwas_merkwuerdig",
