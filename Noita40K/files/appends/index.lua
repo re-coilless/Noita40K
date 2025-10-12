@@ -1,3 +1,6 @@
+local GLOBAL_MODES, GLOBAL_MUTATORS, APPLETS, BOSS_BARS,
+	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_STRUCT = unpack( index.STRUCT )
+
 table.insert( GLOBAL_MUTATORS, function()
     dofile_once( "mods/Noita40K/files/_lib.lua" )
     local xD, xM = index.D, index.M
@@ -140,12 +143,12 @@ GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
     local new_mode = xD.global_mode
     local arrow_left_c, arrow_right_c = nil, nil
     local gonna_reset, gonna_highlight, arrow_left_a, arrow_right_a = false, false, 0.3, 0.3
-    local clicked, r_clicked, is_hovered = pen.new_interface( pic_x - ( 11 + w ), pic_y - 11, 15, 10, pen.LAYERS.TIPS )
+    local clicked, r_clicked, is_hovered = pen.new.interface( pic_x - ( 11 + w ), pic_y - 11, 15, 10, pen.LAYERS.TIPS )
     if( is_hovered ) then arrow_left_c, arrow_left_a = pen.PALETTE.VNL.YELLOW, 1 end
     gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
     if( clicked or index.get_input( "invmode_previous" )) then new_mode, arrow_left_a = new_mode - 1, 1 end
     
-    clicked, r_clicked, is_hovered = pen.new_interface( pic_x - 10, pic_y - 11, 15, 10, pen.LAYERS.TIPS )
+    clicked, r_clicked, is_hovered = pen.new.interface( pic_x - 10, pic_y - 11, 15, 10, pen.LAYERS.TIPS )
     if( is_hovered ) then arrow_right_c, arrow_right_a = pen.PALETTE.VNL.YELLOW, 1 end
     gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
     if( clicked or index.get_input( "invmode_next" )) then new_mode, arrow_right_a = new_mode + 1, 1 end
@@ -156,13 +159,13 @@ GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
 
     if( gonna_reset ) then for i,gmod in ipairs( xD.gmods ) do if( gmod.is_default ) then new_mode = i; break end end end
 
-    pen.new_text( pic_x - ( 3 + w ), pic_y - ( 2 + h ),
+    pen.new.text( pic_x - ( 3 + w ), pic_y - ( 2 + h ),
         pen.LAYERS.MAIN, data.name, { color = data.color, alpha = gonna_highlight and 1 or 0.3 })
     xD.box_func( pic_x - ( 4 + w ), pic_y - 9, pen.LAYERS.MAIN_BACK, { w + 2, 6 })
     
-    pen.new_image( pic_x - ( 12 + w ), pic_y - 10, pen.LAYERS.MAIN_BACK,
+    pen.new.image( pic_x - ( 12 + w ), pic_y - 10, pen.LAYERS.MAIN_BACK,
         "data/ui_gfx/keyboard_cursor_right.png", { color = arrow_left_c, alpha = arrow_left_a })
-    pen.new_image( pic_x - 2, pic_y - 10, pen.LAYERS.MAIN_BACK,
+    pen.new.image( pic_x - 2, pic_y - 10, pen.LAYERS.MAIN_BACK,
         "data/ui_gfx/keyboard_cursor.png", { color = arrow_right_c, alpha = arrow_right_a })
 
     if( xD.global_mode == new_mode ) then return end
@@ -219,7 +222,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
         if( not( xD.gmod.can_see )) then
             local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
             local alpha = 0.5*math.cos( math.pi*delta/30 )
-            pen.new_image( -2, -2, pen.LAYERS.BACKGROUND + 1.1,
+            pen.new.image( -2, -2, pen.LAYERS.BACKGROUND + 1.1,
                 "data/ui_gfx/empty_black.png", { s_x = screen_w + 4, s_y = screen_h + 4, alpha = alpha })
         end
 
@@ -277,8 +280,8 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         if( not( pen.vld( mag.mag.round ))) then return end
 
         local w, h = pen.get_pic_dims( mag.mag.round )
-        pen.new_image( ammo_x, screen_h - ammo_y - h, pen.LAYERS.MAIN, mag.mag.round )
-        pen.new_text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
+        pen.new.image( ammo_x, screen_h - ammo_y - h, pen.LAYERS.MAIN, mag.mag.round )
+        pen.new.text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
     end)
     
     pen.hallway( function() -- account for beam length and melee weapon range
@@ -313,13 +316,13 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
             local e_x, e_y = EntityGetTransform( enemy_id )
             local pic = "mods/Noita40K/files/gui/info/_hitbox.png" --maybe do green for friendlies
             mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[3])
-            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic )
+            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic )
             mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[3])
-            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1 })
+            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1 })
             mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[4])
-            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_y = -1 })
+            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_y = -1 })
             mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[4])
-            pen.new_image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1, s_y = -1 })
+            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1, s_y = -1 })
 
             if( got_name or not( pen.check_bounds( xD.pointer_world, offs, { e_x, e_y }))) then return end
             local name = index.get_entity_name( enemy_id )
@@ -329,7 +332,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
             --anims for name and hitbox
 
             local name_x, name_y = pen.world2gui( e_x, e_y + offs[4])
-            pen.new_shadowed_text( name_x, name_y, pen.LAYERS.WORLD_UI - 0.1,
+            pen.new.text_shad( name_x, name_y, pen.LAYERS.WORLD_UI - 0.1,
                 string.lower( name ), { color = pen.PALETTE.N40.HOLO_RED_2, alpha = 0.8, is_centered_x = true })
         end)
 
@@ -348,7 +351,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
             local e_x, e_y = EntityGetTransform( enemy_id )
             local mark_x, mark_y = pen.world2gui( e_x, e_y + off - 5 )
-            pen.new_image( mark_x - 1.5, mark_y, pen.LAYERS.WORLD_UI + 0.1, "mods/Noita40K/files/gui/info/_target.png" )
+            pen.new.image( mark_x - 1.5, mark_y, pen.LAYERS.WORLD_UI + 0.1, "mods/Noita40K/files/gui/info/_target.png" )
         end)
     end)
     
@@ -363,7 +366,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
             local i_x, i_y = EntityGetTransform( item_id )
             local mark_x, mark_y = pen.world2gui( i_x, i_y + 7 )
-            pen.new_image( mark_x - 3, mark_y, pen.LAYERS.WORLD_UI + 0.05,
+            pen.new.image( mark_x - 3, mark_y, pen.LAYERS.WORLD_UI + 0.05,
                 "mods/Noita40K/files/gui/info/_item.png", { alpha = 0.75 })
 
             local name = ""
@@ -394,7 +397,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         if( not( pen.check_bounds( xD.pointer_world, { -10, 10, -10, 10 }, { i_x, i_y }))) then return end
 
         local name_x, name_y = pen.world2gui( i_x, i_y + 9 ) --name appearing anim
-        pen.new_shadowed_text( name_x, name_y, pen.LAYERS.WORLD_UI - 0.5,
+        pen.new.text_shad( name_x, name_y, pen.LAYERS.WORLD_UI - 0.5,
             string.lower( item[2]), { color = pen.PALETTE.N40.HOLO_2, alpha = 0.8, is_centered_x = true })
     end)
 
@@ -407,18 +410,18 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
         local off = 7
         local pic = "mods/Noita40K/files/gui/info/_matter.png"
-        pen.new_image( xD.pointer_ui[1] - 0.5, -off,
+        pen.new.image( xD.pointer_ui[1] - 0.5, -off,
             pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[2]/7 })
-        pen.new_image( xD.pointer_ui[1] - 0.5, screen_h + off,
+        pen.new.image( xD.pointer_ui[1] - 0.5, screen_h + off,
             pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_h - xD.pointer_ui[2])/7 })
-        pen.new_image( -off, xD.pointer_ui[2],
+        pen.new.image( -off, xD.pointer_ui[2],
             pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
-        pen.new_image( screen_w + off, xD.pointer_ui[2],
+        pen.new.image( screen_w + off, xD.pointer_ui[2],
             pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
 
         --anims for crosshair and name
 
-        pen.new_shadowed_text( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
+        pen.new.text_shad( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
             pen.LAYERS.WORLD_UI - 1, string.lower( name), { color = pen.PALETTE.N40.HOLO_1, alpha = 0.8 })
     end)
     return { pic_x, pic_y }
@@ -465,7 +468,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
     local pic_z = pen.LAYERS.BACKGROUND + 10
     local pic_x, pic_y = unpack( xys.logger or {
         xD.is_opened and 20 or ( screen_w - length - 10 ), screen_h - height - 2 })
-    pen.new_scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
+    pen.new.scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
         local h = 0
         local pos_y = is_small and ( height - text_height ) or scroll_pos[1]
         for i = math.max( k - 1000, 1 ), k do
@@ -477,7 +480,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
                         pos_x = pen.animate({ 0, 5 }, drift, { ease_out = "sin", frames = 30 })
                     end
                     
-                    local dims = pen.new_shadowed_text( pos_x, pos_y, pic_z,
+                    local dims = pen.new.text_shad( pos_x, pos_y, pic_z,
                         xM.log[i], { fully_featured = true, line_offset = -2, is_right_x = false })
                     if( dims[1] > xM.logger_memo.max_l ) then xM.logger_memo.max_l = dims[1] end
                 end
@@ -735,7 +738,7 @@ table.insert( ITEM_CATS, 4, {
         if( state_tbl.can_drag ) then
             angle = -math.rad( 5 )
             if( not( is_considered )) then
-                angle = anim_speed == 0 and 0 or angle*math.sin(( xD.frame_num%%anim_speed )*math.pi/anim_speed )
+                angle = anim_speed == 0 and 0 or angle*math.sin(( xD.frame_num%anim_speed )*math.pi/anim_speed )
             else angle = 1.5*angle end
         end
         

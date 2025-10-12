@@ -29,8 +29,8 @@ return function( root_id )
         end
 
         local pic_update = false
-        local perc = pen.rounder( 1/( 1 + math.exp( 12*( 0.45 - heat/max_heat ))), 100 )
-        if( not( pen.eps_compare( alpha, perc ))) then
+        local perc = pen.rnd( 1/( 1 + math.exp( 12*( 0.45 - heat/max_heat ))), 100 )
+        if( not( pen.epc( alpha, perc ))) then
             ComponentSetValue2( pics[2], "alpha", perc )
             pic_update = true
         end

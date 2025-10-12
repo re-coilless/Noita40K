@@ -116,7 +116,7 @@ else
 		
 		--jet to the left looks different from the one to the right
 		--indicate the heat level with sound (dynamically change pitch) and color
-		local jet_angle = -pen.get_sign( aim_x )*math.rad( 145 )
+		local jet_angle = -pen.sgn( aim_x )*math.rad( 145 )
 		pen.magic_particles( pack_x, pack_y + 5, jet_angle, {
 			uid = info.id, z_index = 5, render_back = true,
 			fading = 7, additive = true, count = { 5, 10 },

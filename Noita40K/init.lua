@@ -14,7 +14,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 
 -- news role (direct broadcasting)
 -- design of n40 post
--- fair mod contibution
 
 -- redo reloading system
 -- main menu
@@ -74,7 +73,7 @@ function OnModInit()
 	end
 
 	pen.add_translations( "mods/Noita40K/files/appends/translations.csv" )
-	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua" )
+	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua", true )
 
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
 

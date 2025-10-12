@@ -35,7 +35,7 @@ function wake_up_waiting_threads()
     local v = math.sqrt( v_x^2 + v_y^2 )
     local can_rico = ComponentGetValue2( proj_comp, "bounce_energy" ) > 0
     if( can_rico and will_coll and v > 900 ) then
-        local point_x, point_y = coll_x - pen.get_sign( v_x ), coll_y - pen.get_sign( v_y )
+        local point_x, point_y = coll_x - pen.sgn( v_x ), coll_y - pen.sgn( v_y )
         local n_found, n_x, n_y, n_dist = GetSurfaceNormal( point_x, point_y, 1.1, 40 )
         if( n_found ) then -- play decaying sound loop from projectile
             local p_angle, n_angle = math.atan2( v_y, v_x ), math.atan2( n_y, n_x )
