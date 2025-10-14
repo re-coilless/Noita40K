@@ -50,8 +50,8 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
         if( not( ComponentGetIsEnabled( data.comp ))) then return end
         if( data.hp_max <= 0 ) then return end
         
-        local bar_data = index.new_vanilla_hp(
-            pic_x, pic_y, pen.LAYERS.MAIN_BACK, xD.player_id, { dmg_data = data, length = 50, is_left = true })
+        local bar_data = index.new_hp(
+            pic_x, pic_y, pen.Z.MAIN_BACK, xD.player_id, { dmg_data = data, length = 50, is_left = true })
         pain_flash = bar_data.red_shift
 
         local hp_max_text, hp_text = pen.get_short_num( bar_data.hp_max ), pen.get_short_num( bar_data.hp )
@@ -83,7 +83,7 @@ GUI_STRUCT.icons.ingestions = function( screen_w, screen_h, xys )
         pic_y = pic_y + 3
 
         for i,info in ipairs( data ) do
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 1 )
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 1 )
             pic_x, pic_y = pic_x, pic_y + step_y - 1
         end
 
@@ -100,7 +100,7 @@ GUI_STRUCT.icons.stains = function( screen_w, screen_h, xys )
         if( xD.is_opened or xD.gmod.menu_capable ) then return end
 
         for i,info in ipairs( data ) do
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 2 )
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 2 )
             pic_x, pic_y = pic_x, pic_y + step_y
         end
 
@@ -118,7 +118,7 @@ GUI_STRUCT.icons.effects = function( screen_w, screen_h, xys )
 
         for i,info in ipairs( data ) do
             if( info.amount < 2 ) then info.txt = "" end
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.LAYERS.MAIN, info, 3 )
+            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 3 )
             pic_x, pic_y = pic_x, pic_y + step_y
         end
 
@@ -143,29 +143,29 @@ GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
     local new_mode = xD.global_mode
     local arrow_left_c, arrow_right_c = nil, nil
     local gonna_reset, gonna_highlight, arrow_left_a, arrow_right_a = false, false, 0.3, 0.3
-    local clicked, r_clicked, is_hovered = pen.new.interface( pic_x - ( 11 + w ), pic_y - 11, 15, 10, pen.LAYERS.TIPS )
-    if( is_hovered ) then arrow_left_c, arrow_left_a = pen.PALETTE.VNL.YELLOW, 1 end
+    local clicked, r_clicked, is_hovered = pen.new.interface( pic_x - ( 11 + w ), pic_y - 11, 15, 10, pen.Z.TIPS )
+    if( is_hovered ) then arrow_left_c, arrow_left_a = pen.P.VNL.YELLOW, 1 end
     gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
     if( clicked or index.get_input( "invmode_previous" )) then new_mode, arrow_left_a = new_mode - 1, 1 end
     
-    clicked, r_clicked, is_hovered = pen.new.interface( pic_x - 10, pic_y - 11, 15, 10, pen.LAYERS.TIPS )
-    if( is_hovered ) then arrow_right_c, arrow_right_a = pen.PALETTE.VNL.YELLOW, 1 end
+    clicked, r_clicked, is_hovered = pen.new.interface( pic_x - 10, pic_y - 11, 15, 10, pen.Z.TIPS )
+    if( is_hovered ) then arrow_right_c, arrow_right_a = pen.P.VNL.YELLOW, 1 end
     gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
     if( clicked or index.get_input( "invmode_next" )) then new_mode, arrow_right_a = new_mode + 1, 1 end
     
-    is_hovered, clicked, r_clicked = index.tipping( pic_x - ( 6 + w ), pic_y - 11, pen.LAYERS.TIPS, { w + 6, 10 },
+    is_hovered, clicked, r_clicked = index.tipping( pic_x - ( 6 + w ), pic_y - 11, pen.Z.TIPS, { w + 6, 10 },
         { data.name, data.desc }, { tid = "slot", fully_featured = true, pos = { pic_x, pic_y }, is_left = true, do_corrections = true })
     gonna_reset, gonna_highlight = gonna_reset or r_clicked, gonna_highlight or is_hovered
 
     if( gonna_reset ) then for i,gmod in ipairs( xD.gmods ) do if( gmod.is_default ) then new_mode = i; break end end end
 
     pen.new.text( pic_x - ( 3 + w ), pic_y - ( 2 + h ),
-        pen.LAYERS.MAIN, data.name, { color = data.color, alpha = gonna_highlight and 1 or 0.3 })
-    xD.box_func( pic_x - ( 4 + w ), pic_y - 9, pen.LAYERS.MAIN_BACK, { w + 2, 6 })
+        pen.Z.MAIN, data.name, { color = data.color, alpha = gonna_highlight and 1 or 0.3 })
+    xD.box_func( pic_x - ( 4 + w ), pic_y - 9, pen.Z.MAIN_BACK, { w + 2, 6 })
     
-    pen.new.image( pic_x - ( 12 + w ), pic_y - 10, pen.LAYERS.MAIN_BACK,
+    pen.new.image( pic_x - ( 12 + w ), pic_y - 10, pen.Z.MAIN_BACK,
         "data/ui_gfx/keyboard_cursor_right.png", { color = arrow_left_c, alpha = arrow_left_a })
-    pen.new.image( pic_x - 2, pic_y - 10, pen.LAYERS.MAIN_BACK,
+    pen.new.image( pic_x - 2, pic_y - 10, pen.Z.MAIN_BACK,
         "data/ui_gfx/keyboard_cursor.png", { color = arrow_right_c, alpha = arrow_right_a })
 
     if( xD.global_mode == new_mode ) then return end
@@ -181,9 +181,9 @@ GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
     GlobalsSetValue( index.GLOBAL_GLOBAL_MODE, tostring( new_mode ))
 end
 
-GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
+GUI_STRUCT.inv = function( screen_w, screen_h, xys )
     local xD, xM = index.D, index.M
-    local root_x, root_y = unpack( xys.full_inv or { 0, 0 })
+    local root_x, root_y = unpack( xys.inv or { 0, 0 })
     local pic_x, pic_y = root_x, root_y
     
     local function check_shortcut( id, is_quickest )
@@ -199,7 +199,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     xD.hide_slot_tips = not( xD.is_opened )
     local gun_belt_y = xD.is_opened and 20 or ( screen_h - ( xD.inv_quickest_size + 1 )*20 - 10 )
     for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quickest ) do
-        w, h = index.new_generic_slot( pic_x + 10, gun_belt_y, {
+        w, h = index.dft.slot( pic_x + 10, gun_belt_y, {
             inv_slot = { i, -1 },
             inv_id = xD.invs_p.q, id = slot,
             force_equip = index.get_input( "quickest_"..i ), --this seems to fuck with rifle momentum, make sure aim-based implementation is fine
@@ -210,7 +210,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     local item_belt_x = xD.is_opened and ( screen_w - ( xD.inv_quick_size*20 + 35 )) or 30
     local backpack_x, backpack_y = item_belt_x, 20
     for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quick ) do
-        w, h = index.new_generic_slot( item_belt_x, xD.is_opened and pic_y or ( screen_h - 30 ), {
+        w, h = index.dft.slot( item_belt_x, xD.is_opened and pic_y or ( screen_h - 30 ), {
             inv_slot = { i, -2 },
             inv_id = xD.invs_p.q, id = slot,
             force_equip = index.get_input( "quick_"..i ),
@@ -222,16 +222,16 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
         if( not( xD.gmod.can_see )) then
             local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
             local alpha = 0.5*math.cos( math.pi*delta/30 )
-            pen.new.image( -2, -2, pen.LAYERS.BACKGROUND + 1.1,
+            pen.new.image( -2, -2, pen.Z.BACKGROUND + 1.1,
                 "data/ui_gfx/empty_black.png", { s_x = screen_w + 4, s_y = screen_h + 4, alpha = alpha })
         end
 
         local full_depth = #xD.slot_state[ xD.invs_p.f ][1]
-        xys.inv_root, xys.full_inv = { root_x - 3, root_y - 3 }, { root_x + 2, root_y + 26 }
+        xys.inv_root, xys.inv = { root_x - 3, root_y - 3 }, { root_x + 2, root_y + 26 }
 
         for i = 1,( xD.inv_quick_size + 1 ) do
             for e = 1,( xD.inv_quick_size - 1 ) do
-                w, h = index.new_generic_slot( backpack_x, backpack_y, {
+                w, h = index.dft.slot( backpack_x, backpack_y, {
                     inv_slot = { i, e },
                     inv_id = xD.invs_p.f, id = xD.slot_state[ xD.invs_p.f ][i][e],
                 }, xD.is_opened, true, false )
@@ -245,7 +245,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
         local equipment_x = screen_w - equipment_size*20
         for k = 1,equipment_size do
             local i, e = xD.inv_quick_size + k + 1, 1
-            w, h = index.new_generic_slot( equipment_x, screen_h - 20, {
+            w, h = index.dft.slot( equipment_x, screen_h - 20, {
                 is_equipment = true,
                 inv_slot = { i, e }, inv_id = xD.invs_p.f,
                 id = xD.slot_state[ xD.invs_p.f ][i][e],
@@ -255,7 +255,7 @@ GUI_STRUCT.full_inv = function( screen_w, screen_h, xys )
     end
     
     xD.xys.inv_root_orig = { root_x, root_y }
-    xD.xys.full_inv_orig = { pic_x, pic_y }
+    xD.xys.inv_orig = { pic_x, pic_y }
     if( xD.Controls.inv[2]) then xD.inv_toggle = true end
     return { root_x, root_y }, { pic_x, pic_y }
 end
@@ -280,8 +280,8 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         if( not( pen.vld( mag.mag.round ))) then return end
 
         local w, h = pen.get_pic_dims( mag.mag.round )
-        pen.new.image( ammo_x, screen_h - ammo_y - h, pen.LAYERS.MAIN, mag.mag.round )
-        pen.new.text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.LAYERS.MAIN, "x"..mag.mag.ammo )
+        pen.new.image( ammo_x, screen_h - ammo_y - h, pen.Z.MAIN, mag.mag.round )
+        pen.new.text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.Z.MAIN, "x"..mag.mag.ammo )
     end)
     
     pen.hallway( function() -- account for beam length and melee weapon range
@@ -316,13 +316,13 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
             local e_x, e_y = EntityGetTransform( enemy_id )
             local pic = "mods/Noita40K/files/gui/info/_hitbox.png" --maybe do green for friendlies
             mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[3])
-            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic )
+            pen.new.image( mark_x, mark_y, pen.Z.WORLD_UI, pic )
             mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[3])
-            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1 })
+            pen.new.image( mark_x, mark_y, pen.Z.WORLD_UI, pic, { s_x = -1 })
             mark_x, mark_y = pen.world2gui( e_x + offs[1], e_y + offs[4])
-            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_y = -1 })
+            pen.new.image( mark_x, mark_y, pen.Z.WORLD_UI, pic, { s_y = -1 })
             mark_x, mark_y = pen.world2gui( e_x + offs[2], e_y + offs[4])
-            pen.new.image( mark_x, mark_y, pen.LAYERS.WORLD_UI, pic, { s_x = -1, s_y = -1 })
+            pen.new.image( mark_x, mark_y, pen.Z.WORLD_UI, pic, { s_x = -1, s_y = -1 })
 
             if( got_name or not( pen.check_bounds( xD.pointer_world, offs, { e_x, e_y }))) then return end
             local name = index.get_entity_name( enemy_id )
@@ -332,8 +332,8 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
             --anims for name and hitbox
 
             local name_x, name_y = pen.world2gui( e_x, e_y + offs[4])
-            pen.new.text_shad( name_x, name_y, pen.LAYERS.WORLD_UI - 0.1,
-                string.lower( name ), { color = pen.PALETTE.N40.HOLO_RED_2, alpha = 0.8, is_centered_x = true })
+            pen.new.text_shad( name_x, name_y, pen.Z.WORLD_UI - 0.1,
+                string.lower( name ), { color = pen.P.N40.HOLO_RED_2, alpha = 0.8, is_centered_x = true })
         end)
 
         pen.t.loop( pen.get_killable( xD.cam_xy[1], xD.cam_xy[2], 250 ), function( i, enemy_id )
@@ -351,7 +351,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
             local e_x, e_y = EntityGetTransform( enemy_id )
             local mark_x, mark_y = pen.world2gui( e_x, e_y + off - 5 )
-            pen.new.image( mark_x - 1.5, mark_y, pen.LAYERS.WORLD_UI + 0.1, "mods/Noita40K/files/gui/info/_target.png" )
+            pen.new.image( mark_x - 1.5, mark_y, pen.Z.WORLD_UI + 0.1, "mods/Noita40K/files/gui/info/_target.png" )
         end)
     end)
     
@@ -366,7 +366,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
             local i_x, i_y = EntityGetTransform( item_id )
             local mark_x, mark_y = pen.world2gui( i_x, i_y + 7 )
-            pen.new.image( mark_x - 3, mark_y, pen.LAYERS.WORLD_UI + 0.05,
+            pen.new.image( mark_x - 3, mark_y, pen.Z.WORLD_UI + 0.05,
                 "mods/Noita40K/files/gui/info/_item.png", { alpha = 0.75 })
 
             local name = ""
@@ -397,8 +397,8 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         if( not( pen.check_bounds( xD.pointer_world, { -10, 10, -10, 10 }, { i_x, i_y }))) then return end
 
         local name_x, name_y = pen.world2gui( i_x, i_y + 9 ) --name appearing anim
-        pen.new.text_shad( name_x, name_y, pen.LAYERS.WORLD_UI - 0.5,
-            string.lower( item[2]), { color = pen.PALETTE.N40.HOLO_2, alpha = 0.8, is_centered_x = true })
+        pen.new.text_shad( name_x, name_y, pen.Z.WORLD_UI - 0.5,
+            string.lower( item[2]), { color = pen.P.N40.HOLO_2, alpha = 0.8, is_centered_x = true })
     end)
 
     pen.hallway( function()
@@ -411,18 +411,18 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         local off = 7
         local pic = "mods/Noita40K/files/gui/info/_matter.png"
         pen.new.image( xD.pointer_ui[1] - 0.5, -off,
-            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[2]/7 })
+            pen.Z.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[2]/7 })
         pen.new.image( xD.pointer_ui[1] - 0.5, screen_h + off,
-            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_h - xD.pointer_ui[2])/7 })
+            pen.Z.WORLD_UI - 0.9, pic, { s_y = -( screen_h - xD.pointer_ui[2])/7 })
         pen.new.image( -off, xD.pointer_ui[2],
-            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
+            pen.Z.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
         pen.new.image( screen_w + off, xD.pointer_ui[2],
-            pen.LAYERS.WORLD_UI - 0.9, pic, { s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
+            pen.Z.WORLD_UI - 0.9, pic, { s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
 
         --anims for crosshair and name
 
         pen.new.text_shad( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
-            pen.LAYERS.WORLD_UI - 1, string.lower( name), { color = pen.PALETTE.N40.HOLO_1, alpha = 0.8 })
+            pen.Z.WORLD_UI - 1, string.lower( name), { color = pen.P.N40.HOLO_1, alpha = 0.8 })
     end)
     return { pic_x, pic_y }
 end
@@ -465,7 +465,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
     local text_height = 9*( #xM.log - accum )
     local is_small = text_height < height
     
-    local pic_z = pen.LAYERS.BACKGROUND + 10
+    local pic_z = pen.Z.BACKGROUND + 10
     local pic_x, pic_y = unpack( xys.logger or {
         xD.is_opened and 20 or ( screen_w - length - 10 ), screen_h - height - 2 })
     pen.new.scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
@@ -622,7 +622,7 @@ table.insert( ITEM_CATS, 1, {
     end,
     on_processed_forced = wand_cat.on_processed_forced,
 
-    on_tooltip = wand_cat.on_tooltip,
+    on_tip = wand_cat.on_tip,
     on_inventory = function( info, pic_x, pic_y, state_tbl, slot_dims )
         -- first mag slots, then attachment slots (every attachment slot schematically points to the part of the gun it will occupy; allow overriding on-hover slot numbers with custom text)
         -- dynamically add attachment slots based on hotspots
@@ -631,14 +631,14 @@ table.insert( ITEM_CATS, 1, {
         if( not( xD.is_opened )) then return end
         if( not( state_tbl.is_quick )) then return end
         if( not( xD.gmod.allow_wand_editing )) then return end
-        pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.full_inv )
+        pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.inv )
         local w, h = xD.wand_func( pic_x - 3*pen.b2n( state_tbl.in_hand ), pic_y + 2, info, state_tbl.in_hand )
         xD.xys.wands = { pic_x, pic_y + h }
 
         pen.t.loop( xD.slot_state[ info.id ], function( i,slot )
             local mag_id = slot[1]
             if( EntityHasTag( mag_id, "phantom40k" )) then
-                pic_x = pic_x + index.new_generic_slot( pic_x + w, pic_y + 3, {
+                pic_x = pic_x + index.dft.slot( pic_x + w, pic_y + 3, {
                     inv_slot = { i, 1 }, inv_id = info.id, id = mag_id,
                 }, true, true, false ) + 3
             end
@@ -694,7 +694,7 @@ table.insert( ITEM_CATS, 2, {
     end,
     on_processed = spell_cat.on_processed,
 
-    on_tooltip = spell_cat.on_tooltip,
+    on_tip = spell_cat.on_tip,
     on_slot_check = spell_cat.on_slot_check,
     on_swap = spell_cat.on_swap,
     on_slot = spell_cat.on_slot, -- in-slot color-based mag percentage indicators but no literal bullet counters except for the ones on-screen
@@ -712,7 +712,7 @@ table.insert( ITEM_CATS, 3, {
     on_check = function( item_id ) return EntityHasTag( item_id, "equipment40k" ) end,
     on_data = item_cat.on_data,
     
-    on_tooltip = item_cat.on_tooltip,
+    on_tip = item_cat.on_tip,
     on_slot = item_cat.on_slot,
 
     on_gui_world = item_cat.on_gui_world,
@@ -728,7 +728,7 @@ table.insert( ITEM_CATS, 4, {
     on_data = item_cat.on_data,
     on_processed = spell_cat.on_processed,
 
-    on_tooltip = item_cat.on_tooltip,
+    on_tip = item_cat.on_tip,
     on_slot_check = spell_cat.on_slot_check,
     on_swap = spell_cat.on_swap,
     on_slot = function( info, pic_x, pic_y, state_tbl, rmb_func, drag_func, hov_func, hov_scale, slot_dims )
@@ -742,10 +742,10 @@ table.insert( ITEM_CATS, 4, {
             else angle = 1.5*angle end
         end
         
-        local pic_z = index.slot_z( info.id, pen.LAYERS.ICONS )
+        local pic_z = index.slot_z( info.id, pen.Z.ICONS )
         index.new_slot_pic( pic_x, pic_y, pic_z, info.pic, false, hov_scale, false, nil, angle )
         local is_active = pen.vld( hov_func ) and state_tbl.is_hov and state_tbl.is_opened
-        index.pinning({ "slot", info.id }, is_active, hov_func, { info, "slot", pic_x - 10, pic_y + 7, pen.LAYERS.TIPS, true })
+        index.pinning({ "slot", info.id }, is_active, hov_func, { info, "slot", pic_x - 10, pic_y + 7, pen.Z.TIPS, true })
 
         return info, ( state_tbl.is_hov and state_tbl.can_drag ) and 1 or nil
     end,
@@ -781,7 +781,7 @@ table.insert( ITEM_CATS, 3, {
         return info
     end,
 
-    -- on_tooltip = spell_cat.on_tooltip, --reloading tip
+    -- on_tip = spell_cat.on_tip, --reloading tip
     on_slot = spell_cat.on_slot, --highlight valid mags to swap with on hover and drag
 })
 
@@ -796,7 +796,7 @@ table.insert( ITEM_CATS, 1, {
     on_data = gun_cat.on_data,
     on_processed_forced = gun_cat.on_processed_forced,
 
-    on_tooltip = gun_cat.on_tooltip,
+    on_tip = gun_cat.on_tip,
     on_inventory = gun_cat.on_inventory,
     on_slot = gun_cat.on_slot, -- in-slot heat and charge percentage indicators but no literal bullet counters except for the ones on-screen
 
@@ -819,7 +819,7 @@ table.insert( ITEM_CATS, 1, {
         --do bladeshot (default to simulated if no default hit profile varstorage is defined)
     end,
 
-    on_tooltip = gun_cat.on_tooltip,
+    on_tip = gun_cat.on_tip,
     on_inventory = gun_cat.on_inventory,
     on_slot = gun_cat.on_slot,
 
