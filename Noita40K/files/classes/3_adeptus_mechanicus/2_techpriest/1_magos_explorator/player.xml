@@ -1,42 +1,42 @@
 <Sprite
-	filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.png"
-	hotspots_filename="mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/_marine_hotspots.png"
-	default_animation="stand" offset_x="32" offset_y="44" center_y="-12" is_player="1" >
+	filename="mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.png"
+	hotspots_filename="mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/_techpriest_hotspots.png"
+	default_animation="stand" offset_x="32" offset_y="44" center_y="-7" is_player="1" >
 	
 	<!--[METADATA]-->
 	<RectAnimation
 		name="icon"
-		pos_x="733" pos_y="40"
-		frame_width="20" frame_height="24"
+		pos_x="736" pos_y="44"
+		frame_width="10" frame_height="20"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="collider"
-		pos_x="38" pos_y="123"
-		offset_x="-2" offset_y="-18"
-		frame_width="3" frame_height="21"
+		pos_x="38" pos_y="133"
+		offset_x="-2" offset_y="-8"
+		frame_width="3" frame_height="11"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="hitbox"
 		state="true"
-		pos_x="34" pos_y="41"
-		offset_x="-5" offset_y="-21"
-		frame_width="10" frame_height="23"
+		pos_x="38" pos_y="49"
+		offset_x="-2" offset_y="-13"
+		frame_width="3" frame_height="15"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="hitbox_crouched"
-		pos_x="34" pos_y="127"
-		offset_x="-5" offset_y="-19"
-		frame_width="10" frame_height="21"
+		pos_x="38" pos_y="131"
+		offset_x="-2" offset_y="-11"
+		frame_width="3" frame_height="13"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	<RectAnimation
 		name="hitbox_prone"
-		pos_x="34" pos_y="209"
-		offset_x="-5" offset_y="-13"
-		frame_width="10" frame_height="15"
+		pos_x="38" pos_y="213"
+		offset_x="-2" offset_y="-8"
+		frame_width="3" frame_height="11"
 		frames_per_row="1" frame_count="1" frame_wait="1"
 	></RectAnimation>
 	
@@ -52,13 +52,13 @@
 	<RectAnimation
 		name="stand_crouched"
 		pos_y="97"
-		frame_count="5"
+		frame_count="6"
 		frame_wait="0.2"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="stand_prone"
-		frame_count="5"
+		frame_count="6"
 		frame_wait="0.2"
 	></RectAnimation>
 	
@@ -71,10 +71,10 @@
 	<RectAnimation
 		name="walk"
 		frame_count="6"
-		frame_wait="0.110"
+		frame_wait="0.105"
 		
 		><Event
-			frame="1" name="step"
+			frame="0" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -82,7 +82,7 @@
 		></Event>
 
 		<Event
-			frame="4" name="step"
+			frame="3" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -96,7 +96,7 @@
 		frame_wait="0.095"
 		
 		><Event
-			frame="1" name="step"
+			frame="0" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -104,7 +104,7 @@
 		></Event>
 
 		<Event
-			frame="4" name="step"
+			frame="3" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -115,10 +115,10 @@
 	<RectAnimation
 		name="walk_backwards"
 		frame_count="6"
-		frame_wait="0.110"
+		frame_wait="0.105"
 		
 		><Event
-			frame="1" name="step"
+			frame="2" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -126,7 +126,7 @@
 		></Event>
 
 		<Event
-			frame="4" name="step"
+			frame="5" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -140,7 +140,7 @@
 		frame_wait="0.095"
 		
 		><Event
-			frame="1" name="step"
+			frame="2" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -148,7 +148,7 @@
 		></Event>
 
 		<Event
-			frame="4" name="step"
+			frame="5" name="step"
 			check_physics_material="1"
 			max_distance="500"
 			on_finished="0"
@@ -228,16 +228,16 @@
 	<RectAnimation
 		name="swim_idle"
 		frame_count="4"
-		frame_wait="0.2"
+		frame_wait="0.08"
 	></RectAnimation>
 	
 	<RectAnimation
 		name="swim_move"
-		frame_count="4"
+		frame_count="5"
 		frame_wait="0.11"
 		
 		><Event
-			frame="1" name="swim"
+			frame="2" name="swim"
 			check_physics_material="0"
 			max_distance="500"
 			on_finished="0"

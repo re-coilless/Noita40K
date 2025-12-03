@@ -221,6 +221,68 @@ n40.PERKS = {
 	},
 	SICARIAN_ARMOUR = {
 		name = "$n40_PERK_armor_sicarian", desc = "$n40_PERK_armor_sicarian_",
+		func = function( hooman, data )
+			ComponentSetValue2( data.pic_char, "image_file",
+				"mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.xml" )
+			ComponentSetValue2( data.dmg_comp, "ragdoll_filenames_file",
+				"mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/filenames.txt" )
+			--ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, 0 )
+			
+			pen.magic_storage( hooman, "taunt_voice", "value_string", "12/taunts_1" )
+			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
+			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			
+			ComponentSetValue2( data.char_comp, "mass", 1 + ComponentGetValue2( data.char_comp, "mass" ))
+			
+			ComponentSetValue2( data.plat_comp, "swim_up_buoyancy_coeff", 0.2 )
+			ComponentSetValue2( data.plat_comp, "swim_idle_buoyancy_coeff", 0.1 )
+			ComponentSetValue2( data.plat_comp, "swim_down_buoyancy_coeff", 0 )
+			
+			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
+			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
+
+			ComponentSetValue2( data.plat_comp, "run_velocity",
+				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
+				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
+				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
+			
+			ComponentSetValue2( data.kick_comp, "max_force",
+				20*ComponentGetValue2( data.kick_comp, "max_force" ))
+			ComponentSetValue2( data.kick_comp, "player_kickforce",
+				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
+			ComponentSetValue2( data.kick_comp, "kick_damage",
+				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
+			ComponentSetValue2( data.kick_comp, "kick_knockback",
+				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
+
+			n40.add_resistance( data.dmg_comp, "radioactive", 0.75 )
+			n40.add_resistance( data.dmg_comp, "fire", 0.75 )
+			n40.add_resistance( data.dmg_comp, "ice", 0.75 )
+			n40.add_resistance( data.dmg_comp, "poison", 0.75 )
+			n40.add_resistance( data.dmg_comp, "drill", 0.5 )
+			n40.add_resistance( data.dmg_comp, "physics_hit", 0.5 )
+			n40.add_resistance( data.dmg_comp, "explosion", 0.25 )
+			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
+			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
+			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
+
+			-- data.breathing_immune = true
+			data.contact_immune = true
+			data.threshold_burn = 2*( data.threshold_burn or 25 )
+			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
+			data.threshold_radiation = 999
+			data.threshold_piercing = 999
+			data.threshold_poison = 999
+
+			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
+			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
+
+			return data
+		end,
 	},
 	
 	-- abilities
@@ -538,9 +600,9 @@ n40.CLASSES[3].sections = {
 	{
 		name = "$n40_CLASS_3_2", desc = "$n40_CLASS_3_2_",
 		
-		items = { "GRENADE_ARC", "GRENADE_ARC" },
-		equipment = { "SERVOSKULL" },
-		perks = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE", "BREATH_OF_MARS" },
+		--items = { "GRENADE_ARC", "GRENADE_ARC" },
+		--equipment = { "SERVOSKULL" },
+		--perks = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE", "BREATH_OF_MARS" },
 	},
 	{
 		name = "$n40_CLASS_3_3", desc = "$n40_CLASS_3_3_",
@@ -557,8 +619,8 @@ n40.CLASSES[3].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/tech_priest_magos_explorator.png",
 		
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASGUN_MITRA" },
-		equipment_add = { "REFRACTOR_FIELD" },
-		skin = "SICARIAN_ARMOUR", perks_add = { "MECHADENDRITES", "UNCHAINED" },
+		--equipment_add = { "REFRACTOR_FIELD" },
+		skin = "SICARIAN_ARMOUR", --perks_add = { "MECHADENDRITES", "UNCHAINED" },
 	},
 }
 

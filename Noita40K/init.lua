@@ -10,10 +10,13 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
+-- new magos taunts through cardinal
+-- new magos char sounds
+-- guns
+
 -- make trailing red eyes for rage modes
 
 -- news role (direct broadcasting)
--- design of n40 post
 
 -- redo reloading system
 -- main menu
@@ -76,6 +79,7 @@ function OnModInit()
 	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua", true )
 
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.xml" )
 
 	--[[
 	herd_relations = {
