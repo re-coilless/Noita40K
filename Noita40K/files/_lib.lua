@@ -50,7 +50,7 @@ end
 
 function n40.setup_character( hooman )
 	local active = {
-		class = 3, --1 for marine
+		class = 3, --1 for marine, 3 for magos
 		section = 2,
 		char = 1,
 	}

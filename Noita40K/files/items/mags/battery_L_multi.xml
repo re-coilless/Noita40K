@@ -1,0 +1,12 @@
+<Entity tags="battery_L_multi" >
+	<Base file="mods/Noita40K/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/mags/battery_L_multi.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/battery_L_multi_.png" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/mags/battery_L_multi_.png" />
+	</Base>
+	
+	<VariableStorageComponent
+		name="ammo_max"
+		value_int="10000"
+	></VariableStorageComponent>
+</Entity>

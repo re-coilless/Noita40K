@@ -38,10 +38,17 @@ n40_MAG_bolt_50mm_aphe_s_,Standard bolt rifle magazine of 3-rounds.,,,,,,,,,,,,,
 
 n40_MAG_canister_s_pyrum,Small Fuel Canister of Pyrum-Petrol,,,,,,,,,,,,,
 n40_MAG_canister_s_pyrum_,Small fuel tank designed for low-powered melta tools.,,,,,,,,,,,,,
+n40_MAG_pack_s_high_density,High-Density Power Pack,,,,,,,,,,,,,
+n40_MAG_pack_s_high_density_,An energy bank of incredible power density prone to overheating.,,,,,,,,,,,,,
+n40_MAG_pack_m_warpborn_photon,Warpborn Photon Pack,,,,,,,,,,,,,
+n40_MAG_pack_m_warpborn_photon_,A roaring backness of malign warp particles trapped within a sophisticated storage container.,,,,,,,,,,,,,
+n40_MAG_battery_l_multi,Multi-Threaded Battery,,,,,,,,,,,,,
+n40_MAG_battery_l_multi_,A bundle of high-powered batteries conjoined into a single unit.,,,,,,,,,,,,,
 
 n40_MAG_blade_adamantium_teeth,Adamantium Teeth,,,,,,,,,,,,,
 n40_MAG_blade_adamantium_teeth_,Standard chainsword chain covered in razor-sharp adamantium teeth.,,,,,,,,,,,,,
-
+n40_MAG_crystal_s_sollex,Sollex Focusing Crystal,,,,,,,,,,,,,
+n40_MAG_crystal_s_sollex_,An ancient crystal too perfect to be grown naturally. It shimmers with enigmatic power.,,,,,,,,,,,,,
 
 
 n40_ITEM_bayonet_l,Marine Bayonet,,,,,,,,,,,,,

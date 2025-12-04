@@ -101,6 +101,84 @@ table.insert( actions,
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
+table.insert( actions,
+{
+	id = "N40_PACK_S_HIGH_DENSITY",
+	name = "$n40_MAG_pack_s_high_density", description = "$n40_MAG_pack_s_high_density_",
+	sprite = "mods/Noita40K/files/items/mags/pack_S_high_density.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_OTHER,
+	price = 250, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	projectiles = {{ r = 2, h = 25 }},
+	--high density decreases the size of effect entity and increases damage; changes color to be more white
+	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
+			if( k%5 ~= 0 and not( is_final )) then return end
+			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
+			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
+			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end,
+	},
+	custom_xml_file = "mods/Noita40K/files/items/mags/pack_S_high_density.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+
+	action = function() pen.gunshot( n40.beamshot ) end,
+})
+
+table.insert( actions,
+{
+	id = "N40_PACK_M_WARPBORN_PHOTON",
+	name = "$n40_MAG_pack_m_warpborn_photon", description = "$n40_MAG_pack_m_warpborn_photon_",
+	sprite = "mods/Noita40K/files/items/mags/pack_M_warpborn_photon.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_OTHER,
+	price = 600, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	projectiles = {{ r = 10, h = 1000 }},
+	--fully overrides beam to be darkfire and explodes on overheat if the gun is not designed for it
+	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
+			if( k%5 ~= 0 and not( is_final )) then return end
+			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
+			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
+			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end,
+	},
+	custom_xml_file = "mods/Noita40K/files/items/mags/pack_M_warpborn_photon.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+
+	action = function() pen.gunshot( n40.beamshot ) end,
+})
+
+table.insert( actions,
+{
+	id = "N40_BATTERY_L_MULTI",
+	name = "$n40_MAG_battery_l_multi", description = "$n40_MAG_battery_l_multi_",
+	sprite = "mods/Noita40K/files/items/mags/battery_L_multi.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_OTHER,
+	price = 300, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	projectiles = {{ r = 0.1, h = 1 }},
+	--functions as normal battery except with very high capacity and enabls specialty equipment to work
+	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
+			if( k%5 ~= 0 and not( is_final )) then return end
+			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
+			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
+			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end,
+	},
+	custom_xml_file = "mods/Noita40K/files/items/mags/battery_L_multi.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+	
+	action = function() pen.gunshot( n40.beamshot ) end,
+})
+
 --[[
 table.insert( actions,
 {
@@ -194,84 +272,9 @@ table.insert( actions,
 		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 25.0
 	end,
 })
-
-table.insert( actions,
-{
-	id          = "HD_POWER_PACK",
-	name 		= "High-Dencity Power Pack",
-	description = "Extremely advanced energy storage capable of outputting TW of raw power. Though, it tends to overheat almost instantly.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/hd_power_pack.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 250,
-	mana              = 10,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/hd_power_pack.xml",
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "volkite_state" )
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "WARPBORN_PHOTON_PACK",
-	name 		= "Warpborn Photon Pack",
-	description = "Unbelievably sophisticated storage container filled with roaring backness.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/warpborn_photon_pack.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 600,
-	mana              = 1000,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/warpborn_photon_pack.xml",
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "darkfire_state" )
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "SOLLEX_FOCUSING_CRYSTAL",
-	name 		= "Sollex Focusing Crystal",
-	description = "An artificial crystal from the Dark Age. It shimmers with aenigmatic power.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/sollex_focusing_crystal.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 10,
-	mana              = 0,
-	max_uses          = -1,
-	
-	action = function()
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "MT_LASBAT",
-	name 		= "Multi-Threaded Las-Battery",
-	description = "A bundle of high-powered las-batteries conjoined into a single unit by an unknown tech-zealot.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/mt_lasbat.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 300,
-	mana              = 4,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/mt_lasbat.xml",
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "las_state" )
-	end,
-})
 ]]
 
-function n40.init_blade_action( id, data )
+function n40.init_empty_action( id, data )
 	return {
 		id = id, name = data.name, description = data.desc,
 		sprite = data.pic, custom_xml_file = data.card, price = data.cost,
@@ -280,10 +283,18 @@ function n40.init_blade_action( id, data )
 	}
 end
 
-table.insert( actions, n40.init_blade_action( "N40_BLADE_ADAMANTIUM_TEETH", {
+table.insert( actions, n40.init_empty_action( "N40_BLADE_ADAMANTIUM_TEETH", {
 	cost = 50,
 	name = "$n40_MAG_blade_adamantium_teeth",
 	desc = "$n40_MAG_blade_adamantium_teeth_",
 	pic = "mods/Noita40K/files/items/mags/blade_adamantium_teeth.png",
 	card = "mods/Noita40K/files/items/mags/blade_adamantium_teeth.xml",
+}))
+
+table.insert( actions, n40.init_empty_action( "N40_CRYSTAL_S_SOLLEX", {
+	cost = 10,
+	name = "$n40_MAG_crystal_s_sollex",
+	desc = "$n40_MAG_crystal_s_sollex_",
+	pic = "mods/Noita40K/files/items/mags/crystal_S_sollex.png",
+	card = "mods/Noita40K/files/items/mags/crystal_S_sollex.xml",
 }))

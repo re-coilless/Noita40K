@@ -10,9 +10,9 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
--- new magos taunts through cardinal
 -- new magos char sounds
 -- guns
+-- reverse inventory mouse wheel scrolling direction
 
 -- make trailing red eyes for rage modes
 
