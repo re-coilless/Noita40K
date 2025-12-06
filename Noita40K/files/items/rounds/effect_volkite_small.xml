@@ -1,13 +1,5 @@
-<Entity name="volkite_thermo">
-	<MagicConvertMaterialComponent
-		kill_when_finished="0"
-		from_material_tag="[liquid]"
-		steps_per_frame="200"
-		to_material="smoke"
-		is_circle="1"
-		radius="5"
-		loop="1"
-    ></MagicConvertMaterialComponent>
+<Entity>
+	<Base file="mods/Noita40K/files/based/beam_effect.xml" />
 	
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
@@ -19,7 +11,13 @@
 		ignite_materials="1"
     ></MagicConvertMaterialComponent>
 	
-	<LifetimeComponent
-		lifetime="2"
-	></LifetimeComponent>
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_material_tag="[liquid]"
+		steps_per_frame="200"
+		to_material="smoke"
+		is_circle="1"
+		radius="5"
+		loop="1"
+    ></MagicConvertMaterialComponent>
 </Entity>

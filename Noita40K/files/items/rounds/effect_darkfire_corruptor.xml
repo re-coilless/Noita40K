@@ -1,4 +1,6 @@
-<Entity name="darkfire_corruptor">
+<Entity>
+	<Base file="mods/Noita40K/files/based/beam_effect.xml" />
+	
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
 		from_any_material="1"
@@ -9,8 +11,4 @@
 		loop="1"
 		convert_same_material="0"
     ></MagicConvertMaterialComponent>
-	
-	<LifetimeComponent
-		lifetime="2"
-	></LifetimeComponent>
 </Entity>

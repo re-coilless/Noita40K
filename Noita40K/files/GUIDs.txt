@@ -54,8 +54,14 @@
 {4ba7542e-bc89-4a7a-bbb6-133264d6e7a5} event:/classes/12/taunts_1_
 {dd1900c6-7dae-4c9e-beb5-d5283e2644e9} event:/classes/12/taunts_2
 {49c160ca-cce7-418a-ad09-c966af7d3d39} event:/classes/12/taunts_2_
-{42373831-cca0-417b-94dd-c13efa9428d3} event:/classes/32/dendrite_wriggling
 {f54319a2-db7b-4da3-95c7-e0dab90ef7dc} event:/classes/32/taunts_1
+{ef5df8dc-0f08-4818-ba59-42ae2b698d01} event:/classes/32/taunts_1_
+{c1c5e54f-05d0-4858-8f54-ab84d9b4c4c0} event:/classes/32/taunts_2
+{baebe1a0-60fd-4998-86a2-3bd905099571} event:/classes/32/taunts_2_
+{f8f155a1-44cb-40ff-b095-4df78c473cb5} event:/classes/32/taunts_3
+{febeb5d8-1f5d-4d8e-a266-363614c6e4bc} event:/classes/32/taunts_3_
+{06c7bf9c-a797-4c73-8944-134808af8858} event:/classes/32/taunts_4
+{2f2d7f07-f578-411f-a711-b0241836dfee} event:/classes/32/taunts_4_
 {52ea60b5-5276-436d-9aa0-432ae3cc95d5} event:/effects/armor_hit
 {4badce01-5a3c-419c-b86d-b26e5ea63675} event:/effects/burst
 {05010565-59d2-4fb8-a534-14fb78df2366} event:/effects/explosions/hypersonic_L
@@ -87,7 +93,7 @@
 {104883a6-cf06-4a45-9db7-fd5e4ba40865} event:/gui/vigilanceA
 {785b7714-bfba-407d-9f98-18baaf332cf6} event:/gui/vigilanceB
 {8592387a-1be0-4eee-8f6e-8dd2bce9064f} event:/items/beams/darkfire/shoot
-{392c67c5-8453-4f60-bc8d-736a658c26c6} event:/items/beams/mitralock/shoot
+{392c67c5-8453-4f60-bc8d-736a658c26c6} event:/items/beams/mitra/shoot
 {8051cec6-2d82-4847-87f5-ebffcaad985b} event:/items/beams/pyrum/shoot
 {248111ea-54f7-4d43-9656-06fafaead03c} event:/items/beams/volkite/create
 {41eb7d75-ba45-4550-a1af-4e2e36e0cc97} event:/items/beams/volkite/shoot
@@ -120,6 +126,7 @@
 {a78d4ea7-9c49-4e4b-a114-b91a7852b8c5} event:/items/refractor_field/refraction
 {6d37f1e9-2a47-4593-a9f0-b93b143668b5} event:/items/switch_mode
 {906cb342-30db-4495-ba14-07f7e52a8414} event:/items/unequip
+{42373831-cca0-417b-94dd-c13efa9428d3} event:/misc/dendrite_wriggling
 {8f643668-4754-4449-8366-c559fc686301} event:/misc/salvaging
 {20d8dbb6-2e51-49f6-a70e-1f72e4ffeaa1} event:/misc/short_circuit
 {9104d5b2-d433-4480-a5a6-060e0c50f701} event:/misc/short_circuit_alt

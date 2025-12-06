@@ -12,6 +12,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 
 -- new magos char sounds
 -- guns
+-- screenshake for beams
 -- reverse inventory mouse wheel scrolling direction
 
 -- make trailing red eyes for rage modes

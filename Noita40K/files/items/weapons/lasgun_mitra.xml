@@ -5,7 +5,7 @@
 			add_these_child_actions="N40_BATTERY_L_MULTI"
 		></AbilityComponent>
 		<SpriteComponent offset_x="6" offset_y="1.5" />
-		<VelocityComponent mass="2.5" />
+		<VelocityComponent mass="1.5" />
     </Base>
 	
 	<HotspotComponent
@@ -16,11 +16,11 @@
 
 	<VariableStorageComponent
 		name="beam"
-		value_string="mods/Noita40K/files/items/rounds/beam_melta_cutter.xml"
+		value_string="mods/Noita40K/files/items/rounds/beam_mitra.xml"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="beam_length"
-		value_float="10"
+		value_float="65"
 	></VariableStorageComponent>
 
 	<VariableStorageComponent
@@ -28,12 +28,12 @@
 		value_string="battery_L_multi"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="ammo_efficiency"
-		value_float="1"
+		name="ammo_consumption"
+		value_float="5"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="vector_handling"
-		value_float="-1.5"
+		value_float="-1.25"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"
@@ -41,6 +41,6 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.999"
+		value_float="0.99"
 	></VariableStorageComponent>
 </Entity>

@@ -1,8 +1,3 @@
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/torso.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/right_thigh.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/right_arm.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/right_hand.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/left_thigh.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/left_arm.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/left_hand.png
-mods/Noita40K/files/pics/classes_gfx/sicarian/ragdoll/head.png
+mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/head.png
+mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/legs.png
+mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/torso.png

@@ -28,7 +28,7 @@
 		value_string="canister_S"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="ammo_efficiency"
+		name="ammo_consumption"
 		value_float="1"
 	></VariableStorageComponent>
 	<VariableStorageComponent

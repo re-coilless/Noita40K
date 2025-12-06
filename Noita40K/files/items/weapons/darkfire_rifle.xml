@@ -5,7 +5,7 @@
 			add_these_child_actions="N40_PACK_M_WARPBORN_PHOTON"
 		></AbilityComponent>
 		<SpriteComponent offset_x="7" offset_y="3.5" />
-		<VelocityComponent mass="2.5" />
+		<VelocityComponent mass="0.25" />
     </Base>
 	
 	<HotspotComponent
@@ -13,34 +13,38 @@
         offset.x="21"
         offset.y="-1"
 	></HotspotComponent>
-
+	
 	<VariableStorageComponent
 		name="beam"
-		value_string="mods/Noita40K/files/items/rounds/beam_melta_cutter.xml"
+		value_string="mods/Noita40K/files/items/rounds/beam_darkfire.xml"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="beam_length"
-		value_float="10"
+		value_float="500"
 	></VariableStorageComponent>
-
+	
+	<VariableStorageComponent
+		name="cycling"
+		value_int="-1"
+	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="ammo_type"
 		value_string="pack_M"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="ammo_efficiency"
-		value_float="1"
+		name="ammo_consumption"
+		value_float="0.35"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="vector_handling"
-		value_float="-1.5"
+		value_float="1.25"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"
-		value_float="3000"
+		value_float="1000"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.999"
+		value_float="0.99"
 	></VariableStorageComponent>
 </Entity>

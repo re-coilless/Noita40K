@@ -1,4 +1,12 @@
-<Entity name="mitra_eater">
+<Entity>
+	<Base file="mods/Noita40K/files/based/beam_effect.xml" />
+	
+	<CellEaterComponent
+		radius="2"
+		eat_probability="80"
+		eat_dynamic_physics_bodies="1"
+	></CellEaterComponent>
+	
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
 		steps_per_frame="200"
@@ -8,14 +16,4 @@
 		temperature_reaction_temp="10000"
 		ignite_materials="1"
     ></MagicConvertMaterialComponent>
-	
-	<CellEaterComponent
-		radius="2"
-		eat_probability="80"
-		eat_dynamic_physics_bodies="1"
-	></CellEaterComponent>
-	
-	<LifetimeComponent
-		lifetime="2"
-	></LifetimeComponent>
 </Entity>

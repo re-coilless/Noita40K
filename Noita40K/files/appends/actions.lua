@@ -67,12 +67,35 @@ function n40.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
 		end)
 	end)
 	
-	pen.life_support( pen.c.beam_ids, gun_id, beam_path, beam_x, beam_y, r )
-	pen.raytrace_entities( beam_x, beam_y, r, length, function( hit_id, hit_x, hit_y, dmg_mult, k )
-		if( pen.vld( data.f )) then data.f( hit_id, hit_x, hit_y ) end
+	pen.c.beam_sfxes = pen.c.beam_sfxes or {}
+	local beam_id, is_new = pen.life_support( pen.c.beam_ids, gun_id, beam_path, beam_x, beam_y, r )
+	if( is_new ) then
+		pen.c.beam_sfxes[ beam_id ] = true
+	elseif( pen.c.beam_sfxes[ beam_id ]) then
+		pen.c.beam_sfxes[ beam_id ] = nil
+		pen.play_sound({ action.sfx[1], action.sfx[2].."/create" }, beam_x, beam_y )
+	end
+	
+	local hit_action = function( hit_id, hit_x, hit_y, dmg_mult, k )
+		if( pen.vld( data.f )) then data.f( data, hit_id, hit_x, hit_y ) end
 		EntityInflictDamage( hit_id, dmg_mult*( data.dmg or 0.02 ), data.dmg_type or "DAMAGE_MATERIAL",
 			data.dmg_msg or "beam", data.dmg_effect or "NORMAL", 0, 0, hooman, hit_x, hit_y, 0 )
-	end, data )
+	end
+
+	pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
+	local out = pen.raytrace_entities( beam_x, beam_y, r, length, hit_action, data )
+	if( not( data.will_stop )) then return end
+	local hit_id, hit_x, hit_y, dmg_mult, k = unpack( out )
+	local is_hitting = pen.vld( hit_id, true )
+	if( is_hitting ) then hit_action( hit_id, hit_x, hit_y, dmg_mult, k ) end
+	
+	local real_length = math.sqrt(( beam_x - hit_x )^2 + ( beam_y - hit_y )^2 )
+	pen.child_play( pen.c.beam_ids[ gun_id ], function( parent, child, i )
+		pen.t.loop( EntityGetComponentIncludingDisabled( child, "LaserEmitterComponent" ), function( i, comp )
+			ComponentObjectSetValue2( comp, "laser", "max_length", is_hitting and real_length or length )
+			ComponentObjectSetValue2( comp, "laser", "beam_particle_fade", is_hitting and 0 or 1 )
+		end)
+	end)
 end
 
 table.insert( actions,
@@ -88,9 +111,9 @@ table.insert( actions,
 	projectiles = {{ r = 1.5, h = 7 }},
 	--pyrum decreases length and increases damage; changes color to be more yellow
 	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
-		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
+		always_action = true,
+		point_action = function( data, point_x, point_y, k, is_final )
 			if( k%5 ~= 0 and not( is_final )) then return end
-			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
 			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
 		end,
@@ -111,18 +134,29 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 250, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 2, h = 25 }},
+	projectiles = {{ r = 0.5, h = 25 }},
 	--high density decreases the size of effect entity and increases damage; changes color to be more white
-	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
-		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
-			if( k%5 ~= 0 and not( is_final )) then return end
-			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
-			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
+	beam = { dmg = 0.5, dmg_type = "DAMAGE_EXPLOSION", dmg_msg = "volkite", dmg_effect = "NORMAL",
+		will_choke = true, will_stop = true,
+		point_action = function( data, point_x, point_y, k, is_final )
+			if( not( is_final )) then return end --make sure this spawns both as final and as hit
+			local effect = "mods/Noita40K/files/items/rounds/effect_volkite_small.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+
+			-- local effect_id = get_custom_effect( actual_deadman, "fancy_burning" )
+			-- if( effect_id ~= nil ) then
+			-- 	local effect_comp = EntityGetFirstComponentIncludingDisabled( effect_id, "GameEffectComponent" )
+			-- 	ComponentSetValue2( effect_comp, "frames", ComponentGetValue2( effect_comp, "frames" ) + 5 )
+			-- else
+			-- 	LoadGameEffectEntityTo( actual_deadman, "mods/Noita40K/files/entities/status_effects/effect_fancy_burning.xml" )
+			-- end
+		end, f = function( data, hit_id, hit_x, hit_y ) --deal damage to armor instead
+			if( EntityHasTag( hit_id, "armored" )) then data.dmg = data.dmg/4; return end
+			ComponentSetValue2( GetGameEffectLoadTo( hit_id, "EXPLODING_CORPSE", true ), "frames", 2 )
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/pack_S_high_density.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/volkite", true, "items/overheat_start" },
 
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
@@ -137,18 +171,24 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 600, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 10, h = 1000 }},
+	projectiles = {{ r = 10, h = 1000 }}, --this kills for some reason?
 	--fully overrides beam to be darkfire and explodes on overheat if the gun is not designed for it
-	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
-		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
-			if( k%5 ~= 0 and not( is_final )) then return end
-			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
-			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
-			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+	beam = { dmg = 1, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "darkfire", dmg_effect = "BLOOD_EXPLOSION",
+		always_action = true,
+		point_action = function( data, point_x, point_y, k, is_final )
+			EntityLoad( "mods/Noita40K/files/items/rounds/effect_darkfire_eater.xml", point_x, point_y )
+			if( k%2 == 1 ) then return end
+			EntityLoad( "mods/Noita40K/files/items/rounds/effect_darkfire_corruptor.xml", point_x, point_y )
+		end, f = function( data, hit_id, hit_x, hit_y )
+			-- local damage_comp = EntityGetFirstComponentIncludingDisabled( deadman, "DamageModelComponent" )
+			-- if( not( EntityHasTag( deadman, "corrupted" )) and EntityGetIsAlive( deadman ) and damage_comp ~= nil and is_sentient( deadman )) then
+			-- 	EntityAddTag( deadman, "corrupted" )
+			-- 	LoadGameEffectEntityTo( deadman, "mods/Noita40K/files/entities/status_effects/effect_warpfire.xml" )
+			-- end
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/pack_M_warpborn_photon.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/darkfire", false, "items/overheat_start" },
 
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
@@ -163,18 +203,26 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 300, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 0.1, h = 1 }},
+	projectiles = {{ r = 0.1, h = 5 }},
 	--functions as normal battery except with very high capacity and enabls specialty equipment to work
-	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+	beam = { dmg = 0.04, dmg_type = "DAMAGE_PROJECTILE", dmg_msg = "lasfire", dmg_effect = "NORMAL",
 		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
 			if( k%5 ~= 0 and not( is_final )) then return end
-			pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
 			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end, f = function( data, hit_id, hit_x, hit_y )
+			if( not( EntityHasTag( hit_id, "armored" ))) then return end
+			data.dmg_type = "DAMAGE_PHYSICS_HIT"
+			data.dmg_effect = "NONE"
+			data.dmg = 10*data.dmg
 		end,
+
+		-- local max_angle = 0.265
+		-- local current_angle = max_angle*math.cos( angle )
+		-- ComponentSetValue2( emit_comp, "laser_angle_add_rad", current_angle )
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/battery_L_multi.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/mitra", true, "items/overheat_start" },
 	
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
@@ -270,6 +318,49 @@ table.insert( actions,
 		c.spread_degrees = c.spread_degrees + 15.0
 		c.damage_critical_chance = c.damage_critical_chance + 10
 		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 25.0
+	end,
+})
+
+table.insert( actions,
+{
+	id          = "75_BOLT_HE_MAG_SMALL",
+	name 		= "Small .75 Bolt Mag HE",
+	description = "5-round standard bolter magazine.",
+	sprite 		= "mods/n40ke_bss/files/pics/cards_gfx/75_bolt_he_mag_small.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
+	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_75_HE.xml" },
+	type 		= ACTION_TYPE_PROJECTILE,
+	spawn_requires_flag = "never_fucking_spawn",
+	spawn_level                       = "",
+	spawn_probability                 = "",
+	price             = 50,
+	mana              = 25,
+	max_uses          = -1,
+	custom_xml_file = "mods/n40ke_bss/files/entities/cards/75_bolt_he_mag_small.xml",
+	action = function()
+		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_75_HE.xml" )
+		c.spread_degrees = c.spread_degrees + 10.0
+		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
+	end,
+})
+
+table.insert( actions,
+{
+	id          = "HYDROGEN_FUEL_CELL_SMALL",
+	name 		= "Small Cryo-Sealed Hydrogen Fuel Cell",
+	description = "An armoured flask, containing highly unstable hydrogen-based concoction.",
+	sprite 		= "mods/n40ke_bss/files/pics/cards_gfx/hydrogen_fuel_cell_small.png",
+	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
+	type 		= ACTION_TYPE_PROJECTILE,
+	spawn_requires_flag = "never_fucking_spawn",
+	spawn_level                       = "",
+	spawn_probability                 = "",
+	price             = 50,
+	mana              = 4,
+	max_uses          = -1,
+	custom_xml_file = "mods/n40ke_bss/files/entities/cards/hydrogen_fuel_cell_small.xml",
+	action = function()
+		beam_controller( GetUpdatedEntityID(), "plasma_state", 3 ) --check it in the black_library
 	end,
 })
 ]]

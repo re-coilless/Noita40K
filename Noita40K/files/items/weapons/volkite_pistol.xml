@@ -5,7 +5,7 @@
 			add_these_child_actions="N40_PACK_S_HIGH_DENSITY"
 		></AbilityComponent>
 		<SpriteComponent offset_x="2" offset_y="4" />
-		<VelocityComponent mass="2.5" />
+		<VelocityComponent mass="0.05" />
     </Base>
 	
 	<HotspotComponent
@@ -16,11 +16,11 @@
 
 	<VariableStorageComponent
 		name="beam"
-		value_string="mods/Noita40K/files/items/rounds/beam_melta_cutter.xml"
+		value_string="mods/Noita40K/files/items/rounds/beam_volkite_pistol.xml"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="beam_length"
-		value_float="10"
+		value_float="250"
 	></VariableStorageComponent>
 
 	<VariableStorageComponent
@@ -28,19 +28,19 @@
 		value_string="pack_S"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="ammo_efficiency"
+		name="ammo_consumption"
 		value_float="1"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="vector_handling"
-		value_float="-1.5"
+		value_float="0.6"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"
-		value_float="3000"
+		value_float="500"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.999"
+		value_float="0.99"
 	></VariableStorageComponent>
 </Entity>
