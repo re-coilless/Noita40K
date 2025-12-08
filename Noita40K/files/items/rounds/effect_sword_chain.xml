@@ -1,4 +1,4 @@
-<Entity name="sword_physical">
+<Entity>
 	<VelocityComponent
 		gravity_y="0"
 		air_friction="0"

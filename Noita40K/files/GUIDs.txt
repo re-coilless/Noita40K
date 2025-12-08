@@ -106,9 +106,9 @@
 {15ffd515-8128-481d-a7ee-9e39c2d003d0} event:/items/guns/dryfire_energy
 {d740f0c4-15a8-49b3-9cad-a2012f737f66} event:/items/guns/reload
 {c9103f61-5104-4c00-b40e-a62098cd672a} event:/items/guns/reload_energy
-{3092f5f1-27d9-452c-ba4e-3c7bdf4e2b24} event:/items/guns/sollex/end
-{b32ce1ae-39ef-41d0-b698-a3f2753e252e} event:/items/guns/sollex/loop
-{f1fabc88-5fed-4310-81d9-30cc3d18a769} event:/items/guns/sollex/shoot
+{3092f5f1-27d9-452c-ba4e-3c7bdf4e2b24} event:/items/guns/sollex/die
+{b32ce1ae-39ef-41d0-b698-a3f2753e252e} event:/items/guns/sollex/idle
+{f1fabc88-5fed-4310-81d9-30cc3d18a769} event:/items/guns/sollex/ignite
 {c8616d0a-3df8-4945-b06e-fb38f68b4b2f} event:/items/guns/sword_chain/cut
 {6adc0d80-34ac-4565-aea7-a9014f3ddd98} event:/items/guns/sword_chain/cut_
 {9990eb93-a8bb-4a21-bb10-cc24bca06a2b} event:/items/guns/sword_chain/idle

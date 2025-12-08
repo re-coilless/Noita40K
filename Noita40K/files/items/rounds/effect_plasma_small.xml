@@ -1,13 +1,5 @@
-<Entity name="sollex_thermo">
-	<MagicConvertMaterialComponent
-		kill_when_finished="0"
-		from_material_tag="[liquid]"
-		steps_per_frame="200"
-		to_material="smoke"
-		is_circle="1"
-		radius="4"
-		loop="1"
-    ></MagicConvertMaterialComponent>
+<Entity>
+	<Base file="mods/Noita40K/files/based/beam_effect.xml" />
 	
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
@@ -19,6 +11,16 @@
 		ignite_materials="1"
     ></MagicConvertMaterialComponent>
 	
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_material_tag="[liquid]"
+		steps_per_frame="200"
+		to_material="smoke"
+		is_circle="1"
+		radius="4"
+		loop="1"
+    ></MagicConvertMaterialComponent>
+	
 	<CellEaterComponent
 		radius="1"
 		eat_probability="100"
@@ -26,8 +28,4 @@
 		limited_materials="1"
 		ignored_material="fire"
 	></CellEaterComponent>
-	
-	<LifetimeComponent
-		lifetime="2"
-	></LifetimeComponent>
 </Entity>

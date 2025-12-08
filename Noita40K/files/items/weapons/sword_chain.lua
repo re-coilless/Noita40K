@@ -7,10 +7,8 @@ return function( info )
 
     -- stops working underwater (requires several attempts while outside to restart, no swinging)
 
-    local may_swing = false
-    pen.child_play( info.id, function( parent, child )
-        may_swing = EntityHasTag( child, "blade40k" )
-        if( may_swing ) then return true end
+    local may_swing = pen.child_play( info.id, function( parent, child )
+        if( EntityHasTag( child, "blade40k" )) then return true end
     end)
 
     local memo = pen.c.sword_state[ info.id ]
@@ -71,7 +69,7 @@ return function( info )
     pen.c.sword_cutting = memo.swing_start or memo.swing_done
     data.on_active = function( hooman, x, y, r, length )
         for i = 1,( pen.c.sword_cutting and 3 or 1 ) do
-            pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/beam_sword_physical.xml",
+            pen.magic_shooter( hooman, "mods/Noita40K/files/items/rounds/effect_sword_chain.xml",
                 x + length*math.cos( r ), y + length*math.sin( r ), -600*math.cos( r ), -600*math.sin( r ))
         end
     end

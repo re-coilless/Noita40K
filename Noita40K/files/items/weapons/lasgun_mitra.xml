@@ -37,10 +37,10 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"
-		value_float="3000"
+		value_float="750"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
-		value_float="0.99"
+		value_float="0.9935"
 	></VariableStorageComponent>
 </Entity>

@@ -10,9 +10,9 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
+-- adjust the magos arm position
 -- new magos char sounds
--- guns
--- screenshake for beams
+-- screenshake for beams + better sound effect system
 -- reverse inventory mouse wheel scrolling direction
 
 -- make trailing red eyes for rage modes
@@ -31,8 +31,10 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ledge mounting anim
 -- madness combat style hands
 
+-- beam weapons should apply recoil/damage with a frame-long delay
+-- taunts should apply a cooldown status effect that prevents stress form dropping and boosts its increase
 -- hotkey to automatically throw the first grenade
--- hotkey for quick melee (only simple swords support this)
+-- hotkey to switch to a melee weapon
 -- scope is picture-in-picture zoom shader at the pointer + x1.5 max cam distance
 -- do frag grenade that has directed spread
 -- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)

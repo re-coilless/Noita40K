@@ -5,7 +5,7 @@
 			add_these_child_actions="N40_CRYSTAL_S_SOLLEX"
 		></AbilityComponent>
 		<SpriteComponent offset_x="2" offset_y="2" />
-		<VelocityComponent mass="0.2" />
+		<VelocityComponent mass="0.02" />
     </Base>
 	
 	<HotspotComponent
@@ -21,30 +21,23 @@
 
 	<VariableStorageComponent
 		name="blade_length"
-		value_float="20"
+		value_float="25"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="rest_position"
-		value_string="|-90|0|0|"
+		value_string="|15|0|0|"
 	></VariableStorageComponent>
-	<!-- <VariableStorageComponent -->
-		<!-- name="ctrl_script" -->
-		<!-- value_string="mods/Noita40K/files/items/weapons/sword_chain.lua" -->
-	<!-- ></VariableStorageComponent> -->
+	<VariableStorageComponent
+		name="ctrl_script"
+		value_string="mods/Noita40K/files/items/weapons/sword_sollex.lua"
+	></VariableStorageComponent>
 	
 	<VariableStorageComponent
 		name="heat_max"
-		value_float="10"
+		value_float="1000"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"
 		value_float="0.995"
 	></VariableStorageComponent>
-	
-	<AudioLoopComponent
-		_tags="enabled_in_hand,chains_are_going"
-		file="mods/Noita40K/files/40K.bank"
-		event_name="guns/chainsword/active"
-		volume_autofade_speed="0.25"
-	></AudioLoopComponent>
 </Entity>

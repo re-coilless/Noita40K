@@ -40,11 +40,4 @@
 		name="heat_loss"
 		value_float="0.995"
 	></VariableStorageComponent>
-	
-	<AudioLoopComponent
-		_tags="enabled_in_hand,chains_are_going"
-		file="mods/Noita40K/files/40K.bank"
-		event_name="guns/chainsword/active"
-		volume_autofade_speed="0.25"
-	></AudioLoopComponent>
 </Entity>

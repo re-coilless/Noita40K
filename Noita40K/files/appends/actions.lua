@@ -53,10 +53,7 @@ table.insert( actions,
 function n40.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
 	local data = action.beam
 	data.shooter = EntityGetRootEntity( gun_id )
-	data.card = card_id
-	data.gun = gun_id
-	data.uid = gun_id
-	
+	data.card, data.gun, data.uid = card_id, gun_id, gun_id
 	local beam_path = pen.magic_storage( gun_id, "beam", "value_string" )
 	local length = pen.magic_storage( gun_id, "beam_length", "value_float" )
 	
@@ -83,8 +80,11 @@ function n40.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
 	end
 
 	pen.c.beam_eff_ids = pen.c.beam_eff_ids or {}
+	if( pen.vld( data.raytrace )) then
+		return data.raytrace( beam_x, beam_y, r, length, hit_action, data ) end
 	local out = pen.raytrace_entities( beam_x, beam_y, r, length, hit_action, data )
 	if( not( data.will_stop )) then return end
+
 	local hit_id, hit_x, hit_y, dmg_mult, k = unpack( out )
 	local is_hitting = pen.vld( hit_id, true )
 	if( is_hitting ) then hit_action( hit_id, hit_x, hit_y, dmg_mult, k ) end
@@ -116,6 +116,8 @@ table.insert( actions,
 			if( k%5 ~= 0 and not( is_final )) then return end
 			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end, f = function( data, hit_id, hit_x, hit_y )
+			pen.play_sound({ "mods/Noita40K/files/40K.bank", "effects/burst" }, hit_x, hit_y )
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
@@ -137,7 +139,7 @@ table.insert( actions,
 	projectiles = {{ r = 0.5, h = 25 }},
 	--high density decreases the size of effect entity and increases damage; changes color to be more white
 	beam = { dmg = 0.5, dmg_type = "DAMAGE_EXPLOSION", dmg_msg = "volkite", dmg_effect = "NORMAL",
-		will_choke = true, will_stop = true,
+		will_choke = true, will_stop = true, do_liquids = true,
 		point_action = function( data, point_x, point_y, k, is_final )
 			if( not( is_final )) then return end --make sure this spawns both as final and as hit
 			local effect = "mods/Noita40K/files/items/rounds/effect_volkite_small.xml"
@@ -151,6 +153,7 @@ table.insert( actions,
 			-- 	LoadGameEffectEntityTo( actual_deadman, "mods/Noita40K/files/entities/status_effects/effect_fancy_burning.xml" )
 			-- end
 		end, f = function( data, hit_id, hit_x, hit_y ) --deal damage to armor instead
+			pen.play_sound({ "mods/Noita40K/files/40K.bank", "effects/burst" }, hit_x, hit_y )
 			if( EntityHasTag( hit_id, "armored" )) then data.dmg = data.dmg/4; return end
 			ComponentSetValue2( GetGameEffectLoadTo( hit_id, "EXPLODING_CORPSE", true ), "frames", 2 )
 		end,
@@ -171,10 +174,10 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 600, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 10, h = 1000 }}, --this kills for some reason?
+	projectiles = {{ r = 5, h = 1000 }}, --sometimes ammo is not being deducted, must always take exactly two shots
 	--fully overrides beam to be darkfire and explodes on overheat if the gun is not designed for it
 	beam = { dmg = 1, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "darkfire", dmg_effect = "BLOOD_EXPLOSION",
-		always_action = true,
+		always_action = true, always_trace = true,
 		point_action = function( data, point_x, point_y, k, is_final )
 			EntityLoad( "mods/Noita40K/files/items/rounds/effect_darkfire_eater.xml", point_x, point_y )
 			if( k%2 == 1 ) then return end
@@ -204,22 +207,46 @@ table.insert( actions,
 	price = 300, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
 	projectiles = {{ r = 0.1, h = 5 }},
-	--functions as normal battery except with very high capacity and enabls specialty equipment to work
+	--functions as normal battery except with very high capacity and enables specialty equipment to work
 	beam = { dmg = 0.04, dmg_type = "DAMAGE_PROJECTILE", dmg_msg = "lasfire", dmg_effect = "NORMAL",
-		always_action = true, point_action = function( data, point_x, point_y, k, is_final )
-			if( k%5 ~= 0 and not( is_final )) then return end
-			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
+		always_action = true, will_stop = true, do_liquids = true,
+		point_action = function( data, point_x, point_y, k, is_final )
+			if( not( is_final )) then return end
+			local effect = "mods/Noita40K/files/items/rounds/effect_lasgun_large.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
 		end, f = function( data, hit_id, hit_x, hit_y )
+			pen.play_sound({ "mods/Noita40K/files/40K.bank", "effects/burst" }, hit_x, hit_y )
 			if( not( EntityHasTag( hit_id, "armored" ))) then return end
 			data.dmg_type = "DAMAGE_PHYSICS_HIT"
 			data.dmg_effect = "NONE"
 			data.dmg = 10*data.dmg
-		end,
+		end, raytrace = function( beam_x, beam_y, r, length, hit_action, data )
+			pen.child_play( pen.c.beam_ids[ data.gun ], function( parent, child, i )
+				local storage = pen.magic_storage( child, "angle" )
+				local angle = ComponentGetValue2( storage, "value_int" ) + 10
+				if( angle >= 360 ) then angle = 0 end
+				ComponentSetValue2( storage, "value_int", angle )
 
-		-- local max_angle = 0.265
-		-- local current_angle = max_angle*math.cos( angle )
-		-- ComponentSetValue2( emit_comp, "laser_angle_add_rad", current_angle )
+				local max_angle = 0.265
+				angle = max_angle*math.cos( math.rad( angle ))
+				pen.t.loop( EntityGetComponentIncludingDisabled( child, "LaserEmitterComponent" ), function( i, comp )
+					ComponentSetValue2( comp, "laser_angle_add_rad", angle )
+				end)
+
+				local out = pen.raytrace_entities( beam_x, beam_y, r + angle, length, hit_action, data )
+				if( not( data.will_stop )) then return end
+
+				local hit_id, hit_x, hit_y, dmg_mult, k = unpack( out )
+				local is_hitting = pen.vld( hit_id, true )
+				if( is_hitting ) then hit_action( hit_id, hit_x, hit_y, dmg_mult, k ) end
+				
+				local real_length = math.sqrt(( beam_x - hit_x )^2 + ( beam_y - hit_y )^2 )
+				pen.t.loop( EntityGetComponentIncludingDisabled( child, "LaserEmitterComponent" ), function( i, comp )
+					ComponentObjectSetValue2( comp, "laser", "max_length", is_hitting and real_length or length )
+					ComponentObjectSetValue2( comp, "laser", "beam_particle_fade", is_hitting and 0 or 1 )
+				end)
+			end)
+		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/battery_L_multi.xml",
 	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/mitra", true, "items/overheat_start" },
