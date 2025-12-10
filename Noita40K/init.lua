@@ -10,12 +10,24 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
--- adjust the magos arm position
 -- new magos char sounds
--- screenshake for beams + better sound effect system
+-- better sound effect system
+-- universal sword script
 -- reverse inventory mouse wheel scrolling direction
+-- beam weapons should apply recoil/damage with a frame-long delay
+-- rmb action should be obtained from controls comp Fire2
 
--- make trailing red eyes for rage modes
+-- magos perks
+-- OMNISSIAHS_BLESSING
+-- BREATH_OF_MARS
+-- SICARIAN_ARMOUR
+-- UNCHAINED
+-- REFRACTOR_FIELD
+-- MECHADENDRITES
+
+-- battle sister
+-- guns
+-- perks
 
 -- news role (direct broadcasting)
 
@@ -25,21 +37,20 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- do class bootup intro animation on world pre update (should block inputs + display tips)
 -- custom mnee frontend
 -- allow shift clicking equipment
--- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 
 -- standing on one knee animation on holding down s while on solid ground that prevents movement, reduces recoil and dramatically improves weapon handling
 -- ledge mounting anim
 -- madness combat style hands
+-- make trailing red eyes for rage modes
 
--- beam weapons should apply recoil/damage with a frame-long delay
+-- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 -- taunts should apply a cooldown status effect that prevents stress form dropping and boosts its increase
 -- hotkey to automatically throw the first grenade
 -- hotkey to switch to a melee weapon
 -- scope is picture-in-picture zoom shader at the pointer + x1.5 max cam distance
 -- do frag grenade that has directed spread
--- rmb action should be obtained from controls comp Fire2 (do this after vector mnee integration is done)
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
--- clot and warpmatter ambient sound (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
+-- clot and warpmatter ambient sound through Cardinal (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
 -- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- codex should have lore word hyperlinks that show tips on hower
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens + add "select" button on the desc page
@@ -53,7 +64,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
 -- ConvertMaterialOnAreaInstantly
 -- music is a single track that evolves based on events and biomes
--- put new link in the desc https://cortex-command-community.github.io/
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage

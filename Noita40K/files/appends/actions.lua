@@ -71,6 +71,7 @@ function n40.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
 	elseif( pen.c.beam_sfxes[ beam_id ]) then
 		pen.c.beam_sfxes[ beam_id ] = nil
 		pen.play_sound({ action.sfx[1], action.sfx[2].."/create" }, beam_x, beam_y )
+		if( pen.vld( data.shake, true )) then GameScreenshake( data.shake, beam_x, beam_y ) end
 	end
 	
 	local hit_action = function( hit_id, hit_x, hit_y, dmg_mult, k )
@@ -136,10 +137,10 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 250, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 0.5, h = 25 }},
+	projectiles = {{ r = 0.5, h = 25 }}, shake = 1,
 	--high density decreases the size of effect entity and increases damage; changes color to be more white
 	beam = { dmg = 0.5, dmg_type = "DAMAGE_EXPLOSION", dmg_msg = "volkite", dmg_effect = "NORMAL",
-		will_choke = true, will_stop = true, do_liquids = true,
+		will_choke = true, will_stop = true, do_liquids = true, shake = 2,
 		point_action = function( data, point_x, point_y, k, is_final )
 			if( not( is_final )) then return end --make sure this spawns both as final and as hit
 			local effect = "mods/Noita40K/files/items/rounds/effect_volkite_small.xml"
@@ -174,7 +175,8 @@ table.insert( actions,
 	type = ACTION_TYPE_OTHER,
 	price = 600, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 5, h = 1000 }}, --sometimes ammo is not being deducted, must always take exactly two shots
+	projectiles = {{ r = 5, h = 1000 }}, shake = 5,
+	--sometimes ammo is not being deducted, must always take exactly two shots
 	--fully overrides beam to be darkfire and explodes on overheat if the gun is not designed for it
 	beam = { dmg = 1, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "darkfire", dmg_effect = "BLOOD_EXPLOSION",
 		always_action = true, always_trace = true,

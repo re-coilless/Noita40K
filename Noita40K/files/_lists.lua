@@ -226,7 +226,7 @@ n40.PERKS = {
 				"mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.xml" )
 			ComponentSetValue2( data.dmg_comp, "ragdoll_filenames_file",
 				"mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/filenames.txt" )
-			--ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, 0 )
+			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, -0.5 )
 			
 			pen.magic_storage( hooman, "taunt_voice", "value_string", "32/taunts_2" )
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
