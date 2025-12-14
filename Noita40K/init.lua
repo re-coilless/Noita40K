@@ -30,6 +30,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- perks
 
 -- news role (direct broadcasting)
+-- add sound type based on parameter to fmod demo
 
 -- redo reloading system
 -- main menu
