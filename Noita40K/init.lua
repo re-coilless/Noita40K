@@ -94,6 +94,7 @@ function OnModInit()
 
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/player.xml" )
 
 	--[[
 	herd_relations = {

@@ -1,7 +1,7 @@
-<Entity name="sword_chain" >
+<Entity name="sword_chain_large" >
 	<Base file="mods/Noita40K/files/based/gun_melee.xml" >
 		<AbilityComponent
-			sprite_file="mods/Noita40K/files/items/weapons/sword_chain_A.png"
+			sprite_file="mods/Noita40K/files/items/weapons/sword_chain_large_A.png"
 			add_these_child_actions="N40_BLADE_ADAMANTIUM_TEETH"
 		></AbilityComponent>
 		<SpriteComponent offset_x="5" offset_y="2" />
@@ -29,7 +29,7 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="ctrl_script"
-		value_string="mods/Noita40K/files/items/weapons/sword_chain.lua"
+		value_string="mods/Noita40K/files/items/weapons/sword_chain_large.lua"
 	></VariableStorageComponent>
 	
 	<VariableStorageComponent

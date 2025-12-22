@@ -1,18 +1,18 @@
-<Entity name="bolter_generic" >
+<Entity name="bolter_pistol" >
 	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
 		<AbilityComponent
-			sprite_file="mods/Noita40K/files/items/weapons/bolter_generic.png"
-			add_these_child_actions="N40_BOLT_998_HE_M"
-			><gunaction_config spread_degrees="-10" />
+			sprite_file="mods/Noita40K/files/items/weapons/bolter_pistol.png"
+			add_these_child_actions="N40_BOLT_75_HE_S"
+			><gunaction_config spread_degrees="-3" />
 		</AbilityComponent>
-		<SpriteComponent offset_x="2" offset_y="5" />
-		<VelocityComponent mass="0.5" />
+		<SpriteComponent offset_x="2" offset_y="4" />
+		<VelocityComponent mass="0.025" />
     </Base>
 	
 	<HotspotComponent
         _tags="shoot_pos"
-        offset.x="12.5"
-        offset.y="-2"
+        offset.x="6"
+        offset.y="-1"
 	></HotspotComponent>
 	<HotspotComponent
         _tags="eject_pos"
@@ -22,19 +22,19 @@
 	
 	<VariableStorageComponent
 		name="ammo_type"
-		value_string="bolt_998"
+		value_string="bolt_75"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="cycling"
-		value_int="10"
+		value_int="-1"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="vector_handling"
-		value_float="0.75"
+		value_float="0.5"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_max"
-		value_float="60"
+		value_float="10"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="heat_loss"

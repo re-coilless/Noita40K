@@ -81,9 +81,9 @@ return function( info )
 
     local pics = EntityGetComponentIncludingDisabled( info.id, "SpriteComponent" )
     local anim = math.floor( GameGetFrameNum()/( is_cutting and 2 or 5 ))%2 == 0 and "A" or "B"
-    ComponentSetValue2( pics[1], "image_file", "mods/Noita40K/files/items/weapons/sword_chain_"..anim..".png" )
+    ComponentSetValue2( pics[1], "image_file", "mods/Noita40K/files/items/weapons/sword_chain_large_"..anim..".png" )
     EntityRefreshSprite( info.id, pics[1])
-    ComponentSetValue2( pics[2], "image_file", "mods/Noita40K/files/items/weapons/sword_chain_"..anim.."_heat.png" )
+    ComponentSetValue2( pics[2], "image_file", "mods/Noita40K/files/items/weapons/sword_chain_large_"..anim.."_heat.png" )
     EntityRefreshSprite( info.id, pics[2])
 
     pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/sword_chain/idle", true }, x, y )

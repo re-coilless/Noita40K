@@ -1,4 +1,6 @@
 ,en,ru,pt-br,es-es,de,fr-fr,it,pl,zh-cn,jp,ko,,NOTES – use \n for newline,max length
+n40_GUN_bolter_pistol,Bolt Pistol,,,,,,,,,,,,,
+n40_GUN_bolter_pistol_,"An extremely compact semi-automatic variant of the Bolter. Requires a special training and an inhuman strength to be successfully utilized. Commonly dual wielded.",,,,,,,,,,,,,
 n40_GUN_bolter_generic,Bolter,,,,,,,,,,,,,
 n40_GUN_bolter_generic_,"The Bolter, also called a Boltgun, and its variants are some of the most powerful, hand-held, ballistic anti-personnel weaponry in use by the military forces of the Imperium of Man. It is chambered in .998 calibre and capable of fully automatic fire.",,,,,,,,,,,,,
 n40_GUN_bolter_combimelta,Betrayer's Bane,,,,,,,,,,,,,
@@ -14,6 +16,8 @@ n40_GUN_bolter_stalker_,"Incredibly accurate and powerful yet still compact and 
 n40_GUN_volkite_pistol,Volkite Caliver,,,,,,,,,,,,,
 n40_GUN_volkite_pistol_,"Volkite Weapons are a type of beam weapon developed during the Dark Age of Technology. They produce a deflagrating attack, in which subsonic combustion caused by a beam of thermal energy propagated through a target material by thermodynamic heat transfer so that hot burning matter heates the next layer of cold material and ignites it.",,,,,,,,,,,,,
 
+n40_GUN_plasma_pistol,Plasma Pistol,,,,,,,,,,,,,
+n40_GUN_plasma_pistol_,"Plasma weapons make use of a micro-fusion nuclear reaction to superheat a cartridge of gas into the state of matter known as plasma and then release it in a projectile-like cloud. Such a volitile process is incredibly hard to control however, so the gun tends to explode right in the hands of its operator upon overheating. This version has been modified to increase the amount of expelled plasma, though at the cost of nullifying the AP capabilities. Hold [LMB] to start the charging cycle.",,,,,,,,,,,,,
 n40_GUN_bolter_rifle,Bolt Rifle,,,,,,,,,,,,,
 n40_GUN_bolter_rifle_,"An anti-armour semi-automatic bolter variant chambered in 50mm. Comes with an attached bayonet intended for jumppack charges.",,,,,,,,,,,,,
 n40_GUN_darkfire_rifle,Darkfire Rifle,,,,,,,,,,,,,
@@ -22,8 +26,13 @@ n40_GUN_darkfire_rifle_,"Photon Thruster Weapons unleash a howling needle-thin b
 n40_GUN_sword_chain,Chainsword,,,,,,,,,,,,,
 n40_GUN_sword_chain_,"The Chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man. It is essentially a sword with powered teeth that run along a single-edged blade like that of a chainsaw. Most versions of the weapon make use of monomolecularly-edged or otherwise razor-sharp teeth.",,,,,,,,,,,,,
 n40_GUN_sword_sollex,Sollex-Aegis Energy Blade,,,,,,,,,,,,,
+n40_GUN_sword_chain_large,Marine Chainsword,,,,,,,,,,,,,
+n40_GUN_sword_chain_large_,"The Chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man. It is essentially a sword with powered teeth that run along a single-edged blade like that of a chainsaw. Most versions of the weapon make use of monomolecularly-edged or otherwise razor-sharp teeth.",,,,,,,,,,,,,
+n40_GUN_sword_sollex,Sollex-Aegis Energy Blade,,,,,,,,,,,,,
 n40_GUN_sword_sollex_,"This weapon is a product of information obtained from the Aegis Data Fragments and utilises the properties of the Sollex focusing crystals. It is the one of the rarest type of weapons in the Imperium, a blade of coherent high-energy plasma which materialises from the armoured hilt as a blazing, roaring column of blue-white fire. Use [RMB] to activate it and [LMB] to swing.",,,,,,,,,,,,,
 
+n40_GUN_melta_pistol,Inferno Pistol,,,,,,,,,,,,,
+n40_GUN_melta_pistol_,"A drastically downscaled version of the Meltagun, still capable of vaporization foes in split second but at a cost of heavily decreased thermal capacity.",,,,,,,,,,,,,
 n40_GUN_melta_cutter,Melta-Cutter,,,,,,,,,,,,,
 n40_GUN_melta_cutter_,"Melta Weapons are a type of thermal weapons that make use of a sub-atomic reaction in a chemical fuel source to produce a tightly-focused beam of intense, searing heat. This version was primarily designed for demolition work - not for actual combat, as Metlaguns were, but will still perform exceptionally in a CQC.",,,,,,,,,,,,,
 n40_GUN_lasgun_mitra,Mitralock,,,,,,,,,,,,,
@@ -31,10 +40,12 @@ n40_GUN_lasgun_mitra_,"Mitralocks are a type of Las-weapon used by the Adeptus M
 
 
 
+n40_MAG_bolt_75_he_s,Bolt .75 HE (Small Mag),,,,,,,,,,,,,
+n40_MAG_bolt_75_he_s_,Standard bolt pistol magazine of 5 rounds.,,,,,,,,,,,,,
 n40_MAG_bolt_998_he_m,Bolt .998 HE (Medium Mag),,,,,,,,,,,,,
-n40_MAG_bolt_998_he_m_,Standard bolter magazine of 20-rounds.,,,,,,,,,,,,,
+n40_MAG_bolt_998_he_m_,Standard bolter magazine of 20 rounds.,,,,,,,,,,,,,
 n40_MAG_bolt_50mm_aphe_s,Bolt 50mm APHE (Small Mag),,,,,,,,,,,,,
-n40_MAG_bolt_50mm_aphe_s_,Standard bolt rifle magazine of 3-rounds.,,,,,,,,,,,,,
+n40_MAG_bolt_50mm_aphe_s_,Standard bolt rifle magazine of 3 rounds.,,,,,,,,,,,,,
 
 n40_MAG_canister_s_pyrum,Small Fuel Canister of Pyrum-Petrol,,,,,,,,,,,,,
 n40_MAG_canister_s_pyrum_,Small fuel tank designed for low-powered melta tools.,,,,,,,,,,,,,
@@ -109,6 +120,9 @@ n40_PERK_armor_mk7_dark_angel_,Mark VII Power Armour,,,,,,,,,,,,,
 n40_PERK_armor_sicarian,Sicarian Battle Armour,,,,,,,,,,,,,
 n40_PERK_armor_sicarian_,"This armour is built out of the multilayered alloy, informally known as aegium, that provides admirable protection despite being thin and flexible. It acts as a capacitor that harnesses the energy of incoming attacks and disperses it across the wearer's energy system. Spirits of the machine, accept my plea and walk amidst the gun, and fire it true.",,,,,,,,,,,,,
 
+n40_PERK_armor_sororitas,Adepta Sororitas Power Armour,,,,,,,,,,,,,
+n40_PERK_armor_sororitas_,"This lighter power armour provides excellent protection and increased strength with little to no reduction in movement speed or agility, despite the lack of direct nervous system integration. Combined with the wing-shaped jumppack, it gives the wearer an angelic profile, striking fear in the corrupt and strengthening the morale of the devout. Press [DOWN]+[USE] for directed dash or just hold [DOWN] to enter the glide mode.",,,,,,,,,,,,,
+
 n40_PERK_second_heart,Secondary Heart,,,,,,,,,,,,,
 n40_PERK_second_heart_,"The Secondary Heart, also called the Maintainer, resembles a smaller version of the Human heart and is implanted in the chest cavity. In the event of failure of the Space Marine's original heart, the Secondary Heart is usually capable of pumping enough blood through the Astartes' circulatory system to maintain survival. Glory in death is life Eternal.",,,,,,,,,,,,,
 n40_PERK_ossmodula,Ossmodula,,,,,,,,,,,,,
@@ -138,6 +152,8 @@ n40_PERK_living_shadow,Living Shadow,,,,,,,,,,,,,
 n40_PERK_living_shadow_,"Decades of nonstop practice allow you to position your body in such a way that it near completely fades into the background, making you effectively invisible to the naked eye, assuming you are stationary.",,,,,,,,,,,,,
 n40_PERK_unchained,Unchained,,,,,,,,,,,,,
 n40_PERK_unchained_,"You operate outside Imperium's jurisdiction. No secret shall remain veiled.",,,,,,,,,,,,,
+n40_PERK_emperors_daughter,Emperor's Daughter,,,,,,,,,,,,,
+n40_PERK_emperors_daughter_,"The purity of your faith and valiancy of your spirit have earned His attention - a sensation of divine protection propagates throughout your entire body.",,,,,,,,,,,,,
 
 n40_PERK_omnissiahs_blessing,Omnissiah's Blessing,,,,,,,,,,,,,
 n40_PERK_omnissiahs_blessing_,"The vast majority of your body consists of highly advanced machinery which significantly enchanses your capabilities, provides solid foundation for futher augmentation and makes you immune to the most natural threats.",,,,,,,,,,,,,
@@ -230,7 +246,7 @@ n40_CLASS_6_,,,,,,,,,,,,,,
 n40_CLASS_6_1,Ordo Hereticus,,,,,,,,,,,,,
 n40_CLASS_6_1_,,,,,,,,,,,,,,
 n40_CLASS_6_1_1,Adepta Sororitas,,,,,,,,,,,,,
-n40_CLASS_6_1_1_,,,,,,,,,,,,,,
+n40_CLASS_6_1_1_,"Amongst the highly devoted warriors of the Orders Militant there are those whose faith burns so brightly that it appears as if the Emperor Himself guides their actions. These angelic warriors are known as Seraphim, and are exclusively trained to use jumppacks and to master the co-ordination, dexterity and control required to wield two firearms at once. They strike like avenging angels, descending into the thickest of fighting upon wings of fire, their Bolt Pistols spitting death at their foes in a devastating dance of fury and faith.",,,,,,,,,,,,,
 n40_CLASS_6_2,Ordo Xenos,,,,,,,,,,,,,
 n40_CLASS_6_2_,,,,,,,,,,,,,,
 n40_CLASS_6_3,Ordo Malleus,,,,,,,,,,,,,

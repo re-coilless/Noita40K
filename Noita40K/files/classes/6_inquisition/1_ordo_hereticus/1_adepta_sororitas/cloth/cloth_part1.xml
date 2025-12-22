@@ -1,6 +1,6 @@
 <Entity >
 	<SpriteComponent 
-		image_file="mods/n40ke_bss/files/entities/misc/cloth_part1.png" 
+		image_file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.png" 
 		offset_x="0"
 		offset_y="1"
 		update_transform="0"

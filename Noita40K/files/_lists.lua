@@ -3,6 +3,10 @@ n40 = n40 or {}
 n40.GUNS = --obtain codex stats from xml parsing
 {
 	-- SLOT 1 (good all-arounder)
+	BOLTER_PISTOL = {
+		name = "$n40_GUN_bolter_pistol", desc = "$n40_GUN_bolter_pistol_",
+		path = "mods/Noita40K/files/items/weapons/bolter_pistol.xml",
+	},
 	BOLTER_GENERIC = {
 		name = "$n40_GUN_bolter_generic", desc = "$n40_GUN_bolter_generic_",
 		path = "mods/Noita40K/files/items/weapons/bolter_generic.xml",
@@ -34,12 +38,16 @@ n40.GUNS = --obtain codex stats from xml parsing
 	},
 
 	-- SLOT 2 (niche-use and skill-based)
+	PLASMA_PISTOL = {
+		name = "$n40_GUN_plasma_pistol", desc = "$n40_GUN_plasma_pistol_",
+		path = "mods/Noita40K/files/items/weapons/plasma_pistol.xml",
+	},
 	BOLTER_RIFLE = {
 		name = "$n40_GUN_bolter_rifle", desc = "$n40_GUN_bolter_rifle_",
 		path = "mods/Noita40K/files/items/weapons/bolter_rifle.xml",
 		func = function( hooman, data ) n40.new_item( n40.ITEMS.BAYONET_L, hooman, data ) end,
 	},
-	-- salamnder gets flamer as rifle replacement
+	-- salamander gets flamer as rifle replacement
 	DARKFIRE_RIFLE = {
 		name = "$n40_GUN_darkfire_rifle", desc = "$n40_GUN_darkfire_rifle_",
 		path = "mods/Noita40K/files/items/weapons/darkfire_rifle.xml",
@@ -50,12 +58,20 @@ n40.GUNS = --obtain codex stats from xml parsing
 		name = "$n40_GUN_sword_chain", desc = "$n40_GUN_sword_chain_",
 		path = "mods/Noita40K/files/items/weapons/sword_chain.xml",
 	},
+	SWORD_CHAIN_LARGE = {
+		name = "$n40_GUN_sword_chain_large", desc = "$n40_GUN_sword_chain_large_",
+		path = "mods/Noita40K/files/items/weapons/sword_chain_large.xml",
+	},
 	SWORD_SOLLEX = {
 		name = "$n40_GUN_sword_sollex", desc = "$n40_GUN_sword_sollex_",
 		path = "mods/Noita40K/files/items/weapons/sword_sollex.xml",
 	},
 
 	-- SLOT 4 (utility)
+	MELTA_PISTOL = {
+		name = "$n40_GUN_melta_pistol", desc = "$n40_GUN_melta_pistol_",
+		path = "mods/Noita40K/files/items/weapons/melta_pistol.xml",
+	},
 	MELTA_CUTTER = {
 		name = "$n40_GUN_melta_cutter", desc = "$n40_GUN_melta_cutter_",
 		path = "mods/Noita40K/files/items/weapons/melta_cutter.xml",
@@ -136,7 +152,7 @@ n40.EQUIPMENT = {
 
 n40.PERKS = {
 	-- skins
-	MKVII_ULTRAMARINE = {
+	ARMOR_MK7_ULTRA = {
 		name = "$n40_PERK_armor_mk7_ultramarine", desc = "$n40_PERK_armor_mk7_ultramarine_",
 		-- vector_ctrl = "",
 		func = function( hooman, data, char_name )
@@ -171,7 +187,7 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
 			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
 
-			-- data.breathing_immune = true
+			data.breathing_immune = true
 			data.contact_immune = true
 			data.threshold_burn = 2*( data.threshold_burn or 25 )
 			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
@@ -187,39 +203,39 @@ n40.PERKS = {
 			return data
 		end,
 	},
-	MKVII_BLOOD_ANGEL = {
+	ARMOR_MK7_BLOOD = {
 		name = "$n40_PERK_armor_mk7_blood_angel", desc = "$n40_PERK_armor_mk7_blood_angel_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "2_blood_angel" ) end
 	},
-	MKVII_IMPERIAL_FIST = {
+	ARMOR_MK7_IMPERIAL = {
 		name = "$n40_PERK_armor_mk7_imperial_fist", desc = "$n40_PERK_armor_mk7_imperial_fist_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "3_imperial_fist" ) end
 	},
-	MKVII_WHITE_SCAR = {
+	ARMOR_MK7_WHITE = {
 		name = "$n40_PERK_armor_mk7_white_scar", desc = "$n40_PERK_armor_mk7_white_scar_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "4_white_scar" ) end
 	},
-	MKVII_IRON_HAND = {
+	ARMOR_MK7_IRON = {
 		name = "$n40_PERK_armor_mk7_iron_hand", desc = "$n40_PERK_armor_mk7_iron_hand_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "5_iron_hand" ) end
 	},
-	MKVII_SPACE_WOLF = {
+	ARMOR_MK7_WOLF = {
 		name = "$n40_PERK_armor_mk7_space_wolf", desc = "$n40_PERK_armor_mk7_space_wolf_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "6_space_wolf" ) end
 	},
-	MKVII_SALAMANDER = {
+	ARMOR_MK7_SALAMANDER = {
 		name = "$n40_PERK_armor_mk7_salamander", desc = "$n40_PERK_armor_mk7_salamander_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "7_salamander" ) end
 	},
-	MKVII_RAVEN_GUARD = {
+	ARMOR_MK7_RAVEN = {
 		name = "$n40_PERK_armor_mk7_raven_guard", desc = "$n40_PERK_armor_mk7_raven_guard_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "8_raven_guard" ) end
 	},
-	MKVII_DARK_ANGEL = {
+	ARMOR_MK7_DARK = {
 		name = "$n40_PERK_armor_mk7_dark_angel", desc = "$n40_PERK_armor_mk7_dark_angel_",
 		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "9_dark_angel" ) end
 	},
-	SICARIAN_ARMOUR = {
+	ARMOR_SICARIAN = {
 		name = "$n40_PERK_armor_sicarian", desc = "$n40_PERK_armor_sicarian_",
 		func = function( hooman, data )
 			ComponentSetValue2( data.pic_char, "image_file",
@@ -278,6 +294,74 @@ n40.PERKS = {
 
 			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
 			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
+
+			return data
+		end,
+	},
+	ARMOR_SORORITAS = {
+		name = "$n40_PERK_armor_sororitas", desc = "$n40_PERK_armor_sororitas_",
+		func = function( hooman, data )
+			ComponentSetValue2( data.pic_char, "image_file",
+				"mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/player.xml" )
+			ComponentSetValue2( data.dmg_comp, "ragdoll_filenames_file",
+				"mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/filenames.txt" )
+			ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( data.arm_id, "HotspotComponent" ), "offset", -0.5, -0.5 )
+			
+			local x, y = EntityGetTransform( hooman )
+			EntityAddChild( hooman, EntityLoad( "mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth.xml", x, y - 4 ))
+
+			pen.magic_storage( hooman, "taunt_voice", "value_string", "32/taunts_2" )
+			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
+			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			
+			ComponentSetValue2( data.char_comp, "mass", 1 + ComponentGetValue2( data.char_comp, "mass" ))
+			
+			ComponentSetValue2( data.plat_comp, "swim_up_buoyancy_coeff", 0.2 )
+			ComponentSetValue2( data.plat_comp, "swim_idle_buoyancy_coeff", 0.1 )
+			ComponentSetValue2( data.plat_comp, "swim_down_buoyancy_coeff", 0 )
+			
+			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
+			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
+
+			ComponentSetValue2( data.plat_comp, "run_velocity",
+				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
+				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
+			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
+				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
+			
+			ComponentSetValue2( data.kick_comp, "max_force",
+				20*ComponentGetValue2( data.kick_comp, "max_force" ))
+			ComponentSetValue2( data.kick_comp, "player_kickforce",
+				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
+			ComponentSetValue2( data.kick_comp, "kick_damage",
+				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
+			ComponentSetValue2( data.kick_comp, "kick_knockback",
+				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
+
+			n40.add_resistance( data.dmg_comp, "radioactive", 0.75 )
+			n40.add_resistance( data.dmg_comp, "fire", 0.75 )
+			n40.add_resistance( data.dmg_comp, "ice", 0.75 )
+			n40.add_resistance( data.dmg_comp, "poison", 0.75 )
+			n40.add_resistance( data.dmg_comp, "drill", 0.5 )
+			n40.add_resistance( data.dmg_comp, "physics_hit", 0.5 )
+			n40.add_resistance( data.dmg_comp, "explosion", 0.25 )
+			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
+			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
+			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
+
+			data.breathing_immune = true
+			data.contact_immune = true
+			data.threshold_burn = 2*( data.threshold_burn or 25 )
+			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
+			data.threshold_radiation = 999
+			data.threshold_piercing = 999
+			data.threshold_poison = 999
+
+			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
+			-- n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
 
@@ -485,7 +569,7 @@ n40.CLASSES[1].sections = {
 	{
 		name = "$n40_CLASS_1_2", desc = "$n40_CLASS_1_2_",
 
-		guns = { "BOLTER_GENERIC", "BOLTER_RIFLE", "SWORD_CHAIN", "MELTA_CUTTER" },
+		guns = { "BOLTER_GENERIC", "BOLTER_RIFLE", "SWORD_CHAIN_LARGE", "MELTA_CUTTER" },
 		items = { "GRENADE_HE", "GRENADE_HE" },
 		equipment = { "JUMPPACK_L" },
 		perks = {
@@ -518,7 +602,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- equipment = {},
 		-- equipment_add = {},
 		
-		skin = "MKVII_ULTRAMARINE",
+		skin = "ARMOR_MK7_ULTRA",
 		perks_add = { "CODEX_MASTERY" },
 		-- perks_remove = {},
 		-- func = nil,
@@ -529,7 +613,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_blood_angel.png",
 
 		guns = { [1] = "BOLTER_RAPID" },
-		skin = "MKVII_BLOOD_ANGEL", perks_add = { "BLACK_RAGE" },
+		skin = "ARMOR_MK7_BLOOD", perks_add = { "BLACK_RAGE" },
 	},
 	{
 		name = "$n40_CLASS_1_2_3", desc = "$n40_CLASS_1_2_3_",
@@ -537,7 +621,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_imperial_fist.png",
 
 		equipment_add = { "SHIELD_S" },
-		skin = "MKVII_IMPERIAL_FIST", perks_add = { "EMPERORS_PRAETORIAN" }, perks_remove = { "SUS_AN" },
+		skin = "ARMOR_MK7_IMPERIAL", perks_add = { "EMPERORS_PRAETORIAN" }, perks_remove = { "SUS_AN" },
 	},
 	{
 		name = "$n40_CLASS_1_2_4", desc = "$n40_CLASS_1_2_4_",
@@ -545,7 +629,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_white_scar.png",
 
 		equipment = { [1] = "JUMPPACK_L_UPGRADE" },
-		skin = "MKVII_WHITE_SCAR", perks_add = { "CHOGORIAN_SAVAGERY" },
+		skin = "ARMOR_MK7_WHITE", perks_add = { "CHOGORIAN_SAVAGERY" },
 	},
 	{
 		name = "$n40_CLASS_1_2_5", desc = "$n40_CLASS_1_2_5_",
@@ -553,7 +637,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_iron_hand.png",
 
 		guns = { [1] = "BOLTER_COMBIMELTA" },
-		skin = "MKVII_IRON_HAND", perks_add = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE" },
+		skin = "ARMOR_MK7_IRON", perks_add = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE" },
 	},
 	{
 		name = "$n40_CLASS_1_2_6", desc = "$n40_CLASS_1_2_6_",
@@ -561,7 +645,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_space_wolf.png",
 		
 		items_add = { "KEG" },
-		skin = "MKVII_SPACE_WOLF", perks_add = { "FENRISIAN_BLOOD" },
+		skin = "ARMOR_MK7_WOLF", perks_add = { "FENRISIAN_BLOOD" },
 	},
 	{
 		name = "$n40_CLASS_1_2_7", desc = "$n40_CLASS_1_2_7_",
@@ -570,7 +654,7 @@ n40.CLASSES[1].sections[2].chars = {
 		
 		guns = { [1] = "BOLTER_INCENDIARY" },
 		items = { "GRENADE_HEI", "GRENADE_HEI" },
-		skin = "MKVII_SALAMANDER", perks_add = { "NOCTURNE_FORGED" },
+		skin = "ARMOR_MK7_SALAMANDER", perks_add = { "NOCTURNE_FORGED" },
 	},
 	{
 		name = "$n40_CLASS_1_2_8", desc = "$n40_CLASS_1_2_8_",
@@ -579,7 +663,7 @@ n40.CLASSES[1].sections[2].chars = {
 		
 		guns = { [1] = "BOLTER_STALKER" },
 		items = { "GRENADE_FLASHBANG", "GRENADE_FLASHBANG" },
-		skin = "MKVII_RAVEN_GUARD", perks_add = { "LIVING_SHADOW" },
+		skin = "ARMOR_MK7_RAVEN", perks_add = { "LIVING_SHADOW" },
 	},
 	{
 		name = "$n40_CLASS_1_2_9", desc = "$n40_CLASS_1_2_9_",
@@ -589,7 +673,7 @@ n40.CLASSES[1].sections[2].chars = {
 		guns = { [1] = "BOLTER_ARCHEO" },
 		items_add = { "GRENADE_RUPTOR" },
 		equipment_add = { "OSCULANT_DEVICE" },
-		skin = "MKVII_DARK_ANGEL", perks_add = { "UNCHAINED" },
+		skin = "ARMOR_MK7_DARK", perks_add = { "UNCHAINED" },
 	},
 }
 
@@ -620,7 +704,7 @@ n40.CLASSES[3].sections[2].chars = {
 		
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASGUN_MITRA" },
 		--equipment_add = { "REFRACTOR_FIELD" },
-		skin = "SICARIAN_ARMOUR", --perks_add = { "MECHADENDRITES", "UNCHAINED" },
+		skin = "ARMOR_SICARIAN", --perks_add = { "MECHADENDRITES", "UNCHAINED" },
 	},
 }
 
@@ -642,6 +726,12 @@ n40.CLASSES[6].sections = {
 n40.CLASSES[6].sections[1].chars = {
 	{
 		name = "$n40_CLASS_6_1_1", desc = "$n40_CLASS_6_1_1_",
+		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_tech_priest_magos_explorator.png",
+		-- main = "mods/Noita40K/files/pics/codex_gfx/tech_priest_magos_explorator.png",
+		
+		guns = { "BOLTER_PISTOL", "PLASMA_PISTOL", "SWORD_CHAIN", "MELTA_PISTOL" },
+		--equipment = { "JUMPPACK_SERAPHIM" },
+		skin = "ARMOR_SORORITAS", --perks = { "EMPERORS_DAUGHTER", "COMBAT_ZEALOT" },
 	},
 }
 
@@ -716,92 +806,6 @@ n40.MUZZLE_FLASHES = {
 	end,
 }
 
-
-
---adding skin to the specific class
--- table.insert( class_info[15].skins,
--- {
--- 	author = "Bruham/YourDoom",
--- 	name = "AS_Seraphim",
--- 	unlocked = true,
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_class_as_seraphim.png",
--- 	main = "mods/n40ke_bss/files/pics/gui_gfx/as_seraphim.png",
--- 	custom_desc = "Dash through the bloody fog of your enemies in the form of a living angel, bringing death and fire like divine wrath. Decimate the wicked, defeat the unworthy, and execute the profane. Dominus Et Imperator Noster Sic Fieri Jubet.",
--- 	guns = { --ids from the gun_info, full paths to main .xml would work too
--- 		"SERAPHIM_BOLT_PISTOL",
--- 		"SERAPHIM_PLASMA_PISTOL",
--- 		"SERAPHIM_CHAINSWORD",
--- 		"SERAPHIM_INFERNO_PISTOL",
--- 	},
--- 	items = {
--- 		"mods/n40ke_bss/files/entities/items/seraphim_bolt_pistol_offhand_item.xml",
--- 		"mods/Noita40K/files/entities/items/grenade_he.xml",
--- 	},
--- 	perks = { --[[ Do we completely overwrite the default class perks?  ]]true, {
--- 		{ "UNCHAINED", false, },
--- 		{ "AS_POWER_ARMOUR", --[[ Are we using non-vanilla perk style? ]]true, --[[ Is it present in the main mod? ]]true },
--- 		{ "EMPERORS_DAUGHTER", true, true },
--- 	}},
--- 	custom_code = nil, --Any code you wanna run after all the stuff was done goes here
--- 	custom_numbers = nil, --If your character needs custom magic numbers - attach the path here
--- })
-
--- --adding guns
--- table.insert( gun_info,
--- {
--- 	id = "SERAPHIM_BOLT_PISTOL",
--- 	name = "Bolt Pistol",
--- 	unlocked = HasFlagPersistent( "triumph_as_seraphim" ) and true or nil,
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_gun_seraphim_bolt_pistol.png",
--- 	pic = "mods/n40ke_bss/files/pics/guns_gfx/seraphim_bolt_pistol.png",
--- 	ammo = { "mods/n40ke_bss/files/pics/cards_gfx/75_bolt_he_mag_small.png" },
--- 	path = "mods/n40ke_bss/files/entities/guns/seraphim_bolt_pistol.xml",
--- })
-
--- table.insert( gun_info,
--- {
--- 	id = "SERAPHIM_PLASMA_PISTOL",
--- 	name = "Plasma Pistol",
--- 	unlocked = HasFlagPersistent( "triumph_as_seraphim" ) and true or nil,
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_gun_seraphim_plasma_pistol.png",
--- 	pic = "mods/n40ke_bss/files/pics/guns_gfx/seraphim_plasma_pistol.png",
--- 	ammo = { "mods/n40ke_bss/files/pics/cards_gfx/hydrogen_fuel_cell_small.png" },
--- 	path = "mods/n40ke_bss/files/entities/guns/seraphim_plasma_pistol.xml",
--- })
-
--- table.insert( gun_info,
--- {
--- 	id = "SERAPHIM_CHAINSWORD",
--- 	name = "Chainsword",
--- 	unlocked = HasFlagPersistent( "triumph_as_seraphim" ) and true or nil,
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_gun_seraphim_chainsword.png",
--- 	pic = "mods/n40ke_bss/files/pics/guns_gfx/seraphim_chainsword_pic.png",
--- 	ammo = { "mods/Noita40K/files/pics/cards_gfx/adamantium_carbon_teeth.png" },
--- 	path = "mods/n40ke_bss/files/entities/guns/seraphim_chainsword.xml",
--- })
-
--- table.insert( gun_info,
--- {
--- 	id = "SERAPHIM_INFERNO_PISTOL",
--- 	name = "Inferno Pistol",
--- 	unlocked = HasFlagPersistent( "triumph_as_seraphim" ) and true or nil,
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_gun_seraphim_inferno_pistol.png",
--- 	pic = "mods/n40ke_bss/files/pics/guns_gfx/seraphim_inferno_pistol.png",
--- 	ammo = { "mods/Noita40K/files/pics/cards_gfx/pyrum_petrol_canister_small.png" },
--- 	path = "mods/n40ke_bss/files/entities/guns/seraphim_inferno_pistol.xml",
--- })
-
--- --adding perk ids to the pool for custom perk gui to use
--- table.insert( organ_list, { "AS_POWER_ARMOUR", true, })
--- table.insert( organ_list, { "EMPERORS_DAUGHTER", true, })
-
--- --adding character to the codex
--- table.insert( codex_structure[2].entries,
--- {
--- 	icon = "mods/n40ke_bss/files/pics/gui_gfx/icon_class_as_seraphim.png",
--- 	unlocked = true,
--- 	name = "[Adepta Sororitas Seraphim]",
-	
 -- 	--Difficulty: Alpha = easily beatable, Beta = fair enough, Gamma = fair enough with a slightly salty taste, Delta = challenging, Epsilon = unfair (assuming you are playing on the custom n40k map [CURRENTLY NOT PRESENT])
 -- 	--Toughness: ingame hp
 -- 	--Height: pixels/10
@@ -809,66 +813,8 @@ n40.MUZZLE_FLASHES = {
 -- 	--Speed: ingame speed times 10 - you can get it through the Enternal Vigilance
 -- 	--PL: 0.25*( 0.08*( f_speed*f_vulner*f_hp ) + f_cqc ) - check get_enemy_threat in black_library
 -- 	stats = "Difficulty: epsilon / Toughness: 100 / Height: 1.8 m / Mass: 95 kg / Speed: 12 m/s / PL: 45.3 /",
-	
--- 	image = { "mods/n40ke_bss/files/pics/ui_anims/seraphim_idle/", --[[ Frame count ]]6, --[[ Delay between frames (is in frames) ]]12 },
--- 	desc = "Amongst the highly devoted warriors of the Orders Militant there are those whose faith burns so brightly that it appears as if the Emperor Himself guides their actions. These angelic warriors are known as Seraphim, and are exclusively trained to use jumppacks and to master the co-ordination, dexterity and control required to wield two firearms at once. They strike like avenging angels, descending into the thickest of fighting upon wings of fire, their Bolt Pistols spitting death at their foes in a devastating dance of fury and faith.",
--- })
 
--- --adding guns to the codex
--- table.insert( codex_structure[3].entries,
--- {
--- 	info = get_gun_with_id( "SERAPHIM_BOLT_PISTOL" ),
--- 	unlocked = true,
--- 	name = "[Bolt Pistol]",
-	
 -- 	--Velho C.: does it has a "wand" tag
 -- 	--DPS: get it from Spell Lab's dummy
 -- 	--PL: get it from eternal vigilance
 -- 	stats = "Fire mode: semi / Velho C.: yes / Cal.: .75 / RPM: 360 / DPS: 300+ / PL: 5.3 /",
-	
--- 	desc = "An extremely compact semi-automatic variant of the Bolter, designed for dual wielding. Requires a special training and inhuman strength to be successfully utilized.",
--- })
-
--- table.insert( codex_structure[3].entries,
--- {
--- 	info = get_gun_with_id( "SERAPHIM_PLASMA_PISTOL" ),
--- 	unlocked = true,
--- 	name = "[Plasma Pistol]",
--- 	stats = "Fire mode: charge / Type: plasma / Velho C.: no / Volitile: yes / DPS: varied / PL: 32.5 /",
--- 	desc = "Plasma weapons make use of a micro-fusion nuclear reaction to superheat a cartridge of gas into the state of matter known as plasma and then release it in a projectile-like cloud. Such a volitile process is incredibly hard to control however, so the gun tends to explode right in the hands of its operator upon overheating. This version has been modified to increase the amount of expelled plasma, though at the cost of nullifying the AP capabilities. Hold [LMB] to start the charging cycle.",
--- })
-
--- table.insert( codex_structure[3].entries,
--- {
--- 	info = get_gun_with_id( "SERAPHIM_CHAINSWORD" ),
--- 	unlocked = true,
--- 	name = "[Chainsword]",
--- 	stats = "Fire mode: melee / Type: constant / Velho C.: no / DPS: 450+ / PL: 1.1 /",
--- 	desc = "A standard human chainsword of appropriate size and balancing.",
--- })
-
--- table.insert( codex_structure[3].entries,
--- {
--- 	info = get_gun_with_id( "SERAPHIM_INFERNO_PISTOL" ),
--- 	unlocked = true,
--- 	name = "[Inferno Pistol]",
--- 	stats = "Fire mode: beam / Type: melta / Velho C.: no / Range: 40 / DPS: 4K+ / PL: 10.8 /",
--- 	desc = "A drastically downscaled version of the Meltagun, still capable of vaporization foes in split second but at a cost of heavily decreased thermal capacity.",
--- })
-
--- --adding perks to the codex
--- table.insert( codex_structure[4].entries,
--- {
--- 	info = get_perk_with_actual_id( "AS_POWER_ARMOUR", true ),
--- 	unlocked = true,
--- 	name = "[AS Seraphim Power Armour]",
--- 	desc = "This lighter power armour provides excellent protection and increased strength with little to no reduction in movement speed or agility, despite the lack of direct nervous system integration. Combined with the wing-shaped jumppack, it gives the wearer an angelic profile, striking fear in the corrupt and strengthening the morale of the devout. Press [DOWN]+[USE] for directed dash or just hold [DOWN] to enter the glide mode.",
--- })
-
--- table.insert( codex_structure[4].entries,
--- {
--- 	info = get_perk_with_actual_id( "EMPERORS_DAUGHTER", true ),
--- 	unlocked = true,
--- 	name = "[Emperor's Daughter]",
--- 	desc = "Purity of your faith and valiancy of your spirit deserve His attention - a sensation of divine protection propagates throughout your entire body.",
--- })

@@ -9,6 +9,27 @@ end
 
 table.insert( actions,
 {
+	id = "N40_BOLT_75_HE_S",
+	name = "$n40_MAG_bolt_75_he_s", description = "$n40_MAG_bolt_75_he_s_",
+	sprite = "mods/Noita40K/files/items/mags/bolt_75_he_S.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 50, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_75_he.xml", r = 1.5, h = 0.75 }},
+	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_75_he_S.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	
+	action = function()
+		pen.gunshot( n40.muzzle_flash )
+		c.spread_degrees = c.spread_degrees + 5.0
+	end,
+})
+
+table.insert( actions,
+{
 	id = "N40_BOLT_998_HE_M",
 	name = "$n40_MAG_bolt_998_he_m", description = "$n40_MAG_bolt_998_he_m_",
 	sprite = "mods/Noita40K/files/items/mags/bolt_998_he_M.png",
@@ -347,29 +368,6 @@ table.insert( actions,
 		c.spread_degrees = c.spread_degrees + 15.0
 		c.damage_critical_chance = c.damage_critical_chance + 10
 		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 25.0
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "75_BOLT_HE_MAG_SMALL",
-	name 		= "Small .75 Bolt Mag HE",
-	description = "5-round standard bolter magazine.",
-	sprite 		= "mods/n40ke_bss/files/pics/cards_gfx/75_bolt_he_mag_small.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_75_HE.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 50,
-	mana              = 25,
-	max_uses          = -1,
-	custom_xml_file = "mods/n40ke_bss/files/entities/cards/75_bolt_he_mag_small.xml",
-	action = function()
-		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_75_HE.xml" )
-		c.spread_degrees = c.spread_degrees + 10.0
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
 	end,
 })
 

@@ -1,9 +1,9 @@
-<Entity name="cloth" tags="cloth" >
+<Entity>
 	<InheritTransformComponent
-		parent_hotspot_tag="cloth_root"
+		parent_hotspot_tag="center"
 		><Transform 
-			position.x="1"
-			position.y="0"
+			position.x="0"
+			position.y="2"
 		></Transform>
 	</InheritTransformComponent>
 	
@@ -27,11 +27,11 @@
 		constrain_stretching="1"
     ></VerletPhysicsComponent>
 	
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part2.xml" />
-	<Base file="mods/n40ke_bss/files/entities/misc/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part2.xml" />
+	<Base file="mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/cloth/cloth_part1.xml" />
 </Entity>
