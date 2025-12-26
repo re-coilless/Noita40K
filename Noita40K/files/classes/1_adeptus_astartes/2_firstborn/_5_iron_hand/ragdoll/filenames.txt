@@ -1,7 +1,0 @@
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/right_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/left_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/torso.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/right_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/left_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/right_leg.png
-mods/Noita40K/files/pics/classes_gfx/mk7/iron_hand/ragdoll/left_leg.png

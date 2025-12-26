@@ -1,7 +1,0 @@
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/right_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/left_shoulder.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/torso.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/right_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/left_arm.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/right_leg.png
-mods/Noita40K/files/pics/classes_gfx/mk7/imperial_fist/ragdoll/left_leg.png
