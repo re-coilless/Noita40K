@@ -6,11 +6,11 @@ n40.GUNS = --obtain codex stats from xml parsing
 	BOLTER_PISTOL = {
 		name = "$n40_GUN_bolter_pistol", desc = "$n40_GUN_bolter_pistol_",
 		path = "mods/Noita40K/files/items/weapons/bolter_pistol.xml",
+		-- func = nil,
 	},
 	BOLTER_GENERIC = {
 		name = "$n40_GUN_bolter_generic", desc = "$n40_GUN_bolter_generic_",
 		path = "mods/Noita40K/files/items/weapons/bolter_generic.xml",
-		-- func = nil,
 	},
 	BOLTER_COMBIMELTA = {
 		name = "$n40_GUN_bolter_combimelta", desc = "$n40_GUN_bolter_combimelta_",
@@ -205,35 +205,35 @@ n40.PERKS = {
 	},
 	ARMOR_MK7_BLOOD = {
 		name = "$n40_PERK_armor_mk7_blood_angel", desc = "$n40_PERK_armor_mk7_blood_angel_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "2_blood_angel" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "2_blood_angel" ) end
 	},
 	ARMOR_MK7_IMPERIAL = {
 		name = "$n40_PERK_armor_mk7_imperial_fist", desc = "$n40_PERK_armor_mk7_imperial_fist_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "3_imperial_fist" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "3_imperial_fist" ) end
 	},
 	ARMOR_MK7_WHITE = {
 		name = "$n40_PERK_armor_mk7_white_scar", desc = "$n40_PERK_armor_mk7_white_scar_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "4_white_scar" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "4_white_scar" ) end
 	},
 	ARMOR_MK7_IRON = {
 		name = "$n40_PERK_armor_mk7_iron_hand", desc = "$n40_PERK_armor_mk7_iron_hand_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "5_iron_hand" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "5_iron_hand" ) end
 	},
 	ARMOR_MK7_WOLF = {
 		name = "$n40_PERK_armor_mk7_space_wolf", desc = "$n40_PERK_armor_mk7_space_wolf_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "6_space_wolf" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "6_space_wolf" ) end
 	},
 	ARMOR_MK7_SALAMANDER = {
 		name = "$n40_PERK_armor_mk7_salamander", desc = "$n40_PERK_armor_mk7_salamander_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "7_salamander" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "7_salamander" ) end
 	},
 	ARMOR_MK7_RAVEN = {
 		name = "$n40_PERK_armor_mk7_raven_guard", desc = "$n40_PERK_armor_mk7_raven_guard_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "8_raven_guard" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "8_raven_guard" ) end
 	},
 	ARMOR_MK7_DARK = {
 		name = "$n40_PERK_armor_mk7_dark_angel", desc = "$n40_PERK_armor_mk7_dark_angel_",
-		func = function( hooman, data ) n40.PERKS.MKVII_ULTRAMARINE.func( hooman, data, "9_dark_angel" ) end
+		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "9_dark_angel" ) end
 	},
 	ARMOR_SICARIAN = {
 		name = "$n40_PERK_armor_sicarian", desc = "$n40_PERK_armor_sicarian_",
@@ -620,7 +620,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_imperial_fist.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_imperial_fist.png",
 
-		equipment_add = { "SHIELD_S" },
+		--equipment_add = { "SHIELD_S" },
 		skin = "ARMOR_MK7_IMPERIAL", perks_add = { "EMPERORS_PRAETORIAN" }, perks_remove = { "SUS_AN" },
 	},
 	{
@@ -628,7 +628,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_white_scar.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_white_scar.png",
 
-		equipment = { [1] = "JUMPPACK_L_UPGRADE" },
+		--equipment = { [1] = "JUMPPACK_L_UPGRADE" },
 		skin = "ARMOR_MK7_WHITE", perks_add = { "CHOGORIAN_SAVAGERY" },
 	},
 	{
@@ -644,7 +644,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_space_wolf.png",
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_space_wolf.png",
 		
-		items_add = { "KEG" },
+		--items_add = { "KEG" },
 		skin = "ARMOR_MK7_WOLF", perks_add = { "FENRISIAN_BLOOD" },
 	},
 	{
@@ -653,7 +653,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_salamander.png",
 		
 		guns = { [1] = "BOLTER_INCENDIARY" },
-		items = { "GRENADE_HEI", "GRENADE_HEI" },
+		--items = { "GRENADE_HEI", "GRENADE_HEI" },
 		skin = "ARMOR_MK7_SALAMANDER", perks_add = { "NOCTURNE_FORGED" },
 	},
 	{
@@ -662,7 +662,7 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_raven_guard.png",
 		
 		guns = { [1] = "BOLTER_STALKER" },
-		items = { "GRENADE_FLASHBANG", "GRENADE_FLASHBANG" },
+		--items = { "GRENADE_FLASHBANG", "GRENADE_FLASHBANG" },
 		skin = "ARMOR_MK7_RAVEN", perks_add = { "LIVING_SHADOW" },
 	},
 	{
@@ -671,8 +671,8 @@ n40.CLASSES[1].sections[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/space_marine_dark_angel.png",
 		
 		guns = { [1] = "BOLTER_ARCHEO" },
-		items_add = { "GRENADE_RUPTOR" },
-		equipment_add = { "OSCULANT_DEVICE" },
+		--items_add = { "GRENADE_RUPTOR" },
+		--equipment_add = { "OSCULANT_DEVICE" },
 		skin = "ARMOR_MK7_DARK", perks_add = { "UNCHAINED" },
 	},
 }

@@ -29,7 +29,7 @@ table.insert( GLOBAL_MUTATORS, function()
     pen.c.estimator_memo[ eid_pr ] = (( xM.char_flip_memo[ hooman ] or s_x ) ~= s_x ) and 0 or r
     EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "ixp0.25" ), s_x, s_y )
     xM.char_flip_memo[ hooman ] = s_x
-    
+
 	local initer = "N40K_READY_TO_PURGE"
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )

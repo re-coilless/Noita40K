@@ -25,10 +25,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- REFRACTOR_FIELD
 -- MECHADENDRITES
 
--- battle sister
--- guns
--- perks
-
 -- news role (direct broadcasting)
 -- add sound type based on parameter to fmod demo
 
@@ -46,6 +42,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- madness combat style hands
 -- make trailing red eyes for rage modes
 
+-- ballistic semiauto jamming should still fire the round that ruins the mag except with scpecial effects (slower + different sound)
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 -- taunts should apply a cooldown status effect that prevents stress form dropping and boosts its increase
 -- hotkey to automatically throw the first grenade
@@ -95,6 +92,14 @@ function OnModInit()
 	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua", true )
 
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/3_imperial_fist/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/4_white_scar/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/5_iron_hand/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/6_space_wolf/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/7_salamander/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/player.xml" )
+	pen.lib.sprite_builder( "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/9_dark_angel/player.xml" )
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/player.xml" )
 	pen.lib.sprite_builder( "mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/player.xml" )
 

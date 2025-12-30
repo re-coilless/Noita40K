@@ -1,0 +1,44 @@
+<Entity name="bolter_combimelta" >
+	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
+		<AbilityComponent
+			sprite_file="mods/Noita40K/files/items/weapons/bolter_combimelta.png"
+			add_these_child_actions="N40_BOLT_998_HE_M,N40_CANISTER_S_PYRUM"
+			><gun_config deck_capacity="2" />
+			<gunaction_config spread_degrees="-9" />
+		</AbilityComponent>
+		<SpriteComponent offset_x="3" offset_y="4" />
+		<VelocityComponent mass="0.5" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="8"
+        offset.y="-2.5"
+	></HotspotComponent>
+	<HotspotComponent
+        _tags="eject_pos"
+        offset.x="4"
+        offset.y="-3"
+	></HotspotComponent>
+	
+	<VariableStorageComponent
+		name="ammo_type"
+		value_string="bolt_998"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="cycling"
+		value_int="11"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="vector_handling"
+		value_float="0.7"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="100"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.9985"
+	></VariableStorageComponent>
+</Entity>

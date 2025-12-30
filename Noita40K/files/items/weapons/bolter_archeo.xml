@@ -1,0 +1,43 @@
+<Entity name="bolter_archeo" >
+	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
+		<AbilityComponent
+			sprite_file="mods/Noita40K/files/items/weapons/bolter_archeo.png"
+			add_these_child_actions="N40_BOLT_998_STASIS_M"
+			><gunaction_config spread_degrees="-12" />
+		</AbilityComponent>
+		<SpriteComponent offset_x="2" offset_y="5" />
+		<VelocityComponent mass="0.6" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="12.5"
+        offset.y="-2"
+	></HotspotComponent>
+	<HotspotComponent
+        _tags="eject_pos"
+        offset.x="4"
+        offset.y="-3"
+	></HotspotComponent>
+	
+	<VariableStorageComponent
+		name="ammo_type"
+		value_string="bolt_998"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="cycling"
+		value_int="10"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="vector_handling"
+		value_float="0.75"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="120"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.9985"
+	></VariableStorageComponent>
+</Entity>

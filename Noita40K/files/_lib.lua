@@ -50,9 +50,9 @@ end
 
 function n40.setup_character( hooman )
 	local active = {
-		class = 6, --1 for marine, 3 for magos, 6 for sister
-		section = 1, --1 for sister, 2 for marine/magos
-		char = 1,
+		class = 1, --1 for marine, 3 for magos, 6 for sister
+		section = 2, --1 for sister, 2 for marine/magos
+		char = 8,
 	}
 
 	local class_data = n40.CLASSES[ active.class ]
@@ -85,10 +85,9 @@ function n40.setup_character( hooman )
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_taunt.lua" )
 	pen.lib.set_matter_damage( hooman, data )
 
-	--break the loop if exceeds the inv size
-	pen.t.loop( char_data.guns or section_data.guns, function( i, v )
-		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or v ], hooman, data, i == 1 )
-	end)
+	for i = 1,4 do --loop for the inv size
+		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or ( section_data.guns or {})[i]], hooman, data, i == 1 )
+	end
 	local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
 	pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
 	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )

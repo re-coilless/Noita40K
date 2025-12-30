@@ -51,6 +51,70 @@ table.insert( actions,
 
 table.insert( actions,
 {
+	id = "N40_BOLT_998_HEI_M",
+	name = "$n40_MAG_bolt_998_hei_m", description = "$n40_MAG_bolt_998_hei_m_",
+	sprite = "mods/Noita40K/files/items/mags/bolt_998_hei_M.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 350, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
+	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_hei_M.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	
+	action = function()
+		pen.gunshot( n40.muzzle_flash )
+		c.spread_degrees = c.spread_degrees + 10.0
+	end,
+})
+
+table.insert( actions,
+{
+	id = "N40_BOLT_998_STASIS_M",
+	name = "$n40_MAG_bolt_998_stasis_m", description = "$n40_MAG_bolt_998_stasis_m_",
+	sprite = "mods/Noita40K/files/items/mags/bolt_998_stasis_M.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 400, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
+	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_he_M.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	
+	action = function()
+		pen.gunshot( n40.muzzle_flash )
+		c.spread_degrees = c.spread_degrees + 10.0
+	end,
+})
+
+table.insert( actions,
+{
+	id = "N40_BOLT_998L_APDS_S",
+	name = "$n40_MAG_bolt_998l_apds_s", description = "$n40_MAG_bolt_998l_apds_s_",
+	sprite = "mods/Noita40K/files/items/mags/bolt_998L_apds_S.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 350, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/Noita40K/files/items/rounds/bolt_998Lc.xml" },
+	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998L_apds.xml", r = 4.5, h = 7 }},
+	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998L_apds_S.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998L" },
+	
+	action = function()
+		pen.gunshot( n40.muzzle_flash )
+		c.spread_degrees = c.spread_degrees + 15.0
+		c.damage_critical_chance = c.damage_critical_chance + 10
+	end,
+})
+
+table.insert( actions,
+{
 	id = "N40_BOLT_50MM_APHE_S",
 	name = "$n40_MAG_bolt_50mm_aphe_s", description = "$n40_MAG_bolt_50mm_aphe_s_",
 	sprite = "mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.png",
@@ -128,12 +192,12 @@ table.insert( actions,
 	
 	mod = "Noita40K",
 	type = ACTION_TYPE_OTHER,
-	price = 200, mana = 0, max_uses = -1,
+	price = 100, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
-	projectiles = {{ r = 1.5, h = 7 }},
+	projectiles = {{ r = 0.5, h = 4 }},
 	--pyrum decreases length and increases damage; changes color to be more yellow
-	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
-		always_action = true,
+	beam = { dmg = 0.3, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+		always_action = true, will_choke = true, will_stop = true, do_liquids = true,
 		point_action = function( data, point_x, point_y, k, is_final )
 			if( k%5 ~= 0 and not( is_final )) then return end
 			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_small.xml"
@@ -143,6 +207,34 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
+	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
+
+	action = function() pen.gunshot( n40.beamshot ) end,
+})
+
+table.insert( actions,
+{
+	id = "N40_CANISTER_M_PYRUM",
+	name = "$n40_MAG_canister_m_pyrum", description = "$n40_MAG_canister_m_pyrum_",
+	sprite = "mods/Noita40K/files/items/mags/canister_M_pyrum.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_OTHER,
+	price = 200, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	projectiles = {{ r = 1.5, h = 7 }},
+	--pyrum decreases length and increases damage; changes color to be more yellow
+	beam = { dmg = 0.6, dmg_type = "DAMAGE_MATERIAL", dmg_msg = "melta", dmg_effect = "NORMAL",
+		always_action = true,
+		point_action = function( data, point_x, point_y, k, is_final )
+			if( k%5 ~= 0 and not( is_final )) then return end
+			local effect = "mods/Noita40K/files/items/rounds/effect_pyrum_medium.xml"
+			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
+		end, f = function( data, hit_id, hit_x, hit_y )
+			pen.play_sound({ "mods/Noita40K/files/40K.bank", "effects/burst" }, hit_x, hit_y )
+		end,
+	},
+	custom_xml_file = "mods/Noita40K/files/items/mags/canister_M_pyrum.xml",
 	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
 
 	action = function() pen.gunshot( n40.beamshot ) end,
@@ -280,52 +372,6 @@ table.insert( actions,
 --[[
 table.insert( actions,
 {
-	id          = "75_BOLT_HEI_MAG",
-	name 		= ".75 Bolt Mag HEI",
-	description = "20-round standard bolter magazine packed with Inferno Rounds.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/75_bolt_hei_mag.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_75_HEI.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 350,
-	mana              = 30,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/75_bolt_hei_mag.xml",
-	action = function()
-		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_75_HEI.xml" )
-		c.spread_degrees = c.spread_degrees + 10.0
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "75_BOLT_STASIS_MAG",
-	name 		= ".75 Bolt Mag Stasis",
-	description = "20-round standard bolter magazine packed with Stasis Rounds.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/75_bolt_stasis_mag.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_75_stasis.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 400,
-	mana              = 30,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/75_bolt_stasis_mag.xml",
-	action = function()
-		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_75_stasis.xml" )
-		c.spread_degrees = c.spread_degrees + 10.0
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
-	end,
-})
-
-table.insert( actions,
-{
 	id          = "75_BOLT_VP_MAG",
 	name 		= ".75 Bolt Mag Velho",
 	description = "A curiously modified 15-round bolter magazine. It's surrounded by so familiar yet so alien purple aura.",
@@ -344,30 +390,6 @@ table.insert( actions,
 		c.spread_degrees = c.spread_degrees + 10.0
 		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
 		add_projectile_trigger_hit_world( "mods/Noita40K/files/entities/projectiles/bolt_75_VP.xml", 1 )
-	end,
-})
-
-table.insert( actions,
-{
-	id          = "998_BOLT_AP_S_MAG",
-	name 		= ".998 Bolt Mag AP Suppressed",
-	description = "10-round standard high-caliber bolter magazine containing cartridges with silenced jet nozzle.",
-	sprite 		= "mods/Noita40K/files/pics/cards_gfx/998_bolt_ap_s_mag.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	related_projectiles	= { "mods/Noita40K/files/entities/projectiles/bolt_998_AP_S.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 300,
-	mana              = 30,
-	max_uses          = -1,
-	custom_xml_file = "mods/Noita40K/files/entities/cards/998_bolt_ap_s_mag.xml",
-	action = function()
-		add_projectile( "mods/Noita40K/files/entities/projectiles/bolt_998_AP_S.xml" )
-		c.spread_degrees = c.spread_degrees + 15.0
-		c.damage_critical_chance = c.damage_critical_chance + 10
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 25.0
 	end,
 })
 

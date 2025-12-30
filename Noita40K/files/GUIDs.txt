@@ -101,7 +101,7 @@
 {2282988f-e132-41ca-80f8-09b3d16cd965} event:/items/equip
 {d75c47c7-f0e7-4a78-9744-2ccfc48c4d14} event:/items/guns/bolt_50mm/shoot
 {c7d655d8-ec85-4d25-bc91-cf2cca64fbb7} event:/items/guns/bolt_998/shoot
-{2e00123b-923c-4dd2-9623-d7a78f6c8e58} event:/items/guns/bolt_998/shoot_sabot
+{2e00123b-923c-4dd2-9623-d7a78f6c8e58} event:/items/guns/bolt_998L/shoot
 {f1fba245-85ad-442e-a325-1550b9a98edd} event:/items/guns/dryfire
 {15ffd515-8128-481d-a7ee-9e39c2d003d0} event:/items/guns/dryfire_energy
 {d740f0c4-15a8-49b3-9cad-a2012f737f66} event:/items/guns/reload

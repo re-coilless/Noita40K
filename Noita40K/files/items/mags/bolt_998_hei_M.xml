@@ -1,0 +1,20 @@
+<Entity name="mag_bolt_998" >
+	<Base file="mods/Noita40K/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/Noita40K/files/items/mags/bolt_998_hei_M.png" />
+		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/bolt_998_hei_M_.png" />
+		<SpriteComponent image_file="mods/Noita40K/files/items/mags/bolt_998_hei_M_.png" />
+	</Base>
+	
+	<VariableStorageComponent
+		name="ammo_max"
+		value_int="20"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="icon_round"
+		value_string="mods/Noita40K/files/gui/info/ammo_bolt_998_hei.png"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="icon_shell"
+		value_string="mods/Noita40K/files/gui/info/shell_bolt_998.png"
+	></VariableStorageComponent>
+</Entity>

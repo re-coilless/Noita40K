@@ -7,6 +7,6 @@
 	
 	<VariableStorageComponent
 		name="ammo_max"
-		value_int="10000"
+		value_int="2000"
 	></VariableStorageComponent>
 </Entity>

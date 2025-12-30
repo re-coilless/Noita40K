@@ -1,0 +1,43 @@
+<Entity name="bolter_stalker" >
+	<Base file="mods/Noita40K/files/based/gun_ballistic.xml" >
+		<AbilityComponent
+			sprite_file="mods/Noita40K/files/items/weapons/bolter_stalker.png"
+			add_these_child_actions="N40_BOLT_998L_APDS_S"
+			><gunaction_config spread_degrees="-20" />
+		</AbilityComponent>
+		<SpriteComponent offset_x="2" offset_y="7" />
+		<VelocityComponent mass="0.75" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="15"
+        offset.y="-2.5"
+	></HotspotComponent>
+	<HotspotComponent
+        _tags="eject_pos"
+        offset.x="4"
+        offset.y="-3"
+	></HotspotComponent>
+	
+	<VariableStorageComponent
+		name="ammo_type"
+		value_string="bolt_998L"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="cycling"
+		value_int="-1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="vector_handling"
+		value_float="0.8"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_max"
+		value_float="90"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="heat_loss"
+		value_float="0.9985"
+	></VariableStorageComponent>
+</Entity>
