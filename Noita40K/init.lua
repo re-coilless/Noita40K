@@ -28,7 +28,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- news role (direct broadcasting)
 -- add sound type based on parameter to fmod demo
 
--- add a text menu for basic class switching
 -- distance from grip to barrel should increase the flip force
 -- redo reloading system
 -- main menu

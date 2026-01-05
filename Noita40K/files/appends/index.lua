@@ -30,6 +30,46 @@ table.insert( GLOBAL_MUTATORS, function()
     EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "ixp0.25" ), s_x, s_y )
     xM.char_flip_memo[ hooman ] = s_x
 
+    if( pen.is_inv_active( hooman )) then
+        local active = {
+            clss = pen.setting_get( "n40.THIS_CLSS" ),
+            sect = pen.setting_get( "n40.THIS_SECT" ),
+            char = pen.setting_get( "n40.THIS_CHAR" ),
+        }
+
+        local selected, chars = 0, {}
+        pen.t.loop( n40.CLASSES, function( i, clss )
+            pen.t.loop( clss.sects, function( e, sect )
+                pen.t.loop( sect.chars, function( k, char )
+                    table.insert( chars, { i, e, k })
+                    if( i ~= active.clss ) then return end
+                    if( e ~= active.sect ) then return end
+                    if( k ~= active.char ) then return end
+                    selected = #chars
+                end)
+            end)
+        end)
+
+        if( selected > 0 ) then
+            local i, e, k = unpack( chars[ selected ])
+            local screen_w, screen_h = pen.get_screen_data()
+            local name = GameTextGetTranslatedOrNot( n40.CLASSES[i].sects[e].chars[k].name )
+            
+            local w, h = pen.get_text_dims( name, true )
+            local clicked, r_clicked, is_hovered = pen.new.interface( screen_w - 3 - w, screen_h - 30, w, h, 0 )
+            pen.new.text( screen_w - 3, screen_h - 30, 0, name, {
+                is_right_x = true, color = is_hovered and pen.P.VNL.YELLOW or pen.P.WHITE })
+            if( clicked ) then selected = selected == #chars and 1 or ( selected + 1 ) end
+            if( r_clicked ) then selected = selected == 1 and #chars or ( selected - 1 ) end
+            if( clicked or r_clicked ) then
+                pen.play_sound( pen.S.VNL.SELECT )
+                pen.setting_set( "n40.THIS_CLSS", chars[ selected ][1])
+                pen.setting_set( "n40.THIS_SECT", chars[ selected ][2])
+                pen.setting_set( "n40.THIS_CHAR", chars[ selected ][3])
+            end
+        end
+    end
+
 	local initer = "N40K_READY_TO_PURGE"
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )

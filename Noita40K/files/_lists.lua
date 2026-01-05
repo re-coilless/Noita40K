@@ -561,7 +561,7 @@ n40.CLASSES = {
 	},
 }
 
-n40.CLASSES[1].sections = {
+n40.CLASSES[1].sects = {
 	{
 		name = "$n40_CLASS_1_1", desc = "$n40_CLASS_1_1_",
 		-- icon = "",
@@ -589,7 +589,7 @@ n40.CLASSES[1].sections = {
 	},
 }
 
-n40.CLASSES[1].sections[2].chars = {
+n40.CLASSES[1].sects[2].chars = {
 	{
 		name = "$n40_CLASS_1_2_1", desc = "$n40_CLASS_1_2_1_",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_space_marine_ultramarine.png",
@@ -677,7 +677,7 @@ n40.CLASSES[1].sections[2].chars = {
 	},
 }
 
-n40.CLASSES[3].sections = {
+n40.CLASSES[3].sects = {
 	{
 		name = "$n40_CLASS_3_1", desc = "$n40_CLASS_3_1_",
 	},
@@ -696,7 +696,7 @@ n40.CLASSES[3].sections = {
 	},
 }
 
-n40.CLASSES[3].sections[2].chars = {
+n40.CLASSES[3].sects[2].chars = {
 	{
 		name = "$n40_CLASS_3_2_1", desc = "$n40_CLASS_3_2_1_",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_tech_priest_magos_explorator.png",
@@ -708,7 +708,7 @@ n40.CLASSES[3].sections[2].chars = {
 	},
 }
 
-n40.CLASSES[6].sections = {
+n40.CLASSES[6].sects = {
 	{
 		name = "$n40_CLASS_6_1", desc = "$n40_CLASS_6_1_",
 	},
@@ -723,7 +723,7 @@ n40.CLASSES[6].sections = {
 	},
 }
 
-n40.CLASSES[6].sections[1].chars = {
+n40.CLASSES[6].sects[1].chars = {
 	{
 		name = "$n40_CLASS_6_1_1", desc = "$n40_CLASS_6_1_1_",
 		-- icon = "mods/Noita40K/files/pics/gui_gfx/icons/menu/icon_class_tech_priest_magos_explorator.png",

@@ -50,14 +50,15 @@ end
 
 function n40.setup_character( hooman )
 	local active = {
-		class = 1, --1 for marine, 3 for magos, 6 for sister
-		section = 2, --1 for sister, 2 for marine/magos
-		char = 8,
+		clss = pen.setting_get( "n40.THIS_CLSS" ),
+		sect = pen.setting_get( "n40.THIS_SECT" ),
+		char = pen.setting_get( "n40.THIS_CHAR" ),
 	}
 
-	local class_data = n40.CLASSES[ active.class ]
-	local section_data = class_data.sections[ active.section ]
-	local char_data = section_data.chars[ active.char ]
+	--make sure that class, section and char names exist; if not, subtract one and repeat
+	local clss_data = n40.CLASSES[ active.clss ]
+	local sect_data = clss_data.sects[ active.sect ]
+	local char_data = sect_data.chars[ active.char ]
 	
 	EntityAddTag( hooman, "vector_ctrl" )
 	local data = pen.lib.player_builder( hooman, function( hooman, data )
@@ -75,7 +76,7 @@ function n40.setup_character( hooman )
 		return n40.new_perk( char_data.skin, hooman, data )
 	end)
 	
-	local perks = pen.t.add( pen.t.clone( char_data.perks or section_data.perks ), char_data.perks_add )
+	local perks = pen.t.add( pen.t.clone( char_data.perks or sect_data.perks ), char_data.perks_add )
 	pen.t.loop( perks, function( i, v )
 		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
 		data = n40.new_perk( v, hooman, data )
@@ -86,11 +87,11 @@ function n40.setup_character( hooman )
 	pen.lib.set_matter_damage( hooman, data )
 
 	for i = 1,4 do --loop for the inv size
-		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or ( section_data.guns or {})[i]], hooman, data, i == 1 )
+		n40.new_item( n40.GUNS[( char_data.guns or {})[i] or ( sect_data.guns or {})[i]], hooman, data, i == 1 )
 	end
-	local items = pen.t.add( pen.t.clone( char_data.items or section_data.items ), char_data.items_add )
+	local items = pen.t.add( pen.t.clone( char_data.items or sect_data.items ), char_data.items_add )
 	pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
-	local equip = pen.t.add( pen.t.clone( char_data.equipment or section_data.equipment ), char_data.equipment_add )
+	local equip = pen.t.add( pen.t.clone( char_data.equipment or sect_data.equipment ), char_data.equipment_add )
 	pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
 	
 	return active
