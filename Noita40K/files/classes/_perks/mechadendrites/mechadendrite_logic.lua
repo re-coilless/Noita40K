@@ -1,7 +1,7 @@
-dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
+dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 local hooman = GetUpdatedEntityID()
-local is_enabled = ( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( hooman, "system_overload" )))
+local is_enabled = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( hooman, "system_overload" )))
 if( is_enabled ) then
 	local gravity = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" ), "pixel_gravity" )/60
 	local v_x, v_y = GameGetVelocityCompVelocity( hooman )
@@ -51,6 +51,7 @@ if( is_enabled ) then
 	local d_angle = math.rad( 360/( #dendrites*2*d ))
 	local step_count = 360/( #dendrites*math.deg( d_angle )) + 2
 	for i,dendrite in ipairs( dendrites ) do
+		pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/jumppack/loop", true }, pack_x, pack_y )
 		ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "AudioLoopComponent", "wriggling" ), "volume_autofade_speed", 0.25 )
 		
 		local state_storage = EntityGetFirstComponentIncludingDisabled( dendrite, "VariableStorageComponent", "is_going" )
@@ -59,10 +60,10 @@ if( is_enabled ) then
 			if( #children > 0 ) then
 				for e,d_module in ipairs( children ) do
 					if( EntityHasTag( d_module, "final_part" )) then
-						local с_angle = 0
-						r_x, r_y, с_angle = EntityGetTransform( d_module )
-						t_x = r_x + math.cos( с_angle )*d_rad
-						t_y = r_y + math.sin( с_angle )*d_rad
+						local c_angle = 0
+						r_x, r_y, c_angle = EntityGetTransform( d_module )
+						t_x = r_x + math.cos( c_angle )*d_rad
+						t_y = r_y + math.sin( c_angle )*d_rad
 						break
 					end
 				end
@@ -199,7 +200,7 @@ if( is_enabled ) then
 	end
 end
 
---alright distance to the ground is deformed so the back will get less and speed dependent
---if can't connect search in alien part but only if less than two connected
+--alright distance to the ground is deformed based on speed so the back will get less
+--if can't connect search in other parts but only if less than two connected
 --maintain set height above ground
 --better joint direction handling via GetSurfaceNormal

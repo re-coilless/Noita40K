@@ -65,7 +65,7 @@ else
 
 		--activate high-temp entity
 		--if is on the ground and starting to fly, do ignition
-		--dash is two time more powerful but four times less efficient
+		--dash is two times more powerful but four times less efficient
 		local waste = 1 - ( pen.magic_storage( info.id, "efficiency", "value_float" ) or 0 )
 		pen.magic_storage( vis_id, "heat", "value_float", heat + waste )
 		

@@ -4,6 +4,7 @@ n40.GUNS = --obtain codex stats from xml parsing
 {
 	-- SLOT 1 (good all-arounder)
 	BOLTER_PISTOL = {
+		-- icon = true, --replace with string for custom one
 		name = "$n40_GUN_bolter_pistol", desc = "$n40_GUN_bolter_pistol_",
 		path = "mods/Noita40K/files/items/weapons/bolter_pistol.xml",
 		-- func = nil,
@@ -153,6 +154,7 @@ n40.EQUIPMENT = {
 n40.PERKS = {
 	-- skins
 	ARMOR_MK7_ULTRA = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/1_ultramarine/icon.png",
 		name = "$n40_PERK_armor_mk7_ultramarine", desc = "$n40_PERK_armor_mk7_ultramarine_",
 		-- vector_ctrl = "",
 		func = function( hooman, data, char_name )
@@ -204,38 +206,47 @@ n40.PERKS = {
 		end,
 	},
 	ARMOR_MK7_BLOOD = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/icon.png",
 		name = "$n40_PERK_armor_mk7_blood_angel", desc = "$n40_PERK_armor_mk7_blood_angel_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "2_blood_angel" ) end
 	},
 	ARMOR_MK7_IMPERIAL = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/3_imperial_fist/icon.png",
 		name = "$n40_PERK_armor_mk7_imperial_fist", desc = "$n40_PERK_armor_mk7_imperial_fist_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "3_imperial_fist" ) end
 	},
 	ARMOR_MK7_WHITE = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/4_white_scar/icon.png",
 		name = "$n40_PERK_armor_mk7_white_scar", desc = "$n40_PERK_armor_mk7_white_scar_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "4_white_scar" ) end
 	},
 	ARMOR_MK7_IRON = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/5_iron_hand/icon.png",
 		name = "$n40_PERK_armor_mk7_iron_hand", desc = "$n40_PERK_armor_mk7_iron_hand_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "5_iron_hand" ) end
 	},
 	ARMOR_MK7_WOLF = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/6_space_wolf/icon.png",
 		name = "$n40_PERK_armor_mk7_space_wolf", desc = "$n40_PERK_armor_mk7_space_wolf_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "6_space_wolf" ) end
 	},
 	ARMOR_MK7_SALAMANDER = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/7_salamander/icon.png",
 		name = "$n40_PERK_armor_mk7_salamander", desc = "$n40_PERK_armor_mk7_salamander_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "7_salamander" ) end
 	},
 	ARMOR_MK7_RAVEN = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/icon.png",
 		name = "$n40_PERK_armor_mk7_raven_guard", desc = "$n40_PERK_armor_mk7_raven_guard_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "8_raven_guard" ) end
 	},
 	ARMOR_MK7_DARK = {
+		icon = "mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/9_dark_angel/icon.png",
 		name = "$n40_PERK_armor_mk7_dark_angel", desc = "$n40_PERK_armor_mk7_dark_angel_",
 		func = function( hooman, data ) n40.PERKS.ARMOR_MK7_ULTRA.func( hooman, data, "9_dark_angel" ) end
 	},
 	ARMOR_SICARIAN = {
+		icon = "mods/Noita40K/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/icon.png",
 		name = "$n40_PERK_armor_sicarian", desc = "$n40_PERK_armor_sicarian_",
 		func = function( hooman, data )
 			ComponentSetValue2( data.pic_char, "image_file",
@@ -301,6 +312,7 @@ n40.PERKS = {
 		end,
 	},
 	ARMOR_SORORITAS = {
+		icon = "mods/Noita40K/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/icon.png",
 		name = "$n40_PERK_armor_sororitas", desc = "$n40_PERK_armor_sororitas_",
 		func = function( hooman, data )
 			ComponentSetValue2( data.pic_char, "image_file",
@@ -371,6 +383,7 @@ n40.PERKS = {
 	
 	-- abilities
 	SECOND_HEART = {
+		icon = "mods/Noita40K/files/classes/_perks/second_heart.png",
 		name = "$n40_PERK_second_heart", desc = "$n40_PERK_second_heart_",
 		func = function( hooman, data )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_status.lua" )
@@ -381,6 +394,7 @@ n40.PERKS = {
 		end,
 	},
 	OSSMODULA = {
+		icon = "mods/Noita40K/files/classes/_perks/ossmodula.png",
 		name = "$n40_PERK_ossmodula", desc = "$n40_PERK_ossmodula_",
 		func = function( hooman, data )
 			ComponentSetValue2( data.char_comp, "mass", 3 + ComponentGetValue2( data.char_comp, "mass" ))
@@ -409,6 +423,7 @@ n40.PERKS = {
 		end,
 	},
 	BISCOPEA = {
+		icon = "mods/Noita40K/files/classes/_perks/biscopea.png",
 		name = "$n40_PERK_biscopea", desc = "n40_PERK_biscopea_",
 		func = function( hooman, data )
 			--requires ossmodula
@@ -432,6 +447,7 @@ n40.PERKS = {
 		end,
 	},
 	LARRAMAN = {
+		icon = "mods/Noita40K/files/classes/_perks/larraman.png",
 		name = "$n40_PERK_larraman", desc = "$n40_PERK_larraman_",
 		func = function( hooman, data )
 			--regeneration that consumes adrenaline to heal
@@ -443,6 +459,7 @@ n40.PERKS = {
 		end,
 	},
 	OCCULOBE = {
+		icon = "mods/Noita40K/files/classes/_perks/occulobe.png",
 		name = "$n40_PERK_occulobe", desc = "$n40_PERK_occulobe_",
 		func = function( hooman, data )
 			local eye_x, eye_y = EntityGetHotspot( hooman, "eye", nil, true )
@@ -458,6 +475,7 @@ n40.PERKS = {
 		end,
 	},
 	SUS_AN = {
+		icon = "mods/Noita40K/files/classes/_perks/sus_an.png",
 		name = "$n40_PERK_sus_an", desc = "$n40_PERK_sus_an_",
 		func = function( hooman, data )
 			-- requires larraman
@@ -474,41 +492,61 @@ n40.PERKS = {
 	},
 	-- add a secondary layer of unique legion perks that is permananetly unlocked by staying at high adrenaline for long time
 	CODEX_MASTERY = {
+		icon = "mods/Noita40K/files/classes/_perks/codex_mastery.png",
 		name = "$n40_PERK_codex_mastery", desc = "$n40_PERK_codex_mastery_",
 	},
 	BLACK_RAGE = {
+		icon = "mods/Noita40K/files/classes/_perks/black_rage.png",
 		name = "$n40_PERK_black_rage", desc = "$n40_PERK_black_rage_",
 	},
 	CHOGORIAN_SAVAGERY = {
+		icon = "mods/Noita40K/files/classes/_perks/chogorian_savagery.png",
 		name = "$n40_PERK_chogorian_savagery", desc = "$n40_PERK_chogorian_savagery_",
 	},
 	EMPERORS_PRAETORIAN = {
+		icon = "mods/Noita40K/files/classes/_perks/emperors_praetorian.png",
 		name = "$n40_PERK_emperors_praetorian", desc = "$n40_PERK_emperors_praetorian_",
 		-- [{ "damage_multipliers", "curse" }] = 0.25,
 	},
 	FENRISIAN_BLOOD = {
+		icon = "mods/Noita40K/files/classes/_perks/fenrisian_blood.png",
 		name = "$n40_PERK_fenrisian_blood", desc = "$n40_PERK_fenrisian_blood_",
 	},
 	NOCTURNE_FORGED = {
+		icon = "mods/Noita40K/files/classes/_perks/nocturne_forged.png",
 		name = "$n40_PERK_nocturne_forged", desc = "$n40_PERK_nocturne_forged_",
 	},
 	LIVING_SHADOW = {
+		icon = "mods/Noita40K/files/classes/_perks/living_shadow.png",
 		name = "$n40_PERK_living_shadow", desc = "$n40_PERK_living_shadow_",
 	},
-	UNCHAINED = { --special access pass
+	UNCHAINED = {
+		icon = "mods/Noita40K/files/classes/_perks/unchained.png",
 		name = "$n40_PERK_unchained", desc = "$n40_PERK_unchained_",
+		func = function( hooman, data )
+			--special access pass
+		end,
 	},
 	OMNISSIAHS_BLESSING = {
+		icon = "mods/Noita40K/files/classes/_perks/omnissiahs_blessing.png",
 		name = "$n40_PERK_omnissiahs_blessing", desc = "$n40_PERK_omnissiahs_blessing_",
 	},
 	ETERNAL_VIGILANCE = {
+		icon = "mods/Noita40K/files/classes/_perks/eternal_vigilance.png",
 		name = "$n40_PERK_eternal_vigilance", desc = "$n40_PERK_eternal_vigilance_",
 	},
 	BREATH_OF_MARS = {
+		icon = "mods/Noita40K/files/classes/_perks/breath_of_mars.png",
 		name = "$n40_PERK_breath_of_mars", desc = "$n40_PERK_breath_of_mars_",
 	},
 	MECHADENDRITES = {
+		icon = "mods/Noita40K/files/classes/_perks/mechadendrites.png",
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
+		func = function( hooman, data )
+			--add buffer entity
+			--to it add all three legs
+			--figure out stains
+		end,
 	},
 }
 
@@ -704,7 +742,7 @@ n40.CLASSES[3].sects[2].chars = {
 		
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASGUN_MITRA" },
 		--equipment_add = { "REFRACTOR_FIELD" },
-		skin = "ARMOR_SICARIAN", --perks_add = { "MECHADENDRITES", "UNCHAINED" },
+		skin = "ARMOR_SICARIAN", perks_add = { "MECHADENDRITES", "UNCHAINED" },
 	},
 }
 

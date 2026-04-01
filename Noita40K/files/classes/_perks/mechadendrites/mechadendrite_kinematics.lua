@@ -1,10 +1,10 @@
-dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
+dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 local hooman = GetUpdatedEntityID()
 local base_x, base_y, base_r, base_s_x, base_s_y = EntityGetTransform( hooman )
 base_y = base_y + get_head_offset( EntityGetParent( hooman ))/2
 
-local is_active = ( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( EntityGetParent( hooman ), "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( EntityGetParent( hooman ), "system_overload" )))
+local is_active = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( EntityGetParent( hooman ), "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( EntityGetParent( hooman ), "system_overload" )))
 
 local t_x = base_x - 7*base_s_x
 local t_y = base_y
@@ -47,8 +47,8 @@ local speed_k = 2.5
 local d_x = t_x - c_x
 local d_y = t_y - c_y
 if( math.sqrt( d_x^2 + d_y^2 ) > accuracy ) then
-	t_x = c_x + get_sign( d_x )*speed_k*math.log( math.abs( d_x ) + 1 )
-	t_y = c_y + get_sign( d_y )*speed_k*math.log( math.abs( d_y ) + 1 )
+	t_x = c_x + pen.sgn( d_x )*speed_k*math.log( math.abs( d_x ) + 1 )
+	t_y = c_y + pen.sgn( d_y )*speed_k*math.log( math.abs( d_y ) + 1 )
 else
 	ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "is_going" ), "value_bool", false )
 end
@@ -83,9 +83,9 @@ else
 	h = tmp_first
 end
 if( not( is_active ) ) then
-	h = -get_sign( t_x )*h
+	h = -pen.sgn( t_x )*h
 else
-	h = -get_sign( t_x )*get_sign( t_y )*h
+	h = -pen.sgn( t_x )*pen.sgn( t_y )*h
 end
 b = a + second_link
 
