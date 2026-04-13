@@ -36,7 +36,7 @@ local c_x, c_y = 0, 0
 local children = EntityGetAllChildren( hooman ) or {}
 if( #children > 0 ) then
 	for i,d_module in ipairs( children ) do
-		if( EntityHasTag( d_module, "final_part" )) then
+		if( EntityGetName( d_module ) == "claw" ) then
 			c_x, c_y = EntityGetTransform( d_module )
 			break
 		end

@@ -1,15 +1,10 @@
-<Entity name="module_joint" tags="dendrite_module,joint">	
+<Entity>	
 	<SpriteComponent 
 		_tags="enabled_in_world"
 		alpha="1" 
-		image_file="mods/Noita40K/files/pics/misc_gfx/mechadendrites/joint.xml" 
+		image_file="mods/Noita40K/files/classes/_perks/mechadendrites/module_1.5.png" 
 		offset_x="1"
 		offset_y="1.5"
 		z_index="1.11"
 	></SpriteComponent>
-	
-	<SpriteStainsComponent
-		fade_stains_towards_srite_top="0"
-	></SpriteStainsComponent>
 </Entity>
-	

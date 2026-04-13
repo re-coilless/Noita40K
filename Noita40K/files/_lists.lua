@@ -540,12 +540,11 @@ n40.PERKS = {
 		name = "$n40_PERK_breath_of_mars", desc = "$n40_PERK_breath_of_mars_",
 	},
 	MECHADENDRITES = {
-		icon = "mods/Noita40K/files/classes/_perks/mechadendrites.png",
+		icon = "mods/Noita40K/files/classes/_perks/mechadendrites/icon.png",
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
-		func = function( hooman, data )
+		func = function( hooman, data ) --figure out stains
 			--add buffer entity
 			--to it add all three legs
-			--figure out stains
 		end,
 	},
 }

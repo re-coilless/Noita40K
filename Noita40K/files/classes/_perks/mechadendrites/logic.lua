@@ -22,7 +22,7 @@ if( is_enabled ) then
 		local children = EntityGetAllChildren( hooman ) or {}
 		if( #children > 0 ) then
 			for i,dendrite in ipairs( children ) do
-				if( EntityHasTag( dendrite, "dendrite_walking" )) then
+				if( EntityGetName( dendrite ) == "mechadendrite" ) then
 					table.insert( dendrites, dendrite )
 				end
 			end
