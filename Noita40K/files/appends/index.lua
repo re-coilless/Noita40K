@@ -74,6 +74,8 @@ table.insert( GLOBAL_MUTATORS, function()
 	if( GameHasFlagRun( initer )) then return end
 	GameAddFlagRun( initer )
     
+	GlobalsSetValue( "VECTOR_ALWAYS_RUN", "0" )
+
 	local active = n40.setup_character( hooman )
 end)
 
