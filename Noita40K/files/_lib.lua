@@ -81,6 +81,11 @@ function n40.setup_character( hooman )
 		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
 		data = n40.new_perk( v, hooman, data )
 	end)
+	
+	GlobalsSetValue( "VECTOR_ALWAYS_RUN", "0" )
+    pen.magic_storage( hooman, "vector_do_stress", "value_bool", true )
+    pen.magic_storage( hooman, "vector_do_handling", "value_bool", true )
+    pen.magic_storage( hooman, "vector_do_momentum", "value_bool", true )
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_heat.lua" )
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_anims.lua" )
 	n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_taunt.lua" )
@@ -93,7 +98,7 @@ function n40.setup_character( hooman )
 	pen.t.loop( items, function( i, v ) n40.new_item( n40.ITEMS[v], hooman, data ) end)
 	local equip = pen.t.add( pen.t.clone( char_data.equipment or sect_data.equipment ), char_data.equipment_add )
 	pen.t.loop( equip, function( i, v ) n40.new_item( n40.EQUIPMENT[v], hooman, data ) end)
-	
+
 	return active
 end
 
