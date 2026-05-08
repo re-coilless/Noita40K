@@ -267,13 +267,6 @@ n40.PERKS = {
 			
 			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
 			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
-
-			ComponentSetValue2( data.plat_comp, "run_velocity",
-				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
-				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
-				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
 			
 			ComponentSetValue2( data.kick_comp, "max_force",
 				20*ComponentGetValue2( data.kick_comp, "max_force" ))
@@ -336,13 +329,6 @@ n40.PERKS = {
 			
 			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
 			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
-
-			ComponentSetValue2( data.plat_comp, "run_velocity",
-				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
-				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
-				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
 			
 			ComponentSetValue2( data.kick_comp, "max_force",
 				20*ComponentGetValue2( data.kick_comp, "max_force" ))
@@ -428,13 +414,6 @@ n40.PERKS = {
 		func = function( hooman, data )
 			--requires ossmodula
 			ComponentSetValue2( data.char_comp, "mass", 2 + ComponentGetValue2( data.char_comp, "mass" ))
-
-			ComponentSetValue2( data.plat_comp, "run_velocity",
-				1.2*ComponentGetValue2( data.plat_comp, "run_velocity" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_x",
-				1.5*ComponentGetValue2( data.plat_comp, "jump_velocity_x" ))
-			ComponentSetValue2( data.plat_comp, "jump_velocity_y",
-				1.75*ComponentGetValue2( data.plat_comp, "jump_velocity_y" ))
 			
 			ComponentSetValue2( data.kick_comp, "max_force",
 				20*ComponentGetValue2( data.kick_comp, "max_force" ))
