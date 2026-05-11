@@ -13,7 +13,7 @@ function damage_received( damage, message, entity_thats_responsible, is_fatal )
 	ComponentSetValue2( dmg_comp, "invincibility_frames", 60 )
 	ComponentSetValue2( dmg_comp, "hp", 1 + damage )
 	
-	--use index for notifications
+	--use index for notifications, use vector's death flag to make sure there's no conflict
 	--new_notification( "SECONDARY HEART SAVED YOU", "And in the dark when the shadows threaten, the Emperor is with us, in spirit and in fact.", false )
 	
 	EntityRemoveComponent( hooman, GetUpdatedComponentID())

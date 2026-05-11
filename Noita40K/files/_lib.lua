@@ -81,8 +81,9 @@ function n40.setup_character( hooman )
 		if( pen.vld( pen.t.get( char_data.perks_remove, v ), true )) then return end
 		data = n40.new_perk( v, hooman, data )
 	end)
-	
+
 	GlobalsSetValue( "VECTOR_ALWAYS_RUN", "0" )
+	GlobalsSetValue( "VECTOR_SCROLL_FLIP", "1" )
     pen.magic_storage( hooman, "vector_do_stress", "value_bool", true )
     pen.magic_storage( hooman, "vector_do_handling", "value_bool", true )
     pen.magic_storage( hooman, "vector_do_momentum", "value_bool", true )
