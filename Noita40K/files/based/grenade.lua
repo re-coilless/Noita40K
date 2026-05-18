@@ -48,9 +48,9 @@ function wake_up_waiting_threads()
     local pic_x, pic_y = pen.world2gui( x, y )
     local text = "["..math.floor(( fuse + 10 )/20 ).."]"
     local dims = pen.new.text_shad( pic_x, pic_y - 15, pen.Z.WORLD_FRONT, text, {
-        is_centered_x = true, color = pen.P.N40.HOLO_1, color_shadow = pen.P.N40.HOLO_3 })
+        is_centered_x = true, color = pen.P.N40.HOLO_3, color_shadow = pen.P.N40.HOLO_1 })
     -- local glow_id = pen.hew.glow( entity_id, pic_x - 1, pic_y - 9,
-    --     pen.Z.MAIN_FRONT + 0.1, dims[1], dims[2], pen.P.N40.HOLO_1, 0.75 )
+    --     pen.Z.MAIN_FRONT + 0.1, dims[1], dims[2], pen.P.N40.HOLO_3, 0.75 )
     -- pen.magic_storage( glow_id, "gui_x", "value_float", pic_x - 1 )
     -- pen.magic_storage( glow_id, "gui_y", "value_float", pic_y - 9 )
     

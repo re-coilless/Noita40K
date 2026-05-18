@@ -464,7 +464,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         --anims for crosshair and name
 
         pen.new.text_shad( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
-            pen.Z.WORLD_UI - 1, string.lower( name), { color = pen.P.N40.HOLO_1, alpha = 0.8 })
+            pen.Z.WORLD_UI - 1, string.lower( name), { color = pen.P.N40.HOLO_3, alpha = 0.8 })
     end)
     return { pic_x, pic_y }
 end
