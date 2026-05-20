@@ -25,9 +25,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- REFRACTOR_FIELD
 -- MECHADENDRITES
 
--- news role (direct broadcasting)
--- add sound type based on parameter to fmod demo
-
 -- distance from grip to barrel should increase the flip force
 -- redo reloading system
 -- main menu
