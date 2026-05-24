@@ -26,8 +26,8 @@ table.insert( GLOBAL_MUTATORS, function()
     xM.char_flip_memo = xM.char_flip_memo or {}
     pen.c.estimator_memo = pen.c.estimator_memo or {}
     local x, y, r, s_x, s_y = EntityGetTransform( hooman )
-    pen.c.estimator_memo[ eid_pr ] = (( xM.char_flip_memo[ hooman ] or s_x ) ~= s_x ) and 0 or r
-    EntitySetTransform( hooman, x, y, pen.estimate( eid_pr, 0, "ixp" ), s_x, s_y )
+    pen.c.estimator_memo[ eid_pr ] = (( xM.char_flip_memo[ hooman ] or s_x ) ~= s_x ) and 0 or math.deg( r )
+    EntitySetTransform( hooman, x, y, math.rad( pen.estimate( eid_pr, 0, "sgm" )), s_x, s_y )
     xM.char_flip_memo[ hooman ] = s_x
 
     if( pen.is_inv_active( hooman )) then

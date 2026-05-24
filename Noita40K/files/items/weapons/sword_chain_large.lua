@@ -24,7 +24,7 @@ return function( info )
             is_swinging, data.dmg = true, 10*data.dmg
         elseif( memo.swing_done and xD.Controls.lmb[3]) then
             -- if triggered while blade is hitting the target, do x2 damage as long as every frame damage is dealt
-            data.drift = { r = 80, x = 3 + shake, y = 2 + shake, a = { "ixp", 0.1 }, m = 0.75 }
+            data.drift = { r = 80, x = 3 + shake, y = 2 + shake, a = { "wgt", 0.25, true }, m = 0.75 }
         else
             --charges up the swing (indicated by sound and sparks, at full charge starts applying heat)
             --add minimal charge level, letting go before it will abort the swing
