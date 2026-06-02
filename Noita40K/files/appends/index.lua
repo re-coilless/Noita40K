@@ -706,7 +706,7 @@ table.insert( ITEM_CATS, 2, {
         info.ActionC = EntityGetFirstComponentIncludingDisabled( info.id, "ItemActionComponent" )
 
         info.spell_id = ComponentGetValue2( info.ActionC, "action_id" )
-        info.spell_info = pen.get_spell_data( info.spell_id )
+        info.spell_info = pen.get_spell_info( info.spell_id )
         info.pic = info.spell_info.sprite
         
         info.tip_name = pen.capitalizer( GameTextGetTranslatedOrNot( info.spell_info.name ))
@@ -806,7 +806,7 @@ table.insert( ITEM_CATS, 3, {
         if( info.is_permanent ) then info.charges = -1 end
 
         info.spell_id = pen.magic_storage( info.id, "phantom_id", "value_string" )
-        info.spell_info = pen.get_spell_data( info.spell_id )
+        info.spell_info = pen.get_spell_info( info.spell_id )
         info.pic = info.spell_info.sprite
         
         info.tip_name = pen.capitalizer( GameTextGetTranslatedOrNot( info.spell_info.name ))
