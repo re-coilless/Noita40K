@@ -317,7 +317,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         --draw a connecting line from the gun selected to the ammo
 
         if( not( id[1])) then return end
-        local mag = pen.t.get( xD.item_list, id[1], nil, nil, {})
+        local mag = xD.item_list[ id[1]] or {}
         if( not( pen.vld( mag.mag ))) then return end
         if( not( pen.vld( mag.mag.round ))) then return end
 
@@ -590,7 +590,7 @@ table.insert( ITEM_CATS, 1, {
             local is_phantom = EntityHasTag( item_info.id, "phantom40k" )
             if( is_phantom ) then
                 local is_local = item_info.inv_id == inv_info.inv_id
-                local gun_info = pen.t.get( index.D.item_list, item_info.inv_id, nil, nil, {})
+                local gun_info = index.D.item_list[ item_info.inv_id ] or {}
                 local deck_cap = ( gun_info.wand_info or {}).deck_capacity or inv_info.inv_slot[1]
                 local is_valid = item_info.spell_id == inv_info.spell_id and is_local
                 local is_without = inv_info.inv_slot[1] > deck_cap and is_local
@@ -716,7 +716,7 @@ table.insert( ITEM_CATS, 2, {
         
         local parent_id = EntityGetParent( info.id )
         if( pen.vld( parent_id, true ) and pen.vld( xD.invs[ parent_id ])) then
-            parent_id = pen.t.get( wip_item_list, parent_id, nil, nil, {})
+            parent_id = wip_item_list[ parent_id ] or {}
             if( parent_id.is_wand ) then info.in_wand = parent_id.id end
         end
 
@@ -816,7 +816,7 @@ table.insert( ITEM_CATS, 3, {
         
         local parent_id = EntityGetParent( info.id )
         if( pen.vld( parent_id, true ) and pen.vld( xD.invs[ parent_id ])) then
-            parent_id = pen.t.get( wip_item_list, parent_id, nil, nil, {})
+            parent_id = wip_item_list[ parent_id ] or {}
             if( parent_id.is_wand ) then info.in_wand = parent_id.id end
         end
 
