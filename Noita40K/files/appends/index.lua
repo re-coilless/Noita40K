@@ -317,7 +317,7 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         --draw a connecting line from the gun selected to the ammo
 
         if( not( id[1])) then return end
-        local mag = xD.item_list[ id[1]] or {}
+        local mag = xM.item_memo[ id[1]] or {}
         if( not( pen.vld( mag.mag ))) then return end
         if( not( pen.vld( mag.mag.round ))) then return end
 
@@ -590,7 +590,7 @@ table.insert( ITEM_CATS, 1, {
             local is_phantom = EntityHasTag( item_info.id, "phantom40k" )
             if( is_phantom ) then
                 local is_local = item_info.inv_id == inv_info.inv_id
-                local gun_info = index.D.item_list[ item_info.inv_id ] or {}
+                local gun_info = index.M.item_memo[ item_info.inv_id ] or {}
                 local deck_cap = ( gun_info.wand_info or {}).deck_capacity or inv_info.inv_slot[1]
                 local is_valid = item_info.spell_id == inv_info.spell_id and is_local
                 local is_without = inv_info.inv_slot[1] > deck_cap and is_local
