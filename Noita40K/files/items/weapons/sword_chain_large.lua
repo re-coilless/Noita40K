@@ -17,7 +17,7 @@ return function( info )
     local data = { m = 0.15, is_debugging = false, dmg = 5/25 }
     if( may_swing and ( xD.Controls.lmb[3] or memo.swing_start )) then
         data.active, memo.engine = true, true
-        local shake = pen.generic_random( 0.5, 1.5, nil, true )
+        local shake = pen.random( 0.5, 1.5, nil, true )
         if( not( memo.swing_done ) and memo.swing_start ) then
             --play extra sound
             data.drift = { r = 150, x = 5, y = 3, m = 1/( memo.resist or 1 )}

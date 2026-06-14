@@ -14,7 +14,6 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- new magos char sounds
 -- better sound effect system
 -- universal sword script
--- reverse inventory mouse wheel scrolling direction
 -- beam weapons should apply recoil/damage with a frame-long delay
 -- rmb action should be obtained from controls comp Fire2
 

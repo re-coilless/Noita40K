@@ -87,7 +87,7 @@ function wake_up_waiting_threads()
             proj_memo[ proj_id ].hit_tbl[ hit_id ] = 1
 
             v = perc*v
-            angle = angle + math.rad( pen.generic_random( 1, 5, nil, true ))
+            angle = angle + math.rad( pen.random( 1, 5, nil, true ))
         end)) then
             ComponentSetValue2( proj_comp, "lifetime", 0 )
             ComponentSetValue2( vel_comp, "mVelocity", 0, 0 )
