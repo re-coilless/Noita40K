@@ -296,6 +296,43 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         end
     end
     
+    local will_reload = mnee.mnin( "bind", { "Noita40K", "reload" })
+    if( will_reload ) then
+        will_reload = pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
+            if( not( id[1])) then return end
+            local mag = xM.item_memo[ id[1]] or {}
+            if( not( pen.vld( mag.mag ))) then return end
+            return true
+        end)
+    end
+
+    local target_off = will_reload and -50 or 0
+    local actual_off = pen.estimate( "n40_reloading", target_off, { "wgt", will_reload and 0.5 or 0.2 })
+    if( actual_off ~= 0 ) then
+        w, h = 75, 50
+        local gui, uid = pen.new.builder()
+		GuiOptionsAddForNextWidget( gui, 2 ) --NonInteractive
+		GuiZSetForNextWidget( gui, pen.Z.MAIN_OVERLAY )
+		GuiImageNinePiece( gui, uid, screen_w/2 - w/2, screen_h + 30 + actual_off, w, h )
+
+        local is_reloading = pen.new.interface(
+            screen_w/2 - w/2, screen_h + 30 + actual_off, w, h, pen.Z.MAIN_OVERLAY )
+        if( is_reloading ) then
+            if( pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
+                if( not( id[1])) then return end
+                local mag = xM.item_memo[ id[1]] or {}
+                if( not( pen.vld( mag.mag ))) then return end
+                pen.magic_storage( mag.id, "ammo", "value_int", mag.mag.max )
+                return true
+            end)) then
+                pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/reload" }, xD.player_xy[1], xD.player_xy[2])
+            end
+        end
+
+        --reloading minigame – toss old mag out (physically flies out) and drag the new one over to the slot and crank the bolt if the gun was empty (add hints as to what to do)
+        --try guassian blur over the screen while this is opened
+    end
+
     xD.xys.inv_root_orig = { root_x, root_y }
     xD.xys.inv_orig = { pic_x, pic_y }
     if( xD.Controls.inv[2]) then xD.inv_toggle = true end
@@ -323,7 +360,12 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
 
         local w, h = pen.get_pic_dims( mag.mag.round )
         pen.new.image( ammo_x, screen_h - ammo_y - h, pen.Z.MAIN, mag.mag.round )
-        pen.new.text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.Z.MAIN, "x"..mag.mag.ammo )
+        local dims = pen.new.text( ammo_x + w + 3, screen_h - ammo_y - 10, pen.Z.MAIN, "x"..mag.mag.ammo )
+        if( mag.mag.ammo ~= 0 ) then return end
+        local frame_sin = 100*( math.sin( xD.frame_num/10 ) + 1 )
+        local color = { 255, 255 - frame_sin/4, 255 - frame_sin }
+        pen.new.text( ammo_x + w + 7 + dims[1], screen_h - ammo_y - 10, pen.Z.MAIN,
+            "hold "..mnee.get_binding_keys( "Noita40K", "reload" ), { color = color })
     end)
     
     pen.hallway( function() -- account for beam length and melee weapon range
@@ -548,120 +590,9 @@ table.insert( ITEM_CATS, 1, {
     is_wand = true, is_quickest = true,
     
     on_check = function( item_id ) return EntityHasTag( item_id, "gun40k" ) end,
-    on_data = function( info, wip_item_list )
-        local xD, xM = index.D, index.M
-        info.wand_info = {
-            shuffle_deck_when_empty = ComponentObjectGetValue2( info.AbilityC, "gun_config", "shuffle_deck_when_empty" ),
-            actions_per_round = ComponentObjectGetValue2( info.AbilityC, "gun_config", "actions_per_round" ),
-            deck_capacity = ComponentObjectGetValue2( info.AbilityC, "gun_config", "deck_capacity" ),
-            spread_degrees = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "spread_degrees" ),
-            mana_max = ComponentGetValue2( info.AbilityC, "mana_max" ),
-            mana_charge_speed = ComponentGetValue2( info.AbilityC, "mana_charge_speed" ),
-            mana = ComponentGetValue2( info.AbilityC, "mana" ),
-
-            never_reload = ComponentGetValue2( info.AbilityC, "never_reload" ),
-            reload_time = ComponentObjectGetValue2( info.AbilityC, "gun_config", "reload_time" ) +
-                            ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "reload_time" ),
-            delay_time = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "fire_rate_wait" ),
-            reload_frame = math.max( ComponentGetValue2( info.AbilityC, "mReloadNextFrameUsable" ) - xD.frame_num, 0 ),
-            delay_frame = math.max( ComponentGetValue2( info.AbilityC, "mNextFrameUsable" ) - xD.frame_num, 0 ),
-
-            speed_multiplier = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "speed_multiplier" ),
-            lifetime_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "lifetime_add" ),
-            bounces = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "bounces" ),
-
-            crit_chance = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_critical_chance" ),
-            crit_mult = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_critical_multiplier" ),
-
-            damage_electricity_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_electricity_add" ),
-            damage_explosion_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_explosion_add" ),
-            damage_fire_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_fire_add" ),
-            damage_melee_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_melee_add" ),
-            damage_projectile_add = ComponentObjectGetValue2( info.AbilityC, "gunaction_config", "damage_projectile_add" ),
-        }
-        
-        local check_func = function( inv_info, item_info ) --ultra cancer
-            --ammo type check
-            --make sure attachment type matches slot type
-            --use inv_info.inv_slot to make sure player is only allowed to swap to true wand slots
-            
-            if( not( item_info.is_spell )) then return false end
-            
-            local is_phantom = EntityHasTag( item_info.id, "phantom40k" )
-            if( is_phantom ) then
-                local is_local = item_info.inv_id == inv_info.inv_id
-                local gun_info = index.M.item_memo[ item_info.inv_id ] or {}
-                local deck_cap = ( gun_info.wand_info or {}).deck_capacity or inv_info.inv_slot[1]
-                local is_valid = item_info.spell_id == inv_info.spell_id and is_local
-                local is_without = inv_info.inv_slot[1] > deck_cap and is_local
-                
-                local is_allowed = is_valid or is_without
-                local is_same = inv_info.id == item_info.id
-                if( is_allowed and not( is_same ) and pen.vld( inv_info.id, true )) then    
-                    local mag_id = inv_info.id
-                    local max_ammo = pen.magic_storage( mag_id, "ammo_max", "value_int" )
-                    pen.magic_storage( mag_id, "ammo", "value_int", max_ammo )
-                    
-                    local phantom_id = item_info.id
-                    --discarded mag continues flying with gravity past the slot it wanted to swap with not matter if inv is closed or opened
-                    
-                    pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/reload" }, index.D.player_xy[1], index.D.player_xy[2])
-                end
-                
-                return is_without and not( pen.vld( inv_info.id, true )) --is_allowed and not( is_same )
-            end
-
-            return true
-        end
-        local update_func = function( inv_info, item_info_old, item_info_new, slot_data )
-            index.M.is_updating = true
-            local func_out = pen.magic_storage( item_info_old.id, "update", "value_string" )
-            if( pen.vld( func_out )) then dofile( func_out )( inv_info, item_info_old, true ) end
-            local func_in = pen.magic_storage( item_info_new.id, "update", "value_string" )
-            if( pen.vld( func_in )) then dofile( func_in )( inv_info, item_info_new, false ) end
-            index.M.is_updating = nil
-
-            return pen.vld( inv_info.in_hand, true )
-        end
-        local sort_func = function( a, b )
-            local inv_slot = { 0, 0 }
-            local is_perma = { false, false }
-            pen.t.loop({ a, b }, function( i,v )
-                local item_comp = EntityGetFirstComponentIncludingDisabled( v, "ItemComponent" )
-                if( not( pen.vld( item_comp, true ))) then return end
-                is_perma[i] = ComponentGetValue2( item_comp, "permanently_attached" )
-                inv_slot[i] = math.max( ComponentGetValue2( item_comp, "inventory_slot" ), 0 )
-            end)
-            return ( is_perma[1] and not( is_perma[2])) or ( not( is_perma[2]) and inv_slot[1] < inv_slot[2])
-        end
-        
-        xD.invs_i[ info.id ] = index.get_inv_info(
-            info.id, { 2*info.wand_info.deck_capacity, 1 }, { "full" }, nil, check_func, update_func, nil, sort_func )
-        
-        pen.child_play( info.id, function( parent, child, i )
-            local max_ammo = pen.magic_storage( child, "ammo_max", "value_int" ) or -1
-            local ammo = pen.magic_storage( child, "ammo", "value_int" ) or max_ammo
-            if( max_ammo < 0 or ammo >= max_ammo ) then return end
-            
-            --there should be only one per wand per type
-
-            xM.phantom_ids = xM.phantom_ids or {}
-            local phantom_id, is_new = pen.life_support( xM.phantom_ids,
-                info.id..":"..child, "mods/Noita40K/files/based/phantom_mag.xml", EntityGetTransform( child ))
-            if( is_new ) then
-                EntityAddChild( info.id, phantom_id )
-
-                local act_comp = EntityGetFirstComponentIncludingDisabled( child, "ItemActionComponent" )
-                pen.magic_storage( phantom_id, "phantom_id", "value_string", ComponentGetValue2( act_comp, "action_id" ))
-
-                -- there should be a way to control inv slots in proper manner
-                local item_comp = EntityGetFirstComponentIncludingDisabled( phantom_id, "ItemComponent" )
-                ComponentSetValue2( item_comp, "inventory_slot", info.wand_info.deck_capacity + i, -5 )
-            elseif( EntityGetParent( phantom_id ) ~= info.id ) then EntityKill( phantom_id ) end
-        end)
-
-        return info
-    end,
+    on_data_once = wand_cat.on_data_once,
+    on_data = wand_cat.on_data,
+    
     on_processed_forced = wand_cat.on_processed_forced,
 
     on_tip = wand_cat.on_tip,
@@ -676,15 +607,6 @@ table.insert( ITEM_CATS, 1, {
         pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.inv )
         local w, h = xD.wand_func( pic_x - 3*pen.b2n( state_tbl.in_hand ), pic_y + 2, info, state_tbl.in_hand )
         xD.xys.wands = { pic_x, pic_y + h }
-
-        pen.t.loop( xD.slot_state[ info.id ], function( i,slot )
-            local mag_id = slot[1]
-            if( EntityHasTag( mag_id, "phantom40k" )) then
-                pic_x = pic_x + index.dft.slot( pic_x + w, pic_y + 3, {
-                    inv_slot = { i, 1 }, inv_id = info.id, id = mag_id,
-                }, true, true, false ) + 3
-            end
-        end)
     end,
     on_slot = wand_cat.on_slot, -- in-slot color-based mag percentage indicators but no literal bullet counters except for the ones on-screen
 
@@ -795,38 +717,6 @@ table.insert( ITEM_CATS, 4, {
     on_gui_world = spell_cat.on_gui_world,
 })
 
-table.insert( ITEM_CATS, 3, {
-    id = "PHANTOM40K",
-    name = "Phantom Mag",
-    is_spell = true,
-
-    on_check = function( item_id ) return EntityHasTag( item_id, "phantom40k" ) end,
-    on_data = function( info, wip_item_list )
-        local xD = index.D
-        if( info.is_permanent ) then info.charges = -1 end
-
-        info.spell_id = pen.magic_storage( info.id, "phantom_id", "value_string" )
-        info.spell_info = pen.get_spell_info( info.spell_id )
-        info.pic = info.spell_info.sprite
-        
-        info.tip_name = pen.capitalizer( GameTextGetTranslatedOrNot( info.spell_info.name ))
-        info.name = info.tip_name..( info.charges >= 0 and " ("..info.charges..")" or "" )
-        info.desc = index.full_stopper( GameTextGetTranslatedOrNot( info.spell_info.description ))
-        info.tip_name = string.upper( info.tip_name )
-        
-        local parent_id = EntityGetParent( info.id )
-        if( pen.vld( parent_id, true ) and pen.vld( xD.invs[ parent_id ])) then
-            parent_id = wip_item_list[ parent_id ] or {}
-            if( parent_id.is_wand ) then info.in_wand = parent_id.id end
-        end
-
-        return info
-    end,
-
-    -- on_tip = spell_cat.on_tip, --reloading tip
-    on_slot = spell_cat.on_slot, --highlight valid mags to swap with on hover and drag
-})
-
 local gun_cat = pen.t.get( ITEM_CATS, "GUN40K", nil, nil, {})
 
 table.insert( ITEM_CATS, 1, {
@@ -835,6 +725,7 @@ table.insert( ITEM_CATS, 1, {
     is_wand = true, is_quickest = true,
     
     on_check = function( item_id ) return EntityHasTag( item_id, "gun40k_energy" ) end,
+    on_data_once = gun_cat.on_data_once,
     on_data = gun_cat.on_data,
     on_processed_forced = gun_cat.on_processed_forced,
 
@@ -853,6 +744,7 @@ table.insert( ITEM_CATS, 1, {
     is_wand = true, is_quickest = true,
     
     on_check = function( item_id ) return EntityHasTag( item_id, "gun40k_melee" ) end,
+    on_data_once = gun_cat.on_data_once,
     on_data = gun_cat.on_data,
     on_processed_forced = gun_cat.on_processed_forced,
 

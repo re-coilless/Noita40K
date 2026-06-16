@@ -71,7 +71,7 @@ else
 		
 		local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
 		local gravity = ComponentGetValue2( plat_comp, "pixel_gravity" )
-		if( will_fly ) then v_y = math.max( -gravity, v_y - thrust ) end
+		if( will_fly ) then v_y = math.max( -gravity/2, v_y - thrust ) end
 		if( will_fly and will_move ) then v_x = v_x + ( is_left and -1 or 1 )*thrust/2.5 end
 		if( is_grounded and ( will_fly or will_dash )) then v_y = v_y - gravity/4 end
 
