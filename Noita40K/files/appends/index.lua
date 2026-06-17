@@ -318,6 +318,14 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         local is_reloading = pen.new.interface(
             screen_w/2 - w/2, screen_h + 30 + actual_off, w, h, pen.Z.MAIN_OVERLAY )
         if( is_reloading ) then
+            --compile a table of potetial reloads (one per mag)
+            --present a table of them
+            --first, have to drag and drop the existing mag to the highlighted zone to the left (plays ejection sound and sets ammo to 0)
+            --then, drag the new mag to the right onto the empty spot, replenishes the ammo (plays reloading sound)
+            --the row is replaced with bolt visual then and you have to crank it from the right to the left
+
+            --play extra sound on last round in the mag
+
             if( pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
                 if( not( id[1])) then return end
                 local mag = xM.item_memo[ id[1]] or {}
@@ -325,11 +333,10 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
                 pen.magic_storage( mag.id, "ammo", "value_int", mag.mag.max )
                 return true
             end)) then
-                pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/reload" }, xD.player_xy[1], xD.player_xy[2])
+                pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/reload" }, xD.player_xy[1], xD.player_xy[2]) --play sound on ejection too
             end
         end
 
-        --reloading minigame – toss old mag out (physically flies out) and drag the new one over to the slot and crank the bolt if the gun was empty (add hints as to what to do)
         --try guassian blur over the screen while this is opened
     end
 
