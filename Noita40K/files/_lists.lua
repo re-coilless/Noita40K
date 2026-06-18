@@ -167,7 +167,7 @@ n40.PERKS = {
 			
 			pen.magic_storage( hooman, "taunt_voice", "value_string", "12/taunts_1" )
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
-			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			ComponentSetValue2( data.sfx_comp, "event_root", "movement/armor_large" )
 			
 			ComponentSetValue2( data.char_comp, "mass", 9 + ComponentGetValue2( data.char_comp, "mass" ))
 			
@@ -257,7 +257,7 @@ n40.PERKS = {
 			
 			pen.magic_storage( hooman, "taunt_voice", "value_string", "32/taunts_2" )
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
-			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			ComponentSetValue2( data.sfx_comp, "event_root", "movement/machine" )
 			
 			ComponentSetValue2( data.char_comp, "mass", 1 + ComponentGetValue2( data.char_comp, "mass" ))
 			
@@ -319,7 +319,7 @@ n40.PERKS = {
 
 			pen.magic_storage( hooman, "taunt_voice", "value_string", "32/taunts_2" )
 			ComponentSetValue2( data.sfx_comp, "file", "mods/Noita40K/files/40K.bank" )
-			ComponentSetValue2( data.sfx_comp, "event_root", "classes/12/mk7" )
+			ComponentSetValue2( data.sfx_comp, "event_root", "movement/armor" )
 			
 			ComponentSetValue2( data.char_comp, "mass", 1 + ComponentGetValue2( data.char_comp, "mass" ))
 			

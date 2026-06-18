@@ -1,5 +1,5 @@
 Roadmap ([+] highlights the project being actively worked upon):
-+HermeS Index/HermeS Vector
++Hiisi Massacre
 +Noita40K ACT IV (C4-HEAVY Oblivion Knight)
 The Nineteen Abiding
 Noita40K ACT V (C2-HEAVY Commissar)

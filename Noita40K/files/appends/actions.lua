@@ -20,7 +20,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_75_he.xml", r = 0.75, h = 0.25 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_75_he_S.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -41,7 +41,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_he_M.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -62,7 +62,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_hei_M.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -83,7 +83,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998c.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998_he_M.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -104,7 +104,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_998Lc.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_998L_apds.xml", r = 4.5, h = 7 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_998L_apds_S.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998L" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_998L", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -126,7 +126,7 @@ table.insert( actions,
 	shells = { "mods/Noita40K/files/items/rounds/bolt_50mmc.xml" },
 	projectiles = {{ p = "mods/Noita40K/files/items/rounds/bolt_50mm_aphe.xml", r = 12, h = 50 }},
 	custom_xml_file = "mods/Noita40K/files/items/mags/bolt_50mm_aphe_S.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_50mm" },
+	sfx = { "mods/Noita40K/files/40K.bank", "items/guns/bolt_50mm", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40.muzzle_flash )
@@ -207,8 +207,8 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_S_pyrum.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
-
+	sfx = { "mods/Noita40K/files/40K.bank",
+		"items/beams/pyrum", true, "items/guns/dryfire_energy", "items/overheat_start" },
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
@@ -235,8 +235,8 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/canister_M_pyrum.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/pyrum", true, "items/overheat_start" },
-
+	sfx = { "mods/Noita40K/files/40K.bank",
+		"items/beams/pyrum", true, "items/guns/dryfire_energy", "items/overheat_start" },
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
@@ -273,8 +273,8 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/pack_S_high_density.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/volkite", true, "items/overheat_start" },
-
+	sfx = { "mods/Noita40K/files/40K.bank",
+		"items/beams/volkite", true, "items/guns/dryfire_energy", "items/overheat_start" },
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
@@ -306,8 +306,8 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/pack_M_warpborn_photon.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/darkfire", false, "items/overheat_start" },
-
+	sfx = { "mods/Noita40K/files/40K.bank",
+		"items/beams/darkfire", false, "items/guns/dryfire_energy", "items/overheat_start" },
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 
@@ -364,8 +364,8 @@ table.insert( actions,
 		end,
 	},
 	custom_xml_file = "mods/Noita40K/files/items/mags/battery_L_multi.xml",
-	sfx = { "mods/Noita40K/files/40K.bank", "items/beams/mitra", true, "items/overheat_start" },
-	
+	sfx = { "mods/Noita40K/files/40K.bank",
+		"items/beams/mitra", true, "items/guns/dryfire_energy", "items/overheat_start" },
 	action = function() pen.gunshot( n40.beamshot ) end,
 })
 

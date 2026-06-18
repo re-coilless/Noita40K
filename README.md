@@ -7,3 +7,4 @@ Due to the complexity of the project, the functionality has been spit between 5 
 + [HermeS Vector](https://github.com/re-coilless/vector_core/archive/refs/heads/main.zip)
 + [HermeS Marshall](https://github.com/re-coilless/mrshll_core/archive/refs/heads/main.zip) (go [here](https://steamcommunity.com/workshop/filedetails/?id=3479523995) for content packs)
 + [Noita40K](https://github.com/re-coilless/Noita40K/archive/refs/heads/main.zip)
++ [Hiisi Massacre](https://github.com/re-coilless/hiisi_massacre/archive/refs/heads/main.zip) (temporary till the custom map is done)

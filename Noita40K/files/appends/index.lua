@@ -306,37 +306,64 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         end)
     end
 
-    local target_off = will_reload and -50 or 0
+    
+    local shift = xM.mag_height or 0
+    local target_off = will_reload and -( 3 + shift ) or 15
     local actual_off = pen.estimate( "n40_reloading", target_off, { "wgt", will_reload and 0.5 or 0.2 })
-    if( actual_off ~= 0 ) then
-        w, h = 75, 50
+    if( pen.vld( xD.active_item, true ) and actual_off ~= 15 ) then
+        w, h = 100, 50 + shift
         local gui, uid = pen.new.builder()
+        local reload_x, reload_y = screen_w/2 - w/2, screen_h + actual_off
+        local is_reloading = pen.new.interface( reload_x, reload_y, w, h, pen.Z.MAIN_OVERLAY )
 		GuiOptionsAddForNextWidget( gui, 2 ) --NonInteractive
 		GuiZSetForNextWidget( gui, pen.Z.MAIN_OVERLAY )
-		GuiImageNinePiece( gui, uid, screen_w/2 - w/2, screen_h + 30 + actual_off, w, h )
+		GuiImageNinePiece( gui, uid, reload_x, reload_y, w, h )
 
-        local is_reloading = pen.new.interface(
-            screen_w/2 - w/2, screen_h + 30 + actual_off, w, h, pen.Z.MAIN_OVERLAY )
-        if( is_reloading ) then
-            --compile a table of potetial reloads (one per mag)
-            --present a table of them
-            --first, have to drag and drop the existing mag to the highlighted zone to the left (plays ejection sound and sets ammo to 0)
-            --then, drag the new mag to the right onto the empty spot, replenishes the ammo (plays reloading sound)
-            --the row is replaced with bolt visual then and you have to crank it from the right to the left
-
-            --play extra sound on last round in the mag
-
-            if( pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
-                if( not( id[1])) then return end
-                local mag = xM.item_memo[ id[1]] or {}
-                if( not( pen.vld( mag.mag ))) then return end
-                pen.magic_storage( mag.id, "ammo", "value_int", mag.mag.max )
-                return true
-            end)) then
-                pen.play_sound({ "mods/Noita40K/files/40K.bank", "items/guns/reload" }, xD.player_xy[1], xD.player_xy[2]) --play sound on ejection too
+        xM.mag_height = 0
+        xM.mag_out = xM.mag_out or {}
+        local is_energy = EntityHasTag( xD.active_item, "gun40k_energy" )
+        pen.t.loop( xD.slot_state[ xD.active_item ], function( i, id )
+            if( not( id[1])) then return end
+            local mag = xM.item_memo[ id[1]] or {}
+            if( not( pen.vld( mag.mag ))) then return end
+            if( mag.mag.ammo == mag.mag.max or mag.mag.ammo < 0 ) then return end
+            
+            local free_slot = xM.mag_out[ mag.id ]
+            for k = 1,7 do
+                local hl = math.floor(( xD.frame_num/10 )%8 ) == ( 8 - k ) and "B" or "A"
+                pen.new.image( reload_x + 18 + k*7,
+                    reload_y + 5 + xM.mag_height, pen.Z.MAIN_OVERLAY - 0.1,
+                    "mods/Noita40K/files/gui/reload_arrow_"..( free_slot and hl or "C" )..".png" )
             end
-        end
 
+            if( not( free_slot )) then
+                pen.new.image( reload_x + 3, reload_y + 3 + xM.mag_height,
+                    pen.Z.MAIN_OVERLAY - 1, mag.pic, { color = { 255, 200, 200 }}) end
+            pen.new.image( reload_x + w - 19, reload_y + 3 + xM.mag_height, pen.Z.MAIN_OVERLAY - 1, mag.pic )
+            local will_out = pen.new.image( reload_x + 1, reload_y + 1 + xM.mag_height,
+                pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic.bg, { can_click = true, color = pen.P.VNL.DARK_SLOT })
+            local will_in = pen.new.image( reload_x + w - 21,
+                reload_y + 1 + xM.mag_height, pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic.bg, { can_click = true })
+            xM.mag_height = xM.mag_height + 20
+            
+            if( not( free_slot ) and will_out ) then
+                xM.mag_out[ mag.id ] = true
+                pen.play_sound({ "mods/Noita40K/files/40K.bank",
+                    "items/guns/eject"..( is_energy and "_energy" or "" )}, xD.player_xy[1], xD.player_xy[2])
+                pen.magic_storage( mag.id, "ammo", "value_int", 0 )
+            end
+            if( free_slot and will_in ) then
+                xM.mag_out[ mag.id ] = false
+                pen.play_sound({ "mods/Noita40K/files/40K.bank",
+                    "items/guns/reload"..( is_energy and "_energy" or "" )}, xD.player_xy[1], xD.player_xy[2])
+                pen.magic_storage( mag.id, "ammo", "value_int", mag.mag.max )
+            end
+
+            --the row is replaced with bolt visual then and you have to crank it from the right to the left
+            --put bilnking [READY] once all is finished
+        end)
+
+        --the tips pop up above the box upon hovering over the row
         --try guassian blur over the screen while this is opened
     end
 
