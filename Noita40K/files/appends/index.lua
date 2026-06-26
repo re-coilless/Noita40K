@@ -238,7 +238,7 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
     -- unselected guns on hud should be with high alpha
 
     local w, h, step = 0, 0, 1
-    xD.hide_slot_tips = not( xD.is_opened )
+    xD.hide_slot_tips = xD.hide_slot_tips or not( xD.is_opened )
     local gun_belt_y = xD.is_opened and 20 or ( screen_h - ( xD.inv_quickest_size + 1 )*20 - 10 )
     for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quickest ) do
         w, h = index.dft.slot( pic_x + 10, gun_belt_y, {
@@ -306,7 +306,6 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         end)
     end
 
-    
     local shift = xM.mag_height or 0
     local target_off = will_reload and -( 3 + shift ) or 15
     local actual_off = pen.estimate( "n40_reloading", target_off, { "wgt", will_reload and 0.5 or 0.2 })
@@ -314,12 +313,12 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         w, h = 100, 50 + shift
         local gui, uid = pen.new.builder()
         local reload_x, reload_y = screen_w/2 - w/2, screen_h + actual_off
-        local is_reloading = pen.new.interface( reload_x, reload_y, w, h, pen.Z.MAIN_OVERLAY )
 		GuiOptionsAddForNextWidget( gui, 2 ) --NonInteractive
 		GuiZSetForNextWidget( gui, pen.Z.MAIN_OVERLAY )
 		GuiImageNinePiece( gui, uid, reload_x, reload_y, w, h )
 
         xM.mag_height = 0
+        local tip_state = 0
         xM.mag_out = xM.mag_out or {}
         local is_energy = EntityHasTag( xD.active_item, "gun40k_energy" )
         pen.t.loop( xD.slot_state[ xD.active_item ], function( i, id )
@@ -327,7 +326,7 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
             local mag = xM.item_memo[ id[1]] or {}
             if( not( pen.vld( mag.mag ))) then return end
             if( mag.mag.ammo == mag.mag.max or mag.mag.ammo < 0 ) then return end
-            
+
             local free_slot = xM.mag_out[ mag.id ]
             for k = 1,7 do
                 local hl = math.floor(( xD.frame_num/10 )%8 ) == ( 8 - k ) and "B" or "A"
@@ -336,14 +335,35 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
                     "mods/Noita40K/files/gui/reload_arrow_"..( free_slot and hl or "C" )..".png" )
             end
 
+            local _,_,is_hovered = pen.new.interface(
+                reload_x, reload_y + xM.mag_height, w, 25, pen.Z.MAIN_OVERLAY )
+            if( is_hovered or tip_state == 0 ) then tip_state = free_slot and 2 or 1 end
+
+            local will_out, will_in = false, false
+            local new_x, new_y, state = reload_x, reload_y, 0
+            local slot_x, slot_y = reload_x + 1, reload_y + 1 + xM.mag_height
             if( not( free_slot )) then
-                pen.new.image( reload_x + 3, reload_y + 3 + xM.mag_height,
-                    pen.Z.MAIN_OVERLAY - 1, mag.pic, { color = { 255, 200, 200 }}) end
-            pen.new.image( reload_x + w - 19, reload_y + 3 + xM.mag_height, pen.Z.MAIN_OVERLAY - 1, mag.pic )
-            local will_out = pen.new.image( reload_x + 1, reload_y + 1 + xM.mag_height,
-                pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic.bg, { can_click = true, color = pen.P.VNL.DARK_SLOT })
-            local will_in = pen.new.image( reload_x + w - 21,
-                reload_y + 1 + xM.mag_height, pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic.bg, { can_click = true })
+                new_x, new_y, state = pen.new.dragger(
+                    "n40_reload_A_"..id[1], slot_x, slot_y, 20, 20, pen.Z.MAIN_OVERLAY - 1 )
+                pen.new.image( new_x + 2, new_y + 2, pen.Z.MAIN_OVERLAY - 1, mag.pic )
+                
+                if( state < 0 ) then
+                    will_out = math.sqrt(( slot_x - new_x )^2 + ( slot_y - new_y )^2 ) > 20
+                end
+                
+                new_x, new_y = reload_x + w - 21, reload_y + 1 + xM.mag_height
+                pen.new.image( new_x, new_y, pen.Z.MAIN_OVERLAY - 1.5, xD.slot_pic.locked )
+            else
+                new_x, new_y, state = pen.new.dragger( "n40_reload_B_"..id[1],
+                    reload_x + w - 21, reload_y + 1 + xM.mag_height, 20, 20, pen.Z.MAIN_OVERLAY - 1 )
+                local d = math.sqrt(( slot_x - new_x )^2 + ( slot_y - new_y )^2 )
+                if( state == 2 ) then will_in = d < 20 end
+            end
+            pen.new.image( new_x + 2, new_y + 2, pen.Z.MAIN_OVERLAY - 1, mag.pic )
+
+            pen.new.image( reload_x + 1, reload_y + 1 + xM.mag_height,
+                pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic[ will_in and "hl" or "bg" ], { color = pen.P.VNL.DARK_SLOT })
+            pen.new.image( reload_x + w - 21, reload_y + 1 + xM.mag_height, pen.Z.MAIN_OVERLAY - 0.1, xD.slot_pic.bg )
             xM.mag_height = xM.mag_height + 20
             
             if( not( free_slot ) and will_out ) then
@@ -359,12 +379,21 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
                 pen.magic_storage( mag.id, "ammo", "value_int", mag.mag.max )
             end
 
-            --the row is replaced with bolt visual then and you have to crank it from the right to the left
-            --put bilnking [READY] once all is finished
+            --redo eject_energy, make dryfire_energy quiter, separate sound for inserting a mag without chambring
+            --the row is replaced with bolt visual then and you have to crank it from the right to the left (only if the ejected mag had 0 ammo and the gun is ballistic)
+            --falling animation
         end)
 
-        --the tips pop up above the box upon hovering over the row
-        --try guassian blur over the screen while this is opened
+        local msgs = {
+            "[READY]",
+            "[EJECT OLD MAG]",
+            "[INSERT NEW MAG]",
+            "[CHAMBER A ROUND]"
+        }
+
+        tip_state = tip_state + 1
+        pen.new.text( reload_x + w/2, reload_y - 12,
+            pen.Z.MAIN_OVERLAY, msgs[ tip_state ], { is_centered_x = true })
     end
 
     xD.xys.inv_root_orig = { root_x, root_y }

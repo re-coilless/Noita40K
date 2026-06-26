@@ -448,7 +448,7 @@ n40.PERKS = {
 			})
 			EntityAddComponent2( hooman, "SpriteComponent", {
 				smooth_filtering = true, fog_of_war_hole = true,
-				alpha = 0.5, offset_x = 65 + eye_x, offset_y = 32 + eye_y,
+				alpha = 0.5, offset_x = 65 + eye_x, offset_y = 32 - eye_y,
 				image_file = "mods/Noita40K/files/classes/_perks/occulobe_vision.png",
 			})
 		end,
