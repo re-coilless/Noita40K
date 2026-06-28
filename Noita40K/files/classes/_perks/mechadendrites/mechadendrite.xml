@@ -1,28 +1,29 @@
 <Entity name="mechadendrite" >
 	<LuaComponent
-		_tags="enabled_in_world"
 		script_source_file="mods/Noita40K/files/classes/_perks/mechadendrites/kinematics.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
 	
 	<VariableStorageComponent
-		name="full_length"
-		value_float="40"
+		name="is_active"
+		value_bool="1"
 	></VariableStorageComponent>
-	
 	<VariableStorageComponent
 		name="is_going"
 		value_bool="0"
 	></VariableStorageComponent>
 	
 	<VariableStorageComponent
-		name="target_x"
-		value_float="0"
+		name="length"
+		value_float="40"
 	></VariableStorageComponent>
-	
+	<VariableStorageComponent
+		name="target_x"
+		value_float="10"
+	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="target_y"
-		value_float="0"
+		value_float="-10"
 	></VariableStorageComponent>
 	
 	<InheritTransformComponent

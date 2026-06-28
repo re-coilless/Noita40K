@@ -17,8 +17,8 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- beam weapons should apply recoil/damage with a frame-long delay
 -- rmb action should be obtained from controls comp Fire2
 
--- magos perks
--- OMNISSIAHS_BLESSING
+-- magos perks (all the tech perks should only work if the chacter has a reactor installed)
+-- OMNISSIAHS_BLESSING (this has the reactor)
 -- BREATH_OF_MARS
 -- SICARIAN_ARMOUR
 -- UNCHAINED

@@ -1,26 +1,26 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
-local hooman = GetUpdatedEntityID()
-local base_x, base_y, base_r, base_s_x, base_s_y = EntityGetTransform( hooman )
-base_y = base_y + get_head_offset( EntityGetParent( hooman ))/2
+local limb_id = GetUpdatedEntityID()
+local hooman = EntityGetRootEntity( limb_id )
+--local center_x, center_y = pen.get_creature_centre( hooman )
+local base_x, base_y, base_r, base_s_x, base_s_y = EntityGetTransform( limb_id )
+--base_y = base_y + center_y/2
 
-local is_active = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( EntityGetParent( hooman ), "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( EntityGetParent( hooman ), "system_overload" )))
+--fully procedural, put this in penman
+
+local is_active = pen.magic_storage( limb_id, "is_active", "value_bool" )
 
 local t_x = base_x - 7*base_s_x
 local t_y = base_y
 
 local accuracy = 8
 if( is_active ) then
-	local temp_x = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "target_x" ), "value_float" )
-	local temp_y = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "target_y" ), "value_float" )
-	local full_length = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "full_length" ), "value_float" )
-	if(( temp_x == 0 and temp_y == 0 ) or math.sqrt(( base_x - temp_x )^2 + ( base_y - temp_y )^2 ) > full_length ) then
+	local length = pen.magic_storage( limb_id, "length", "value_float" )
+	local temp_x = pen.magic_storage( limb_id, "target_x", "value_float" )
+	local temp_y = pen.magic_storage( limb_id, "target_y", "value_float" )
+	if(( temp_x == 0 and temp_y == 0 ) or math.sqrt(( base_x - temp_x )^2 + ( base_y - temp_y )^2 ) > length ) then
 		is_active = false
-	else
-		t_x = temp_x
-		t_y = temp_y
-		accuracy = accuracy/2
-	end
+	else t_x, t_y, accuracy = temp_x, temp_y, accuracy/2 end
 end
 
 local first_link = 12
@@ -33,7 +33,7 @@ local stretching_k = 1/( first_limit + third_limit )
 local stretching = first_link + first_limit + second_link + third_link + third_limit
 
 local c_x, c_y = 0, 0
-local children = EntityGetAllChildren( hooman ) or {}
+local children = EntityGetAllChildren( limb_id ) or {}
 if( #children > 0 ) then
 	for i,d_module in ipairs( children ) do
 		if( EntityGetName( d_module ) == "claw" ) then
@@ -49,9 +49,7 @@ local d_y = t_y - c_y
 if( math.sqrt( d_x^2 + d_y^2 ) > accuracy ) then
 	t_x = c_x + pen.sgn( d_x )*speed_k*math.log( math.abs( d_x ) + 1 )
 	t_y = c_y + pen.sgn( d_y )*speed_k*math.log( math.abs( d_y ) + 1 )
-else
-	ComponentSetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "is_going" ), "value_bool", false )
-end
+else pen.magic_storage( limb_id, "is_going", "value_bool", false ) end
 t_x = t_x - base_x
 t_y = t_y - base_y
 

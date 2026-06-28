@@ -1,7 +1,7 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 local hooman = GetUpdatedEntityID()
-local is_enabled = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" ) and not( EntityHasTag( hooman, "system_overload" )))
+local is_enabled = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" )
 if( is_enabled ) then
 	local gravity = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" ), "pixel_gravity" )/60
 	local v_x, v_y = GameGetVelocityCompVelocity( hooman )

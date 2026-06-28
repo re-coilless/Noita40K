@@ -524,6 +524,9 @@ n40.PERKS = {
 		func = function( hooman, data ) --figure out stains
 			--add buffer entity
 			--to it add all three legs
+
+			local x, y = EntityGetTransform( hooman )
+			EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/mechadendrite.xml", x, y )
 		end,
 	},
 }
