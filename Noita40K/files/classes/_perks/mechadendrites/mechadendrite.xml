@@ -14,16 +14,25 @@
 	></VariableStorageComponent>
 	
 	<VariableStorageComponent
-		name="length"
-		value_float="40"
+		name="limits"
+		value_string="|12|6|2|14|8|"
 	></VariableStorageComponent>
 	<VariableStorageComponent
+		name="length"
+		value_float="100"
+	></VariableStorageComponent>
+
+	<VariableStorageComponent
 		name="target_x"
-		value_float="10"
+		value_float="0"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="target_y"
-		value_float="-10"
+		value_float="0"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="offset_mode"
+		value_bool="0"
 	></VariableStorageComponent>
 	
 	<InheritTransformComponent

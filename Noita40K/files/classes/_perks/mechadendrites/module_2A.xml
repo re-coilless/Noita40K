@@ -4,7 +4,7 @@
 		alpha="1" 
 		image_file="mods/Noita40K/files/classes/_perks/mechadendrites/module_2A.png" 
 		offset_x="0"
-		offset_y="0"
+		offset_y="1.5"
 		z_index="1.15"
 	></SpriteComponent>
 </Entity>
