@@ -18,8 +18,16 @@
 		value_string="|12|6|2|14|8|"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="length"
+		name="max_length"
 		value_float="100"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="max_angle"
+		value_float="170"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="speed"
+		value_float="1"
 	></VariableStorageComponent>
 
 	<VariableStorageComponent
@@ -31,8 +39,8 @@
 		value_float="0"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="offset_mode"
-		value_bool="0"
+		name="absolute_mode"
+		value_bool="1"
 	></VariableStorageComponent>
 	
 	<InheritTransformComponent

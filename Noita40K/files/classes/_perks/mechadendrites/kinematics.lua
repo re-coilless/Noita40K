@@ -3,53 +3,53 @@ dofile_once( "mods/Noita40K/files/_lib.lua" )
 local limb_id = GetUpdatedEntityID()
 local hooman = EntityGetRootEntity( limb_id )
 local base_x, base_y, base_r, base_s_x, base_s_y = EntityGetTransform( limb_id )
-local is_active = pen.magic_storage( limb_id, "is_active", "value_bool" )
-local t_x, t_y = base_x - 7*base_s_x, base_y + 1
-local accuracy = 8
 
-if( is_active ) then
-	local length = pen.magic_storage( limb_id, "length", "value_float" )
-	local temp_x = pen.magic_storage( limb_id, "target_x", "value_float" )
-	local temp_y = pen.magic_storage( limb_id, "target_y", "value_float" )
-	temp_x, temp_y = pen.get_mouse_pos( true )
-	if( pen.magic_storage( limb_id, "offset_mode", "value_bool" )) then
-		temp_x, temp_y = base_x + temp_x, base_y + temp_y end
-	if(( temp_x ~= 0 or temp_y ~= 0 ) and math.sqrt(( base_x - temp_x )^2 + ( base_y - temp_y )^2 ) < length ) then
-		t_x, t_y, accuracy = temp_x, temp_y, accuracy/2
-	else is_active = false end
-end
-
+--link dims (support stretching)
 local lmt_1A, lmt_1B, lmt_15, lmt_2A, lmt_2B = unpack(
 	pen.t.pack( pen.magic_storage( limb_id, "limits", "value_string" )))
-local stretching = lmt_1A + lmt_1B + lmt_15 + lmt_2A + lmt_2B
-local stretching_k = 1/( lmt_1B + lmt_2B )
+local is_active = pen.magic_storage( limb_id, "is_active", "value_bool" )
+local max_angle = pen.magic_storage( limb_id, "max_angle", "value_float" )
+local max_length = pen.magic_storage( limb_id, "max_length", "value_float" )
 
-local c_x, c_y = 0, 0
-local children = EntityGetAllChildren( limb_id ) or {}
-for i,d_module in ipairs( children ) do
-	if( EntityGetName( d_module ) == "claw" ) then
-		c_x, c_y = EntityGetTransform( d_module )
-		break
+local t_x, t_y = -5*base_s_x, 1
+if( is_active ) then
+	t_x = pen.magic_storage( limb_id, "target_x", "value_float" )
+	t_y = pen.magic_storage( limb_id, "target_y", "value_float" )
+	t_x, t_y = pen.get_mouse_pos( true )
+	if( pen.magic_storage( limb_id, "absolute_mode", "value_bool" )) then
+		t_x, t_y = t_x - base_x, t_y - base_y
 	end
 end
 
-local speed_k = 2.5
+-- if(( temp_x ~= 0 or temp_y ~= 0 ) and math.sqrt(( base_x - temp_x )^2 + ( base_y - temp_y )^2 ) < length ) then
+-- 	t_x, t_y = temp_x, temp_y
+-- else is_active = false end
+
+local claw_id = pen.get_child( limb_id, "claw" )
+if( not( pen.vld( claw_id, true ))) then return end
+local c_x, c_y = EntityGetTransform( claw_id )
+
+local speed = pen.magic_storage( limb_id, "speed", "value_float" )
+local accuracy = 5/( is_active and 2 or 1 )
 local d_x, d_y = t_x - c_x, t_y - c_y
-if( math.sqrt( d_x^2 + d_y^2 ) > accuracy ) then
-	t_x = c_x + pen.sgn( d_x )*speed_k*math.log( math.abs( d_x ) + 1 )
-	t_y = c_y + pen.sgn( d_y )*speed_k*math.log( math.abs( d_y ) + 1 )
-else pen.magic_storage( limb_id, "is_going", "value_bool", false ) end
-t_x, t_y = t_x - base_x, t_y - base_y
+
+pen.magic_storage( limb_id, "is_going",
+	"value_bool", math.sqrt( d_x^2 + d_y^2 ) > accuracy )
+t_x = pen.estimate( "_", { t_x, c_x }, { "wgt", speed })
+t_y = pen.estimate( "_", { t_y, c_y }, { "wgt", speed })
+
+-- local stretching = lmt_1A + lmt_1B + lmt_15 + lmt_2A + lmt_2B
+-- local stretching_k = 1/( lmt_1B + lmt_2B )
 
 local h, a, b = 0, 0, 0
 local angle = -math.atan2( t_y, t_x )
 local length = math.sqrt( t_x^2 + t_y^2 )
-if( length + 2 >= lmt_1A + lmt_15 + lmt_2A ) then
-	length = math.min( length, stretching )
-	stretching = length - ( lmt_1A + lmt_15 + lmt_2A ) --subtracting from this causes the change in final angle
-	lmt_1B = lmt_1B*stretching*stretching_k + 3
-	lmt_2B = lmt_2B*stretching*stretching_k + 2
-else lmt_1B, lmt_2B = 2, 1 end
+-- if( length + 2 >= lmt_1A + lmt_15 + lmt_2A ) then
+-- 	length = math.min( length, stretching )
+-- 	stretching = length - ( lmt_1A + lmt_15 + lmt_2A ) --subtracting from this causes the change in final angle
+-- 	lmt_1B = lmt_1B*stretching*stretching_k + 3
+-- 	lmt_2B = lmt_2B*stretching*stretching_k + 2
+-- else lmt_1B, lmt_2B = 2, 1 end
 
 local tmp_first, tmp_third = lmt_1A + lmt_1B, lmt_2A + lmt_2B
 h = math.sqrt( tmp_first^2 - ((( length - lmt_15 )^2 + tmp_first^2 - tmp_third^2 )/( 2*( length - lmt_15 )) )^2 )
@@ -73,6 +73,6 @@ local pos = {
 	{ base_x + dx2 + math.cos( angle_front )*( tmp_third - 2 ), base_y + dy2 + math.sin( angle_front )*( tmp_third - 2 ), angle_front },
 }
 
-for i,d_module in ipairs( children ) do
+for i,d_module in ipairs( EntityGetAllChildren( limb_id ) or {}) do
 	EntitySetTransform( d_module, pos[i][1], pos[i][2], pos[i][3], 1, 1 )
 end
