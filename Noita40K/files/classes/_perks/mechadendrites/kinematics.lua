@@ -41,6 +41,9 @@ t_y = pen.estimate( "_", { t_y, c_y }, { "wgt", speed })
 -- local stretching = lmt_1A + lmt_1B + lmt_15 + lmt_2A + lmt_2B
 -- local stretching_k = 1/( lmt_1B + lmt_2B )
 
+--for multiple joints, do equal angles with weighting by link length (smaller length, lower max angle)
+--stretching should start once the angle between first and last joint hits a certain limit
+
 local h, a, b = 0, 0, 0
 local angle = -math.atan2( t_y, t_x )
 local length = math.sqrt( t_x^2 + t_y^2 )
@@ -50,9 +53,10 @@ local length = math.sqrt( t_x^2 + t_y^2 )
 -- 	lmt_1B = lmt_1B*stretching*stretching_k + 3
 -- 	lmt_2B = lmt_2B*stretching*stretching_k + 2
 -- else lmt_1B, lmt_2B = 2, 1 end
+lmt_1B, lmt_2B = 2, 1
 
 local tmp_first, tmp_third = lmt_1A + lmt_1B, lmt_2A + lmt_2B
-h = math.sqrt( tmp_first^2 - ((( length - lmt_15 )^2 + tmp_first^2 - tmp_third^2 )/( 2*( length - lmt_15 )) )^2 )
+h = math.sqrt( tmp_first^2 - ((( length - lmt_15 )^2 + tmp_first^2 - tmp_third^2 )/( 2*( length - lmt_15 )))^2 )
 if( h < tmp_first ) then a = math.sqrt( tmp_first^2 - h^2 ) else h = tmp_first end
 if( is_active ) then h = -pen.sgn( t_x )*pen.sgn( t_y )*h else h = -pen.sgn( t_x )*h end
 b = a + lmt_15
