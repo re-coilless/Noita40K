@@ -15,7 +15,7 @@
 	
 	<VariableStorageComponent
 		name="limits"
-		value_string="|12|6|0.5|14|8|"
+		value_string="|12|6|0.5|14|8|15|"
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="max_length"
@@ -27,7 +27,7 @@
 	></VariableStorageComponent>
 	<VariableStorageComponent
 		name="speed"
-		value_float="0.5"
+		value_float="0.4"
 	></VariableStorageComponent>
 
 	<VariableStorageComponent

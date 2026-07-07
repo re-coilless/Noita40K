@@ -3,7 +3,7 @@
 		_tags="enabled_in_world"
 		alpha="1" 
 		image_file="mods/Noita40K/files/classes/_perks/mechadendrites/module_1.5.png" 
-		offset_x="1"
+		offset_x="1.5"
 		offset_y="1.5"
 		z_index="1.11"
 	></SpriteComponent>
