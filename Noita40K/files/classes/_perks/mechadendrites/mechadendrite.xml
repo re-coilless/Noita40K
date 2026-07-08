@@ -12,6 +12,10 @@
 		name="is_going"
 		value_bool="0"
 	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="may_flip"
+		value_bool="1"
+	></VariableStorageComponent>
 	
 	<VariableStorageComponent
 		name="limits"

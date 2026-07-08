@@ -200,7 +200,9 @@ if( is_enabled ) then
 	end
 end
 
---alright distance to the ground is deformed based on speed so the back will get less
+--scan the section for attachement points
+--if at least one leg is attached, apply force on the character
+
+--valid distance to the ground is deformed based on speed so the back will get less
 --if can't connect search in other parts but only if less than two connected
 --maintain set height above ground
---better joint direction handling via GetSurfaceNormal
