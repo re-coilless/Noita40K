@@ -1,6 +1,6 @@
 <Entity name="mechadendrite" >
 	<LuaComponent
-		script_source_file="mods/Noita40K/files/classes/_perks/mechadendrites/kinematics.lua"
+		script_source_file="mods/penman/extra/scripts/kinematics1.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
 	

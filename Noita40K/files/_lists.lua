@@ -522,11 +522,12 @@ n40.PERKS = {
 		icon = "mods/Noita40K/files/classes/_perks/mechadendrites/icon.png",
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
 		func = function( hooman, data ) --figure out stains
-			--add buffer entity
-			--to it add all three legs
+			--add buffer entity (unique name)
+			--is_enabled, movement stats, terrain logic
+			--three legs
 
 			local x, y = EntityGetTransform( hooman )
-			EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/mechadendrite.xml", x, y )
+			EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/limb.xml", x, y )
 		end,
 	},
 }

@@ -2,6 +2,15 @@ dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 local hooman = GetUpdatedEntityID()
 local is_enabled = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" )
+
+--pass down is_enabled onto all limbs
+--scan the section for attachement points
+--if at least one leg is attached, apply force on the character
+
+--valid distance to the ground is deformed based on speed so the back will get less
+--if can't connect search in other parts but only if less than two connected
+--maintain set height above ground
+
 if( is_enabled ) then
 	local gravity = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" ), "pixel_gravity" )/60
 	local v_x, v_y = GameGetVelocityCompVelocity( hooman )
@@ -199,10 +208,3 @@ if( is_enabled ) then
 		ComponentSetValueVector2( char_comp, "mVelocity", final_v_x, final_v_y )
 	end
 end
-
---scan the section for attachement points
---if at least one leg is attached, apply force on the character
-
---valid distance to the ground is deformed based on speed so the back will get less
---if can't connect search in other parts but only if less than two connected
---maintain set height above ground
