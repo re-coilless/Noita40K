@@ -1,6 +1,6 @@
 <Entity name="mechadendrite" >
 	<LuaComponent
-		script_source_file="mods/penman/extra/scripts/kinematics1.lua"
+		script_source_file="mods/penman/extra/scripts/ik1.lua"
 		execute_every_n_frame="1"
 	></LuaComponent>
 	

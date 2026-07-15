@@ -1,0 +1,3 @@
+--charge up to a limit
+--handle overload
+--every tech perk adds value to reactor_systems, higher numbers mean slower charge up

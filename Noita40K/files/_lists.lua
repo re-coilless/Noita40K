@@ -288,19 +288,9 @@ n40.PERKS = {
 			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
 			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
 
-			-- data.breathing_immune = true
 			data.contact_immune = true
-			data.threshold_burn = 2*( data.threshold_burn or 25 )
-			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
-			data.threshold_radiation = 999
 			data.threshold_piercing = 999
-			data.threshold_poison = 999
-
 			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
-			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
-			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
-			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
-
 			return data
 		end,
 	},
@@ -354,12 +344,9 @@ n40.PERKS = {
 			data.contact_immune = true
 			data.threshold_burn = 2*( data.threshold_burn or 25 )
 			data.threshold_corrosion = 5*( data.threshold_burn or 5 )
-			data.threshold_radiation = 999
 			data.threshold_piercing = 999
-			data.threshold_poison = 999
 
 			n40.add_effect( hooman, "STAINS_DROP_FASTER" )
-			-- n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
 
@@ -503,25 +490,40 @@ n40.PERKS = {
 		icon = "mods/Noita40K/files/classes/_perks/unchained.png",
 		name = "$n40_PERK_unchained", desc = "$n40_PERK_unchained_",
 		func = function( hooman, data )
-			--special access pass
+			EntityAddTag( hooman, "unchained" )
 		end,
 	},
 	OMNISSIAHS_BLESSING = {
 		icon = "mods/Noita40K/files/classes/_perks/omnissiahs_blessing.png",
 		name = "$n40_PERK_omnissiahs_blessing", desc = "$n40_PERK_omnissiahs_blessing_",
-	},
-	ETERNAL_VIGILANCE = {
-		icon = "mods/Noita40K/files/classes/_perks/eternal_vigilance.png",
-		name = "$n40_PERK_eternal_vigilance", desc = "$n40_PERK_eternal_vigilance_",
+		func = function( hooman, data )
+			data.threshold_poison = 999
+			data.threshold_radiation = 999
+			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
+			pen.magic_storage( hooman, "reactor_systems", "value_int", 1 )
+			pen.magic_storage( hooman, "reactor_limit", "value_float", 500 )
+			pen.magic_storage( hooman, "reactor_target", "value_float", 100 )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_reactor.lua" )
+			return data
+		end,
 	},
 	BREATH_OF_MARS = {
 		icon = "mods/Noita40K/files/classes/_perks/breath_of_mars.png",
 		name = "$n40_PERK_breath_of_mars", desc = "$n40_PERK_breath_of_mars_",
+		func = function( hooman, data )
+			if( not( pen.vld( pen.magic_storage( hooman, "reactor_limit" ), true ))) then return end
+
+			data.breathing_immune = true
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
+			return data
+		end,
 	},
 	MECHADENDRITES = {
 		icon = "mods/Noita40K/files/classes/_perks/mechadendrites/icon.png",
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
 		func = function( hooman, data ) --figure out stains
+			if( not( pen.vld( pen.magic_storage( hooman, "reactor_limit" ), true ))) then return end
+
 			--add buffer entity (unique name)
 			--is_enabled, movement stats, terrain logic
 			--three legs
@@ -529,6 +531,10 @@ n40.PERKS = {
 			local x, y = EntityGetTransform( hooman )
 			EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/limb.xml", x, y )
 		end,
+	},
+	ETERNAL_VIGILANCE = {
+		icon = "mods/Noita40K/files/classes/_perks/eternal_vigilance.png",
+		name = "$n40_PERK_eternal_vigilance", desc = "$n40_PERK_eternal_vigilance_",
 	},
 }
 
@@ -706,7 +712,7 @@ n40.CLASSES[3].sects = {
 		
 		--items = { "GRENADE_ARC", "GRENADE_ARC" },
 		--equipment = { "SERVOSKULL" },
-		--perks = { "OMNISSIAHS_BLESSING", "ETERNAL_VIGILANCE", "BREATH_OF_MARS" },
+		perks = { "OMNISSIAHS_BLESSING", "BREATH_OF_MARS" }, --"ETERNAL_VIGILANCE",
 	},
 	{
 		name = "$n40_CLASS_3_3", desc = "$n40_CLASS_3_3_",

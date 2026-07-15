@@ -17,16 +17,14 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- beam weapons should apply recoil/damage with a frame-long delay
 -- rmb action should be obtained from controls comp Fire2
 
--- magos perks (all the tech perks should only work if the chacter has a reactor installed)
--- OMNISSIAHS_BLESSING (this has the reactor)
--- BREATH_OF_MARS
--- SICARIAN_ARMOUR
--- UNCHAINED
--- REFRACTOR_FIELD
--- MECHADENDRITES
+-- SICARIAN_ARMOUR (direct damage gets converted to reactor energy; make this part of the ctrl_armor script)
+-- MECHADENDRITES (rewrite)
 
--- distance from grip to barrel should increase the flip force
--- redo reloading system
+--equipment
+-- SERVOSKULL (just flies nearby for now)
+-- REFRACTOR_FIELD (shader + interscepts projectiles and maybe beams, do beam breaking by checking for refractor if beam is gonna hit the player)
+
+-- distance from grip to barrel should affect the flip force
 -- main menu
 -- inventory (three main styles: physical, holographic and psychic)
 -- do class bootup intro animation on world pre update (should block inputs + display tips)
@@ -40,7 +38,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 
 -- ballistic semiauto jamming should still fire the round that ruins the mag except with scpecial effects (slower + different sound)
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
--- taunts should apply a cooldown status effect that prevents stress form dropping and boosts its increase
+-- taunts should apply a cooldown status effect that prevents stress from dropping and boosts its increase
 -- hotkey to automatically throw the first grenade
 -- hotkey to switch to a melee weapon
 -- scope is picture-in-picture zoom shader at the pointer + x1.5 max cam distance
