@@ -1,4 +1,20 @@
-return function( hooman )
+function damage_received( damage, message, entity_thats_responsible, is_fatal )
+	if( damage <= 0 ) then return end
+
+	local hooman = GetUpdatedEntityID()
+	local charge = pen.magic_storage( hooman, "reactor_charge", "value_float", nil, 0 )
+	if( charge > 0 ) then
+		pen.magic_storage( hooman, "reactor_charge", "value_float", charge + 25*damage )
+	else return end
+
+	local dmg_comp = EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" )
+	if( not( pen.vld( dmg_comp, true ))) then return end
+	ComponentSetValue2( dmg_comp, "hp", ComponentGetValue2( dmg_comp, "hp" ) + damage )
+
+	--apply invulner frames
+end
+
+return function( hooman ) --add invulner frames
 	-- local blessing_comp = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "emperors_blessing" )
 	-- local EMBERORS_NUMBER = 0
 	-- if( blessing_comp ~= nil ) then

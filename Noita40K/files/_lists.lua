@@ -264,29 +264,12 @@ n40.PERKS = {
 			ComponentSetValue2( data.plat_comp, "swim_up_buoyancy_coeff", 0.2 )
 			ComponentSetValue2( data.plat_comp, "swim_idle_buoyancy_coeff", 0.1 )
 			ComponentSetValue2( data.plat_comp, "swim_down_buoyancy_coeff", 0 )
-			
-			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
-			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
-			
-			ComponentSetValue2( data.kick_comp, "max_force",
-				20*ComponentGetValue2( data.kick_comp, "max_force" ))
-			ComponentSetValue2( data.kick_comp, "player_kickforce",
-				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
-			ComponentSetValue2( data.kick_comp, "kick_damage",
-				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
-			ComponentSetValue2( data.kick_comp, "kick_knockback",
-				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
 
-			n40.add_resistance( data.dmg_comp, "radioactive", 0.75 )
-			n40.add_resistance( data.dmg_comp, "fire", 0.75 )
-			n40.add_resistance( data.dmg_comp, "ice", 0.75 )
-			n40.add_resistance( data.dmg_comp, "poison", 0.75 )
-			n40.add_resistance( data.dmg_comp, "drill", 0.5 )
-			n40.add_resistance( data.dmg_comp, "physics_hit", 0.5 )
-			n40.add_resistance( data.dmg_comp, "explosion", 0.25 )
-			n40.add_resistance( data.dmg_comp, "projectile", 0.25 )
-			n40.add_resistance( data.dmg_comp, "slice", 0.1 )
-			n40.add_resistance( data.dmg_comp, "melee", 0.1 )
+			EntityAddComponent2( hooman, "LuaComponent", {
+				_tags = "enabled_in_world",
+				script_damage_received = "mods/Noita40K/files/misc/ctrl_armor.lua",
+				execute_every_n_frame = "-1",
+			})
 
 			data.contact_immune = true
 			data.threshold_piercing = 999
@@ -497,10 +480,18 @@ n40.PERKS = {
 		icon = "mods/Noita40K/files/classes/_perks/omnissiahs_blessing.png",
 		name = "$n40_PERK_omnissiahs_blessing", desc = "$n40_PERK_omnissiahs_blessing_",
 		func = function( hooman, data )
+			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
+			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
+
+			n40.add_resistance( data.dmg_comp, "fire", 0.1 )
+			n40.add_resistance( data.dmg_comp, "ice", 0.1 )
+			n40.add_resistance( data.dmg_comp, "poison", 0.1 )
+			n40.add_resistance( data.dmg_comp, "radioactive", 0.1 )
+
 			data.threshold_poison = 999
 			data.threshold_radiation = 999
 			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
-			pen.magic_storage( hooman, "reactor_systems", "value_int", 1 )
+			pen.magic_storage( hooman, "reactor_load", "value_int", 1 )
 			pen.magic_storage( hooman, "reactor_limit", "value_float", 500 )
 			pen.magic_storage( hooman, "reactor_target", "value_float", 100 )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_reactor.lua" )
@@ -511,8 +502,6 @@ n40.PERKS = {
 		icon = "mods/Noita40K/files/classes/_perks/breath_of_mars.png",
 		name = "$n40_PERK_breath_of_mars", desc = "$n40_PERK_breath_of_mars_",
 		func = function( hooman, data )
-			if( not( pen.vld( pen.magic_storage( hooman, "reactor_limit" ), true ))) then return end
-
 			data.breathing_immune = true
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
 			return data
@@ -522,7 +511,8 @@ n40.PERKS = {
 		icon = "mods/Noita40K/files/classes/_perks/mechadendrites/icon.png",
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
 		func = function( hooman, data ) --figure out stains
-			if( not( pen.vld( pen.magic_storage( hooman, "reactor_limit" ), true ))) then return end
+			pen.magic_storage( hooman, "reactor_load", "value_int",
+				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + 1 )
 
 			--add buffer entity (unique name)
 			--is_enabled, movement stats, terrain logic

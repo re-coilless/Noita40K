@@ -10,19 +10,18 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
+-- MECHADENDRITES (rewrite)
+-- SERVOSKULL (follows the player, -5 reactor_load on install, can function as a standalone reactor)
+-- REFRACTOR_FIELD (shader + interscepts projectiles and maybe beams, do beam breaking by checking for refractor if beam is gonna hit the player)
+-- darkfire and volkite status effects
+
+-- put legacy version on drive
 -- matter info is broken due to culling
 -- new magos char sounds
 -- better sound effect system
 -- universal sword script
 -- beam weapons should apply recoil/damage with a frame-long delay
 -- rmb action should be obtained from controls comp Fire2
-
--- SICARIAN_ARMOUR (direct damage gets converted to reactor energy; make this part of the ctrl_armor script)
--- MECHADENDRITES (rewrite)
-
---equipment
--- SERVOSKULL (just flies nearby for now)
--- REFRACTOR_FIELD (shader + interscepts projectiles and maybe beams, do beam breaking by checking for refractor if beam is gonna hit the player)
 
 -- distance from grip to barrel should affect the flip force
 -- main menu
