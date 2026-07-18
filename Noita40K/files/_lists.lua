@@ -202,6 +202,12 @@ n40.PERKS = {
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_armor.lua" )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_breath.lua" )
 
+			pen.magic_storage( hooman, "reactor_load", "value_int",
+				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + 4 )
+			pen.magic_storage( hooman, "reactor_limit", "value_float", 250 )
+			pen.magic_storage( hooman, "reactor_target", "value_float", 200 )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_reactor.lua" )
+
 			return data
 		end,
 	},
@@ -266,10 +272,12 @@ n40.PERKS = {
 			ComponentSetValue2( data.plat_comp, "swim_down_buoyancy_coeff", 0 )
 
 			EntityAddComponent2( hooman, "LuaComponent", {
-				_tags = "enabled_in_world",
 				script_damage_received = "mods/Noita40K/files/misc/ctrl_armor.lua",
-				execute_every_n_frame = "-1",
+				execute_every_n_frame = -1,
 			})
+
+			pen.magic_storage( hooman, "reactor_load", "value_int",
+				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + 3 )
 
 			data.contact_immune = true
 			data.threshold_piercing = 999
@@ -303,14 +311,7 @@ n40.PERKS = {
 			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
 			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
 			
-			ComponentSetValue2( data.kick_comp, "max_force",
-				20*ComponentGetValue2( data.kick_comp, "max_force" ))
-			ComponentSetValue2( data.kick_comp, "player_kickforce",
-				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
-			ComponentSetValue2( data.kick_comp, "kick_damage",
-				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
-			ComponentSetValue2( data.kick_comp, "kick_knockback",
-				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
+			n40.add_strength( data.kick_comp, 0.4 )
 
 			n40.add_resistance( data.dmg_comp, "radioactive", 0.75 )
 			n40.add_resistance( data.dmg_comp, "fire", 0.75 )
@@ -384,15 +385,7 @@ n40.PERKS = {
 		func = function( hooman, data )
 			--requires ossmodula
 			ComponentSetValue2( data.char_comp, "mass", 2 + ComponentGetValue2( data.char_comp, "mass" ))
-			
-			ComponentSetValue2( data.kick_comp, "max_force",
-				20*ComponentGetValue2( data.kick_comp, "max_force" ))
-			ComponentSetValue2( data.kick_comp, "player_kickforce",
-				20*ComponentGetValue2( data.kick_comp, "player_kickforce" ))
-			ComponentSetValue2( data.kick_comp, "kick_damage",
-				25*ComponentGetValue2( data.kick_comp, "kick_damage" ))
-			ComponentSetValue2( data.kick_comp, "kick_knockback",
-				10*ComponentGetValue2( data.kick_comp, "kick_knockback" ))
+			n40.add_strength( data.kick_comp, 1 )
 		end,
 	},
 	LARRAMAN = {
@@ -483,6 +476,8 @@ n40.PERKS = {
 			ComponentSetValue2( data.dmg_comp, "fire_damage_ignited_amount", 0 )
 			ComponentSetValue2( data.dmg_comp, "fire_probability_of_ignition", 0 )
 
+			n40.add_strength( data.kick_comp )
+
 			n40.add_resistance( data.dmg_comp, "fire", 0.1 )
 			n40.add_resistance( data.dmg_comp, "ice", 0.1 )
 			n40.add_resistance( data.dmg_comp, "poison", 0.1 )
@@ -491,10 +486,13 @@ n40.PERKS = {
 			data.threshold_poison = 999
 			data.threshold_radiation = 999
 			n40.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
-			pen.magic_storage( hooman, "reactor_load", "value_int", 1 )
+
+			pen.magic_storage( hooman, "reactor_load", "value_int",
+				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) - 1 )
 			pen.magic_storage( hooman, "reactor_limit", "value_float", 500 )
 			pen.magic_storage( hooman, "reactor_target", "value_float", 100 )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_reactor.lua" )
+
 			return data
 		end,
 	},
@@ -512,14 +510,16 @@ n40.PERKS = {
 		name = "$n40_PERK_mechadendrites", desc = "$n40_PERK_mechadendrites_",
 		func = function( hooman, data ) --figure out stains
 			pen.magic_storage( hooman, "reactor_load", "value_int",
-				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + 1 )
-
-			--add buffer entity (unique name)
-			--is_enabled, movement stats, terrain logic
-			--three legs
+				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + 2 )
 
 			local x, y = EntityGetTransform( hooman )
-			EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/limb.xml", x, y )
+			local root_id = EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/root.xml", x, y )
+			EntityAddChild( hooman, root_id )
+
+			for i = 1,3 do
+				local limb_id = EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/limb.xml", x, y )
+				EntityAddChild( root_id, limb_id )
+			end
 		end,
 	},
 	ETERNAL_VIGILANCE = {

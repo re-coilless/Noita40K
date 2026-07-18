@@ -1,16 +1,33 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
-local hooman = GetUpdatedEntityID()
-local is_enabled = true--( ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "dendrites_active" ), "value_bool" )
+local root_id = GetUpdatedEntityID()
+local hooman = EntityGetRootEntity( root_id )
+local limbs = EntityGetAllChildren( root_id )
 
---pass down is_enabled onto all limbs
---scan the section for attachement points
---if at least one leg is attached, apply force on the character
+local is_enabled = pen.magic_storage( root_id, "is_active", "value_bool" )
+if( is_enabled ) then
+	is_enabled = pen.magic_storage( hooman, "reactor_charge", "value_float", nil, 0 ) > 0 end
+if( not( is_enabled )) then
+	for i,limb_id in ipairs( limbs ) do
+		pen.magic_storage( limb_id, "is_active", "value_bool", false )
+	end
+	return
+end
 
---valid distance to the ground is deformed based on speed so the back will get less
---if can't connect search in other parts but only if less than two connected
---maintain set height above ground
+local force = pen.magic_storage( root_id, "force", "value_float" )
 
+--get the leg count
+--split the area into equal sections
+--scan each section for attachment points
+--if at least one leg is attached, apply force to the character based on input
+
+--mark the zones that are empty and repeat the scans in other sections if less than 2 legs are valid
+--add exclusion areas for already valid positions so no two legs are the same
+--shift the center of search distance towards the direction the player is trying to move
+--max search distance should be slightly less than max allowed limb stretch (get this dynamically)
+--if player is not holding shift, prevent moving further than max distance from the closest wall (use surface normal for this)
+
+--[[
 if( is_enabled ) then
 	local gravity = ComponentGetValue2( EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" ), "pixel_gravity" )/60
 	local v_x, v_y = GameGetVelocityCompVelocity( hooman )
@@ -208,3 +225,4 @@ if( is_enabled ) then
 		ComponentSetValueVector2( char_comp, "mVelocity", final_v_x, final_v_y )
 	end
 end
+]]

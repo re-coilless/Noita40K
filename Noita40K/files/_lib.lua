@@ -6,6 +6,18 @@ function n40.add_resistance( dmg_comp, type, multiplier )
 	ComponentObjectSetValue2( dmg_comp, "damage_multipliers", type, multiplier*v )
 end
 
+function n40.add_strength( kick_comp, k )
+	k = k or 0.5
+	ComponentSetValue2( kick_comp, "max_force",
+		10*math.log( k*100*ComponentGetValue2( kick_comp, "max_force" ), 10 ))
+	ComponentSetValue2( kick_comp, "player_kickforce",
+		10*math.log( k*100*ComponentGetValue2( kick_comp, "player_kickforce" ), 10 ))
+	ComponentSetValue2( kick_comp, "kick_knockback",
+		5*math.log( k*100*ComponentGetValue2( kick_comp, "kick_knockback" ), 10 ))
+	ComponentSetValue2( kick_comp, "kick_damage",
+		2*math.log( k*100*ComponentGetValue2( kick_comp, "kick_damage" ), 10 ))
+end
+
 function n40.add_effect( hooman, effect_id, frames )
 	ComponentSetValue2( GetGameEffectLoadTo( hooman, effect_id, true ), "frames", frames or -1 )
 end

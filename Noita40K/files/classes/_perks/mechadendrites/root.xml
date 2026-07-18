@@ -1,0 +1,23 @@
+<Entity name="mechadendrites" >
+	<LuaComponent
+		script_source_file="mods/Noita40K/files/classes/_perks/mechadendrites/logic.lua"
+		execute_every_n_frame="1"
+	></LuaComponent>
+
+	<VariableStorageComponent
+		name="is_active"
+		value_bool="1"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="force"
+		value_float="10"
+	></VariableStorageComponent>
+	<VariableStorageComponent
+		name="range"
+		value_float="33"
+	></VariableStorageComponent>
+	
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+</Entity>

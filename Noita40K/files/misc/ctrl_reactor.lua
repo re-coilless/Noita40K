@@ -1,7 +1,7 @@
 return function( hooman )
     local charge = pen.magic_storage( hooman, "reactor_charge", "value_float", nil, 0 )
     local limit = pen.magic_storage( hooman, "reactor_limit", "value_float", nil, 500 )
-    if( charge < 0 or charge > limit ) then
+    if( charge > limit ) then
         --[[
         if( energy_cur > energy_cap ) then
             if( not( EntityHasTag( hooman, "system_overload" ))) then
@@ -17,10 +17,6 @@ return function( hooman )
         ]]
 
         --apply system overload and only remove it once the charge gets above 0 again
-        if( charge > 0 ) then
-            --damage hp slightly by causing an explosion
-        end
-
         charge = -limit/5
     end
     
@@ -29,6 +25,6 @@ return function( hooman )
     local is_draining = charge > pen.magic_storage( hooman, "reactor_target", "value_float", nil, 100 )
     local delta = pen.rat( math.min( load, load_limit ), load_limit )
     if( is_draining ) then delta = 2*( 1 - delta ) end
-    
+
     pen.magic_storage( hooman, "reactor_charge", "value_float", charge + delta/10 )
 end
