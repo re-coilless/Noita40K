@@ -35,6 +35,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- madness combat style hands
 -- make trailing red eyes for rage modes
 
+-- steal wolfensteins perk system (achievement-locked minor general gameplay rewards)
 -- ballistic semiauto jamming should still fire the round that ruins the mag except with scpecial effects (slower + different sound)
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)
 -- taunts should apply a cooldown status effect that prevents stress from dropping and boosts its increase

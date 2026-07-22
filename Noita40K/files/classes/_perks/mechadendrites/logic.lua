@@ -1,6 +1,7 @@
 dofile_once( "mods/Noita40K/files/_lib.lua" )
 
 local root_id = GetUpdatedEntityID()
+local x, y = EntityGetTransform( root_id )
 local hooman = EntityGetRootEntity( root_id )
 local limbs = EntityGetAllChildren( root_id )
 
@@ -14,17 +15,51 @@ if( not( is_enabled )) then
 	return
 end
 
+--shift the center of search distance towards the direction the player is trying to move
+
+local section = math.rad( 360 )/#limbs
+local step = math.rad( pen.magic_storage( root_id, "step", "value_float" ))
+local amount = math.floor( section/step )
+
+pen.t.loop( limbs, function( i,limb_id )
+	if( pen.magic_storage( limb_id, "is_active", "value_bool" )) then
+		if( pen.magic_storage( limb_id, "is_going", "value_bool" )) then return end
+
+		local acc = 2.5
+		local c_x, c_y = EntityGetTransform( pen.get_child( limb_id, "foot" ))
+		local check_1 = RaytracePlatforms( c_x - acc, c_y - acc, c_x + acc, c_y + acc )
+		local check_2 = RaytracePlatforms( c_x - acc, c_y + acc, c_x + acc, c_y - acc )
+		
+		if( check_1 and check_2 ) then return end
+	end
+
+	local is_done = false
+	local range = pen.magic_storage(
+		limb_id, "max_length", "value_float" ) - 5
+	local sweep = math.rad( -90 ) + ( i - 1 )*section
+	for k = 0,amount do
+		local t_x = x + range*math.cos( sweep )
+		local t_y = y + range*math.sin( sweep )
+		local is_hit, hit_x, hit_y = RaytracePlatforms( x, y, t_x, t_y )
+		if( is_hit ) then --check for exclusion areas
+			is_done = true
+			pen.magic_storage( limb_id, "is_active", "value_bool", true )
+			pen.magic_storage( limb_id, "target_x", "value_float", hit_x )
+			pen.magic_storage( limb_id, "target_y", "value_float", hit_y )
+			break
+		end
+
+		sweep = sweep + step
+	end
+
+	if( not( is_done )) then pen.magic_storage( limb_id, "is_active", "value_bool", false ) end
+end)
+
 local force = pen.magic_storage( root_id, "force", "value_float" )
 
---get the leg count
---split the area into equal sections
---scan each section for attachment points
+--apply force based on target (through PID)
 --if at least one leg is attached, apply force to the character based on input
-
 --mark the zones that are empty and repeat the scans in other sections if less than 2 legs are valid
---add exclusion areas for already valid positions so no two legs are the same
---shift the center of search distance towards the direction the player is trying to move
---max search distance should be slightly less than max allowed limb stretch (get this dynamically)
 --if player is not holding shift, prevent moving further than max distance from the closest wall (use surface normal for this)
 
 --[[

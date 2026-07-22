@@ -13,8 +13,8 @@
 		value_float="10"
 	></VariableStorageComponent>
 	<VariableStorageComponent
-		name="range"
-		value_float="33"
+		name="step"
+		value_float="5"
 	></VariableStorageComponent>
 	
 	<InheritTransformComponent
