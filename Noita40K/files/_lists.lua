@@ -143,7 +143,7 @@ n40.EQUIPMENT = {
 	-- utility
 	SERVOSKULL = {
 		name = "$n40_EQUIPMENT_servoskull", desc = "$n40_EQUIPMENT_servoskull_",
-		path = "",
+		path = "", --five variants: Janus, Hemera, Eunomia, Limos, Oizys
 	},
 	OSCULANT_DEVICE = {
 		name = "$n40_EQUIPMENT_osculant_device", desc = "$n40_EQUIPMENT_osculant_device_",

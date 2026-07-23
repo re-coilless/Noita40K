@@ -24,7 +24,7 @@ return function( hooman )
     local load = math.max( pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ), 1 )
     local is_draining = charge > pen.magic_storage( hooman, "reactor_target", "value_float", nil, 100 )
     local delta = pen.rat( math.min( load, load_limit ), load_limit )
-    if( is_draining ) then delta = 2*( 1 - delta ) end
+    if( is_draining ) then delta = -2*( 1 - delta ) end
 
     pen.magic_storage( hooman, "reactor_charge", "value_float", charge + delta/10 )
 end

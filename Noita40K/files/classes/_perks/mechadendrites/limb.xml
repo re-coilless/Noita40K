@@ -4,48 +4,18 @@
 		execute_every_n_frame="1"
 	></LuaComponent>
 	
-	<VariableStorageComponent
-		name="is_active"
-		value_bool="1"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="is_going"
-		value_bool="0"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="may_flip"
-		value_bool="1"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="is_active" value_bool="1" />
+	<VariableStorageComponent name="is_going" value_bool="0" />
+	<VariableStorageComponent name="may_flip" value_bool="1" />
 	
-	<VariableStorageComponent
-		name="limits"
-		value_string="|12|6|0.5|14|8|15|"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="max_length"
-		value_float="39"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="morph_length"
-		value_float="25"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="speed"
-		value_float="0.4"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="limits" value_string="|12|6|0.5|14|8|15|" />
+	<VariableStorageComponent name="max_length" value_float="39" />
+	<VariableStorageComponent name="morph_length" value_float="25" />
+	<VariableStorageComponent name="speed" value_float="0.4" />
 
-	<VariableStorageComponent
-		name="target_x"
-		value_float="0"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="target_y"
-		value_float="0"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="absolute_mode"
-		value_bool="1"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="target_x" value_float="0" />
+	<VariableStorageComponent name="target_y" value_float="0" />
+	<VariableStorageComponent name="absolute_mode" value_bool="1" />
 	
 	<InheritTransformComponent
 		use_root_parent="1"

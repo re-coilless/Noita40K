@@ -4,18 +4,14 @@
 		execute_every_n_frame="1"
 	></LuaComponent>
 
-	<VariableStorageComponent
-		name="is_active"
-		value_bool="1"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="force"
-		value_float="10"
-	></VariableStorageComponent>
-	<VariableStorageComponent
-		name="step"
-		value_float="5"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="is_active" value_bool="1" />
+	
+	<VariableStorageComponent name="decay" value_float="0.9" />
+	<VariableStorageComponent name="force" value_float="25" />
+
+	<VariableStorageComponent name="step" value_float="5" />
+	<VariableStorageComponent name="min_range" value_float="5" />
+	<VariableStorageComponent name="max_range" value_float="30" />
 	
 	<InheritTransformComponent
 		use_root_parent="1"
