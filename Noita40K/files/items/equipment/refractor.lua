@@ -1,5 +1,29 @@
-dofile_once( "mods/Noita40K/files/scripts/libs/black_library.lua" )
+if( index.M.is_updating ) then
+	return function( inv_info, item_info, is_out )
+		local hooman = index.D.player_id
+		if( not( is_out )) then
+			local path = "mods/Noita40K/files/items/equipment/refractor_vis.xml"
+			EntityAddChild( hooman, EntityLoad( path, unpack( index.D.player_xy )))
+		else EntityKill( pen.get_child( hooman, "equipment_refractor_vis" ) or 0 ) end
+	end
+else
+	return function( info )
+		local xD, xM = index.D, index.M
 
+		--add heat
+		--do beam breaking by checking for refractor if beam is gonna hit the player
+
+		local hooman = xD.player_id
+		local vis_id = pen.get_child( hooman, "equipment_refractor_vis" )
+		if( not( pen.vld( vis_id, true ))) then return end
+
+		--if energy over 0, do the shit
+		--convert projectile damage to heat and energy drain
+		--sounds and shaders
+	end
+end
+
+--[[
 local hooman = GetUpdatedEntityID()
 local char_x, char_y = EntityGetFirstHitboxCenter( hooman )
 
@@ -67,3 +91,4 @@ else
 		set_shader( hooman, "refractor_effect" )
 	end
 end
+]]

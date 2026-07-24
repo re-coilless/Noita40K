@@ -127,7 +127,7 @@ n40.EQUIPMENT = {
 	},
 	REFRACTOR_FIELD = {
 		name = "$n40_EQUIPMENT_refractor", desc = "$n40_EQUIPMENT_refractor_",
-		path = "",
+		path = "mods/Noita40K/files/items/equipment/refractor.xml",
 	},
 
 	-- mobility
@@ -141,9 +141,14 @@ n40.EQUIPMENT = {
 	},
 
 	-- utility
-	SERVOSKULL = {
-		name = "$n40_EQUIPMENT_servoskull", desc = "$n40_EQUIPMENT_servoskull_",
-		path = "", --five variants: Janus, Hemera, Eunomia, Limos, Oizys
+	SERVOSKULL_E = {
+		--Limos (steals charge)
+		--Apollo (UV flashlight and scanners)
+		--Hermes (storage)
+		--Oizys (psychic)
+		--Eclipsae (matter manipulation)
+		name = "$n40_EQUIPMENT_servoskull_e", desc = "$n40_EQUIPMENT_servoskull_e_",
+		path = "mods/Noita40K/files/items/equipment/servoskull_e/item.xml",
 	},
 	OSCULANT_DEVICE = {
 		name = "$n40_EQUIPMENT_osculant_device", desc = "$n40_EQUIPMENT_osculant_device_",
@@ -515,7 +520,11 @@ n40.PERKS = {
 			local x, y = EntityGetTransform( hooman )
 			local root_id = EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/root.xml", x, y )
 			EntityAddChild( hooman, root_id )
-
+			
+			local c_x, c_y = pen.get_creature_centre( hooman )
+			local trans_comp = EntityGetFirstComponentIncludingDisabled( root_id, "InheritTransformComponent" )
+        	ComponentSetValue2( trans_comp, "Transform", c_x - x, c_y - y, 1, 1, 0 )
+			
 			for i = 1,3 do
 				local limb_id = EntityLoad( "mods/Noita40K/files/classes/_perks/mechadendrites/limb.xml", x, y )
 				EntityAddChild( root_id, limb_id )
@@ -701,7 +710,6 @@ n40.CLASSES[3].sects = {
 		name = "$n40_CLASS_3_2", desc = "$n40_CLASS_3_2_",
 		
 		--items = { "GRENADE_ARC", "GRENADE_ARC" },
-		--equipment = { "SERVOSKULL" },
 		perks = { "OMNISSIAHS_BLESSING", "BREATH_OF_MARS" }, --"ETERNAL_VIGILANCE",
 	},
 	{
@@ -719,7 +727,7 @@ n40.CLASSES[3].sects[2].chars = {
 		-- main = "mods/Noita40K/files/pics/codex_gfx/tech_priest_magos_explorator.png",
 		
 		guns = { "VOLKITE_PISTOL", "DARKFIRE_RIFLE", "SWORD_SOLLEX", "LASGUN_MITRA" },
-		--equipment_add = { "REFRACTOR_FIELD" },
+		equipment_add = { "REFRACTOR_FIELD", "SERVOSKULL_E" },
 		skin = "ARMOR_SICARIAN", perks_add = { "MECHADENDRITES", "UNCHAINED" },
 	},
 }

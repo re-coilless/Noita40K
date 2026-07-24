@@ -1,0 +1,37 @@
+<Entity name="equipment_servoskull_e_vis">
+	<SpriteComponent 
+		_tags="character"
+		alpha="1" 
+		image_file="mods/Noita40K/files/items/equipment/servoskull_e/body_pic.xml" 
+		next_rect_animation="" 
+		offset_x="4"
+		offset_y="5"
+		z_index="1"
+		rect_animation="hover"
+	></SpriteComponent>
+	
+	<SpriteAnimatorComponent
+		rotate_to_surface_normal="0" 
+		target_sprite_comp_name="character"
+	></SpriteAnimatorComponent>
+	
+	<HotspotComponent
+		_tags="limb_1"
+		sprite_hotspot_name="limb_1"
+	></HotspotComponent>
+	
+	<Entity> 
+		<Base file="mods/Noita40K/files/items/equipment/servoskull_e/limb_1.xml">
+		</Base>
+	</Entity>
+	
+	<HotspotComponent
+		_tags="limb_2"
+		sprite_hotspot_name="limb_2"
+	></HotspotComponent>
+	
+	<Entity> 
+		<Base file="mods/Noita40K/files/items/equipment/servoskull_e/limb_2.xml">
+		</Base>
+	</Entity>
+</Entity>

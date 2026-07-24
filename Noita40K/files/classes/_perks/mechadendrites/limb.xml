@@ -18,7 +18,7 @@
 	<VariableStorageComponent name="absolute_mode" value_bool="1" />
 	
 	<InheritTransformComponent
-		use_root_parent="1"
+		use_root_parent="0"
 	></InheritTransformComponent>
 	
 	<Entity><Base file="mods/Noita40K/files/classes/_perks/mechadendrites/module_1A.xml"></Base></Entity>

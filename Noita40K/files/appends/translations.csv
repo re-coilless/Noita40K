@@ -99,8 +99,8 @@ n40_EQUIPMENT_jumppack_l_,"Bulky and unviewdly, it's about the only man-portable
 n40_EQUIPMENT_jumppack_l_upgrade,jumppack upgrade,,,,,,,,,,,,,
 n40_EQUIPMENT_jumppack_l_upgrade_,jumppack upgrade,,,,,,,,,,,,,
 
-n40_EQUIPMENT_servoskull,Servo-skull,,,,,,,,,,,,,
-n40_EQUIPMENT_servoskull_,"A Servo-skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. Your model was drastically redesigned to better serve its master: it is able to perform low level operations with highly hazardous xenotech, store certain types of data and process any matter into its basic components. You may interact with the red buttons on the servointerface via the [RMB].",,,,,,,,,,,,,
+n40_EQUIPMENT_servoskull_e,Servo-Skull (Eunomia Pattern),,,,,,,,,,,,,
+n40_EQUIPMENT_servoskull_e_,"A Servo-Skull is a drone-like robotic device that appears to be a human skull outfitted with electronic or cybernetic components that utilise embedded anti-gravity field generators to allow them to hover and drift bodiless through the air. This model is designed to integrated closely with owner's reactor system, lessening the power network load.",,,,,,,,,,,,,
 n40_EQUIPMENT_osculant_device,osculant device,,,,,,,,,,,,,
 n40_EQUIPMENT_osculant_device_,osculant device,,,,,,,,,,,,,
 
