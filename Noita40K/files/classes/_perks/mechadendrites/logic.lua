@@ -63,8 +63,9 @@ if( not( is_valid )) then return end
 
 --wriggling sound
 
-local decay = pen.magic_storage( root_id, "decay", "value_float" )
 local force = pen.magic_storage( root_id, "force", "value_float" )
+local decay = pen.magic_storage( root_id, "decay", "value_float" )
+local resistance = pen.magic_storage( root_id, "resistance", "value_float" )
 local ctrl_comp = EntityGetFirstComponentIncludingDisabled( hooman, "ControlsComponent" )
 local char_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterDataComponent" )
 local plat_comp = EntityGetFirstComponentIncludingDisabled( hooman, "CharacterPlatformingComponent" )
@@ -74,14 +75,16 @@ local s_down = ComponentGetValue2( ctrl_comp, "mButtonDownDown" )
 local a_down = ComponentGetValue2( ctrl_comp, "mButtonDownLeft" )
 local d_down = ComponentGetValue2( ctrl_comp, "mButtonDownRight" )
 local v_x, v_y = ComponentGetValue2( char_comp, "mVelocity" )
+v_x, v_y = resistance*v_x, resistance*v_y
 
 local a_name = "fly_idle"
-if( not( w_down and s_down and a_down and d_down )) then
+if( not( w_down or s_down or a_down or d_down )) then
 	v_x, v_y = decay*v_x, decay*v_y
 else a_name = "fly_move" end
 
 --check distance to walls in all directions (elongated cross checks the size of hitbox)
 --prevent moving closer than min allowed and further than max allowed unless shift is held
+--holding shift with no keys pressed divides the decay by 10
 
 v_y = v_y - pen.get_gravity( hooman )
 if( w_down ) then v_y = v_y - force/2 end

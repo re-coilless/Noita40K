@@ -2,6 +2,8 @@ if( index.M.is_updating ) then
 	return function( inv_info, item_info, is_out )
 		local hooman = index.D.player_id
 		if( not( is_out )) then
+			--add 200 to max reactor load and increase target charge by 100
+			--store heat on the item itself once taken off and then apply back
 			local path = "mods/Noita40K/files/items/equipment/refractor_vis.xml"
 			EntityAddChild( hooman, EntityLoad( path, unpack( index.D.player_xy )))
 		else EntityKill( pen.get_child( hooman, "equipment_refractor_vis" ) or 0 ) end
@@ -10,85 +12,56 @@ else
 	return function( info )
 		local xD, xM = index.D, index.M
 
-		--add heat
-		--do beam breaking by checking for refractor if beam is gonna hit the player
+		--do beam breaking by checking for refractor callback inside pen.raytrace_entities if beam is gonna hit the player
 
 		local hooman = xD.player_id
 		local vis_id = pen.get_child( hooman, "equipment_refractor_vis" )
 		if( not( pen.vld( vis_id, true ))) then return end
-
-		--if energy over 0, do the shit
-		--convert projectile damage to heat and energy drain
-		--sounds and shaders
-	end
-end
-
---[[
-local hooman = GetUpdatedEntityID()
-local char_x, char_y = EntityGetFirstHitboxCenter( hooman )
-
-local storage_energy_cap = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "energy_cap" )
-local storage_energy_cur = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "energy_cur" )
-local storage_state = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "refractor_online" )
-local energy_cap = ComponentGetValue2( storage_energy_cap, "value_float" )
-local energy_cur = ComponentGetValue2( storage_energy_cur, "value_float" )
-local is_online = ComponentGetValue2( storage_state, "value_bool" )
-
-local radius = 30
-local visuals = ModSettingGetNextValue( "Noita40K.REFRACTOR_VISUALS" )
-if( energy_cur > 0 and energy_cur <= energy_cap ) then
-	if( not( is_online )) then
-		GamePlaySound( "mods/Noita40K/files/40K.bank", "player/refractor_field/on", char_x, char_y )
-		ComponentSetValue2( storage_state, "value_bool", true )
-	end
-	
-	local is_hit = false
-	local projectiles = EntityGetInRadiusWithTag( char_x, char_y, radius, "projectile" ) or {}
-	if( #projectiles > 0 ) then
-		for i,projectile_id in ipairs( projectiles ) do
-			local proj_comp = EntityGetFirstComponentIncludingDisabled( projectile_id, "ProjectileComponent" )
-			if( hooman ~= ComponentGetValue2( proj_comp, "mWhoShot" )) then
-				local proj_x, proj_y = EntityGetTransform( projectile_id )
-				local proj_damage = ComponentGetValue2( proj_comp, "damage" )*25
-				local hidden = RaytracePlatforms( char_x, char_y, proj_x, proj_y )
-				
-				if( not( hidden ) and proj_damage <= energy_cur ) then
-					local dam_per = ( proj_damage + 1 )/29.0
-					GameCreateParticle( "plasma_unstable", proj_x, proj_y, 5*math.ceil( 10*dam_per ), 150, 150, true )
-					is_hit = true
-					
-					EntityKill( projectile_id )
-					GamePlaySound( "mods/Noita40K/files/40K.bank", "player/refractor_field/refraction", proj_x, proj_y )
-					
-					ComponentSetValue2( storage_energy_cur, "value_float", energy_cur - math.abs( proj_damage ))
-				end
+		local x, y = EntityGetTransform( vis_id )
+		
+		pen.c.refractor_sfx = pen.c.refractor_sfx or {}
+		pen.c.refractor_sfx[ vis_id ] = pen.c.refractor_sfx[ vis_id ] or false
+		local charge = pen.magic_storage( hooman, "reactor_charge", "value_float", nil, 0 )
+		if( charge < 0 ) then
+			if( not( pen.c.refractor_sfx[ vis_id ])) then
+				GamePlaySound( "mods/Noita40K/files/40K.bank", "items/refractor/off", x, y )
+				pen.c.refractor_sfx[ vis_id ] = true
 			end
+			
+			--set_shader( hooman, "refractor_effect" )
+			return
+		elseif( pen.c.refractor_sfx[ vis_id ]) then
+			GamePlaySound( "mods/Noita40K/files/40K.bank", "items/refractor/on", x, y )
+			pen.c.refractor_sfx[ vis_id ] = false
 		end
-	end
-	
-	if( visuals ) then
-		local gui = GuiCreate()
-		GuiStartFrame( gui )
-		local w, h = GuiGetScreenDimensions( gui )
-		GuiDestroy( gui )
 		
-		local shit_from_ass = w/( MagicNumbersGetValue( "VIRTUAL_RESOLUTION_X" ) + MagicNumbersGetValue( "VIRTUAL_RESOLUTION_OFFSET_X" ))
-		local c_x, c_y = GameGetCameraPos()
+		local is_hit = false
+		local radius = pen.magic_storage( info.id, "range", "value_float" )
+		local efficiency = 1 - pen.magic_storage( info.id, "efficiency", "value_float" )
+		pen.t.loop( EntityGetInRadiusWithTag( x, y, radius, "projectile" ), function( i, proj_id )
+			local proj_comp = EntityGetFirstComponentIncludingDisabled( proj_id, "ProjectileComponent" )
+			if( hooman == ComponentGetValue2( proj_comp, "mWhoShot" )) then return end
+			
+			local p_x, p_y = EntityGetTransform( proj_id )
+			if( RaytracePlatforms( x, y, p_x, p_y )) then return end
+			local damage = 25*math.abs( ComponentGetValue2( proj_comp, "damage" ))/2
+			if( damage > charge ) then return end
+			EntityKill( proj_id )
+			is_hit = true
+
+			--better emitter
+			GameCreateParticle( "plasma_unstable",
+				p_x, p_y, 5*math.ceil( 10*( damage + 1 )/29 ), 150, 150, true )
+			GamePlaySound( "mods/Noita40K/files/40K.bank", "items/refractor/refraction", p_x, p_y )
+			
+			local heat = pen.magic_storage( vis_id, "heat", "value_float" ) or 0
+			pen.magic_storage( vis_id, "heat", "value_float", heat + damage*efficiency )
+			pen.magic_storage( hooman, "reactor_charge", "value_float", charge - damage )
+		end)
 		
-		local shader_x = ( w/2 + shit_from_ass*( char_x - c_x ))/w
-		local shader_y = ( h/2 - shit_from_ass*( char_y - c_y ))/h
-		set_shader( hooman, "refractor_effect", false, shader_x, shader_y, is_hit and 50 or 25, is_hit and 3.5 or 1 )
-	else
-		set_shader( hooman, "refractor_effect" )
-	end
-else
-	if( is_online ) then
-		GamePlaySound( "mods/Noita40K/files/40K.bank", "player/refractor_field/off", char_x, char_y )
-		ComponentSetValue2( storage_state, "value_bool", false )
-	end
-	
-	if( visuals ) then
-		set_shader( hooman, "refractor_effect" )
+		local w, h = pen.get_screen_data()
+		local shader_x, shader_y = pen.world2gui( x, y )
+		shader_x, shader_y = ( shader_x )/w, ( h - shader_y )/h
+		pen.set_uniform( "refractor_effect", shader_x, shader_y, is_hit and 50 or 25, is_hit and 3.5 or 1 )
 	end
 end
-]]

@@ -11,8 +11,8 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appen
 -- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
 -- darkfire and volkite status effects
+-- put legacy version in github releases (change the directory name and fix critical bugs)
 
--- put legacy version on drive
 -- matter info is broken due to culling
 -- new magos char sounds
 -- better sound effect system
@@ -79,6 +79,7 @@ function OnModInit()
 		for i,v in ipairs( rot ) do ModSettingRemove( "Noita40K."..v ) end
 	end
 
+	pen.add_shaders( "mods/Noita40K/files/appends/shaders.frag" )
 	pen.add_translations( "mods/Noita40K/files/appends/translations.csv" )
 	pen.magic_append( "mods/index_core/files/_structure.lua", "mods/Noita40K/files/appends/index.lua", true )
 

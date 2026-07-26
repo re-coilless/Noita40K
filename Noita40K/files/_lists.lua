@@ -497,6 +497,7 @@ n40.PERKS = {
 			pen.magic_storage( hooman, "reactor_limit", "value_float", 500 )
 			pen.magic_storage( hooman, "reactor_target", "value_float", 100 )
 			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_reactor.lua" )
+			n40.add_vector_ctrl( hooman, "mods/Noita40K/files/misc/ctrl_status.lua" )
 
 			return data
 		end,

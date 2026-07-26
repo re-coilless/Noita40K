@@ -15,7 +15,7 @@
 	></SpriteComponent>
 	
 	<VariableStorageComponent name="heat_max" value_float="100" />
-	<VariableStorageComponent name="heat_loss" value_float="0.995" />
+	<VariableStorageComponent name="heat_loss" value_float="0.999" />
 	
 	<InheritTransformComponent
 		parent_hotspot_tag="back"

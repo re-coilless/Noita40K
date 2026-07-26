@@ -1,4 +1,6 @@
 function damage_received( damage, message, entity_thats_responsible, is_fatal )
+	dofile_once( "mods/Noita40K/files/_lib.lua" )
+	
 	if( damage <= 0 ) then return end
 
 	local hooman = GetUpdatedEntityID()
@@ -12,6 +14,7 @@ function damage_received( damage, message, entity_thats_responsible, is_fatal )
 	ComponentSetValue2( dmg_comp, "hp", ComponentGetValue2( dmg_comp, "hp" ) + damage )
 
 	--apply invulner frames
+	--electric damage type deals x10 the charge and leaks 10% of hp damage
 end
 
 return function( hooman ) --add invulner frames
