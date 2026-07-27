@@ -162,8 +162,8 @@
 		></Graphics>
 		
 		<StatusEffects>
-			<Stains> <StatusEffect type="LIFE_EATER_INFECTION" /> </Stains>
-			<Ingestion> <StatusEffect type="LIFE_EATER_INFECTION" amount="0.002" /> </Ingestion>
+			<Stains> <StatusEffect type="LIFE_EATER" /> </Stains>
+			<Ingestion> <StatusEffect type="LIFE_EATER" amount="0.002" /> </Ingestion>
 		</StatusEffects>
 	</CellData>
 	
@@ -220,8 +220,8 @@
 		></Graphics>
 		
 		<StatusEffects>
-			<Stains> <StatusEffect type="LIFE_EATER_INFECTION" /> </Stains>
-			<Ingestion> <StatusEffect type="LIFE_EATER_INFECTION" amount="0.002" /> </Ingestion>
+			<Stains> <StatusEffect type="LIFE_EATER" /> </Stains>
+			<Ingestion> <StatusEffect type="LIFE_EATER" amount="0.002" /> </Ingestion>
 		</StatusEffects>
 	</CellData>
 	
@@ -259,7 +259,7 @@
 		></Graphics>
 		
 		<StatusEffects>
-			<Stains> <StatusEffect type="LIFE_EATER_INFECTION" /> </Stains>
+			<Stains> <StatusEffect type="LIFE_EATER" /> </Stains>
 		</StatusEffects>
 	</CellData>
 	

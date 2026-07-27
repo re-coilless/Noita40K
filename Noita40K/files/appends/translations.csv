@@ -410,3 +410,16 @@ n40_MATTER_osculant_matter,Osculant Matter,,,,,,,,,,,,,
 n40_MATTER_spook,Spook,,,,,,,,,,,,,
 n40_MATTER_unrefined_auramite,Unrefined Auramite,,,,,,,,,,,,,
 n40_MATTER_plasteel,Plasteel,,,,,,,,,,,,,
+
+
+
+n40_EFFECT_life_eater,Life-Eater Virus,,,,,,,,,,,,,
+n40_EFFECT_life_eater_,If you see this it is already too late...,,,,,,,,,,,,,
+n40_EFFECT_ruptorinferno,Ruptor Inferno,,,,,,,,,,,,,
+n40_EFFECT_ruptorinferno_,You are being maintained.,,,,,,,,,,,,,
+n40_EFFECT_bioinferno,Bio Inferno,,,,,,,,,,,,,
+n40_EFFECT_bioinferno_,There's something inside of you. And it's burning...,,,,,,,,,,,,,
+n40_EFFECT_promethium_fire,Promethium Fire,,,,,,,,,,,,,
+n40_EFFECT_promethium_fire_,You are soaked in burning promethium.,,,,,,,,,,,,,
+n40_EFFECT_ionizing_sublimation,Ionizing Sublimation,,,,,,,,,,,,,
+n40_EFFECT_ionizing_sublimation_,You are being evaporated.,,,,,,,,,,,,,

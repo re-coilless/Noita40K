@@ -7,9 +7,9 @@ ModRegisterAudioEventMappings( "mods/Noita40K/files/GUIDs.txt" )
 ModMagicNumbersFileAdd( "mods/Noita40K/files/appends/magic_numbers.xml" )
 
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/Noita40K/files/appends/actions.lua" )
--- ModLuaFileAppend( "data/scripts/gun/gun_extra_modifiers.lua", "mods/Noita40K/files/appends/extra_modifiers.lua" )
--- ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
+ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/Noita40K/files/appends/status_effects.lua" )
 
+-- status effects should have base entity with tags and stuff
 -- darkfire and volkite status effects
 -- put legacy version in github releases (change the directory name and fix critical bugs)
 

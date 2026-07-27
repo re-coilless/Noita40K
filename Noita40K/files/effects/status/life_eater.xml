@@ -1,11 +1,11 @@
-<Entity name="life_eater_infection" >
+<Entity name="life_eater" >
 	<InheritTransformComponent 
 		_enabled="1"
     ></InheritTransformComponent>	
 	
 	<GameEffectComponent 
 		effect="CUSTOM"
-		custom_effect_id="LIFE_EATER_INFECTION"
+		custom_effect_id="LIFE_EATER"
 		frames="-1"
 	></GameEffectComponent>
 	

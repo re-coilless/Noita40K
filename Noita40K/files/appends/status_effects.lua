@@ -1,59 +1,62 @@
 --stains
 table.insert( status_effects, 
 {
-	id = "LIFE_EATER_INFECTION",
-	ui_name = "Life-Eater Virus",
-	ui_description = "There's no escape.",
-	ui_icon = "mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_life_eater.png",
+	id = "LIFE_EATER",
 	protects_from_fire = false,
-	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_life_eater_infection.xml",
 	is_harmful = true,
-})
 
+	ui_name = "$n40_EFFECT_life_eater", ui_description = "$n40_EFFECT_life_eater_",
+	ui_icon = "mods/Noita40K/files/effects/status/life_eater.png",
+
+	effect_entity = "mods/Noita40K/files/effects/status/life_eater.xml",
+})
 table.insert( status_effects, 
 {
 	id = "RUPTORINFERNO",
-	ui_name = "Ruptor Inferno",
-	ui_description = "You are being maintained.",
-	ui_icon = "mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_ruptorinferno.png",
-	protects_from_fire = true,
 	remove_cells_that_cause_when_activated = true,
-	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_ruptorinferno.xml",
+	protects_from_fire = true,
 	is_harmful = false,
-})
 
+	ui_name = "$n40_EFFECT_ruptorinferno", ui_description = "$n40_EFFECT_ruptorinferno_",
+	ui_icon = "mods/Noita40K/files/effects/status/ruptorinferno.png",
+
+	effect_entity = "mods/Noita40K/files/effects/status/ruptorinferno.xml",
+})
 table.insert( status_effects, 
 {
 	id = "BIOINFERNO",
-	ui_name = "Bio Inferno",
-	ui_description = "Something's inside you. And it's burning.",
-	ui_icon = "mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_bioinferno.png",
 	protects_from_fire = false,
-	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_bioinferno.xml",
 	is_harmful = false,
-})
 
+	ui_name = "$n40_EFFECT_bioinferno", ui_description = "$n40_EFFECT_bioinferno_",
+	ui_icon = "mods/Noita40K/files/effects/status/bioinferno.png",
+
+	effect_entity = "mods/Noita40K/files/effects/status/bioinferno.xml",
+})
 table.insert( status_effects, 
 {
 	id = "PROMETHIUM_FIRE",
-	ui_name = "Promethium Fire",
-	ui_description = "You are soaked in burning promethium.",
-	ui_icon = "mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_promethium_fire.png",
 	protects_from_fire = false,
-	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_promethium_fire.xml",
 	is_harmful = true,
-})
 
+	ui_name = "$n40_EFFECT_promethium_fire", ui_description = "$n40_EFFECT_promethium_fire_",
+	ui_icon = "mods/Noita40K/files/effects/status/promethium_fire.png",
+
+	effect_entity = "mods/Noita40K/files/effects/status/promethium_fire.xml",
+})
 table.insert( status_effects, 
 {
 	id = "IONIZING_SUBLIMATION",
-	ui_name = "Ionizing Sublimation",
-	ui_description = "You are being evaporated.",
-	ui_icon = "mods/Noita40K/files/pics/gui_gfx/icons/status_effects/icon_ionizing_sublimation.png",
 	protects_from_fire = false,
-	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_ionizing_sublimation.xml",
 	is_harmful = true,
+
+	ui_name = "$n40_EFFECT_ionizing_sublimation", ui_description = "$n40_EFFECT_ionizing_sublimation_",
+	ui_icon = "mods/Noita40K/files/effects/status/ionizing_sublimation.png",
+
+	effect_entity = "mods/Noita40K/files/effects/status/ionizing_sublimation.xml",
 })
+
+--[[
 
 --generic effects
 table.insert( status_effects, 
@@ -177,3 +180,5 @@ table.insert( status_effects,
 	effect_entity = "mods/Noita40K/files/entities/status_effects/effect_unmovable_fortitude.xml",
 	is_harmful = false,
 })
+
+]]
