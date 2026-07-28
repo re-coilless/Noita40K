@@ -1,0 +1,3 @@
+<Entity tags="gun40k_ballistic" >
+	<Base file="mods/n40k/files/based/gun.xml" />
+</Entity>

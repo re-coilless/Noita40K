@@ -1,0 +1,15 @@
+<Entity name="explosion" >
+	<Base file="mods/n40k/files/based/explosion.xml" >
+		<VariableStorageComponent name="size" value_float="50" />
+		<VariableStorageComponent name="damage" value_float="1.5" />
+		<VariableStorageComponent name="force" value_float="15" />
+		<VariableStorageComponent name="time" value_float="35" />
+		<VariableStorageComponent name="shrapnel" value_float="30" />
+		<VariableStorageComponent name="shrapnel_time" value_float="1.5" />
+		<VariableStorageComponent name="shrapnel_speed" value_float="1000" />
+
+		<VariableStorageComponent name="shrapnel_damage" />
+		<VariableStorageComponent name="shrapnel_file" />
+		<VariableStorageComponent name="stains" value_bool="1" />
+	</Base>
+</Entity>

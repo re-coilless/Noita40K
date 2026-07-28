@@ -1,0 +1,3 @@
+<Entity tags="blade40k" >
+	<Base file="mods/n40k/files/based/mag.xml" />
+</Entity>

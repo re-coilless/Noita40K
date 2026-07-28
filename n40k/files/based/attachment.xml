@@ -1,0 +1,9 @@
+<Entity tags="attachment40k" >
+	<Base file="mods/n40k/files/based/item.xml" >
+		<ItemComponent preferred_inventory="FULL" />
+		<AbilityComponent _remove_from_base="1" />
+	</Base>
+	
+	<VariableStorageComponent name="type" value_string="" />
+	<VariableStorageComponent name="update" value_string="" />
+</Entity>

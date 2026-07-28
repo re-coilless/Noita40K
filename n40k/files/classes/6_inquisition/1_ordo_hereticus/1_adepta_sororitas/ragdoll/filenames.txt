@@ -1,0 +1,8 @@
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/right_shoulder.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/left_shoulder.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/right_thigh.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/left_thigh.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/right_foot.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/left_foot.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/torso.png
+mods/n40k/files/classes/6_inquisition/1_ordo_hereticus/1_adepta_sororitas/ragdoll/head.png

@@ -1,0 +1,11 @@
+<Entity name="mag_bolt_75" >
+	<Base file="mods/n40k/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/mags/bolt_75_he_S.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/mags/bolt_75_he_S_.png" />
+		<SpriteComponent image_file="mods/n40k/files/items/mags/bolt_75_he_S_.png" />
+	</Base>
+	
+	<VariableStorageComponent name="ammo_max" value_int="5" />
+	<VariableStorageComponent name="icon_round" value_string="mods/n40k/files/gui/info/ammo_bolt_75_he.png" />
+	<VariableStorageComponent name="icon_shell" value_string="mods/n40k/files/gui/info/shell_bolt_75.png" />
+</Entity>

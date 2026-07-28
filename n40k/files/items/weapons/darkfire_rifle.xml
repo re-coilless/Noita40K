@@ -1,0 +1,26 @@
+<Entity name="darkfire_rifle" >
+	<Base file="mods/n40k/files/based/gun_energy.xml" >
+		<AbilityComponent
+			sprite_file="mods/n40k/files/items/weapons/darkfire_rifle.png"
+			add_these_child_actions="N40K_PACK_M_WARPBORN_PHOTON"
+		></AbilityComponent>
+		<SpriteComponent offset_x="7" offset_y="3.5" />
+		<VelocityComponent mass="0.25" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="21"
+        offset.y="-1"
+	></HotspotComponent>
+	
+	<VariableStorageComponent name="beam" value_string="mods/n40k/files/items/rounds/beam_darkfire.xml" />
+	<VariableStorageComponent name="beam_length" value_float="500" />
+	
+	<VariableStorageComponent name="cycling" value_int="-1" />
+	<VariableStorageComponent name="ammo_type" value_string="pack_M" />
+	<VariableStorageComponent name="ammo_consumption" value_float="0.35" />
+	<VariableStorageComponent name="vector_handling" value_float="1.5" />
+	<VariableStorageComponent name="heat_max" value_float="1000" />
+	<VariableStorageComponent name="heat_loss" value_float="0.99" />
+</Entity>

@@ -1,0 +1,9 @@
+<Entity tags="canister_M_pyrum" >
+	<Base file="mods/n40k/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/mags/canister_M_pyrum.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/mags/canister_M_pyrum_.png" />
+		<SpriteComponent image_file="mods/n40k/files/items/mags/canister_M_pyrum_.png" />
+	</Base>
+	
+	<VariableStorageComponent name="ammo_max" value_int="10000" />
+</Entity>

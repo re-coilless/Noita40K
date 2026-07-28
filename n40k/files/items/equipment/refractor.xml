@@ -1,0 +1,18 @@
+<Entity name="equipment_refractor" >
+	<Base file="mods/n40k/files/based/equipment.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/equipment/refractor.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/equipment/refractor_vis.png" />
+		
+		<SpriteComponent
+			offset_x="2" offset_y="3.5"
+			image_file="mods/n40k/files/items/equipment/refractor_vis.png"
+		></SpriteComponent>
+		
+		<VariableStorageComponent name="type" value_string="back" />
+		<VariableStorageComponent name="update" value_string="mods/n40k/files/items/equipment/refractor.lua" />
+	</Base>
+	
+	<VariableStorageComponent name="range" value_float="30" />
+	<VariableStorageComponent name="efficiency" value_float="0.3" />
+	<VariableStorageComponent name="ctrl_script" value_string="mods/n40k/files/items/equipment/refractor.lua" />
+</Entity>

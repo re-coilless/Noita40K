@@ -1,0 +1,23 @@
+<Entity name="equipment_refractor_vis" tags="heat40k" >
+	<SpriteComponent
+        image_file="mods/n40k/files/items/equipment/refractor_vis.png" 
+        offset_x="2" offset_y="1" z_index="0.65"
+    ></SpriteComponent>
+	<SpriteComponent
+		alpha="0"
+		image_file="data/items_gfx/handgun.xml" 
+		next_rect_animation="default" 
+		rect_animation="default"
+		additive="1"
+		emissive="1"
+		fog_of_war_hole="0"
+		smooth_filtering="1"
+	></SpriteComponent>
+	
+	<VariableStorageComponent name="heat_max" value_float="100" />
+	<VariableStorageComponent name="heat_loss" value_float="0.999" />
+	
+	<InheritTransformComponent
+		parent_hotspot_tag="back"
+	></InheritTransformComponent>  
+</Entity>

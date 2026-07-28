@@ -1,0 +1,17 @@
+<Entity name="equipment_servoskull_e" >
+	<Base file="mods/n40k/files/based/equipment.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/equipment/servoskull_e/item.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/equipment/servoskull_e/item.png" />
+		
+		<SpriteComponent
+			offset_x="8" offset_y="8"
+			image_file="mods/n40k/files/items/equipment/servoskull_e/item.png"
+		></SpriteComponent>
+		
+		<VariableStorageComponent name="type" value_string="other" />
+		<VariableStorageComponent name="update" value_string="mods/n40k/files/items/equipment/servoskull_e/item.lua" />
+	</Base>
+	
+	<VariableStorageComponent name="power" value_int="5" />
+	<VariableStorageComponent name="ctrl_script" value_string="mods/n40k/files/items/equipment/servoskull_e/item.lua" />
+</Entity>

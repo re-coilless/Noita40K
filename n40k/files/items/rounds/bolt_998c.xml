@@ -1,0 +1,5 @@
+<Entity name="plasteel_thin" >
+	<Base file="mods/n40k/files/based/casing.xml" >
+		<SpriteComponent image_file="mods/n40k/files/items/rounds/bolt_998c.png" />
+	</Base>
+</Entity>

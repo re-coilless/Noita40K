@@ -1,0 +1,9 @@
+<Entity tags="canister_S_hydrogen" >
+	<Base file="mods/n40k/files/based/mag.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/mags/canister_S_hydrogen.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/mags/canister_S_hydrogen_.png" />
+		<SpriteComponent image_file="mods/n40k/files/items/mags/canister_S_hydrogen_.png" />
+	</Base>
+	
+	<VariableStorageComponent name="ammo_max" value_int="1000" />
+</Entity>

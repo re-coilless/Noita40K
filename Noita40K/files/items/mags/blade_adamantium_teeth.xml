@@ -1,7 +1,0 @@
-<Entity tags="blade_adamantium_teeth" >
-	<Base file="mods/Noita40K/files/based/blade.xml" >
-		<ItemComponent ui_sprite="mods/Noita40K/files/items/mags/blade_adamantium_teeth.png" />
-		<PhysicsImageShapeComponent image_file="mods/Noita40K/files/items/mags/blade_adamantium_teeth_.png" />
-		<SpriteComponent image_file="mods/Noita40K/files/items/mags/blade_adamantium_teeth_.png" />
-	</Base>
-</Entity>

@@ -1,0 +1,7 @@
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/right_shoulder.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/left_shoulder.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/right_arm.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/left_arm.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/right_leg.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/left_leg.png
+mods/n40k/files/classes/1_adeptus_astartes/2_firstborn/8_raven_guard/ragdoll/torso.png

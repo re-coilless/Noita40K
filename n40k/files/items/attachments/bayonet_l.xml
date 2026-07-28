@@ -1,0 +1,16 @@
+<Entity name="attachment_bayonet_l" >
+	<Base file="mods/n40k/files/based/attachment.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/attachments/bayonet_l.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/attachments/bayonet_l.png" />
+		
+		<SpriteComponent
+			offset_x="8.5" offset_y="1.5"
+			image_file="mods/n40k/files/items/attachments/bayonet_l.png"
+		></SpriteComponent>
+		
+		<VariableStorageComponent name="type" value_string="underbarrel" />
+		<VariableStorageComponent name="update" value_string="mods/n40k/files/items/attachments/bayonet_l.lua" />
+	</Base>
+	
+	<VariableStorageComponent name="ctrl_script" value_string="mods/n40k/files/items/attachments/bayonet_l.lua" />
+</Entity>

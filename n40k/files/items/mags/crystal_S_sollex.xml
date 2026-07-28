@@ -1,0 +1,7 @@
+<Entity tags="crystal_S_sollex" >
+	<Base file="mods/n40k/files/based/crystal.xml" >
+		<ItemComponent ui_sprite="mods/n40k/files/items/mags/crystal_S_sollex.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/mags/crystal_S_sollex_.png" />
+		<SpriteComponent image_file="mods/n40k/files/items/mags/crystal_S_sollex_.png" />
+	</Base>
+</Entity>

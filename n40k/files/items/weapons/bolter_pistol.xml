@@ -1,0 +1,28 @@
+<Entity name="bolter_pistol" >
+	<Base file="mods/n40k/files/based/gun_ballistic.xml" >
+		<AbilityComponent
+			sprite_file="mods/n40k/files/items/weapons/bolter_pistol.png"
+			add_these_child_actions="N40K_BOLT_75_HE_S"
+			><gunaction_config spread_degrees="-3" />
+		</AbilityComponent>
+		<SpriteComponent offset_x="2" offset_y="4" />
+		<VelocityComponent mass="0.025" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="6"
+        offset.y="-1"
+	></HotspotComponent>
+	<HotspotComponent
+        _tags="eject_pos"
+        offset.x="4"
+        offset.y="-3"
+	></HotspotComponent>
+	
+	<VariableStorageComponent name="ammo_type" value_string="bolt_75" />
+	<VariableStorageComponent name="cycling" value_int="-1" />
+	<VariableStorageComponent name="vector_handling" value_float="0.5" />
+	<VariableStorageComponent name="heat_max" value_float="10" />
+	<VariableStorageComponent name="heat_loss" value_float="0.9985" />
+</Entity>

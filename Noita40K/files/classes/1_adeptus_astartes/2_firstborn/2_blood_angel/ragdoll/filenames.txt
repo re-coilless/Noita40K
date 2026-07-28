@@ -1,7 +1,0 @@
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/right_shoulder.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/left_shoulder.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/right_arm.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/left_arm.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/right_leg.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/left_leg.png
-mods/Noita40K/files/classes/1_adeptus_astartes/2_firstborn/2_blood_angel/ragdoll/torso.png

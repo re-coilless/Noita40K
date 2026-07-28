@@ -1,0 +1,25 @@
+<Entity name="melta_pistol" >
+	<Base file="mods/n40k/files/based/gun_energy.xml" >
+		<AbilityComponent
+			sprite_file="mods/n40k/files/items/weapons/melta_pistol.png"
+			add_these_child_actions="N40K_CANISTER_S_PYRUM"
+		></AbilityComponent>
+		<SpriteComponent offset_x="2" offset_y="4" />
+		<VelocityComponent mass="0.03" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="8"
+        offset.y="-1"
+	></HotspotComponent>
+
+	<VariableStorageComponent name="beam" value_string="mods/n40k/files/items/rounds/beam_melta_pistol.xml" />
+	<VariableStorageComponent name="beam_length" value_float="45" />
+
+	<VariableStorageComponent name="ammo_type" value_string="canister_S" />
+	<VariableStorageComponent name="ammo_consumption" value_float="1" />
+	<VariableStorageComponent name="vector_handling" value_float="0.5" />
+	<VariableStorageComponent name="heat_max" value_float="500" />
+	<VariableStorageComponent name="heat_loss" value_float="0.999" />
+</Entity>

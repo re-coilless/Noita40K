@@ -1,0 +1,9 @@
+<Entity name="grenade_he" >
+	<Base file="mods/n40k/files/based/grenade.xml">
+		<ItemComponent ui_sprite="mods/n40k/files/items/grenade_he.png" />
+		<PhysicsImageShapeComponent image_file="mods/n40k/files/items/grenade_he.png" />
+		<SpriteComponent image_file="mods/n40k/files/items/grenade_he.png" />
+		
+		<VariableStorageComponent name="explosion" value_string="mods/n40k/files/effects/explosion_grenade_he.xml" />
+	</Base>
+</Entity>

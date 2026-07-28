@@ -1,0 +1,3 @@
+mods/n40k/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/head.png
+mods/n40k/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/legs.png
+mods/n40k/files/classes/3_adeptus_mechanicus/2_techpriest/1_magos_explorator/ragdoll/torso.png
