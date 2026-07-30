@@ -1,0 +1,25 @@
+<Entity name="round_bolt_998" >
+	<Base file="mods/n40k/files/based/round_bolt.xml" >
+		<VelocityComponent
+			air_friction="-2"
+		></VelocityComponent>
+		
+		<ProjectileComponent
+			damage="1.5"
+			knockback_force="2"
+			ragdoll_force_multiplier="0.03"
+			camera_shake_when_shot="2"
+		></ProjectileComponent>
+		
+		<SpriteComponent
+			image_file="mods/n40k/files/items/rounds/bolt_998_hei.png"
+		></SpriteComponent>
+		
+		<VariableStorageComponent value_string="mods/n40k/files/effects/explosion_bolt_998_hei.xml" />
+	</Base>
+	
+	<HitEffectComponent 
+		effect_hit="LOAD_UNIQUE_CHILD_ENTITY"
+		value_string="mods/n40k/files/effects/hit_promethium.xml"
+	></HitEffectComponent>
+</Entity>

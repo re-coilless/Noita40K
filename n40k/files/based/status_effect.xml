@@ -1,0 +1,11 @@
+<Entity tags="effect40k" >
+	<GameEffectComponent
+		effect="CUSTOM"
+		custom_effect_id="PROMETHIUM_FIRE"
+		frames="-1"
+	></GameEffectComponent>
+	
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+</Entity>

@@ -1,0 +1,5 @@
+<Entity name="hit_effect" >
+	<Base file="mods/n40k/files/based/effecter.xml" >
+		<VariableStorageComponent name="add_stains" value_string="|!promethium!80!|" />
+	</Base>
+</Entity>

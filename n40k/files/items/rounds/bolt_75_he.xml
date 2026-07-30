@@ -9,21 +9,7 @@
 			knockback_force="1"
 			ragdoll_force_multiplier="0.03"
 			camera_shake_when_shot="1"
-			on_death_explode="0"
-			on_lifetime_out_explode="0"
-			><config_explosion
-				damage="0.25"
-				ray_energy="150000"
-				max_durability_to_destroy="10"
-				camera_shake="2"
-				physics_explosion_power.min="0.75"
-				physics_explosion_power.max="1.0"
-				explosion_radius="6"
-				material_sparks_enabled="1"
-				material_sparks_count_min="0"
-				material_sparks_count_max="2"
-			></config_explosion>
-		</ProjectileComponent>
+		></ProjectileComponent>
 
 		<SpriteComponent
 			image_file="mods/n40k/files/items/rounds/bolt_75_he.png"

@@ -1,9 +1,9 @@
 <Entity>
 	<Base file="mods/n40k/files/based/round.xml" >
 		<ProjectileComponent
+			on_death_explode="0"
+			on_lifetime_out_explode="0"
 			ragdoll_fx_on_collision="BLOOD_SPRAY"
-			on_death_explode="1"
-			on_lifetime_out_explode="1"
 		></ProjectileComponent>
 
 		<SpriteComponent

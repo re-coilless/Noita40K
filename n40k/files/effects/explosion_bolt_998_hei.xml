@@ -1,0 +1,20 @@
+<Entity name="explosion" >
+	<Base file="mods/n40k/files/effects/explosion_bolt_998.xml" >
+		<VariableStorageComponent name="size" />
+		<VariableStorageComponent name="damage" />
+		<VariableStorageComponent name="force" />
+		
+		<VariableStorageComponent name="time" />
+		<VariableStorageComponent name="shrapnel" />
+		<VariableStorageComponent name="shrapnel_time" />
+		<VariableStorageComponent name="shrapnel_speed" />
+    
+		<VariableStorageComponent name="shrapnel_damage" />
+		<VariableStorageComponent name="shrapnel_file" />
+		<VariableStorageComponent name="stains" />
+		<VariableStorageComponent name="alpha" />
+		<VariableStorageComponent name="sfx_root" />
+	
+		<VariableStorageComponent name="matter" value_string="|promethium|20|" />
+	</Base>
+</Entity>

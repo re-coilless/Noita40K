@@ -18,23 +18,7 @@
 			ragdoll_fx_on_collision="BLOOD_EXPLOSION"
 			shoot_light_flash_radius="256"
 			camera_shake_when_shot="6"
-			on_death_explode="0"
-			on_lifetime_out_explode="0"
-			><config_explosion
-				damage="2"
-				ray_energy="600000"
-				max_durability_to_destroy="15"
-				camera_shake="8"
-				physics_explosion_power.min="3"
-				physics_explosion_power.max="5"
-				explosion_radius="16"
-				material_sparks_enabled="1"
-				material_sparks_count_min="2"
-				material_sparks_count_max="6"
-				hole_destroy_liquid="1"
-				stains_radius="18"
-			></config_explosion>
-		</ProjectileComponent>
+		></ProjectileComponent>
 
 		<SpriteComponent
 			image_file="mods/n40k/files/items/rounds/bolt_50mm_aphe.png"

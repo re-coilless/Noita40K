@@ -1,0 +1,16 @@
+<Entity tags="vector_effect,effect40k" >
+	<InheritTransformComponent
+		use_root_parent="1"
+	></InheritTransformComponent>
+	
+	<LifetimeComponent lifetime="2" />
+	
+	<VariableStorageComponent name="add_stains" value_string="||" />
+	<VariableStorageComponent name="add_effects" value_string="||" />
+	
+	<VariableStorageComponent name="range" value_float="0" />
+	<VariableStorageComponent name="check_walls" value_bool="1" />
+	<VariableStorageComponent name="extra_check" value_string="" />
+	
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/based/effecter.lua" />
+</Entity>

@@ -1,13 +1,7 @@
 <Entity name="life_eater" >
-	<InheritTransformComponent 
-		_enabled="1"
-    ></InheritTransformComponent>	
-	
-	<GameEffectComponent 
-		effect="CUSTOM"
-		custom_effect_id="LIFE_EATER"
-		frames="-1"
-	></GameEffectComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent custom_effect_id="PROMETHIUM_FIRE" />
+	</Base>
 	
 	<LuaComponent
 		remove_after_executed="1"

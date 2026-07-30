@@ -74,4 +74,6 @@
     <VariableStorageComponent name="stains" value_bool="0" />
 	<VariableStorageComponent name="alpha" value_float="1" />
 	<VariableStorageComponent name="sfx_root" value_string="|mods/n40k/files/n40k.bank|effects/explosions|" />
+	
+	<VariableStorageComponent name="matter" value_string="||" />
 </Entity>

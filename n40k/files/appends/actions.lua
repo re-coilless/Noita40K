@@ -60,7 +60,7 @@ table.insert( actions,
 	price = 350, mana = 0, max_uses = -1,
 	spawn_requires_flag = "never_spawn_this_action",
 	shells = { "mods/n40k/files/items/rounds/bolt_998c.xml" },
-	projectiles = {{ p = "mods/n40k/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
+	projectiles = {{ p = "mods/n40k/files/items/rounds/bolt_998_hei.xml", r = 3, h = 1.5 }},
 	custom_xml_file = "mods/n40k/files/items/mags/bolt_998_hei_M.xml",
 	sfx = { "mods/n40k/files/n40k.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	

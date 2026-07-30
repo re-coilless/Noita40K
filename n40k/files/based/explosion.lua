@@ -82,6 +82,14 @@ if( not( pen.vld( pen.c.explosion_data[ exp_id ]))) then
     local event_path = pen.t.pack( pen.magic_storage( exp_id, "sfx_root", "value_string" ))
     pen.play_sound({ event_path[1], event_path[2]..event..event_size }, x, y )
     
+	local matter = pen.t.pack( pen.magic_storage( exp_id, "matter", "value_string" ))
+	if( pen.vld( matter )) then
+		pen.matter_fabricator( x, y, {
+			matter = matter[1], size = data.size, count = matter[2],
+			is_real = true, is_real2 = true, is_grid = true,
+		})
+	end
+	
     data.wave_xy = { x, y }
     data.wave_who = who_shot
     data.wave_dmg = data.damage*math.sqrt( energy )/5

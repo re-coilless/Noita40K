@@ -9,10 +9,11 @@ ModMagicNumbersFileAdd( "mods/n40k/files/appends/magic_numbers.xml" )
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/n40k/files/appends/actions.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/files/appends/status_effects.lua" )
 
--- put legacy version in github releases (change the directory name and fix critical bugs + include original hiisi massacre and battle sister extension)
--- status effects should have base entity with tags and stuff
 -- darkfire and volkite status effects
 -- add credits
+
+-- finish battle sister (jumppack, plasma pistol, mass-restricted dual wielding)
+-- marine perks
 
 -- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency
 -- matter info is broken due to culling
@@ -44,7 +45,6 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- do frag grenade that has directed spread
 -- some of the marine classes should recieve Land Device - permanently attached full auto conversion kit for rifle
 -- clot and warpmatter ambient sound through Cardinal (can be done though spawning entites from reaction with air and global script check for them in radius of char and plays the sound loop if some are detected)
--- LMB on dendrite button to toggle the speed mode (does not maintain distance to ground and is faster) and RMB to enable/disable
 -- codex should have lore word hyperlinks that show tips on hower
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens + add "select" button on the desc page
 -- combat wolf with custom ai for Space Wolf
@@ -56,7 +56,6 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- sister of silence sword can be holstered on the back for instaswing on lmb (has to be reholstered manually each time by holding the button in inventory, gives slight speed boost, spine armor and shows on back when done so)
 -- several stands for the sister of silence greatsword and the controls are be based on the stand in use (fast swing, low damage, no dodge | slow swing, high damage, dodge)
 -- ConvertMaterialOnAreaInstantly
--- music is a single track that evolves based on events and biomes
 -- N40 dialogue options must be the concepts, not words (+meaning+ instead of "What does it mean?")
 -- Display all n40 unlocks as a tech tree
 -- sword must stick into enemies who are not oneshotted and pulling it out deals additional damage
@@ -64,7 +63,6 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- refraction visualization must be chromatic abbreration + color correction based, no bending needed
 -- if no character author is stated, write "vanilla"
 -- permanent status effects that are designed to be abused through procedural interactions
--- mrshll pack builder
 -- global currency is accumulated through holotype collection – a miniboss enemies that can be harvested for smaples on defeat (the kill must be clean) to later to delivered for analysis to the STC (maybe make it take irl time)
 
 function OnModInit()

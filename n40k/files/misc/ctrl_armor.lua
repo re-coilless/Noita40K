@@ -18,6 +18,8 @@ function damage_received( damage, message, entity_thats_responsible, is_fatal )
 end
 
 return function( hooman ) --add invulner frames
+	dofile_once( "mods/n40k/files/_lib.lua" )
+
 	-- local blessing_comp = EntityGetFirstComponentIncludingDisabled( hooman, "VariableStorageComponent", "emperors_blessing" )
 	-- local EMBERORS_NUMBER = 0
 	-- if( blessing_comp ~= nil ) then
