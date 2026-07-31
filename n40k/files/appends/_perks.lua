@@ -593,31 +593,3 @@ table.insert( perk_list_external, --note that it says "external" - vanilla syste
 		end
 	end,
 })
-
-table.insert( perk_list_external,
-{
-	id = "EMPERORS_DAUGHTER",
-	ui_name = "Emperor's Daughter",
-	ui_description = "A Morte Perpetua, Domine, Libra Nos.",
-	ui_icon = "mods/n40ke_bss/files/pics/perks_gfx/emperors_daughter.png",
-	perk_icon = "mods/n40ke_bss/files/pics/perks_gfx/emperors_daughter.png",
-	usable_by_enemies = false,
-	not_in_default_perk_pool = true,
-	func = function( entity_perk_item, entity_who_picked, item_name )
-		--modifying emperor's blessing chance
-		edit_component_with_tag_ultimate( entity_who_picked, "VariableStorageComponent", "emperors_blessing", function(comp,vars) 
-			ComponentSetValue2( comp, "value_int", math.ceil( ComponentGetValue2( comp, "value_int" )/4 ))
-		end)
-		
-		edit_component_ultimate( entity_who_picked, "DamageModelComponent", function(comp,vars) 
-			ComponentObjectSetValue2( comp, "damage_multipliers", "curse", 0.1 )
-		end)
-		
-		--adding anchor for the left hand
-		EntityAddComponent( entity_who_picked, "HotspotComponent",
-		{
-			_tags = "left_arm_root",
-			sprite_hotspot_name = "left_arm_start",
-		})
-	end
-})

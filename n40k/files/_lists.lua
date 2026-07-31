@@ -343,7 +343,7 @@ n40k.PERKS = {
 		end,
 	},
 	
-	-- abilities
+	-- physical abilities
 	SECOND_HEART = {
 		icon = "mods/n40k/files/classes/_perks/second_heart.png",
 		name = "$n40k_PERK_second_heart", desc = "$n40k_PERK_second_heart_",
@@ -437,6 +437,33 @@ n40k.PERKS = {
 			-- })
 		end,
 	},
+	TWIN_LINKED = {
+		icon = "mods/n40k/files/classes/_perks/twin_linked/icon.png",
+		name = "$n40k_PERK_twin_linked", desc = "$n40k_PERK_twin_linked_",
+		func = function( hooman, data )
+			-- mass-restricted dual wielding perk (determined by strength)
+			
+			local x, y = EntityGetTransform( hooman )
+			local left_arm = pen.lib.wand_puppet( x, y )
+			EntityAddChild( hooman, left_arm )
+
+			--add left hand hotspot
+			--pen.lib.wand_puppet (easy to control wand ghost with optional life support)
+			--add n40-spesific index-based systems on top (make sure it works with altfire weapons)
+
+			--[[
+			<Entity name="inventory_quick" tags="index_inventory" >
+				<VariableStorageComponent name="index_inv_kind" value_string="|universal|" />
+				<VariableStorageComponent name="index_inv_size" value_string="|1|1|" />
+				<VariableStorageComponent name="index_inv_check" value_string="mods/Twin-Linked/files/scripts/inv_check.lua" />
+				<VariableStorageComponent name="index_inv_update" value_string="mods/Twin-Linked/files/scripts/inv_update.lua" />
+				<VariableStorageComponent name="index_inv_gui" value_string="mods/Twin-Linked/files/scripts/gui_controller.lua" />
+			</Entity>
+			]]
+		end,
+	}
+
+	-- magic abilities
 	-- add a secondary layer of unique legion perks that is permananetly unlocked by staying at high adrenaline for long time
 	CODEX_MASTERY = {
 		icon = "mods/n40k/files/classes/_perks/codex_mastery.png",
@@ -453,7 +480,7 @@ n40k.PERKS = {
 	EMPERORS_PRAETORIAN = {
 		icon = "mods/n40k/files/classes/_perks/emperors_praetorian.png",
 		name = "$n40k_PERK_emperors_praetorian", desc = "$n40k_PERK_emperors_praetorian_",
-		-- [{ "damage_multipliers", "curse" }] = 0.25,
+		-- [{ "damage_multipliers", "curse" }] = 0.1,
 	},
 	FENRISIAN_BLOOD = {
 		icon = "mods/n40k/files/classes/_perks/fenrisian_blood.png",
@@ -474,6 +501,16 @@ n40k.PERKS = {
 			EntityAddTag( hooman, "unchained" )
 		end,
 	},
+	EMPERORS_DAUGHTER = {
+		icon = "mods/n40k/files/classes/_perks/emperors_daughter.png",
+		name = "$n40k_PERK_emperors_daughter", desc = "$n40k_PERK_emperors_daughter_",
+		func = function( hooman, data )
+			--[{ "damage_multipliers", "curse" }] = 0.25,
+			--have a chance to convert curse damage into healing
+		end,
+	},
+
+	-- technological abilities
 	OMNISSIAHS_BLESSING = {
 		icon = "mods/n40k/files/classes/_perks/omnissiahs_blessing.png",
 		name = "$n40k_PERK_omnissiahs_blessing", desc = "$n40k_PERK_omnissiahs_blessing_",

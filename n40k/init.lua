@@ -12,7 +12,7 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- darkfire and volkite status effects
 -- add credits
 
--- finish battle sister (jumppack, plasma pistol, mass-restricted dual wielding)
+-- finish battle sister (jumppack, plasma pistol)
 -- marine perks
 
 -- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency
