@@ -1,11 +1,32 @@
 <Entity name="life_eater" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
-		<GameEffectComponent custom_effect_id="PROMETHIUM_FIRE" />
+		<GameEffectComponent custom_effect_id="LIFE_EATER" />
 	</Base>
 	
-	<LuaComponent
-		remove_after_executed="1"
-		script_source_file="mods/n40k/files/scripts/status_effects/life_eater_attacher.lua"
-		execute_every_n_frame="10"
-	></LuaComponent>
+	<ParticleEmitterComponent
+		emitted_material_name="exterminatus_gas"
+		count_min="5"
+		count_max="5"
+		offset.x="-1"
+		offset.y="-5"
+		x_pos_offset_min="-5"
+		x_pos_offset_max="5"
+		y_pos_offset_min="-4"
+		y_pos_offset_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		lifetime_min="1.1"
+		lifetime_max="2.8"
+		create_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		delay_frames="2"
+		is_emitting="1"
+	></ParticleEmitterComponent>
+	
+	<VariableStorageComponent name="got_scaled" value_bool="0" />
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/life_eater.lua" />
 </Entity>

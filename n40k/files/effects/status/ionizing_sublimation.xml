@@ -1,25 +1,16 @@
 <Entity name="ionizing_sublimation" >
-	<InheritTransformComponent 
-		_enabled="1"
-    ></InheritTransformComponent>
-	
-	<GameEffectComponent 
-		_tags="main"
-		effect="CUSTOM"
-		custom_effect_id="IONIZING_SUBLIMATION"
-		frames="-1"
-		ragdoll_effect="CONVERT_TO_MATERIAL"
-		ragdoll_material="plasma_he"
-	></GameEffectComponent>
-	
-	<LuaComponent
-		script_source_file="mods/n40k/files/scripts/status_effects/ionizing_sublimation.lua"
-		execute_every_n_frame="1"
-	></LuaComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent
+			custom_effect_id="IONIZING_SUBLIMATION"
+			ragdoll_effect="CONVERT_TO_MATERIAL" ragdoll_material="plasma_he"
+		></GameEffectComponent>
+	</Base>
 	
 	<AudioLoopComponent
 		file="mods/n40k/files/n40k.bank"
 		event_name="guns/melting_flesh"
 		auto_play="1"
 	></AudioLoopComponent>
+
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/ionizing_sublimation.lua" />
 </Entity>

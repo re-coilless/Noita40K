@@ -60,9 +60,5 @@
 	></AudioLoopComponent>
 	
 	<VariableStorageComponent name="got_scaled" value_bool="0" />
-	
-	<LuaComponent
-		script_source_file="mods/n40k/files/scripts/status_effects/promethium_fire.lua"
-		execute_every_n_frame="1"
-	></LuaComponent>
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/promethium_fire.lua" />
 </Entity>

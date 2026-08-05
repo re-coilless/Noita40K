@@ -1,31 +1,17 @@
 <Entity name="psytrip" >
-	<GameEffectComponent 
-		_tags="main"
-		effect="CUSTOM"
-		custom_effect_id="PSYTRIP"
-		frames="-1"
-	></GameEffectComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent custom_effect_id="PSYTRIP" />
+	</Base>
 	
 	<DrugEffectModifierComponent>
 		<fx_add
-			distortion_amount="3"
 			color_amount="2"
-			doublevision_amount="5"
 			fractals_amount="5"
 			fractals_size="0.1"
-		/>
+			distortion_amount="3"
+			doublevision_amount="5"
+		></fx_add>
 	</DrugEffectModifierComponent>
 	
-	<InheritTransformComponent>
-		<Transform 
-			position.x="0"
-			position.y="0"
-		></Transform>
-	</InheritTransformComponent>
-	
-	<LuaComponent
-		_tags="shift"
-		script_source_file="mods/n40k/files/scripts/status_effects/psytrip.lua"
-		execute_every_n_frame="100"
-	></LuaComponent>
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/psytrip.lua" />
 </Entity>

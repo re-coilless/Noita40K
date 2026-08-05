@@ -1,60 +1,23 @@
 <Entity name="stasis_coma" >
-	<GameEffectComponent 
-		_tags="main"
-		effect="CUSTOM"
-		custom_effect_id="STASIS_COMA"
-		frames="2000"
-	></GameEffectComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent custom_effect_id="STASIS_COMA" frames="2000" />
+	</Base>
 	
-	<GameEffectComponent 
-		effect="CONFUSION"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<GameEffectComponent 
-		effect="DRUNK"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<GameEffectComponent 
-		effect="MOVEMENT_SLOWER_2X"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<GameEffectComponent 
-		effect="MOVEMENT_SLOWER_2X"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<GameEffectComponent 
-		effect="MOVEMENT_SLOWER_2X"
-		frames="-1"
-	></GameEffectComponent>
+	<GameEffectComponent effect="MOVEMENT_SLOWER_2X" frames="-1" />
+	<GameEffectComponent effect="MOVEMENT_SLOWER_2X" frames="-1" />
+	<GameEffectComponent effect="MOVEMENT_SLOWER_2X" frames="-1" />
+	<GameEffectComponent effect="CONFUSION" frames="-1" />
+	<GameEffectComponent effect="DRUNK" frames="-1" />
 	
 	<DrugEffectModifierComponent>
-		<fx_add
-			doublevision_amount="3"
-		/>
+		<fx_add doublevision_amount="3" />
 	</DrugEffectModifierComponent>
 	
-	<InheritTransformComponent>
-		<Transform 
-			position.x="0"
-			position.y="0"
-		></Transform>
-	</InheritTransformComponent>
-	
 	<UIIconComponent
-		icon_sprite_file="mods/n40k/files/pics/gui_gfx/icons/status_effects/icon_stasis_coma.png"
-		name="Stasis Coma"
-		description="H-hard...to...think..."
-		display_above_head="1"
-		display_in_hud="1"
-		is_perk="0"
+		name="$n40k_EFFECT_stasis_coma" description="$n40k_EFFECT_stasis_coma_"
+		icon_sprite_file="mods/n40k/files/effects/status/stasis_coma.png"
+		display_above_head="1" display_in_hud="1" is_perk="0"
 	></UIIconComponent>
 	
-	<LuaComponent
-		script_source_file="mods/n40k/files/scripts/status_effects/stasis_coma.lua"
-		execute_every_n_frame="1"
-	></LuaComponent>
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/stasis_coma.lua" />
 </Entity>

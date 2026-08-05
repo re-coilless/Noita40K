@@ -1,15 +1,9 @@
 <Entity name="bioinferno" >
-	<InheritTransformComponent 
-		_enabled="1"
-    ></InheritTransformComponent>	
-    
-	<GameEffectComponent 
-		effect="CUSTOM"
-		custom_effect_id="BIOINFERNO"
-		frames="-1"
-	></GameEffectComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent custom_effect_id="BIOINFERNO" />
+	</Base>
 
-	<ParticleEmitterComponent 
+	<ParticleEmitterComponent
 		emitted_material_name="fire"
 		custom_style="FIRE"
 		count_min="5"
@@ -33,9 +27,7 @@
 		delay_frames="2"
 		is_emitting="1"
 	></ParticleEmitterComponent>
-
-	<ParticleEmitterComponent 
-		_tags="smoke"
+	<ParticleEmitterComponent
 		emitted_material_name="smoke"
 		count_min="1"
 		count_max="5"
@@ -58,7 +50,18 @@
 		delay_frames="2"
 		is_emitting="0"
 	></ParticleEmitterComponent>
-	
+
+	<AudioComponent
+		file="data/audio/Desktop/misc.bank"
+		event_root="game_effect/on_fire"
+		set_latest_event_position="1"
+	></AudioComponent>
+	<AudioLoopComponent
+		file="data/audio/Desktop/misc.bank"
+		event_name="game_effect/on_fire/burning" 
+		auto_play="1"
+	></AudioLoopComponent>
+
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
 		steps_per_frame="10"
@@ -68,16 +71,4 @@
 		temperature_reaction_temp="10000"
 		ignite_materials="1"
     ></MagicConvertMaterialComponent>
-
-	<AudioComponent
-		file="data/audio/Desktop/misc.bank"
-		event_root="game_effect/on_fire"
-		set_latest_event_position="1"
-	></AudioComponent>
-
-	<AudioLoopComponent
-		file="data/audio/Desktop/misc.bank"
-		event_name="game_effect/on_fire/burning" 
-		auto_play="1"
-	></AudioLoopComponent>
 </Entity>

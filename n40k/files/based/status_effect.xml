@@ -1,4 +1,4 @@
-<Entity tags="effect40k" >
+<Entity tags="vector_effect,effect40k" >
 	<GameEffectComponent
 		effect="CUSTOM"
 		custom_effect_id="PROMETHIUM_FIRE"

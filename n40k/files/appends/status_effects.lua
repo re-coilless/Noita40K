@@ -12,6 +12,17 @@ table.insert( status_effects,
 })
 table.insert( status_effects, 
 {
+	id = "BIOINFERNO",
+	protects_from_fire = false,
+	is_harmful = false,
+
+	ui_name = "$n40k_EFFECT_bioinferno", ui_description = "$n40k_EFFECT_bioinferno_",
+	ui_icon = "mods/n40k/files/effects/status/bioinferno.png",
+
+	effect_entity = "mods/n40k/files/effects/status/bioinferno.xml",
+})
+table.insert( status_effects, 
+{
 	id = "IONIZING_SUBLIMATION",
 	protects_from_fire = false,
 	is_harmful = true,
@@ -20,17 +31,6 @@ table.insert( status_effects,
 	ui_icon = "mods/n40k/files/effects/status/ionizing_sublimation.png",
 
 	effect_entity = "mods/n40k/files/effects/status/ionizing_sublimation.xml",
-})
-table.insert( status_effects, 
-{
-	id = "LIFE_EATER",
-	protects_from_fire = false,
-	is_harmful = true,
-
-	ui_name = "$n40k_EFFECT_life_eater", ui_description = "$n40k_EFFECT_life_eater_",
-	ui_icon = "mods/n40k/files/effects/status/life_eater.png",
-
-	effect_entity = "mods/n40k/files/effects/status/life_eater.xml",
 })
 table.insert( status_effects, 
 {
@@ -46,14 +46,25 @@ table.insert( status_effects,
 })
 table.insert( status_effects, 
 {
-	id = "BIOINFERNO",
+	id = "LIFE_EATER_PRIMER",
 	protects_from_fire = false,
-	is_harmful = false,
+	is_harmful = true,
 
-	ui_name = "$n40k_EFFECT_bioinferno", ui_description = "$n40k_EFFECT_bioinferno_",
-	ui_icon = "mods/n40k/files/effects/status/bioinferno.png",
+	ui_name = "$n40k_EFFECT_life_eater_primer", ui_description = "$n40k_EFFECT_life_eater_primer_",
+	ui_icon = "mods/n40k/files/effects/status/life_eater.png",
 
-	effect_entity = "mods/n40k/files/effects/status/bioinferno.xml",
+	effect_entity = "mods/n40k/files/effects/status/life_eater_primer.xml",
+})
+table.insert( status_effects, 
+{
+	id = "WARPFIRE_PRIMER",
+	protects_from_fire = false,
+	is_harmful = true,
+
+	ui_name = "$n40k_EFFECT_warpfire_primer", ui_description = "$n40k_EFFECT_warpfire_primer_",
+	ui_icon = "mods/n40k/files/effects/status/warpfire.png",
+
+	effect_entity = "mods/n40k/files/effects/status/warpfire_primer.xml",
 })
 
 --generic
@@ -122,6 +133,17 @@ table.insert( status_effects,
 	ui_icon = "mods/n40k/files/effects/status/psytrip.png",
 
 	effect_entity = "mods/n40k/files/effects/status/psytrip.xml",
+})
+table.insert( status_effects, 
+{
+	id = "LIFE_EATER",
+	protects_from_fire = false,
+	is_harmful = true,
+
+	ui_name = "$n40k_EFFECT_life_eater", ui_description = "$n40k_EFFECT_life_eater_",
+	ui_icon = "mods/n40k/files/effects/status/life_eater.png",
+
+	effect_entity = "mods/n40k/files/effects/status/life_eater.xml",
 })
 table.insert( status_effects, 
 {

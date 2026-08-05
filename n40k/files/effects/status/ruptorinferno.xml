@@ -1,26 +1,14 @@
 <Entity name="ruptorinferno" >
-	<InheritTransformComponent 
-		_enabled="1"
-    ></InheritTransformComponent>
+	<Base file="mods/n40k/files/based/status_effect.xml" >
+		<GameEffectComponent custom_effect_id="RUPTORINFERNO" />
+	</Base>
 	
-	<GameEffectComponent 
-		effect="CUSTOM"
-		custom_effect_id="RUPTORINFERNO"
-		frames="-1"
-	></GameEffectComponent>
+	<GameEffectComponent effect="PROTECTION_FIRE" frames="-1" />
+	<GameEffectComponent effect="PROTECTION_RADIOACTIVITY" frames="-1" />
+	<GameEffectComponent effect="MOVEMENT_SLOWER" frames="-1" />
+	<GameEffectComponent effect="NO_DAMAGE_FLASH" frames="-1" />
 	
-	<GameEffectComponent 
-		effect="PROTECTION_FIRE"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<GameEffectComponent 
-		effect="PROTECTION_RADIOACTIVITY"
-		frames="-1"
-	></GameEffectComponent>
-	
-	<ParticleEmitterComponent 
-		_tags="ruptorinferno"
+	<ParticleEmitterComponent
 		emitted_material_name="ruptor_gas"
 		x_pos_offset_min="-2"
 		x_pos_offset_max="2"
@@ -42,14 +30,6 @@
 		is_emitting="1"
 	></ParticleEmitterComponent>
 	
-	<LuaComponent
-		script_source_file="mods/n40k/files/scripts/status_effects/ruptorinferno.lua"
-		execute_every_n_frame="1"
-	></LuaComponent>
-	
-	<VariableStorageComponent
-		_tags="scaled"
-		name="scaled"
-		value_bool="0"
-	></VariableStorageComponent>
+	<VariableStorageComponent name="got_scaled" value_bool="0" />
+	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/ruptorinferno.lua" />
 </Entity>
