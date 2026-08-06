@@ -26,7 +26,7 @@ return function( hooman, effect_id, is_added, is_removed )
 			local eid = 0
 			local is_real = false
 			if( effect[4] == 1 ) then
-				eid = pen.get_effect( entity_id, nil, effect[1])
+				eid = pen.get_effect( entity_id, effect[1])
 				is_real = pen.vld( eid, true )
 			end
 			

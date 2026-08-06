@@ -1,4 +1,4 @@
-<Entity name="system_overload" >
+<Entity name="n40k_effect_system_overload" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="SYSTEM_OVERLOAD" />
 	</Base>

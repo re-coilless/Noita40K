@@ -1,4 +1,4 @@
-<Entity name="fancy_burning_ragdoll" >
+<Entity name="n40k_effect_deflagration_ragdoll" >
 	<ParticleEmitterComponent 
         emitted_material_name="fire"
         offset.x="0"

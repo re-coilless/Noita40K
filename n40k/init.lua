@@ -9,19 +9,9 @@ ModMagicNumbersFileAdd( "mods/n40k/files/appends/magic_numbers.xml" )
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/n40k/files/appends/actions.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/files/appends/status_effects.lua" )
 
--- bioinferno converts blood to promethium
--- no damage flash for omnissiahs blessing
--- black_rage and unrestrained should add strength multiplier
--- make sure immovable_fortitude, ruptorinferno, sensory_overload, stais_coma, temporal_misalignment actually slows down the character (if not, make the effect weigh 250 kg)
--- redo some timers through the internal ones
--- attach knockback stars (data/particles/knockback_star_spinning.xml) for sensory overload to the head hotspot
--- system overload is autoterminated when the charge gets above 0
--- warpfire should check for magic_liquid tag and get removed if so
-
 -- finish battle sister (jumppack, plasma pistol)
--- marine perks
--- add credits
--- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency
+-- add credits (as index applet)
+-- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency (add intification module to index for this)
 
 -- matter info is broken due to culling
 -- new magos char sounds

@@ -1,4 +1,4 @@
-<Entity name="ruptorinferno" >
+<Entity name="n40k_effect_ruptorinferno" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="RUPTORINFERNO" />
 	</Base>

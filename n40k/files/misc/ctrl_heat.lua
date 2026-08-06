@@ -5,6 +5,8 @@
 --there should be delta handling for guns that are outside the range
 
 return function( root_id )
+    dofile_once( "mods/n40k/files/_lib.lua" )
+
     local root_x, root_y = EntityGetTransform( root_id )
     pen.t.loop( EntityGetInRadiusWithTag( root_x, root_y, 500, "heat40k" ), function( i, entity_id )
         local pics = EntityGetComponentIncludingDisabled( entity_id, "SpriteComponent" )

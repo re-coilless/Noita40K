@@ -1,3 +1,9 @@
+-- black_rage and unrestrained should add strength multiplier
+-- make sure immovable_fortitude, ruptorinferno, sensory_overload, stasis_coma, temporal_misalignment actually slows down the character (if not, make the effect weigh 250 kg)
+-- redo some timers (for effects that are condition-based) through the internal ones
+-- warpfire should check for magic_liquid tag and get removed if so
+-- universal edge shader effect with color mixing ability
+
 --stains
 table.insert( status_effects, 
 {

@@ -1,21 +1,15 @@
-dofile_once( "mods/n40k/files/scripts/libs/black_library.lua" )
-
-local effect_id = GetUpdatedEntityID()
-local hooman = EntityGetRootEntity( effect_id )
-
-local storage_scale = EntityGetFirstComponentIncludingDisabled( effect_id, "VariableStorageComponent", "scaled" )
-local scaled = ComponentGetValue2( storage_scale, "value_bool" )
-
-if( not( scaled )) then
-	scale_emitter( hooman, EntityGetFirstComponentIncludingDisabled( effect_id, "ParticleEmitterComponent", "ruptorinferno" ), true )
-	ComponentSetValue2( storage_scale, "value_bool", true )
-end
-
-local damage_comp = EntityGetFirstComponentIncludingDisabled( hooman, "DamageModelComponent" )
-if( damage_comp ~= nil ) then
-	local max_hp = ComponentGetValue2( damage_comp, "max_hp" )
-	local current_hp = ComponentGetValue2( damage_comp, "hp" )
-	if( current_hp < max_hp*0.9 ) then
-		ComponentSetValue2( damage_comp, "hp", math.floor(( current_hp + 0.001 )*10000 )/10000 )
+return function( hooman, effect_id, is_added, is_removed )
+	if( not( pen.magic_storage( effect_id, "got_scaled", "value_bool" ))) then
+		pen.t.loop( EntityGetComponentIncludingDisabled( effect_id, "ParticleEmitterComponent" ), function( i, v )
+			pen.scale_emitter( hooman, v )
+		end)
+		pen.magic_storage( effect_id, "got_scaled", "value_bool", true )
 	end
+
+	local dmg_comp = EntityGetFirstComponent( hooman, "DamageModelComponent" )
+	if( not( pen.vld( dmg_comp, true ))) then return end
+	
+	local hp = ComponentGetValue2( dmg_comp, "hp" )
+	if( current_hp > ComponentGetValue2( dmg_comp, "max_hp" )*0.9 ) then return end
+	ComponentSetValue2( dmg_comp, "hp", pen.rnd( hp + 0.001, 10000 ))
 end

@@ -443,9 +443,9 @@ n40k.PERKS = {
 		func = function( hooman, data )
 			-- mass-restricted dual wielding perk (determined by strength)
 			
-			local x, y = EntityGetTransform( hooman )
-			local left_arm = pen.lib.wand_puppet( x, y )
-			EntityAddChild( hooman, left_arm )
+			-- local x, y = EntityGetTransform( hooman )
+			-- local left_arm = pen.lib.wand_puppet( x, y )
+			-- EntityAddChild( hooman, left_arm )
 
 			--add left hand hotspot
 			--pen.lib.wand_puppet (easy to control wand ghost with optional life support)
@@ -461,7 +461,7 @@ n40k.PERKS = {
 			</Entity>
 			]]
 		end,
-	}
+	},
 
 	-- magic abilities
 	-- add a secondary layer of unique legion perks that is permananetly unlocked by staying at high adrenaline for long time
@@ -527,6 +527,7 @@ n40k.PERKS = {
 
 			data.threshold_poison = 999
 			data.threshold_radiation = 999
+			n40k.add_effect( hooman, "NO_DAMAGE_FLASH" )
 			n40k.add_effect( hooman, "PROTECTION_RADIOACTIVITY" )
 
 			pen.magic_storage( hooman, "reactor_load", "value_int",

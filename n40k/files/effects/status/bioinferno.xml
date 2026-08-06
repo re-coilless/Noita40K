@@ -1,4 +1,4 @@
-<Entity name="bioinferno" >
+<Entity name="n40k_effect_bioinferno" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="BIOINFERNO" />
 	</Base>
@@ -70,5 +70,14 @@
 		loop="1"
 		temperature_reaction_temp="10000"
 		ignite_materials="1"
+    ></MagicConvertMaterialComponent>
+	<MagicConvertMaterialComponent
+		kill_when_finished="0"
+		from_material_tag="[blood]"
+		steps_per_frame="5"
+		to_material="promethium"
+		is_circle="1"
+		radius="20"
+		loop="1"
     ></MagicConvertMaterialComponent>
 </Entity>

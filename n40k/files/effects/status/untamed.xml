@@ -1,4 +1,4 @@
-<Entity name="untamed" >
+<Entity name="n40k_effect_untamed" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="UNTAMED" frames="60" />
 	</Base>

@@ -1,4 +1,4 @@
-<Entity name="warpfire_primer" >
+<Entity name="n40k_effect_warpfire_primer" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="WARPFIRE_PRIMER" />
 	</Base>

@@ -258,18 +258,15 @@ table.insert( actions,
 			if( not( is_final )) then return end --make sure this spawns both as final and as hit
 			local effect = "mods/n40k/files/items/rounds/effect_volkite_small.xml"
 			pen.life_support( pen.c.beam_eff_ids, data.gun..k, effect, point_x, point_y )
-
-			-- local effect_id = get_custom_effect( actual_deadman, "fancy_burning" )
-			-- if( effect_id ~= nil ) then
-			-- 	local effect_comp = EntityGetFirstComponentIncludingDisabled( effect_id, "GameEffectComponent" )
-			-- 	ComponentSetValue2( effect_comp, "frames", ComponentGetValue2( effect_comp, "frames" ) + 5 )
-			-- else
-			-- 	LoadGameEffectEntityTo( actual_deadman, "mods/n40k/files/entities/status_effects/effect_fancy_burning.xml" )
-			-- end
 		end, f = function( data, hit_id, hit_x, hit_y ) --deal damage to armor instead
 			pen.play_sound( pen.S.N40K.EFFECT_BURST, hit_x, hit_y )
-			if( EntityHasTag( hit_id, "armored" )) then data.dmg = data.dmg/4; return end
+			if( EntityHasTag( hit_id, "armored" )) then data.dmg = data.dmg/4; return end --instead of tag check, looks for ctrl script
 			ComponentSetValue2( GetGameEffectLoadTo( hit_id, "EXPLODING_CORPSE", true ), "frames", 2 )
+
+			local effect_id, eff_comp = pen.get_effect( hit_id, "n40k_effect_deflagration" )
+			if( not( pen.vld( effect_id, true ))) then
+				LoadGameEffectEntityTo( hit_id, "mods/n40k/files/effects/status/deflagration.xml" )
+			else ComponentSetValue2( eff_comp, "frames", ComponentGetValue2( eff_comp, "frames" ) + 5 ) end
 		end,
 	},
 	custom_xml_file = "mods/n40k/files/items/mags/pack_S_high_density.xml",

@@ -1,4 +1,4 @@
-<Entity name="sensory_overload" >
+<Entity name="n40k_effect_sensory_overload" >
 	<Base file="mods/n40k/files/based/status_effect.xml" >
 		<GameEffectComponent custom_effect_id="SENSORY_OVERLOAD" frames="600" />
 	</Base>
