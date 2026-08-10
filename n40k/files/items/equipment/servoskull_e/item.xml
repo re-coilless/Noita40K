@@ -9,6 +9,8 @@
 		></SpriteComponent>
 		
 		<VariableStorageComponent name="type" value_string="other" />
+		<VariableStorageComponent name="vis_tag" value_string="equipment_servoskull_e_vis" />
+		<VariableStorageComponent name="vis_path" value_string="mods/n40k/files/items/equipment/servoskull_e/body.xml" />
 		<VariableStorageComponent name="update" value_string="mods/n40k/files/items/equipment/servoskull_e/item.lua" />
 	</Base>
 	

@@ -64,6 +64,5 @@
 	></UIIconComponent>
 	
 	<VariableStorageComponent name="got_scaled" value_bool="0" />
-	<VariableStorageComponent name="is_hollowed" value_bool="0" />
 	<VariableStorageComponent name="vector_effect" value_string="mods/n40k/files/effects/status/warpfire.lua" />
 </Entity>

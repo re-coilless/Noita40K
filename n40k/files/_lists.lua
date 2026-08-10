@@ -131,13 +131,17 @@ n40k.EQUIPMENT = {
 	},
 
 	-- mobility
+	JUMPPACK_SERAPHIM = {
+		name = "$n40k_EQUIPMENT_jumppack_seraphim", desc = "$n40k_EQUIPMENT_jumppack_seraphim_",
+		path = "mods/n40k/files/items/equipment/jumppack_seraphim.xml",
+	},
 	JUMPPACK_L = {
 		name = "$n40k_EQUIPMENT_jumppack_l", desc = "$n40k_EQUIPMENT_jumppack_l_",
 		path = "mods/n40k/files/items/equipment/jumppack_l.xml",
 	},
 	JUMPPACK_L_UPGRADE = {
 		name = "$n40k_EQUIPMENT_jumppack_l_upgrade", desc = "$n40k_EQUIPMENT_jumppack_l_upgrade_",
-		path = "",
+		path = "mods/n40k/files/items/equipment/jumppack_l_upgrade.xml",
 	},
 
 	-- utility
@@ -442,7 +446,10 @@ n40k.PERKS = {
 		name = "$n40k_PERK_twin_linked", desc = "$n40k_PERK_twin_linked_",
 		func = function( hooman, data )
 			-- mass-restricted dual wielding perk (determined by strength)
-			
+			-- when inserting a gun, attempt replacing the sprite with offhand version
+			-- create a tag that prevents offhanding no matter what (all sword get it)
+			-- modify wand puppet to comply with index format
+
 			-- local x, y = EntityGetTransform( hooman )
 			-- local left_arm = pen.lib.wand_puppet( x, y )
 			-- EntityAddChild( hooman, left_arm )
@@ -793,8 +800,8 @@ n40k.CLASSES[6].sects[1].chars = {
 		-- main = "mods/n40k/files/pics/codex_gfx/tech_priest_magos_explorator.png",
 		
 		guns = { "BOLTER_PISTOL", "PLASMA_PISTOL", "SWORD_CHAIN", "MELTA_PISTOL" },
-		--equipment = { "JUMPPACK_SERAPHIM" },
-		skin = "ARMOR_SORORITAS", --perks = { "EMPERORS_DAUGHTER", "COMBAT_ZEALOT" },
+		equipment = { "JUMPPACK_SERAPHIM" },
+		skin = "ARMOR_SORORITAS", --perks = { "EMPERORS_DAUGHTER", "TWIN_LINKED" },
 	},
 }
 

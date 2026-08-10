@@ -1317,7 +1317,7 @@
 	
 	<Reaction probability="0.1"
 		direction="top"
-		entity="mods/n40k/files/entities/emitters/explosion_life_eater_spitter.xml"
+		entity="mods/n40k/files/effects/explosion_life_eater_spitter.xml"
 		input_cell1="exterminatus_juice" 	input_cell2="air"
 		output_cell1="exterminatus_juice" 	output_cell2="air"
 	></Reaction>
@@ -1410,19 +1410,19 @@
 	></Reaction>
 	
 	<Reaction probability="100"
-		entity="mods/n40k/files/entities/emitters/explosion_life_eater.xml"
+		entity="mods/n40k/files/effects/explosion_life_eater.xml"
 		input_cell1="osculant_matter" 		input_cell2="blood"
 		output_cell1="air" 					output_cell2="air"
 	></Reaction>
 	
 	<Reaction probability="100"
-		entity="mods/n40k/files/entities/emitters/explosion_warpfire.xml"
+		entity="mods/n40k/files/effects/explosion_warpfire.xml"
 		input_cell1="osculant_matter" 	input_cell2="[warpmatter]"
 		output_cell1="air" 				output_cell2="air"
 	></Reaction>
 	
 	<Reaction probability="100"
-		entity="mods/n40k/files/entities/emitters/explosion_ruptor.xml"
+		entity="mods/n40k/files/effects/explosion_ruptor.xml"
 		input_cell1="osculant_matter" 	input_cell2="diamond"
 		output_cell1="air" 				output_cell2="air"
 	></Reaction>

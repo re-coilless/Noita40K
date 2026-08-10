@@ -1,0 +1,25 @@
+<Entity name="sword_chain" >
+	<Base file="mods/n40k/files/based/gun_melee.xml" >
+		<AbilityComponent
+			sprite_file="mods/n40k/files/items/weapons/sword_chain_A.png"
+			add_these_child_actions="N40K_BLADE_ADAMANTIUM_TEETH"
+		></AbilityComponent>
+		<SpriteComponent offset_x="4" offset_y="0.5" />
+		<VelocityComponent mass="0.038" />
+    </Base>
+	
+	<HotspotComponent
+        _tags="shoot_pos"
+        offset.x="2"
+        offset.y="2"
+	></HotspotComponent>
+	
+	<VariableStorageComponent name="vector_no_handling" value_bool="1" />
+
+	<VariableStorageComponent name="blade_length" value_float="14" />
+	<VariableStorageComponent name="rest_position" value_string="|-90|0|0|" />
+	<VariableStorageComponent name="ctrl_script" value_string="mods/n40k/files/items/weapons/sword_chain.lua" />
+	
+	<VariableStorageComponent name="heat_max" value_float="5" />
+	<VariableStorageComponent name="heat_loss" value_float="0.99" />
+</Entity>

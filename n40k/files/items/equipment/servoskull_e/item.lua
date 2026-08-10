@@ -6,12 +6,11 @@ if( index.M.is_updating ) then
 		if( not( is_out )) then
 			pen.magic_storage( hooman, "reactor_load", "value_int",
 				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) - power )
-			local path = "mods/n40k/files/items/equipment/servoskull_e/body.xml"
-			EntityAddChild( hooman, EntityLoad( path, unpack( index.D.player_xy )))
+			EntityAddChild( hooman, EntityLoad( pen.magic_storage( item_info.id, "vis_path", "value_string" ), unpack( index.D.player_xy )))
 		else
 			pen.magic_storage( hooman, "reactor_load", "value_int",
 				pen.magic_storage( hooman, "reactor_load", "value_int", nil, 1 ) + power )
-			EntityKill( pen.get_child( hooman, "equipment_servoskull_e_vis" ) or 0 )
+			EntityKill( pen.get_child( hooman, pen.magic_storage( item_info.id, "vis_tag", "value_string" )) or 0 )
 		end
 	end
 else
@@ -19,7 +18,7 @@ else
 		local xD, xM = index.D, index.M
 
 		local hooman = xD.player_id
-		local vis_id = pen.get_child( hooman, "equipment_servoskull_e_vis" )
+		local vis_id = pen.get_child( hooman, pen.magic_storage( info.id, "vis_tag", "value_string" ))
 		if( not( pen.vld( vis_id, true ))) then return end
 
 		local _,_,_, s_x, s_y = EntityGetTransform( hooman )

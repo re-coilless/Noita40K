@@ -83,11 +83,32 @@ table.insert( actions,
 	shells = { "mods/n40k/files/items/rounds/bolt_998c.xml" },
 	projectiles = {{ p = "mods/n40k/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
 	custom_xml_file = "mods/n40k/files/items/mags/bolt_998_he_M.xml",
-	sfx = { "mods/n40k/files/40n40kK.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
+	sfx = { "mods/n40k/files/n40k.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
 	
 	action = function()
 		pen.gunshot( n40k.muzzle_flash )
 		c.spread_degrees = c.spread_degrees + 10.0
+	end,
+})
+
+table.insert( actions,
+{
+	id = "N40K_BOLT_998_VELHO_M",
+	name = "$n40k_MAG_bolt_998_velho_m", description = "$n40k_MAG_bolt_998_velho_m_",
+	sprite = "mods/n40k/files/items/mags/bolt_998_velho_M.png",
+	
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 1000, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	shells = { "mods/n40k/files/items/rounds/bolt_998c.xml" },
+	projectiles = {{ p = "mods/n40k/files/items/rounds/bolt_998_he.xml", r = 3, h = 1 }},
+	custom_xml_file = "mods/n40k/files/items/mags/bolt_998_velho_M.xml",
+	sfx = { "mods/n40k/files/n40k.bank", "items/guns/bolt_998", false, "items/guns/dryfire" },
+	
+	action = function()
+		pen.gunshot( n40k.muzzle_flash )
+		c.spread_degrees = c.spread_degrees - 10.0
 	end,
 })
 
@@ -134,6 +155,25 @@ table.insert( actions,
 		c.damage_critical_chance = c.damage_critical_chance + 20
 	end,
 })
+
+table.insert( actions,
+{
+	id = "N40K_CANISTER_S_HYDROGEN",
+	name = "$n40k_MAG_canister_s_hydrogen", description = "$n40k_MAG_canister_s_hydrogen_",
+	sprite = "mods/n40k/files/items/mags/canister_S_hydrogen.png",
+	--converts beams into a flamer-like thing that shoots plasma
+	mod = "Noita40K",
+	type = ACTION_TYPE_PROJECTILE,
+	price = 300, mana = 0, max_uses = -1,
+	spawn_requires_flag = "never_spawn_this_action",
+	projectiles = {{ p = "mods/n40k/files/items/rounds/bolt_50mm_aphe.xml", r = 1, h = 50 }},
+	custom_xml_file = "mods/n40k/files/items/mags/canister_S_hydrogen.xml",
+	sfx = { "mods/n40k/files/n40k.bank",
+		"items/beams/pyrum", true, "items/guns/dryfire_energy", "items/overheat_start" },
+	action = function() pen.gunshot( n40k.muzzle_flash ) end,
+})
+
+
 
 function n40k.beamshot( beam_x, beam_y, r, s_x, s_y, gun_id, card_id, action )
 	local data = action.beam
@@ -366,50 +406,7 @@ table.insert( actions,
 	action = function() pen.gunshot( n40k.beamshot ) end,
 })
 
---[[
-table.insert( actions,
-{
-	id          = "75_BOLT_VP_MAG",
-	name 		= ".75 Bolt Mag Velho",
-	description = "A curiously modified 15-round bolter magazine. It's surrounded by so familiar yet so alien purple aura.",
-	sprite 		= "mods/n40k/files/pics/cards_gfx/75_bolt_vp_mag.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	related_projectiles	= { "mods/n40k/files/entities/projectiles/bolt_75_VP.xml" },
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 500,
-	mana              = 50,
-	max_uses          = -1,
-	custom_xml_file = "mods/n40k/files/entities/cards/75_bolt_vp_mag.xml",
-	action = function()
-		c.spread_degrees = c.spread_degrees + 10.0
-		shot_effects.recoil_knockback = shot_effects.recoil_knockback + 20.0
-		add_projectile_trigger_hit_world( "mods/n40k/files/entities/projectiles/bolt_75_VP.xml", 1 )
-	end,
-})
 
-table.insert( actions,
-{
-	id          = "HYDROGEN_FUEL_CELL_SMALL",
-	name 		= "Small Cryo-Sealed Hydrogen Fuel Cell",
-	description = "An armoured flask, containing highly unstable hydrogen-based concoction.",
-	sprite 		= "mods/n40ke_bss/files/pics/cards_gfx/hydrogen_fuel_cell_small.png",
-	sprite_unidentified = "data/ui_gfx/gun_actions/light_bullet_trigger_unidentified.png",
-	type 		= ACTION_TYPE_PROJECTILE,
-	spawn_requires_flag = "never_fucking_spawn",
-	spawn_level                       = "",
-	spawn_probability                 = "",
-	price             = 50,
-	mana              = 4,
-	max_uses          = -1,
-	custom_xml_file = "mods/n40ke_bss/files/entities/cards/hydrogen_fuel_cell_small.xml",
-	action = function()
-		beam_controller( GetUpdatedEntityID(), "plasma_state", 3 ) --check it in the black_library
-	end,
-})
-]]
 
 function n40k.init_empty_action( id, data )
 	return {

@@ -2,16 +2,15 @@ if( index.M.is_updating ) then
 	return function( inv_info, item_info, is_out )
 		local hooman = index.D.player_id
 		if( not( is_out )) then
-			local path = "mods/n40k/files/items/equipment/jumppack_l_vis.xml"
-			EntityAddChild( hooman, EntityLoad( path, unpack( index.D.player_xy )))
-		else EntityKill( pen.get_child( hooman, "equipment_jumppack_l_vis" ) or 0 ) end
+			EntityAddChild( hooman, EntityLoad( pen.magic_storage( item_info.id, "vis_path", "value_string" ), unpack( index.D.player_xy )))
+		else EntityKill( pen.get_child( hooman, pen.magic_storage( item_info.id, "vis_tag", "value_string" )) or 0 ) end
 	end
 else
 	return function( info )
 		local xD, xM = index.D, index.M
 
 		local hooman = xD.player_id
-		local vis_id = pen.get_child( hooman, "equipment_jumppack_l_vis" )
+		local vis_id = pen.get_child( hooman, pen.magic_storage( info.id, "vis_tag", "value_string" ))
 		if( not( pen.vld( vis_id, true ))) then return end
 
 		local x, y, _, s_x, s_y = EntityGetTransform( hooman )

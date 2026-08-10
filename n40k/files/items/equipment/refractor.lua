@@ -4,9 +4,8 @@ if( index.M.is_updating ) then
 		if( not( is_out )) then
 			--add 200 to max reactor load and increase target charge by 100
 			--store heat on the item itself once taken off and then apply back
-			local path = "mods/n40k/files/items/equipment/refractor_vis.xml"
-			EntityAddChild( hooman, EntityLoad( path, unpack( index.D.player_xy )))
-		else EntityKill( pen.get_child( hooman, "equipment_refractor_vis" ) or 0 ) end
+			EntityAddChild( hooman, EntityLoad( pen.magic_storage( item_info.id, "vis_path", "value_string" ), unpack( index.D.player_xy )))
+		else EntityKill( pen.get_child( hooman, pen.magic_storage( item_info.id, "vis_tag", "value_string" )) or 0 ) end
 	end
 else
 	return function( info )
@@ -15,7 +14,7 @@ else
 		--do beam breaking by checking for refractor callback inside pen.raytrace_entities if beam is gonna hit the player
 
 		local hooman = xD.player_id
-		local vis_id = pen.get_child( hooman, "equipment_refractor_vis" )
+		local vis_id = pen.get_child( hooman, pen.magic_storage( info.id, "vis_tag", "value_string" ))
 		if( not( pen.vld( vis_id, true ))) then return end
 		local x, y = EntityGetTransform( vis_id )
 		

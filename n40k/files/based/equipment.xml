@@ -5,5 +5,7 @@
 	</Base>
 	
 	<VariableStorageComponent name="type" value_string="" />
+	<VariableStorageComponent name="vis_tag" value_string="" />
+	<VariableStorageComponent name="vis_path" value_string="" />
 	<VariableStorageComponent name="update" value_string="" />
 </Entity>

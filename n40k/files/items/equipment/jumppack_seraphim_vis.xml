@@ -1,7 +1,7 @@
-<Entity name="equipment_jumppack_l_vis" tags="heat40k" >
+<Entity name="equipment_jumppack_seraphim_vis" tags="heat40k" >
 	<SpriteComponent
-        image_file="mods/n40k/files/items/equipment/jumppack_l.png"
-        offset_x="9" offset_y="3" z_index="0.65"
+        image_file="mods/n40k/files/items/equipment/jumppack_seraphim.png"
+        offset_x="7" offset_y="4" z_index="0.65"
     ></SpriteComponent>
 	<SpriteComponent
 		alpha="0"
@@ -14,7 +14,7 @@
 		smooth_filtering="1"
 	></SpriteComponent>
 	
-	<VariableStorageComponent name="heat_max" value_float="100" />
+	<VariableStorageComponent name="heat_max" value_float="75" />
 	<VariableStorageComponent name="heat_loss" value_float="0.995" />
 	
 	<InheritTransformComponent

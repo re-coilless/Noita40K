@@ -9,7 +9,7 @@ ModMagicNumbersFileAdd( "mods/n40k/files/appends/magic_numbers.xml" )
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/n40k/files/appends/actions.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/files/appends/status_effects.lua" )
 
--- finish battle sister (jumppack, plasma pistol)
+-- attachement system for bayonet
 -- add credits (as index applet)
 -- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency (add intification module to index for this)
 

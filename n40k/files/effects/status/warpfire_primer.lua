@@ -1,12 +1,4 @@
 return function( hooman, effect_id, is_added, is_removed )
-	--maintain at certain lifetime
+	if( pen.vld( pen.get_effect( hooman, "n40k_effect_warpfire" ), true )) then return end
+	LoadGameEffectEntityTo( hooman, "mods/n40k/files/effects/status/warpfire.xml" )
 end
-
--- local effect_id = GetUpdatedEntityID()
--- local deadman = EntityGetRootEntity( effect_id )
-
--- if( not( EntityHasTag( deadman, "life_eater_infected" ))) then
--- 	EntityAddTag( deadman, "life_eater_infected" )
--- 	local x, y = EntityGetTransform( deadman )
--- 	EntityAddChild( deadman, EntityLoad( "mods/n40k/files/entities/status_effects/effect_life_eater.xml", x, y ))
--- end

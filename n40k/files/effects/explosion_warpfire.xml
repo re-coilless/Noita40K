@@ -1,4 +1,4 @@
-<Entity name="explosion_warpfire">
+<Entity name="explosion_warpfire" >
 	<MagicConvertMaterialComponent
 		kill_when_finished="0"
 		from_any_material="1"

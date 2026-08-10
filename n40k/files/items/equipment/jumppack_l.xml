@@ -9,6 +9,8 @@
 		></SpriteComponent>
 		
 		<VariableStorageComponent name="type" value_string="back" />
+		<VariableStorageComponent name="vis_tag" value_string="equipment_jumppack_l_vis" />
+		<VariableStorageComponent name="vis_path" value_string="mods/n40k/files/items/equipment/jumppack_l_vis.xml" />
 		<VariableStorageComponent name="update" value_string="mods/n40k/files/items/equipment/jumppack.lua" />
 	</Base>
 	
