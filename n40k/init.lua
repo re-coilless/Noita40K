@@ -10,10 +10,7 @@ ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/n40k/files/appends/a
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/files/appends/status_effects.lua" )
 
 -- attachement system for bayonet
--- add credits (as index applet)
--- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency (add intification module to index for this)
-
--- matter info is broken due to culling
+-- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency (add notification module to index for this)
 -- new magos char sounds
 -- better sound effect system
 -- universal sword script
@@ -32,6 +29,7 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- madness combat style hands
 -- make trailing red eyes for rage modes
 
+-- ballistic velho pattern should have spells/constructs inserted into the mag for effect (has tuning dials to alter the position in hex stat rose, 4 levels of atunement with each one having unique and useful effect)
 -- steal wolfensteins perk system (achievement-locked minor general gameplay rewards)
 -- ballistic semiauto jamming should still fire the round that ruins the mag except with scpecial effects (slower + different sound)
 -- medium class of main force can obtain alternative loadouts though permanent in-game unlocks (that's how terminators are done)

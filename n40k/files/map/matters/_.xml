@@ -114,6 +114,7 @@
 		name="unstable_warpclot"
 		ui_name="$n40k_MATTER_unstable_warpclot"
 		ui_desc=""
+		
 		wang_color="806c00cc"
 		
 		on_fire="1"

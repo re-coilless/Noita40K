@@ -66,7 +66,7 @@ function n40k.setup_character( hooman )
 		sect = pen.setting_get( "n40k.THIS_SECT" ),
 		char = pen.setting_get( "n40k.THIS_CHAR" ),
 	}
-
+	
 	--make sure that class, section and char names exist; if not, subtract one and repeat
 	local clss_data = n40k.CLASSES[ active.clss ]
 	local sect_data = clss_data.sects[ active.sect ]
@@ -94,11 +94,11 @@ function n40k.setup_character( hooman )
 		data = n40k.new_perk( v, hooman, data )
 	end)
 
-	GlobalsSetValue( "VECTOR_ALWAYS_RUN", "0" )
-	GlobalsSetValue( "VECTOR_SCROLL_FLIP", "1" )
+	GlobalsSetValue( "VECTOR_ALWAYS_RUN", "1" )
     pen.magic_storage( hooman, "vector_do_stress", "value_bool", true )
     pen.magic_storage( hooman, "vector_do_handling", "value_bool", true )
     pen.magic_storage( hooman, "vector_do_momentum", "value_bool", true )
+    pen.magic_storage( hooman, "vector_do_camera", "value_bool", true )
 	n40k.add_vector_ctrl( hooman, "mods/n40k/files/misc/ctrl_heat.lua" )
 	n40k.add_vector_ctrl( hooman, "mods/n40k/files/misc/ctrl_anims.lua" )
 	n40k.add_vector_ctrl( hooman, "mods/n40k/files/misc/ctrl_taunt.lua" )

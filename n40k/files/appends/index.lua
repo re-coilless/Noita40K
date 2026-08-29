@@ -1,5 +1,15 @@
 local GLOBAL_MODES, GLOBAL_MUTATORS, APPLETS, BOSS_BARS,
-	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_STRUCT = unpack( index.STRUCT )
+	WAND_STATS, SPELL_STATS, MATTER_DESCS, ITEM_CATS, GUI_MODULES, GUI_STRUCT = unpack( index.STRUCT )
+
+local id, goners = 0, {
+    "bars_hp", "bars_air", "bars_flight",
+    "bars_wand_mana", "bars_wand_reload", "bars_wand_delay", "nums_gold", "icons_perks" }
+for i,v in ipairs( goners ) do
+    _,id = pen.t.get( GUI_STRUCT.top_right, v )
+    if( pen.vld( id )) then table.remove( GUI_STRUCT.top_right, id ) end
+end
+GUI_STRUCT.top_left[1] = { 0, 0 }
+table.insert( GUI_STRUCT.top_left, 2, "bars_hp" )
 
 table.insert( GLOBAL_MUTATORS, function()
     dofile_once( "mods/n40k/files/_lib.lua" )
@@ -77,12 +87,80 @@ table.insert( GLOBAL_MUTATORS, function()
 	local active = n40k.setup_character( hooman )
 end)
 
-GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
-    local xD = index.D
-    local data = xD.DamageModel
-    local pic_x, pic_y = unpack( xys.hp or { 3, 2 })
+table.insert( APPLETS.l, {
+    name = "Noita40K Credits", desc = "Attributions and Gratitudes.",
+    pic = "mods/n40k/files/gui/credits.png", off_x = 0, off_y = 0,
+    toggle = function( state )
+        if( not( state )) then return end
+        local is_going = GlobalsGetValue( "N40K_CREDITS_TOGGLE", "0" ) == "1"
+        GlobalsSetValue( "N40K_CREDITS_TOGGLE", is_going and "0" or "1" )
+    end,
+})
+GUI_MODULES.custom.n40k_credits = function( xD, xM, screen_w, screen_h, pos )
+	if( GlobalsGetValue( "N40K_CREDITS_TOGGLE", "0" ) ~= "1" ) then return end
+    if( xD.is_opened or xD.gmod.menu_capable ) then return end
     
-    xD.xys.world_tip = { screen_w + 23, 20 }
+    xD.tip_func( "", {
+		tid = "n40k_credits", is_active = true,
+		pic_z = pen.Z.MENU_FRONT, pos = { screen_w/2 - 125, screen_h/2 - 100 }, dims = { 250, 200 },
+	}, function( t, d )
+		local size_x, size_y = unpack( d.dims )
+		local pic_x, pic_y, pic_z = unpack( d.pos )
+
+        local inter_alpha = pen.animate( 1, d.t, { ease_out = "exp", frames = d.frames })
+        local inter_size = 15*( 1 - pen.animate( 1, d.t, { ease_out = "wav1.5", frames = d.frames }))
+		local pos_x, pos_y = pic_x + 0.5*inter_size, pic_y + 0.5*inter_size
+		local scale_x, scale_y = size_x - inter_size, size_y - inter_size
+
+        local gui, uid = pen.new.builder()
+		GuiOptionsAddForNextWidget( gui, 2 ) --NonInteractive
+		GuiZSetForNextWidget( gui, pic_z + 1 )
+		GuiImageNinePiece( gui, uid, pos_x, pos_y, scale_x, scale_y, 1.15*math.max( 1 - inter_alpha/6, 0.1 ))
+
+        pen.new.scroller( "n40k_credits", pic_x, pic_y, pic_z, size_x, size_y, function( scroll_pos )
+            local h = 0
+            
+            local pos_y = scroll_pos[1]
+            for i,cat in ipairs( n40k.CODEX.CREDITS ) do
+                local _,new_line = pen.new.text( 2, pos_y, pic_z,
+                    pen.magic_translate( cat[1]), { color = pen.P.VNL.RUNIC })
+                pos_y = pos_y + new_line
+
+                local names = pen.ght( cat[2])
+                local credit_logic = function( _a, _b )
+                    local a = pen.ght( names[ _a ])
+                    local b = pen.ght( names[ _b ])
+                    if( a[2] == true ) then return _a < _b end
+                    if( b[2] == true ) then return _a < _b end
+
+                    local v1 = string.byte( string.lower( a[1]))
+                    local v2 = string.byte( string.lower( b[1]))
+                    if( a[2] ~= nil or b[2] ~= nil ) then
+                        return ( a[2] or 100*v1 ) > ( b[2] or 100*v2 )
+                    else return v1 < v2 end
+                end
+
+                for k,name in pen.t.order( names, credit_logic ) do
+                    local nm = pen.ght( name )
+                    if( pen.vld( nm[3])) then
+                        pen.new.text( 5, pos_y, pic_z, pen.magic_translate( nm[3] )) end
+                    _,new_line = pen.new.text( 125, pos_y, pic_z,
+                        nm[1], { color = pen.P.VNL.YELLOW, is_centered_x = true, fully_featured = true })
+                    pos_y = pos_y + new_line
+                end
+
+                pos_y = pos_y + 3
+            end
+
+            return { pos_y - scroll_pos[1] + 1, 1 }
+        end)
+    end)
+end
+
+GUI_MODULES.bars_hp = function( xD, xM, screen_w, screen_h, pos )
+    local data = xD.DamageModel
+    local pic_x, pic_y = unpack( pos )
+    local delta = { 0, 0 }
     
     local pain_flash = 0
     pen.hallway( function()
@@ -90,88 +168,27 @@ GUI_STRUCT.bars.hp = function( screen_w, screen_h, xys )
         if( not( ComponentGetIsEnabled( data.comp ))) then return end
         if( data.hp_max <= 0 ) then return end
         
+        pic_x, pic_y = pic_x + 13, pic_y + 7
+        if( not( xD.is_opened )) then pic_y = pic_y + 13 end
+
         local bar_data = index.new_hp(
-            pic_x, pic_y, pen.Z.MAIN_BACK, xD.player_id, { dmg_data = data, length = 50, is_left = true })
+            pic_x, pic_y, pen.Z.MAIN_BACK, xD.player_id, { dmg_data = data, length = 75, is_left = true })
         pain_flash = bar_data.red_shift
 
         local hp_max_text, hp_text = pen.get_short_num( bar_data.hp_max ), pen.get_short_num( bar_data.hp )
         local tip = index.hud_text_fix( "$hud_health" )..( xD.short_hp and hp_text.."/"..hp_max_text or bar_data.hp.."/"..bar_data.hp_max )
-        index.tipping( pic_x - 2, pic_y - 1, nil,
-            { bar_data.length + 4, 8 }, tip, { pos = { pic_x + bar_data.length + 5, pic_y + 1 }})
-        pic_y = pic_y + 10
+        index.tipping( pic_x - 2, pic_y - 1, nil, { bar_data.length + 4, 8 }, tip )
+        
+        delta[2] = 10
     end)
     GameSetPostFxParameter( "low_health_indicator_alpha_proper", xD.hp_flashing_intensity*pain_flash, 0, 0, 0 )
 
-    return { pic_x, pic_y }
+    xD.buffer_target = { [2] = 90 }
+    return delta, { pic_x, pic_y }
 end
-GUI_STRUCT.bars.air = function( screen_w, screen_h, xys ) return { unpack( xys.hp )} end
-GUI_STRUCT.bars.flight = function( screen_w, screen_h, xys ) return { unpack( xys.air )} end
-GUI_STRUCT.bars.action.mana = function( screen_w, screen_h, xys ) return { unpack( xys.flight )} end
-GUI_STRUCT.bars.action.reload = function( screen_w, screen_h, xys ) return { unpack( xys.mana )} end
-GUI_STRUCT.bars.action.delay = function( screen_w, screen_h, xys ) return { unpack( xys.reload )} end
-GUI_STRUCT.gold = function( screen_w, screen_h, xys ) return { unpack( xys.delay )} end
-GUI_STRUCT.orbs = function( screen_w, screen_h, xys ) return { unpack( xys.gold )} end
 
-GUI_STRUCT.icons.ingestions = function( screen_w, screen_h, xys )
-    local xD = index.D
-    local pic_x, pic_y = screen_w - 41, 20
-
-    local data = xD.icon_data.ings
-    pen.hallway( function()
-        if( not( pen.vld( data ))) then return end
-        if( xD.is_opened or xD.gmod.menu_capable ) then return end
-        pic_y = pic_y + 3
-
-        for i,info in ipairs( data ) do
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 1 )
-            pic_x, pic_y = pic_x, pic_y + step_y - 1
-        end
-
-        pic_y = pic_y + 4
-    end)
-    return { pic_x, pic_y }
-end
-GUI_STRUCT.icons.stains = function( screen_w, screen_h, xys )
-    local xD = index.D
-    local data = xD.icon_data.stains
-    local pic_x, pic_y = unpack( xys.ingestions )
-    pen.hallway( function()
-        if( not( pen.vld( data ))) then return end
-        if( xD.is_opened or xD.gmod.menu_capable ) then return end
-
-        for i,info in ipairs( data ) do
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 2 )
-            pic_x, pic_y = pic_x, pic_y + step_y
-        end
-
-        pic_y = pic_y + 3
-    end)
-    return { pic_x, pic_y }
-end
-GUI_STRUCT.icons.effects = function( screen_w, screen_h, xys )
-    local xD = index.D
-    local data = xD.icon_data.misc
-    local pic_x, pic_y = unpack( xys.stains )
-    pen.hallway( function()
-        if( not( pen.vld( data ))) then return end
-        if( xD.is_opened or xD.gmod.menu_capable ) then return end
-
-        for i,info in ipairs( data ) do
-            if( info.amount < 2 ) then info.txt = "" end
-            local step_x, step_y = xD.icon_func( pic_x, pic_y, pen.Z.MAIN, info, 3 )
-            pic_x, pic_y = pic_x, pic_y + step_y
-        end
-
-        pic_y = pic_y + 3
-    end)
-    return { pic_x, pic_y }
-end
-GUI_STRUCT.icons.perks = function( screen_w, screen_h, xys ) return { unpack( xys.effects )} end
-
-GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
-    --integrate UI settings into this, they get lowered in the middle from above
-
-    local xD = index.D
+--integrate UI settings into this, they get lowered in the middle from above
+GUI_MODULES.gmodder = function( xD, xM, screen_w, screen_h, pos )    
     local data = xD.gmod
     if( not( xD.is_opened )) then return end
     if( not( pen.vld( data ))) then return end
@@ -223,16 +240,15 @@ GUI_STRUCT.gmodder = function( screen_w, screen_h, xys )
     GlobalsSetValue( index.GLOBAL_GLOBAL_MODE, tostring( new_mode ))
 end
 
-GUI_STRUCT.inv = function( screen_w, screen_h, xys )
-    local xD, xM = index.D, index.M
-    local root_x, root_y = unpack( xys.inv or { 0, 0 })
+GUI_MODULES.inv = function( xD, xM, screen_w, screen_h, pos )
+    local root_x, root_y = unpack( pos )
     local pic_x, pic_y = root_x, root_y
     
     local function check_shortcut( id, is_quickest )
         if( id <= 4 ) then return index.get_input(( is_quickest and "quickest_" or "quick_" )..id ) end
     end
     
-    xD.xys.wands = { 40, 20 }
+    xD.xys.inv_wands = { 40, 20 }
     -- show a weapon+item wheel at the pointer, force 20 fps when holding down weapon select button
     -- make wheel swap scroll in opposite direction
     -- unselected guns on hud should be with high alpha
@@ -248,9 +264,10 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         }, xD.is_opened, false, true )
         gun_belt_y = gun_belt_y + h + step
     end
-
+    
+    local backpack_root = 31
     local item_belt_x = xD.is_opened and ( screen_w - ( xD.inv_quick_size*20 + 35 )) or 30
-    local backpack_x, backpack_y = item_belt_x, 20
+    local backpack_x, backpack_y = item_belt_x, backpack_root
     for i,slot in ipairs( xD.slot_state[ xD.invs_p.q ].quick ) do
         w, h = index.dft.slot( item_belt_x, xD.is_opened and pic_y or ( screen_h - 30 ), {
             inv_slot = { i, -2 },
@@ -261,6 +278,12 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
     end
 
     if( xD.is_opened ) then
+        pen.t.loop( pen.c.index_struct[10].top_right, function( i, v ) --move tip anchor to be aligned with menu
+            if( type( i ) ~= "number" or type( v ) ~= "string" ) then return end
+            if( v == "bars_tip_anchor" ) then return end
+            xD.muted[v] = true
+        end)
+
         if( not( xD.gmod.can_see )) then
             local delta = math.max(( xM.inv_alpha or xD.frame_num ) - xD.frame_num, 0 )
             local alpha = 0.5*math.cos( math.pi*delta/30 )
@@ -269,8 +292,6 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
         end
 
         local full_depth = #xD.slot_state[ xD.invs_p.f ][1]
-        xys.inv_root, xys.inv = { root_x - 3, root_y - 3 }, { root_x + 2, root_y + 26 }
-
         for i = 1,( xD.inv_quick_size + 1 ) do
             for e = 1,( xD.inv_quick_size - 1 ) do
                 w, h = index.dft.slot( backpack_x, backpack_y, {
@@ -279,7 +300,7 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
                 }, xD.is_opened, true, false )
                 backpack_y = backpack_y + h + step
             end
-            backpack_x, backpack_y = backpack_x + w + step, 20
+            backpack_x, backpack_y = backpack_x + w + step, backpack_root
         end
 
         --do a proper equipment size variable
@@ -394,17 +415,15 @@ GUI_STRUCT.inv = function( screen_w, screen_h, xys )
             pen.Z.MAIN_OVERLAY, msgs[ tip_state ], { is_centered_x = true })
     end
 
-    xD.xys.inv_root_orig = { root_x, root_y }
-    xD.xys.inv_orig = { pic_x, pic_y }
+    xD.xys.inv_root = { root_x, root_y }
+    xD.xys.inv_end = { pic_x, pic_y }
+
     if( xD.Controls.inv[2]) then xD.inv_toggle = true end
-    return { root_x, root_y }, { pic_x, pic_y }
+    return { 0, 0 }
 end
 
-GUI_STRUCT.info = function( screen_w, screen_h, xys )
-    local xD, xM = index.D, index.M
-
-    local pic_x, pic_y = 0, 0
-    if( xD.is_opened ) then return { pic_x, pic_y } end
+GUI_MODULES.info = function( xD, xM, screen_w, screen_h, pos )
+    if( xD.is_opened ) then return end
     
     local ammo_x, ammo_y = 37, 35
     pen.t.loop( xD.slot_state[ xD.active_item or 0 ], function( i, id )
@@ -556,25 +575,22 @@ GUI_STRUCT.info = function( screen_w, screen_h, xys )
         local off = 7
         local pic = "mods/n40k/files/gui/info/_matter.png"
         pen.new.image( xD.pointer_ui[1] - 0.5, -off,
-            pen.Z.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[2]/7 })
+            pen.Z.WORLD_UI - 0.9, pic, { no_culling = true, s_y = xD.pointer_ui[2]/7 })
         pen.new.image( xD.pointer_ui[1] - 0.5, screen_h + off,
-            pen.Z.WORLD_UI - 0.9, pic, { s_y = -( screen_h - xD.pointer_ui[2])/7 })
+            pen.Z.WORLD_UI - 0.9, pic, { no_culling = true, s_y = -( screen_h - xD.pointer_ui[2])/7 })
         pen.new.image( -off, xD.pointer_ui[2],
-            pen.Z.WORLD_UI - 0.9, pic, { s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
+            pen.Z.WORLD_UI - 0.9, pic, { no_culling = true, s_y = xD.pointer_ui[1]/7, angle = -math.rad( 90 )})
         pen.new.image( screen_w + off, xD.pointer_ui[2],
-            pen.Z.WORLD_UI - 0.9, pic, { s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
+            pen.Z.WORLD_UI - 0.9, pic, { no_culling = true, s_y = -( screen_w - xD.pointer_ui[1])/7, angle = -math.rad( 90 )})
 
         --anims for crosshair and name
 
         pen.new.text_shad( xD.pointer_ui[1] + 6, xD.pointer_ui[2] - 15,
             pen.Z.WORLD_UI - 1, string.lower( name), { color = pen.P.N40K.HOLO_3, alpha = 0.8 })
     end)
-    return { pic_x, pic_y }
 end
 
-GUI_STRUCT.logger = function( screen_w, screen_h, xys )
-    local xD, xM = index.D, index.M
-
+GUI_MODULES.logger = function( xD, xM, screen_w, screen_h, pos )
     local log = GlobalsGetValue( index.GLOBAL_CUSTOM_LOG, "" )
     if( log ~= "" ) then
         for v in string.gmatch( pen.DIV_0..log, pen.ptrn( 0 )) do table.insert( xM.log, v ) end
@@ -611,7 +627,7 @@ GUI_STRUCT.logger = function( screen_w, screen_h, xys )
     local is_small = text_height < height
     
     local pic_z = pen.Z.BACKGROUND + 10
-    local pic_x, pic_y = unpack( xys.logger or {
+    local pic_x, pic_y = unpack({ --integrate this into new structure system
         xD.is_opened and 20 or ( screen_w - length - 10 ), screen_h - height - 2 })
     pen.new.scroller( "index_logger", pic_x, pic_y, pic_z, length, height, function( scroll_pos )
         local h = 0
@@ -665,7 +681,7 @@ table.insert( ITEM_CATS, 1, {
         if( not( xD.is_opened )) then return end
         if( not( state_tbl.is_quick )) then return end
         if( not( xD.gmod.allow_wand_editing )) then return end
-        pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.inv )
+        pic_x, pic_y = unpack( pen.vld( xD.xys.wands ) and xD.xys.wands or xD.xys.inv_wands )
         local w, h = xD.wand_func( pic_x - 3*pen.b2n( state_tbl.in_hand ), pic_y + 2, info, state_tbl.in_hand )
         xD.xys.wands = { pic_x, pic_y + h }
     end,

@@ -1,4 +1,4 @@
-return function( pic_x, pic_y, inv_info, xys, slot_func )
+return function( pic_x, pic_y, inv_info, pos, slot_func )
     local xD, xM, inv_id = index.D, index.M, inv_info.id
     if( EntityGetRootEntity( inv_id ) ~= xD.player_id ) then return end
     
@@ -12,7 +12,7 @@ return function( pic_x, pic_y, inv_info, xys, slot_func )
     else xM.twin_linked_ignore = false end
     
     local wand_id = xD.slot_state[ inv_id ][1][1]
-    local core_x, core_y = unpack( xys.inv_root_orig )
+    local core_x, core_y = unpack( xD.xys.inv_root )
     index.dft.slot( core_x - 19, core_y, {
         inv_slot = { 1, 1 },
         inv_id = inv_id, id = wand_id,

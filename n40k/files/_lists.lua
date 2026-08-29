@@ -816,18 +816,19 @@ n40k.CODEX = {
 n40k.CODEX.CREDITS = {
 	{ "$n40k_CODEX_credits_author_code", "Bruham" },
 	{ "$n40k_CODEX_credits_author_sprites", "YourDoom" },
-	{ "$n40k_CODEX_credits_author_extra", { --sort alphabetically
-		"Rib",
+	{ "$n40k_CODEX_credits_author_extra", {
+		{ "Rib", true, "$n40k_CODEX_credits_author_extra_rib" },
 	}},
 	{ "$n40k_CODEX_credits_patreon", {
 		{ "Vibrant Causality", 9999999 },
-		{ "pants", 999999 },
-		{ "Robolo42", 99999 },
-		{ "Agent Y", 99999 }
+		{ "Robolo42", 999999 },
+		{ "pants", 99999 },
+		{ "Agent Y", 99998 },
 	}},
-	{ "$n40k_CODEX_credits_extra", { --sort alphabetically; include all Quires from CA
-		{ "ryyst", true }, --some are always at the top of the list
+	{ "$n40k_CODEX_credits_extra", {
+		{ "ryyst", true },
 		{ "Copi", true },
+
 		"Ancient",
 		"etwas_merkwuerdig",
 		"Whollow",
@@ -835,7 +836,14 @@ n40k.CODEX.CREDITS = {
 		"Horscht",
 		"Archaeopteryx",
 		"Disco Witch",
+
+		--AI Quires
+		"Fernando",
+		"mchemhem",
+		"anoch",
+		"ImmortalDamned",
 	}},
+	{ "$n40k_CODEX_credits_backend", pen.THANKS },
 }
 
 n40k.QUOTES = "$n40k_EXTRA_quotes" --encoded table + add like 30 more
