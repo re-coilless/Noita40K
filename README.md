@@ -1,6 +1,6 @@
 A total conversion mod for Noita, themed after the grim darkness of the far future.
 
-Due to the complexity of the project, the functionality has been spit between 5 separate dependencies (the following list is also a load order, links will take you straight to the latest version zips):
+Due to the complexity of the project, the functionality has been spit between 6 separate dependencies (the following list is also a load order, links will take you straight to the latest version zips):
 + [Penman](https://github.com/re-coilless/penman/archive/refs/heads/main.zip)
 + [M-Nee](https://github.com/re-coilless/mnee/archive/refs/heads/main.zip)
 + [HermeS Index EXQ](https://github.com/re-coilless/index_core/archive/refs/heads/main.zip)

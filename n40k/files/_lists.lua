@@ -844,6 +844,64 @@ n40k.CODEX.CREDITS = {
 		"ImmortalDamned",
 	}},
 	{ "$n40k_CODEX_credits_backend", pen.THANKS },
+	{ "$n40k_CODEX_credits_assets", {
+		--add the name to "https://freesound.org/people/" for the link
+		{ "fastson", 100 },
+		{ "cosmicembers", 100 },
+		{ "michellegrobler", 100 },
+		{ "cambrianman", 100 },
+		{ "mariadelcastillo", 100 },
+		{ "daveincamas", 100 },
+		{ "samsterbirdies", 100 },
+		{ "arrowheadproductions", 100 },
+		{ "robinbarnard", 100 },
+		{ "duisterwho", 100 },
+		{ "jesabat", 100 },
+		{ "oneshotofficial", 100 },
+		{ "dymewiz", 100 },
+		{ "Quaker540", 100 },
+		{ "YleArkisto", 100 },
+		{ "EFlexMusic", 100 },
+		{ "primeval_polypod", 100 },
+		{ "MATRIXXX_", 100 },
+		{ "JoeDinesSound", 100 },
+		{ "HerbertBoland", 100 },
+		{ "SilverIllusionist", 100 },
+		{ "GameDevC", 100 },
+		{ "Kinoton", 100 },
+		{ "qubodup", 100 },
+		{ "Eternitys", 100 },
+		{ "humanoide9000", 100 },
+		{ "ZenithInfinitiveStudios", 100 },
+		{ "svoxx", 100 },
+		{ "	yunikon", 100 },
+		{ "Bird_man", 100 },
+		{ "Seidhepriest", 100 },
+		{ "JomelleJager", 100 },
+		{ "arnaljl", 100 },
+		{ "Tycoh", 100 },
+		{ "mrickey13", 100 },
+		{ "Moulaythami", 100 },
+		{ "CGEffex", 100 },
+		{ "adr1911", 100 },
+		{ "goulven", 100 },
+		{ "ClementPanchout", 100 },
+		{ "LittleRobotSoundFactory", 100 },
+		{ "================================", 95 },
+		{ "Russian Overkill", 90 }, --https://forum.zdoom.org/viewtopic.php?t=29915
+		{ "Guncaster", 90 }, --https://forum.zdoom.org/viewtopic.php?t=37066
+		{ "Trailblazer", 90 }, --https://forum.zdoom.org/viewtopic.php?t=47494
+		{ "High Noon Drifter", 90 }, --https://forum.zdoom.org/viewtopic.php?t=57098
+		{ "Insanity's Brutality", 90 }, --https://www.moddb.com/mods/brutal-doom/addons/insanitys-brutality
+		{ "WH40K: Imperium of Man", 90 }, --https://steamcommunity.com/sharedfiles/filedetails/?id=233106732&searchtext=
+		{ "================================", 85 },
+		{ "WH40K: Dawn of War", 80 }, --https://store.steampowered.com/app/4570/Warhammer_40000_Dawn_of_War__Anniversary_Edition_Classic/
+		{ "WH40K: Space Marine", 80 }, --https://store.steampowered.com/app/55150/Warhammer_40000_Space_Marine__Anniversary_Edition/
+		{ "Wolfenstein: The New Order", 80 }, --https://store.steampowered.com/app/201810/Wolfenstein_The_New_Order/
+		{ "Gears of War", 80 }, --https://www.gearsofwar.com/
+		{ "Nuclear Throne", 80 }, --https://store.steampowered.com/app/242680/Nuclear_Throne/
+		{ "Super Hot", 80 }, --https://store.steampowered.com/app/322500/SUPERHOT/
+	}},
 }
 
 n40k.QUOTES = "$n40k_EXTRA_quotes" --encoded table + add like 30 more

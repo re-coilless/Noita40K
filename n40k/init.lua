@@ -9,6 +9,9 @@ ModMagicNumbersFileAdd( "mods/n40k/files/appends/magic_numbers.xml" )
 ModLuaFileAppend( "data/scripts/gun/gun_actions.lua", "mods/n40k/files/appends/actions.lua" )
 ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/files/appends/status_effects.lua" )
 
+-- gotta do another pass of penman, fix all the gui funcs from being cancer
+-- when queue list is getting cleared in mrshll, make sure to leave the last song that played, so it cannot repeat
+
 -- attachement system for bayonet
 -- add warning that's not compatible with vanilla if generic map detected + warnings for each dependency (add notification module to index for this)
 -- new magos char sounds
@@ -43,6 +46,7 @@ ModLuaFileAppend( "data/scripts/status_effects/status_list.lua", "mods/n40k/file
 -- codex should have lore word hyperlinks that show tips on hower
 -- replace confirm button on default loadout switch + global mode swap button at the top of slot list + item showcase on class/skin screens + add "select" button on the desc page
 -- combat wolf with custom ai for Space Wolf
+-- make penis marine a secret equipment
 -- exterminatus should squirt some juice directly at nearby sentient entities
 -- Eternal vigilance ability to hack robots allegiance to yours through a minigame + raven's test for admech hacking minigame (images are stylized, the last one is cycled and player is supposed to stop it at the right moment)
 -- "target has expired"
@@ -103,20 +107,3 @@ function OnModInit()
 	}
 	]]
 end
-
---sounds
---[[
-cosmicembers
-fastson
-michellegrobler
-cambrianman
-mariadelcastillo
-daveincamas
-samsterbirdies
-arrowheadproductions
-robinbarnard
-duisterwho
-jesabat
-oneshotofficial
-dymewiz
-]]
